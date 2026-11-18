@@ -16,8 +16,8 @@
     g.save(); g.strokeStyle = couleur; g.lineWidth = ep; g.beginPath(); g.arc(x, y, r, 0, TOUR); g.stroke(); g.restore();
   };
   const mot = (g, texte, x, y, u, cote, couleur) => {
-    g.save(); g.font = '500 ' + (10 * u) + 'px "IBM Plex Mono", ui-monospace, Consolas, monospace';
-    if ('letterSpacing' in g) g.letterSpacing = (1.1 * u) + 'px';
+    g.save(); g.font = '500 ' + (10.5 * u) + 'px "IBM Plex Mono", ui-monospace, Consolas, monospace';
+    if ('letterSpacing' in g) g.letterSpacing = (1.05 * u) + 'px';
     g.textAlign = cote || 'left'; g.textBaseline = 'middle'; g.fillStyle = couleur || PALE; g.fillText(texte, x, y); g.restore();
   };
 

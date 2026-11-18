@@ -40,14 +40,14 @@
         <button class="chip" type="button" data-u="0.0043" aria-pressed="false">Bord d'un trou noir</button>
       </div>
       <dl class="ro fixe">
-        <dt>Retard de l'horloge locale</dt><dd id="p3-ret"></dd>
-        <dt>Lumière, comptée de loin</dt><dd id="p3-far"></dd>
-        <dt>Lumière, mesurée sur place</dt><dd>c, toujours</dd>
+        <dt>Retard de l'horloge</dt><dd id="p3-ret"></dd>
+        <dt>Lumière, vue de loin</dt><dd id="p3-far"></dd>
+        <dt>Lumière, sur place</dt><dd>c, toujours</dd>
       </dl>
       <p class="state" id="p3-state" role="status"></p>
     </div>
   </div>
-  <p class="figcap">La distance se compte en rayons de Schwarzschild : le rayon qu'aurait l'astre s'il devenait un trou noir, soit 8,87 mm pour la Terre et 2,95 km pour le Soleil. Les quatre repères placent l'horloge à la surface de l'astre, ou juste au-dessus du bord pour le trou noir. Le dessin n'est pas à l'échelle.</p>
+  <p class="figcap">La distance se compte en rayons de Schwarzschild : le rayon qu'aurait l'astre s'il devenait un trou noir, soit 8,87 mm pour la Terre et 2,95 km pour le Soleil. Les quatre repères placent l'horloge à la surface de l'astre, ou juste au-dessus du bord pour le trou noir. Le dessin n'est pas à l'échelle. M veut dire million, Md milliard.</p>
 </section>
 
 <section aria-labelledby="p3-h-bud">
@@ -76,8 +76,8 @@
         <div class="bouts" aria-hidden="true"><span>au repos</span><span>presque c</span></div>
       </div>
       <dl class="ro">
-        <dt>Cadence de l'horloge embarquée</dt><dd id="p3-bk"></dd>
-        <dt>Pendant 1 h au sol, il s'écoule</dt><dd id="p3-bm"></dd>
+        <dt>Cadence de son horloge</dt><dd id="p3-bk"></dd>
+        <dt>Pour 1 h au sol</dt><dd id="p3-bm"></dd>
       </dl>
       <p class="fnote">Au repos, tout le budget passe dans le temps. Quand la vitesse approche c, il ne reste presque rien pour l'horloge.</p>
     </div>
@@ -89,14 +89,14 @@
   <h2 id="p3-h-dev">La lumière dévie deux fois plus que ne le prévoit le temps seul</h2>
   <div class="legend"><span><i class="k-geo dia"></i>Prédiction</span><span><i class="k-ray dot"></i>Mesure de 1919, avec son erreur probable</span></div>
   <div class="fig solo"><div class="stage plain">
-    <svg class="wide bureau" viewBox="0 0 1000 270" role="img" aria-label="Déviation d'un rayon frôlant le Soleil : prédictions de 0,87 et 1,75 seconde d'arc, mesures de 1,98 et 1,61">
+    <svg class="wide bureau" viewBox="0 0 1000 270" role="img" aria-label="Déviation d'un rayon frôlant le Soleil : prédictions de 0,875 et 1,75 seconde d'arc, mesures de 1,98 et 1,61">
       <line x1="556.1" y1="44" x2="556.1" y2="222" class="ln dash"/>
       <line x1="782.1" y1="44" x2="782.1" y2="222" class="ln dash"/>
       <text x="556.1" y="34" text-anchor="middle" class="tq">valeur simple</text>
       <text x="782.1" y="34" text-anchor="middle" class="tq">valeur double</text>
       <text x="310" y="70" text-anchor="end" class="t">Temps seul (Einstein, 1911)</text>
       <rect x="550.6" y="60.5" width="11" height="11" transform="rotate(45 556.1 66)" class="f-geo"/>
-      <text x="572" y="70" class="tm">0,87</text>
+      <text x="572" y="70" class="tm">0,875</text>
       <text x="310" y="114" text-anchor="end" class="t">Temps et espace (relativité générale)</text>
       <rect x="776.6" y="104.5" width="11" height="11" transform="rotate(45 782.1 110)" class="f-geo"/>
       <text x="798" y="114" class="tm">1,75</text>
@@ -119,14 +119,14 @@
       <line x1="330" y1="222" x2="330" y2="228" class="ln"/><line x1="459.2" y1="222" x2="459.2" y2="228" class="ln"/><line x1="588.3" y1="222" x2="588.3" y2="228" class="ln"/><line x1="717.5" y1="222" x2="717.5" y2="228" class="ln"/><line x1="846.7" y1="222" x2="846.7" y2="228" class="ln"/>
       <text x="640" y="262" text-anchor="middle" class="tq">déviation d'un rayon frôlant le Soleil, en secondes d'arc</text>
     </svg>
-    <svg class="mobile" viewBox="0 0 360 318" role="img" aria-label="Déviation d'un rayon frôlant le Soleil : prédictions de 0,87 et 1,75 seconde d'arc, mesures de 1,98 et 1,61">
+    <svg class="mobile" viewBox="0 0 360 318" role="img" aria-label="Déviation d'un rayon frôlant le Soleil : prédictions de 0,875 et 1,75 seconde d'arc, mesures de 1,98 et 1,61">
       <line x1="151.3" y1="32" x2="151.3" y2="262" class="ln dash"/>
       <line x1="278.5" y1="32" x2="278.5" y2="262" class="ln dash"/>
       <text x="151.3" y="22" text-anchor="middle" class="tq">valeur simple</text>
       <text x="278.5" y="22" text-anchor="middle" class="tq">valeur double</text>
       <text x="24" y="60" class="t halo">Temps seul (Einstein, 1911)</text>
       <rect x="145.8" y="72.5" width="11" height="11" transform="rotate(45 151.3 78)" class="f-geo"/>
-      <text x="166" y="82" class="tm halo">0,87</text>
+      <text x="166" y="82" class="tm halo">0,875</text>
       <text x="24" y="116" class="t halo">Temps et espace (relativité générale)</text>
       <rect x="273" y="128.5" width="11" height="11" transform="rotate(45 278.5 134)" class="f-geo"/>
       <text x="293" y="138" class="tm halo">1,75</text>
@@ -150,7 +150,7 @@
       <text x="184" y="306" text-anchor="middle" class="tq">déviation, en secondes d'arc</text>
     </svg>
   </div></div>
-  <p class="figcap">Une masse ralentit les horloges et modifie aussi les longueurs. Un corps lent ne sent que le premier effet ; la lumière sent les deux. Les deux mesures s'accordent avec la valeur double ; celle de Sobral exclut nettement la valeur simple. Einstein écrivait 0,83 en 1911 et 1,7 en 1916 : avec les constantes d'aujourd'hui, ces deux prédictions valent 0,87 et 1,75.</p>
+  <p class="figcap">Une masse ralentit les horloges et modifie aussi les longueurs. Un corps lent ne sent que le premier effet ; la lumière sent les deux. Les deux mesures sont compatibles avec la valeur double. Celle de Sobral, la plus précise, exclut nettement la valeur simple. Einstein écrivait 0,83 en 1911 et 1,7 en 1916 : avec les constantes d'aujourd'hui, ces deux prédictions valent 0,875 et 1,75.</p>
 </section>
 
 <div class="cols">
@@ -180,7 +180,7 @@
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
     <div class="stat"><b>22 ms par an</b><span>retard d'une horloge à la surface de la Terre</span></div>
-    <div class="stat"><b>38 µs par jour</b><span>avance des horloges GPS, corrigée en permanence</span></div>
+    <div class="stat"><b>38,5 µs par jour</b><span>avance des horloges GPS, corrigée en permanence</span></div>
     <div class="stat"><b>33 cm</b><span>écart de hauteur détecté entre deux horloges atomiques en 2010</span></div>
     <div class="stat"><b>0,5 µs</b><span>avance de votre tête sur vos pieds en 80 ans</span></div>
   </div>
@@ -199,27 +199,29 @@
   const hFar = $('#h-far'), hNear = $('#h-near'), near = $('#ck-near'), slider = $('#p3-r');
   const U_MIN = 0.0043, U_MAX = 9;                       // logarithme décimal de la distance, en rayons de Schwarzschild
   const uOf = i => U_MAX - (U_MAX - U_MIN) * i / 1000, iOf = u => Math.round((U_MAX - u) / (U_MAX - U_MIN) * 1000);
-  let rate = 1, a1 = 0, a2 = 0, last = null, raf = 0, vu = false;
+  let rate = 1, a1 = 0, a2 = 0, last = null, raf = 0, vu = false, exact = null;   // exact : valeur d'un repère, que le cran du curseur arrondirait
   function still() {
     hFar.setAttribute('transform', 'rotate(0)');
     hNear.setAttribute('transform', 'rotate(' + (rate * 360).toFixed(1) + ')');
   }
   function render() {
-    const i = Number(slider.value), ratio = Math.pow(10, uOf(i)), inv = 1 / ratio;
+    const i = Number(slider.value), ratio = Math.pow(10, exact != null ? exact : uOf(i)), inv = 1 / ratio;
     const retard = -Math.expm1(0.5 * Math.log1p(-inv));
     rate = 1 - retard;
     near.setAttribute('transform', 'translate(' + (246 + 68 * i / 1000).toFixed(1) + ' 96)');
-    const loin = ratio < 1e4 ? sig(ratio, 3) + (ratio < 1.995 ? ' rayon' : ' rayons') : grand(ratio) + (ratio < 1e6 ? ' rayons' : ' de rayons');
+    const loin = ratio < 1e4 ? sig(ratio, 3) + (ratio < 1.995 ? ' rayon' : ' rayons')
+      : ratio < 9.995e5 ? grand(ratio) + ' rayons' : ratio < 9.995e8 ? sig(ratio / 1e6) + ' M de rayons' : sig(ratio / 1e9) + ' Md de rayons';
     $('#p3-ro').textContent = loin;
     slider.setAttribute('aria-valuetext', loin);
-    $('#p3-ret').innerHTML = duree(retard * YEAR) + '<small>par an, ' + (retard >= 1e-4 ? 'soit ' + sig(retard * 100, 3) + ' %' : 'moins de 0,01 %') + '</small>';
+    $('#p3-ret').innerHTML = duree(retard * YEAR) + '<small>par an (' + (retard >= 1e-4 ? sig(retard * 100, 3) + ' %' : '&lt; 0,01 %') + ')</small>';
     const dv = CMS * inv;
     $('#p3-far').textContent = inv < 1e-3 ? 'c − ' + (dv < 1000 ? sig(dv) + ' m/s' : sig(dv / 1000) + ' km/s') : sig((1 - inv) * 100, 3) + ' % de c';
-    $('#p3-rate').textContent = retard < 1e-4 ? 'presque le même rythme' : sig(rate * 100, 3) + ' % du rythme';
+    $('#p3-rate').textContent = retard < 5e-4 ? 'presque le même rythme' : sig(rate * 100, 3) + ' % du rythme';
     $('#p3-state').textContent = retard < 1e-4 ? 'L’écart est infime. C’est pourtant sa pente qui fait tomber les objets.'
       : retard < 0.01 ? 'L’écart reste faible, mais une bonne horloge le mesure sans peine.'
-        : ratio > 1.5 ? 'L’écart devient visible : l’horloge locale prend du retard à vue d’œil.'
-          : 'Vue de loin, l’horloge semble presque arrêtée. Sur place, rien ne paraît ralenti.';
+        : rate >= 0.6 ? 'L’écart devient visible : l’horloge locale prend du retard à vue d’œil.'
+          : rate >= 0.2 ? 'Vue de loin, l’horloge locale tourne au ralenti, à moins de 60 % du rythme. Sur place, rien ne paraît ralenti.'
+            : 'Vue de loin, l’horloge semble presque arrêtée. Sur place, rien ne paraît ralenti.';
     if (reduceMotion) still();
   }
   // les aiguilles ne tournent que lorsque la figure est à l'écran
@@ -234,9 +236,9 @@
     }
     last = ts; raf = requestAnimationFrame(tick);
   }
-  slider.addEventListener('input', () => { pressOnly('#p3-chips .chip', null); render(); });
-  $$('#p3-chips .chip').forEach(b => b.addEventListener('click', () => { slider.value = iOf(Number(b.dataset.u)); pressOnly('#p3-chips .chip', b); render(); }));
-  slider.value = iOf(0.4628);
+  slider.addEventListener('input', () => { exact = null; pressOnly('#p3-chips .chip', null); render(); });
+  $$('#p3-chips .chip').forEach(b => b.addEventListener('click', () => { exact = Number(b.dataset.u); slider.value = iOf(exact); pressOnly('#p3-chips .chip', b); render(); }));
+  exact = 0.4628; slider.value = iOf(exact);
   render();
   if (!reduceMotion) {
     if ('IntersectionObserver' in window) {

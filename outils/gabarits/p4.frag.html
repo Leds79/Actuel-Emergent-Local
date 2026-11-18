@@ -96,7 +96,7 @@
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
     <div class="stat"><b>48 m</b><span>longueur de l'interféromètre de l'expérience de 2007</span></div>
-    <div class="stat"><b>3 500 km</b><span>trajet aller-retour des photons dans la version satellite de 2017</span></div>
+    <div class="stat"><b>3 500 km</b><span>au plus : le trajet aller-retour des photons dans la version satellite de 2017</span></div>
     <div class="stat"><b>1 bit</b><span>au plus par photon détecté</span></div>
     <div class="stat"><b>× 100</b><span>photons nécessaires pour une précision dix fois meilleure</span></div>
   </div>
@@ -146,7 +146,8 @@
     set(pt, { cx: (46 + 160 * Dk).toFixed(1), cy: (170 - 160 * V).toFixed(1) });
     $('#p4-state').textContent = N === 0 ? 'Aucun photon détecté : rien n’est encore connu.'
       : Dk === 0 ? 'La route est inconnue : les franges apparaissent, clic après clic.'
-        : Dk < 1 ? 'Une partie de l’information sur la route est gardée : le contraste des franges tombe à ' + Math.round(V * 100) + ' %.'
+        : Math.round(V * 100) === 100 ? 'Un peu d’information sur la route est gardée : le contraste des franges baisse à peine.'
+          : Dk < 1 ? 'Une partie de l’information sur la route est gardée : le contraste des franges tombe à ' + Math.round(V * 100) + ' %.'
           : 'La route est connue : les franges ont disparu.';
   }
   dS.addEventListener('input', draw);
@@ -167,7 +168,8 @@
   function choice() {
     const f = Number(phi.value) * Math.PI / 180;
     const p1 = mode === 'route' ? 0.5 : (1 + Math.cos(f)) / 2, p2 = 1 - p1;
-    $('#p4-q').textContent = mode === 'route' ? 'Par quelle route est-il passé ?' : 'Par quelle sortie de l’interféromètre ressort-il ?';
+    $('#p4-q').innerHTML = mode === 'route' ? 'Par quelle route <span class="nb">arrive-t-il\u00a0?</span>'
+      : 'Par quelle sortie de l’interféromètre <span class="nb">ressort-il\u00a0?</span>';
     $('#p4-l1').textContent = mode === 'route' ? 'Gauche' : 'Sortie +';
     $('#p4-l2').textContent = mode === 'route' ? 'Droite' : 'Sortie −';
     $('#p4-b1').style.width = (p1 * 100).toFixed(1) + '%';

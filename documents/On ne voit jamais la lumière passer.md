@@ -26,7 +26,7 @@ Balayez un mur avec un pointeur laser : une tache semble glisser d'un bout à l'
 
 Le premier schéma montre ce qui se passe : trois envois séparés, partis de la source. Le second montre ce qu'on croit voir : une tache qui passerait d'un point au suivant.
 
-Le test est simple. Posez la main sur le mur, au milieu du trajet : la tache réapparaît de l'autre côté, car la lumière qui arrive en B n'est jamais passée par A. En langage de chantier, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne.
+Le test est simple. Posez la main sur le mur, en A, sur le passage de la tache : elle réapparaît plus loin, en B, car la lumière qui arrive en B n'est jamais passée par A. En langage de chantier, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne.
 
 Sur un écran assez lointain, la tache peut même aller plus vite que la lumière. La relativité ajoute alors un fait étonnant : l'ordre des impacts dépend de l'observateur. Pour l'un, A précède B ; pour un autre, qui file assez vite le long de l'écran, B précède A.
 
@@ -36,7 +36,7 @@ Or une cause précède son effet pour tout le monde. Aucun des deux impacts ne p
 
 À l'échelle la plus fine, la lumière arrive par grains, les photons. Un détecteur ne signale jamais une fraction de photon. Il clique, à un endroit et à un instant précis, ou il ne clique pas.
 
-En 1986, Philippe Grangier, Gérard Roger et Alain Aspect ont envoyé des photons un par un sur un miroir semi-réfléchissant, avec un détecteur derrière chaque sortie. Les deux détecteurs ne cliquaient pratiquement jamais ensemble : un photon, un seul clic.
+En 1986, Philippe Grangier, Gérard Roger et Alain Aspect ont envoyé des photons un par un sur un miroir semi-réfléchissant, avec un détecteur derrière chaque sortie. Les deux détecteurs cliquaient ensemble bien plus rarement que ne le permettrait une onde : un photon, un seul clic.
 
 Regarder un photon passer voudrait donc dire interagir avec lui. S'il clique dans votre œil, il n'arrivera pas sur l'écran. On ne peut pas observer le voyage sans y prendre part.
 

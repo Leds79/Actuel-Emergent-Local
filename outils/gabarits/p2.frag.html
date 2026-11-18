@@ -82,7 +82,7 @@
     <span class="eyebrow">Formule</span>
     <h2 id="p2-h-f">Quand la tache dépasse c, l'ordre des impacts n'est plus absolu</h2>
     <div class="tex">\Delta s^2 = c^2\,\Delta t^2 - \Delta x^2 &lt; 0</div>
-    <p class="fnote">Entre deux impacts A et B, Δt est la durée et Δx la distance. Quand Δs², l'intervalle entre A et B, est négatif, l'ordre des deux impacts dépend de l'observateur : pour l'un, A précède B ; pour un autre, qui file assez vite le long de l'écran, B précède A. Or une cause précède son effet pour tout le monde : aucun des deux impacts ne peut causer l'autre.</p>
+    <p class="fnote">Entre deux impacts A et B, Δt est la durée et Δx la distance. Quand Δs² est négatif, c'est-à-dire quand la tache va de A à B plus vite que la lumière, l'ordre des deux impacts dépend de l'observateur : pour l'un, A précède B ; pour un autre, qui file assez vite le long de l'écran, B précède A. Or une cause précède son effet pour tout le monde : aucun des deux impacts ne peut causer l'autre.</p>
   </section>
   <section aria-label="Lecture et nuance">
     <div class="lecture">
@@ -101,7 +101,7 @@
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
     <div class="stat"><b>0</b><span>lumière reçue de côté quand le faisceau traverse le vide</span></div>
-    <div class="stat"><b>1 clic</b><span>un photon ne déclenche pratiquement jamais deux détecteurs à la fois (Grangier, Roger et Aspect, 1986)</span></div>
+    <div class="stat"><b>1 clic</b><span>par photon : deux détecteurs se déclenchent ensemble bien plus rarement que ne le permettrait une onde (Grangier, Roger et Aspect, 1986)</span></div>
     <div class="stat"><b>8 min 20 s</b><span>lumière déjà en route entre le Soleil et la Terre</span></div>
   </div>
   <p class="fnote">Regarder un photon passer voudrait dire interagir avec lui : on ne peut pas observer le voyage sans y prendre part.</p>
@@ -132,7 +132,8 @@
     $('#p2-state').textContent = vide
       ? 'Dans le vide, le faisceau est invisible de côté. L’œil ne voit que la tache sur le mur.'
       : nLit === 0 ? 'Un grain flotte dans la pièce, mais pas sur le trajet : le faisceau reste invisible de côté.'
-        : 'L’œil voit des grains éclairés, pas la lumière en route. Chaque grain vu a pris un peu de lumière au faisceau.';
+        : nLit === 1 ? 'L’œil voit un grain éclairé, pas la lumière en route. Ce grain a pris un peu de lumière au faisceau.'
+          : 'L’œil voit des grains éclairés, pas la lumière en route. Chaque grain vu a pris un peu de lumière au faisceau.';
   }
   slider.addEventListener('input', scene);
   $('#p2-path').addEventListener('change', e => $('#b-path').setAttribute('visibility', e.target.checked ? 'visible' : 'hidden'));

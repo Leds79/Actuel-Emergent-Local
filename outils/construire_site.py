@@ -45,14 +45,14 @@ POLICES = ("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;6
 PILIERS = [
     dict(n=1, titre="L'ombre plus rapide que la lumière", objet="Géométrie de l'observateur", echelle="Variable : le dessin se resserre",
          article="L'ombre plus rapide que la lumière, vue par celui qui tient les ciseaux",
-         resume="Sur un écran plat, l'ombre des ciseaux part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. "
-                "Celui qui tient les ciseaux la voit tendre vers c/2.",
+         resume="Sur un écran plat à 100 millions de kilomètres, l'ombre de ciseaux fermés en une seconde part de 524 fois la vitesse "
+                "de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.",
          clef=("524 c", "vitesse de l'ombre au centre de l'écran, dans l'exemple chiffré")),
     dict(n=2, titre="On ne voit jamais la lumière passer", objet="Lumière actuelle, émergente, locale", echelle="Schémas de principe",
          article="On ne voit jamais la lumière passer",
          resume="Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu'à l'endroit "
                 "et à l'instant où elle rencontre de la matière.",
-         clef=("1 clic", "par photon : deux détecteurs ne se déclenchent pratiquement jamais ensemble (1986)")),
+         clef=("1 clic", "par photon : deux détecteurs se déclenchent ensemble bien plus rarement que ne le permettrait une onde (1986)")),
     dict(n=3, titre="La pente du temps", objet="Cadence c et masse comme frein", echelle="Schémas de principe",
          article="Tomber, c'est suivre la pente du temps",
          resume="La relativité donne un sens précis à cette intuition : tout avance dans l'espace-temps à la cadence de la "
@@ -62,26 +62,29 @@ PILIERS = [
          clef=("9,81 m/s<sup>2</sup>", "la pesanteur, retrouvée en multipliant la pente du temps par c²")),
     dict(n=4, titre="Le choix d'aujourd'hui ne réécrit pas le passé", objet="Choix retardé de Wheeler", echelle="Schémas de principe",
          article="Le choix d'aujourd'hui ne réécrit pas le passé",
-         resume="Choisir aujourd'hui comment mesurer un photon ne change rien à ce qu'il a fait. Entre « une route » "
+         resume="Choisir aujourd'hui comment mesurer un photon ne change rien au passé. Entre « une route » "
                 "et « deux routes », tous les intermédiaires existent.",
-         clef=("3 500 km", "parcourus par les photons quand l'expérience a été refaite avec un satellite, en 2017")),
+         clef=("3 500 km", "au plus, parcourus par les photons quand l'expérience a été refaite avec un satellite, en 2017")),
     dict(n=5, titre="Comment une réponse devient un fait", objet="Cristallisation de l'information", echelle="Schémas de principe",
          article="Comment une réponse devient un fait",
          resume="La réponse est d'abord inscrite au crayon, encore effaçable. L'environnement la recopie ensuite "
                 "des milliards de fois et la grave.",
          clef=("10 ps", "dix picosecondes : le temps que met le soleil à brouiller l'interférence d'un grain de poussière")),
 ]
-# l'intuition de départ de chaque pilier, dans les mots de l'auteur (orthographe corrigée, phrases rapprochées).
-# Piliers 1 à 4 : sa conversation d'origine. Pilier 5 : sa demande d'ajout d'un cinquième point. Les deux sont dans prive/.
+# l'intuition de départ de chaque pilier, dans les mots de l'auteur : orthographe corrigée, rien d'ajouté, et « […] »
+# là où deux de ses messages sont rapprochés. Piliers 1 à 4 : sa conversation d'origine. Pilier 5 : sa demande d'ajout
+# d'un cinquième point. Les deux sont dans prive/.
 INTUITIONS = {
-    1: "L'observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, "
-       "je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage.",
-    2: "La lumière est comme l'eau : transparente. Je pense que c'est sa définition par le langage qui est obsolète. Elle n'est pas "
-       "absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local.",
-    3: "Je risque de me tromper, mais selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, "
-       "ralentissent leur environnement : la masse qui courbe l'espace localement est plus lente que l'ensemble.",
-    4: "C'est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire "
-       "qu'il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné.",
+    1: "L'observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. […] Je vois cela un peu comme "
+       "dans un miroir face à un miroir : il y a un décalage. […] Alors, un tableau parfaitement plat.",
+    2: "La lumière est comme l'eau, transparente. Je pense que c'est la définition de la lumière par le langage qui est obsolète. […] "
+       "La lumière n'est pas absolue mais émergente : alors les vrais mots seraient, selon moi, actuel, émergent, local.",
+    3: "Je risque de me tromper, mais selon moi, ici, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous "
+       "noirs, ralentissent leur environnement. […] La masse qui courbe l'espace gravitationnel localement est plus lente que "
+       "l'ensemble, qui tourne à la vitesse de la lumière.",
+    4: "C'est bizarre de devoir rester dans ce cadre fermé de ces deux options. Je vais formuler mon intuition, cela va sembler "
+       "peut-être bizarre : on parle de choix retardé ; pour moi, cela veut dire qu'il y a intention, et que ce que nous concevons, "
+       "connaissons, est graduellement donné.",
     5: "La cristallisation de l'information fait suite à la quatrième hypothèse : la question est un potentiel ; actualiser, "
        "c'est cristalliser l'information.",
 }
@@ -762,7 +765,7 @@ def main():
   <span class="eyebrow">Verdict</span>
   <h2 id="h-verdict">Ce que les équations confirment, et ce qu'elles corrigent</h2>
   <div class="verdict">
-    <p>Le dossier part des formules de départ, écrites à partir des intuitions de l'auteur. Il les démontre ou les corrige une à une.</p>
+    <p>Le dossier part des formules de la demande qui a lancé ce travail, écrites à partir des intuitions de l'auteur. Il démontre ou corrige une à une ces « formules demandées ».</p>
 %s
   </div>
 </section>
@@ -770,7 +773,7 @@ def main():
 <section aria-labelledby="h-frise">
   <span class="eyebrow">Sources</span>
   <h2 id="h-frise">Un siècle de travaux derrière les cinq piliers</h2>
-  <p>Le dossier s'appuie sur NBREFS travaux publiés entre ANDEBUT et ANFIN. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel.</p>
+  <p>Le dossier s'appuie sur NBREFS travaux publiés entre ANDEBUT et ANFINAUTRESREFS. Chaque point est l'un de ces travaux : survolez-le ou touchez-le pour savoir lequel.</p>
   <figure class="fig solo"><div class="stage">DESSINFRISE</div><div class="bulle" hidden></div></figure>
   <p class="fnote">La liste complète, avec un lien vers chaque source, se trouve dans les <a href="dossier.html#references">références du dossier</a>.</p>
 </section>
@@ -796,7 +799,9 @@ def main():
   <h2 id="h-apropos">Comment ce site a été fait</h2>
   <p>Les intuitions sont celles de Sylvain Leduc, qui fait du suivi de projet et s'intéresse à la cosmologie. Leur mise en équations, les articles et ce site ont été réalisés à sa demande avec l'aide d'une intelligence artificielle, Claude, d'Anthropic. Les calculs ont été vérifiés numériquement et les références contrôlées une à une ; les exceptions sont signalées dans le dossier.</p>
 </section>""") % ("\n".join(planches), md_html(intro, "accueil"), md_html(sections.get("Synthèse", "").strip(), "accueil"), rangs)
-    corps = (corps.replace("NBREFS", str(nb_refs)).replace("ANDEBUT", str(an_debut)).replace("ANFIN", str(an_fin))
+    sans_annee = len(re.findall(r"^- ", refs, flags=re.M)) - nb_refs
+    autres = {0: "", 1: ", plus une page technique sans date"}.get(sans_annee, ", plus %d sources sans date" % sans_annee)
+    corps = (corps.replace("NBREFS", str(nb_refs)).replace("ANDEBUT", str(an_debut)).replace("ANFINAUTRESREFS", str(an_fin) + autres)
              .replace("DESSINFRISE", dessin_frise))
     page("index.html", NOM,
          "Cinq intuitions sur la lumière, la gravité et la mesure, traduites en équations et confrontées à la physique établie.",

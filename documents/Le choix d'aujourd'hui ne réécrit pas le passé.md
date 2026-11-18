@@ -2,7 +2,7 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-Choisir aujourd'hui comment mesurer un photon ne change rien à ce qu'il a fait il y a des milliards d'années. L'expérience du « choix retardé » ne paraît paradoxale que si l'on oblige le photon à avoir « pris une route » ou « pris les deux ». Entre ces deux cases, la physique en connaît une infinité d'autres, et aucune n'exige de remonter le temps.
+Choisir aujourd'hui comment mesurer un photon ne change rien à ce qui s'est passé il y a des milliards d'années. L'expérience du « choix retardé » ne paraît paradoxale que si l'on oblige le photon à avoir « pris une route » ou « pris les deux ». Entre ces deux cases, la physique en connaît une infinité d'autres, et aucune n'exige de remonter le temps.
 
 ## L'expérience de Wheeler
 
@@ -50,13 +50,13 @@ Reste l'interprétation. Pour Wheeler, Rovelli ou les partisans du QBisme, le r�
 
 Chaque détection ne livre qu'une réponse parmi deux : un bit au plus. La précision s'achète donc cher. Pour mesurer dix fois mieux le décalage entre les deux routes, il faut cent fois plus de photons.
 
-La connaissance arrive ainsi par constats successifs, locaux et datés, comme dans un suivi de chantier. Aucun constat ne réécrit les précédents. C'est le sens précis de l'idée que le réel nous est « graduellement donné ».
+La connaissance arrive ainsi par constats successifs, locaux et datés, comme dans un suivi de chantier. Aucun constat ne réécrit les précédents. C'est le sens précis de l'idée que ce que nous connaissons nous est « graduellement donné ».
 
 ## Sources et précisions
 
 - Les calculs complets figurent dans le dossier [Formalisation du modèle « Actuel, Émergent, Local »](https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r), pilier 4.
 - L'expérience de pensée : Wheeler, J. A. (1978). [The “Past” and the “Delayed-Choice” Double-Slit Experiment](https://doi.org/10.1016/B978-0-12-473250-6.50006-6). Sa version cosmique et sa position sur la conscience figurent dans « Law without Law » (1983), dans Quantum Theory and Measurement, Princeton University Press, p. 182–213.
-- Réalisation de 2007 : Jacques, V., et al. [Experimental Realization of Wheeler's Delayed-Choice Gedanken Experiment](https://arxiv.org/abs/quant-ph/0610241). Science 315, 966–968. Version par satellite, jusqu'à 3 500 kilomètres : Vedovato, F., et al. (2017). [Extending Wheeler's delayed-choice experiment to space](https://arxiv.org/abs/1704.01911). Science Advances 3, e1701180.
+- Réalisation de 2007 : Jacques, V., et al. (2007). [Experimental Realization of Wheeler's Delayed-Choice Gedanken Experiment](https://arxiv.org/abs/quant-ph/0610241). Science 315, 966–968. Version par satellite, jusqu'à 3 500 kilomètres : Vedovato, F., et al. (2017). [Extending Wheeler's delayed-choice experiment to space](https://arxiv.org/abs/1704.01911). Science Advances 3, e1701180.
 - Aucun message possible : Ghirardi, G. C., Rimini, A., Weber, T. (1980). [A general argument against superluminal transmission through the quantum mechanical measurement process](https://link.springer.com/article/10.1007/BF02817189). Lettere al Nuovo Cimento 27, 293–298.
 - Le compromis entre route et franges : Englert, B.-G. (1996). [Fringe Visibility and Which-Way Information: An Inequality](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.2154). Physical Review Letters 77, 2154–2157.
 - Les statistiques de l'expérience de base admettent même un modèle classique, sans action vers le passé : Chaves, R., Lemos, G. B., Pienaar, J. (2018). [Causal Modeling the Delayed-Choice Experiment](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.190401). Physical Review Letters 120, 190401.

@@ -8,7 +8,7 @@
   <h2 id="p5-h-st">Tant qu'elle n'est pas cristallisée, la réponse reste effaçable</h2>
   <div class="fig">
     <div class="stage plain temps">
-      <ol class="etapes" aria-label="Les trois temps de la mesure">
+      <ol class="etapes" aria-label="La question, puis les deux temps de la mesure">
         <li class="etape" id="s-q"><b>Question</b><span>des réponses possibles</span><span>valeur : 1 bit au plus</span></li>
         <li class="passage" aria-hidden="true"><i>détecteur</i><svg viewBox="0 0 60 10"><path d="M0 5H52" class="ln" style="stroke:var(--ink-3)"/><path d="M50 1L59 5L50 9z" class="f-ink3"/></svg></li>
         <li class="etape" id="s-i"><b>Inscription</b><span>au crayon</span><span>encore effaçable</span></li>
@@ -32,7 +32,7 @@
       <p class="state" id="p5-state" role="status"></p>
     </div>
   </div>
-  <p class="figcap">Exemple chiffré : une mémoire d'un centimètre carré en plein jour, dont chaque photon distingue très mal les deux réponses. La barre des copies est en échelle logarithmique. Les unités de temps vont de mille en mille : femtoseconde (fs), picoseconde (ps), nanoseconde (ns), microseconde (µs), milliseconde (ms). Une picoseconde vaut un millième de milliardième de seconde.</p>
+  <p class="figcap">Exemple chiffré : une mémoire d'un centimètre carré en plein jour ; chaque photon qui la frappe distingue très mal les deux réponses. La barre des copies est en échelle logarithmique. Les unités de temps vont de mille en mille : femtoseconde (fs), picoseconde (ps), nanoseconde (ns), microseconde (µs), milliseconde (ms). Une picoseconde vaut un millième de milliardième de seconde.</p>
 </section>
 
 <section aria-labelledby="p5-h-h">
@@ -71,7 +71,7 @@
       <p class="state" id="p5-hstate" role="status"></p>
     </div>
   </div>
-  <p class="figcap">Le stock est limité : un photon qui dispose de deux routes ne livre jamais plus d'un bit. Poser une autre question ne l'augmente pas : cela le redistribue.</p>
+  <p class="figcap">Cette valeur est limitée : un photon qui dispose de deux routes ne livre jamais plus d'un bit. Poser une autre question ne l'augmente pas : cela le redistribue.</p>
 </section>
 
 <div class="cols">
@@ -105,10 +105,10 @@
       <thead><tr><th>Situation</th><th>Résultat</th><th>Source</th></tr></thead>
       <tbody>
         <tr><td>Grain de poussière de 10 micromètres au soleil, entre deux positions distantes de 0,1 micromètre</td><td>interférences éteintes en un cent-milliardième de seconde environ</td><td>Joos et Zeh, 1985</td></tr>
-        <tr><td>Le même grain, dans le vide interstellaire</td><td>moins de trois heures</td><td>Joos et Zeh, 1985</td></tr>
+        <tr><td>Le même grain, dans le vide interstellaire</td><td>près de trois heures</td><td>Joos et Zeh, 1985</td></tr>
         <tr><td>Grain d'une pellicule photographique</td><td>3 à 5 atomes d'argent suffisent, effet multiplié par cent millions</td><td>Belloni, 2002</td></tr>
         <tr><td>Bit conservé dix ans à température ambiante</td><td>barrière d'environ 40 fois l'agitation thermique</td><td>calcul du dossier</td></tr>
-        <tr><td>Effacer un bit</td><td>au moins 2,9 × 10⁻²¹ joule dissipé à 300 K</td><td>Landauer, 1961</td></tr>
+        <tr><td>Effacer un bit</td><td>au moins 2,9 × 10⁻²¹ joule dissipé à 27 °C (300 K)</td><td>Landauer, 1961</td></tr>
       </tbody>
     </table>
   </div>
@@ -132,15 +132,15 @@
     const quand = i === 0 ? 'avant la détection' : duree(t);
     $('#p5-to').textContent = quand;
     tS.setAttribute('aria-valuetext', quand);
-    $('#p5-coh').textContent = coh >= 0.001 ? sig(coh * 100, 3) + ' %' : 'pratiquement nulle';
+    $('#p5-coh').textContent = coh >= 0.001 ? sig(coh * 100, 3) + ' %' : '< 0,1 %';
     $('#p5-cohb').style.width = (coh * 100).toFixed(1) + '%';
     $('#p5-cop').textContent = nb;
     $('#p5-copb').style.width = (copies < 1 ? 0 : Math.min(100, Math.log10(copies) / 11.4 * 100)).toFixed(1) + '%';
     $('#p5-state').textContent = stage === 'q'
       ? (erased ? 'Réponse effacée : la mémoire est revenue à l’état « prêt », et l’interférence est de nouveau possible.'
         : 'Avant la détection, la question est ouverte : aucune réponse n’est encore inscrite.')
-      : stage === 'i' ? (copies < 1 ? 'La réponse est inscrite au crayon. Elle peut encore être effacée.'
-        : 'Des copies sont déjà parties dans l’environnement : l’effacement ne serait plus complet.')
+      : stage === 'i' ? (copies < 1 ? 'La réponse est inscrite au crayon. Une gomme quantique peut encore l’effacer, pour la part que l’environnement n’a pas déjà emportée.'
+        : 'Au moins une copie est déjà partie dans l’environnement : l’effacement ne serait plus complet.')
         : 'La réponse est cristallisée : pour l’effacer, il faudrait rattraper ' + nb + (copies < 1e6 ? ' copies.' : ' de copies.');
   }
   tS.addEventListener('input', () => { erased = false; render(); });

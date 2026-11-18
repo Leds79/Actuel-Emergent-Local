@@ -45,7 +45,7 @@
     </div>
     <div class="panel">
       <div class="ctl">
-        <label for="p1-x">Point visé sur l'écran <output id="p1-xo" for="p1-x"></output></label>
+        <label for="p1-x">Point visé <output id="p1-xo" for="p1-x"></output></label>
         <input type="range" id="p1-x" min="-4" max="2.3" step="0.01" value="0">
         <div class="bouts" aria-hidden="true"><span>près du centre</span><span>très loin</span></div>
       </div>
@@ -141,16 +141,16 @@
   const dist = x => {
     if (x === 0) return 'au centre';
     if (x >= 1e15) return sig(x / LY / 1e6, 2) + ' M d’années-lumière';
-    if (x >= 1e9) return sig(x / 1e9) + (x < 2e9 ? ' milliard de km' : ' milliards de km');
-    if (x >= 1e6) return sig(x / 1e6) + (x < 2e6 ? ' million de km' : ' millions de km');
+    if (x >= 1e9) return sig(x / 1e9) + (x < 1.995e9 ? ' milliard de km' : ' milliards de km');
+    if (x >= 1e6) return sig(x / 1e6) + (x < 1.995e6 ? ' million de km' : ' millions de km');
     return frNum(Math.round(x / 1000) * 1000) + ' km';
   };
-  // une valeur longue passe sur deux lignes : le nombre, puis son unité
+  // chaque valeur tient sur deux lignes, le nombre puis une précision : le panneau garde ainsi la même hauteur partout
   const km = v => {
     if (v >= 1e13) { const al = v / LY; return al >= 9.995e5 ? sig(al / 1e6, 2) + (al < 1.995e6 ? ' million' : ' millions') + '<small>d’années-lumière</small>' : sig(al) + '<small>années-lumière</small>'; }
-    return v >= 1e9 ? sig(v / 1e9) + ' Md km' : v >= 1e6 ? sig(v / 1e6) + ' M km' : frNum(Math.round(v)) + ' km';
+    return (v >= 1e9 ? sig(v / 1e9) + ' Md km' : v >= 1e6 ? sig(v / 1e6) + ' M km' : frNum(Math.round(v)) + ' km') + '<small>par rapport au centre</small>';
   };
-  const attente = s => s >= YEAR * 1e6 ? sig(s / YEAR / 1e6) + ' millions<small>d’années</small>' : duree(s);
+  const attente = s => s >= YEAR * 1e6 ? sig(s / YEAR / 1e6) + ' millions<small>d’années</small>' : duree(s) + '<small>aller-retour compris</small>';
   const slider = $('#p1-x');
   let x = D;
 
@@ -189,8 +189,8 @@
     if (!etroit) {
       // sur un petit écran, la légende placée au-dessus du graphique suffit
       const kl = calc(D * Math.pow(10, -1.5));
-      ch.appendChild(el('text', { x: px(-1.5) + 14, y: py(kl.ve) - 12, class: 't' }, 'vitesse réelle de l’ombre'));
-      ch.appendChild(el('text', { x: px(-1.5) - 14, y: py(kl.vo) + 24, 'text-anchor': 'end', class: 't' }, 'vitesse vue par l’opérateur'));
+      ch.appendChild(el('text', { x: px(-1.5) + 14, y: py(kl.ve) - 12, class: 't halo' }, 'vitesse réelle de l’ombre'));
+      ch.appendChild(el('text', { x: px(-1.5) - 14, y: py(kl.vo) + 24, 'text-anchor': 'end', class: 't halo' }, 'vitesse vue par l’opérateur'));
     }
     cross = ch.appendChild(el('line', { y1: T, y2: B, class: 'ln', style: 'stroke:var(--ink-2)' }));
     m1 = ch.appendChild(el('circle', { r: 6.5, class: 'f-geo ring' }));
@@ -258,7 +258,7 @@
     $('#p1-ve').innerHTML = sig(k.ve, 4) + ' c<small>' + frNum(Math.round(k.ve * C)) + ' km/s</small>';
     $('#p1-vo').innerHTML = sig(k.vo, 4) + ' c<small>' + frNum(Math.round(k.vo * C)) + ' km/s</small>';
     $('#p1-to').innerHTML = attente(k.tO);
-    $('#p1-ex').innerHTML = x === 0 ? '0 km' : km(k.R - D);
+    $('#p1-ex').innerHTML = km(x === 0 ? 0 : k.R - D);
     $('#p1-state').textContent =
       x === 0 ? 'Au centre, la diagonale ne s’allonge pas : seule la source donne le rythme.'
         : k.vo > 1 ? 'Ici l’ombre dépasse c, et l’opérateur la voit lui aussi plus rapide que c.'

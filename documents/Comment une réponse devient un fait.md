@@ -14,7 +14,7 @@ Mesurer, c'est poser une question à la nature. Dans l'intuition, cette question
 | Une réponse trois fois plus probable que l'autre | 3 sur 4 et 1 sur 4 | 0,81 bit |
 | Réponse connue d'avance | 1 et 0 | 0 bit |
 
-Ce stock est limité. Un photon qui dispose de deux routes ne livrera jamais plus d'un bit, quelle que soit la façon de l'interroger. Poser une autre question n'ajoute pas un second bit : cela redistribue le même.
+Cette valeur est limitée. Un photon qui dispose de deux routes ne livrera jamais plus d'un bit, quelle que soit la façon de l'interroger. Poser une autre question n'ajoute pas un second bit : cela redistribue le même.
 
 ## Premier temps : l'inscription au crayon
 
