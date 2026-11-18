@@ -67,7 +67,7 @@ Les cinq dessins animés (`epures.js`), dont les images ont été choisies par l
 2. le mot « rayon », barré dans les limites de sa définition, au-dessus du fait ;
 3. la toile de l'espace-temps, ses galaxies, et le trou noir qui l'étire et la ralentit ;
 4. le sablier de la connaissance : les grains tombent un à un, aucun ne remonte ;
-5. le givre fractal qui pousse à partir d'un germe.
+5. le flocon de neige fractal qui pousse à partir d'un germe.
 
 Chaque dessin est une fonction du temps seul. Ajouter `#fige=4.5` à l'adresse d'une page arrête tous les dessins sur cet instant, ce qui permet de les capturer.
 

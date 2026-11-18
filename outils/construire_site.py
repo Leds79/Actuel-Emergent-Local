@@ -88,7 +88,7 @@ EPURES = {
     2: ("4.0", "En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"),
     3: ("6.0", "La toile de l'espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s'étire, et tout ce qui passe près de lui ralentit et s'entasse"),
     4: ("24.0", "Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"),
-    5: ("7.6", "Un germe apparaît au centre, puis un givre fractal en part et gagne toute la vitre : la réponse cristallise"),
+    5: ("7.0", "Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"),
 }
 VUES = [("index.html", 'Planche<span class="plus"> interactive</span>'), ("article.html", "Article"),
         ("demonstration.html", "Démonstration")]

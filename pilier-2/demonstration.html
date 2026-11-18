@@ -934,44 +934,38 @@ window.addEventListener('resize', marquerDefilement);
     g.restore();
   };
 
-  // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise comme le givre sur une vitre :
-  // chaque rameau en porte d'autres, de proche en proche, et rien ne revient en arrière.
+  // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
+  // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const h = mulberry(1961), niveaux = [[], [], [], [], []], V = 0.16;
-    const PAS = [9, 5, 4, 2, 2], COEF = [0, 0.42, 0.46, 0.5, 0.52], CHANCE = [0.95, 0.86, 0.6, 0.36];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
-      if (total > 16000 || len < 0.013) return;
-      const n = PAS[prof], pas = len / n;
-      let a = ang, t = t0;
+      if (len < 0.011) return;
+      const n = PAS[prof], pas = len / n, ca = Math.cos(ang), sa = Math.sin(ang);
+      let t = t0;
       for (let k = 0; k < n; k++) {
-        a += (h() - 0.5) * 0.12;
-        const x2 = x + pas * Math.cos(a), y2 = y + pas * Math.sin(a), d = pas / V;
+        const x2 = x + pas * ca, y2 = y + pas * sa, d = pas / V;
         niveaux[prof].push(x, y, x2, y2, t, d); total++;
         x = x2; y = y2; t += d; if (t > fin) fin = t;
-        if (prof < 4 && k < n - 1) {
-          const l = len * COEF[prof + 1] * (1 - 0.6 * k / n) * (0.8 + 0.4 * h());
-          [1, -1].forEach(cote => { if (h() < CHANCE[prof]) branche(x, y, a + cote * (1.047 + (h() - 0.5) * 0.2), l, t, prof + 1); });
+        if (prof < 3 && k < n - 1) {
+          // sur un bras, les rameaux s'allongent puis raccourcissent : c'est ce qui dessine l'étoile à six branches
+          const q = (k + 1) / n, l = prof === 0 ? Math.min(0.92 * q * len, 0.62 * (1 - q) * len) : 0.5 * len * Math.pow(1 - q, 0.8);
+          branche(x, y, ang + 1.0472, l, t, prof + 1); branche(x, y, ang - 1.0472, l, t, prof + 1);
         }
       }
     };
-    const depart = h() * 1.047;
-    for (let i = 0; i < 6; i++) {
-      const a = depart + i * 1.0472, bord = Math.min(0.5 / Math.abs(Math.cos(a)), 0.375 / Math.abs(Math.sin(a)));
-      branche(0.5, 0.375, a, Math.min(0.66, bord * 1.04), 0, 0);
-    }
+    for (let i = 0; i < 6; i++) branche(0.5, 0.375, i * 1.0472, LONG, 0, 0);
     return { niveaux: niveaux, total: total, fin: fin };
   })();
   const cristal = (g, W, H, t, u, petit) => {
-    const T = GIVRE.fin + 5.4, tt = t % T, cx = 0.5 * W, cy = 0.375 * W, tg = tt - 2.6;
+    const T = GIVRE.fin + 7, tt = t % T, cx = 0.5 * W, cy = 0.375 * W, tg = tt - 2.6;
     const fondu = tt > T - 0.8 ? (T - tt) / 0.8 : 1;
     const hexagone = r => { g.beginPath(); for (let i = 0; i < 6; i++) { const a = i * 1.0472 + 0.5236; g[i ? 'lineTo' : 'moveTo'](cx + r * Math.cos(a), cy + r * Math.sin(a)); } g.closePath(); };
     let n = 0;
     g.save(); g.globalAlpha = fondu;
     if (tg > 0) {
-      const EP = [1.8, 1.3, 1, 0.8, 0.62], AL = [0.97, 0.9, 0.78, 0.66, 0.54], pointes = [];
-      // sur une petite plaque, le dernier niveau de rameaux serait plus fin qu'un point : on s'arrête au précédent
-      for (let p = 0; p < (petit ? 4 : 5); p++) {
+      const EP = [2.3, 1.6, 1.15, 0.85], AL = [1, 0.94, 0.84, 0.72], pointes = [];
+      for (let p = 0; p < GIVRE.niveaux.length; p++) {
         const s = GIVRE.niveaux[p];
         g.beginPath();
         for (let i = 0; i < s.length; i += 6) {

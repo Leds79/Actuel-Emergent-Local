@@ -23,6 +23,8 @@ Elles reviennent à l'auteur. En attendant, l'état actuel est celui décrit ici
 3. **Les cinq citations « L'intuition de départ ».** Elles reprennent ses phrases d'origine, orthographe corrigée et phrases rapprochées. À relire par l'auteur, qui a dit vouloir les corriger plus tard.
 4. **Articles 1, 2, 4 et 5.** Ils ont reçu une ou deux phrases pour y mettre ses images. L'article 3 a été réécrit plus largement. Aligner les autres de la même façon, ou non.
 
+5. **Phrase de conclusion de la synthèse.** Elle dit que le modèle ne contredit aucun résultat établi et qu'il lui faudrait une prédiction chiffrée nouvelle pour devenir une théorie. Proposition faite à l'auteur : ajouter juste après où se trouve sa force (des mots et des images justes, une grille de questions réutilisable). En attente de sa réponse.
+
 ## Pistes pour la suite
 
 - Essayer le site sur iPhone (Safari) et sous Firefox : il n'a été contrôlé qu'avec Edge.
@@ -44,6 +46,7 @@ Elles reviennent à l'auteur. En attendant, l'état actuel est celui décrit ici
 - Dessins animés refaits d'après les images de l'auteur : ombre des ciseaux, mot barré, toile et trou noir, sablier, givre. Le dessin 2 est validé par l'auteur.
 - Retouches demandées ensuite : une plus belle paire de ciseaux (lames effilées, anneaux), toute la toile qui tourne avec un trou noir qui l'étire, des grains de sablier qui tombent lentement, un givre plus fractal. L'auteur trouve l'ensemble bon.
 - Chiffre clé du pilier 4 reformulé : la phrase sur les 3 500 km n'était pas claire.
+- L'auteur aime la toile qui tourne (pilier 3). Le givre du pilier 5 devient un flocon de neige, à sa demande.
 - Création de `CLAUDE.md` et de ce fichier, pour pouvoir reprendre le travail d'une séance à l'autre.
 
 ### 17 novembre 2026
