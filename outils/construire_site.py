@@ -84,11 +84,11 @@ INTUITIONS = {
 
 # épures : pour chaque pilier, l'instant montré quand l'animation est désactivée, et la description du dessin
 EPURES = {
-    1: ("3.0", "Une source balaie un écran plat. Les photons filent en ligne droite et dessinent une spirale ; la tache avance là où elle touche l'écran"),
-    2: ("2.0", "Un faisceau traverse une pièce sans se montrer. Seuls les grains de poussière qui le croisent s'allument, et l'œil les voit"),
-    3: ("2.0", "Deux horloges battent à des rythmes différents. Des fronts d'onde pivotent et la trajectoire vire vers la masse"),
-    4: ("2.6", "Un photon contourne une galaxie par deux routes à la fois. Au dernier moment, on place ou non une lame avant les détecteurs"),
-    5: ("4.6", "Une réponse est inscrite, puis recopiée en un nombre croissant d'exemplaires dans l'environnement"),
+    1: ("3.6", "L'ombre d'une paire de ciseaux sur un tableau plat, vue de face. Elle se referme de proche en proche, du centre vers la pointe ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"),
+    2: ("4.0", "En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"),
+    3: ("3.0", "La toile de l'espace-temps, semée de galaxies. Un trou noir y creuse un puits : la toile s'étire, et les battements qui la parcourent ralentissent et s'entassent près de lui"),
+    4: ("9.0", "Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"),
+    5: ("6.4", "Un germe apparaît au centre, puis un givre fractal en part et gagne toute la vitre : la réponse cristallise"),
 }
 VUES = [("index.html", 'Planche<span class="plus"> interactive</span>'), ("article.html", "Article"),
         ("demonstration.html", "Démonstration")]
