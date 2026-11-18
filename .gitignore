@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+# notes et sources privées : jamais publiées
+prive/

@@ -62,7 +62,7 @@ PILIERS = [
          article="Le choix d'aujourd'hui ne réécrit pas le passé",
          resume="Choisir aujourd'hui comment mesurer un photon ne change rien à ce qu'il a fait. Entre « une route » "
                 "et « deux routes », tous les intermédiaires existent.",
-         clef=("3 500 km", "portée de l'expérience du choix retardé réalisée par satellite (2017)")),
+         clef=("3 500 km", "parcourus par les photons quand l'expérience de Wheeler a été refaite avec un satellite, en 2017")),
     dict(n=5, titre="Comment une réponse devient un fait", objet="Cristallisation de l'information", echelle="Schémas de principe",
          article="Comment une réponse devient un fait",
          resume="La réponse est d'abord inscrite au crayon, encore effaçable. L'environnement la recopie ensuite "
@@ -86,9 +86,9 @@ INTUITIONS = {
 EPURES = {
     1: ("3.6", "L'ombre d'une paire de ciseaux sur un tableau plat, vue de face. Elle se referme de proche en proche, du centre vers la pointe ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"),
     2: ("4.0", "En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"),
-    3: ("3.0", "La toile de l'espace-temps, semée de galaxies. Un trou noir y creuse un puits : la toile s'étire, et les battements qui la parcourent ralentissent et s'entassent près de lui"),
-    4: ("9.0", "Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"),
-    5: ("6.4", "Un germe apparaît au centre, puis un givre fractal en part et gagne toute la vitre : la réponse cristallise"),
+    3: ("6.0", "La toile de l'espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s'étire, et tout ce qui passe près de lui ralentit et s'entasse"),
+    4: ("24.0", "Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"),
+    5: ("7.6", "Un germe apparaît au centre, puis un givre fractal en part et gagne toute la vitre : la réponse cristallise"),
 }
 VUES = [("index.html", 'Planche<span class="plus"> interactive</span>'), ("article.html", "Article"),
         ("demonstration.html", "Démonstration")]

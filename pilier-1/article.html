@@ -687,24 +687,38 @@ window.addEventListener('resize', marquerDefilement);
   // En pointillé, ce que voit celui qui tient les ciseaux : la lumière doit encore revenir, le retard est doublé.
   const ciseaux = (g, W, H, t, u, petit) => {
     const UN = 1.25, T = 7.9, tt = (t / UN) % T;                     // unité de temps : le trajet de la source au centre du tableau
-    const x0 = 0.16 * W, cy = 0.4 * W, ech = 0.262 * W, RMAX = 3.12, A0 = 0.235, TC = 0.3, DEP = 0.5;
+    const x0 = 0.215 * W, cy = 0.4 * W, ech = 0.24 * W, RMAX = 3.12, A0 = 0.235, TC = 0.3, DEP = 0.5, OMBRE = '#04102a';
     const ouvert = tau => clamp(1 - tau / TC, 0, 1);
     const ecart = (rho, trajets) => rho * Math.tan(A0 * ouvert(tt - DEP - trajets * Math.hypot(1, rho))) * ech;
     // le tableau
     g.save(); g.fillStyle = 'rgba(205,225,255,.1)'; g.fillRect(0.03 * W, 0.1 * H, 0.94 * W, 0.8 * H);
     g.strokeStyle = TRAIT; g.lineWidth = u; g.strokeRect(0.03 * W, 0.1 * H, 0.94 * W, 0.8 * H); g.restore();
-    // l'ombre des deux lames, telle qu'elle est sur le tableau à cet instant
+    // l'ombre des ciseaux, telle qu'elle est sur le tableau à cet instant
+    // les branches et leurs anneaux : chaque branche prolonge la lame du côté opposé, elles se croisent au pivot
+    const ecartBranches = 1.5 * A0 * ouvert(tt - DEP - 1);
+    [-1, 1].forEach(cote => {
+      const b = Math.PI + cote * (0.3 + ecartBranches), ca = Math.cos(b), sa = Math.sin(b), nx = -sa, ny = ca;
+      const bx = x0 + 27 * u * ca, by = cy + 27 * u * sa, ax = x0 + 40 * u * ca, ay = cy + 40 * u * sa;
+      g.beginPath(); g.moveTo(x0 + 3.6 * u * nx, cy + 3.6 * u * ny); g.lineTo(bx + 2.4 * u * nx, by + 2.4 * u * ny);
+      g.lineTo(bx - 2.4 * u * nx, by - 2.4 * u * ny); g.lineTo(x0 - 3.6 * u * nx, cy - 3.6 * u * ny); g.closePath();
+      g.fillStyle = OMBRE; g.fill(); g.strokeStyle = ENCRE; g.lineWidth = u; g.stroke();
+      g.beginPath(); g.ellipse(ax, ay, 15 * u, 9.5 * u, b, 0, TOUR); g.ellipse(ax, ay, 9.5 * u, 5 * u, b, 0, TOUR);
+      g.fillStyle = OMBRE; g.fill('evenodd');
+      g.beginPath(); g.ellipse(ax, ay, 15 * u, 9.5 * u, b, 0, TOUR); g.stroke();
+      g.beginPath(); g.ellipse(ax, ay, 9.5 * u, 5 * u, b, 0, TOUR); g.stroke();
+    });
+    // les lames : un tranchant droit, un dos courbe, une pointe
     [-1, 1].forEach(cote => {
       g.beginPath();
-      for (let i = 0; i <= 62; i++) { const rho = RMAX * i / 62, e = (6.5 - 5 * i / 62) * u; g[i ? 'lineTo' : 'moveTo'](x0 + rho * ech, cy + cote * ecart(rho, 1) - e); }
-      for (let i = 62; i >= 0; i--) { const rho = RMAX * i / 62, e = (6.5 - 5 * i / 62) * u; g.lineTo(x0 + rho * ech, cy + cote * ecart(rho, 1) + e); }
-      g.closePath(); g.fillStyle = '#04102a'; g.fill(); g.strokeStyle = ENCRE; g.lineWidth = u; g.stroke();
+      for (let i = 0; i <= 62; i++) { const rho = RMAX * i / 62; g[i ? 'lineTo' : 'moveTo'](x0 + rho * ech, cy + cote * ecart(rho, 1)); }
+      for (let i = 62; i >= 0; i--) {
+        const q = i / 62, rho = RMAX * q, dos = 10.5 * (1 - Math.pow(q, 1.7)) * (0.72 + 0.28 * Math.sin(Math.PI * Math.min(1, 1.6 * q))) * u;
+        g.lineTo(x0 + rho * ech, cy + cote * (ecart(rho, 1) + dos));
+      }
+      g.closePath(); g.fillStyle = OMBRE; g.fill(); g.strokeStyle = ENCRE; g.lineWidth = u; g.stroke();
     });
-    [-1, 1].forEach(cote => {
-      g.save(); g.translate(x0 - 17 * u, cy + cote * 10 * u); g.rotate(-cote * 0.45); g.beginPath(); g.ellipse(0, 0, 11 * u, 6.5 * u, 0, 0, TOUR);
-      g.fillStyle = '#04102a'; g.fill(); g.strokeStyle = ENCRE; g.lineWidth = u; g.stroke(); g.restore();
-    });
-    disque(g, x0, cy, 2.6 * u, ENCRE);
+    // la vis du pivot
+    disque(g, x0, cy, 4.2 * u, OMBRE); anneau(g, x0, cy, 4.2 * u, ENCRE, u); disque(g, x0, cy, 1.4 * u, ENCRE);
     // ce que voit celui qui tient les ciseaux : la même ombre, avec le retard du retour en plus
     [-1, 1].forEach(cote => {
       g.save(); g.strokeStyle = PALE; g.lineWidth = 1.3 * u; g.setLineDash([4 * u, 4 * u]); g.beginPath();
@@ -717,11 +731,14 @@ window.addEventListener('resize', marquerDefilement);
     if (r1 >= 0 && r1 <= RMAX) { disque(g, x0 + r1 * ech, cy, 7 * u, PHOTON, 0.3); disque(g, x0 + r1 * ech, cy, 3 * u, PHOTON); }
     if (r2 >= 0 && r2 <= RMAX) anneau(g, x0 + r2 * ech, cy, 5 * u, PALE, 1.5 * u);
     // à la source : les ciseaux eux-mêmes, fermés presque tout de suite
-    const b = 0.5 * ouvert(tt - DEP), sx = 0.075 * W, sy = 0.2 * H;
-    trait(g, sx - 9 * u, sy - 9 * u * Math.sin(b) / 0.5, sx + 17 * u * Math.cos(b), sy + 17 * u * Math.sin(b), PHOTON, 1.8 * u);
-    trait(g, sx - 9 * u, sy + 9 * u * Math.sin(b) / 0.5, sx + 17 * u * Math.cos(b), sy - 17 * u * Math.sin(b), PHOTON, 1.8 * u);
+    const b = 0.5 * ouvert(tt - DEP), sx = 0.105 * W, sy = 0.205 * H;
+    [-1, 1].forEach(cote => {
+      const hx = sx - 9 * u * Math.cos(b + 0.25), hy = sy - cote * 9 * u * Math.sin(b + 0.25);
+      trait(g, hx, hy, sx + 19 * u * Math.cos(b), sy + cote * 19 * u * Math.sin(b), PHOTON, 1.8 * u);
+      anneau(g, hx - 3.2 * u, hy - cote * 1.5 * u, 3.4 * u, PHOTON, 1.5 * u);
+    });
     if (!petit) {
-      mot(g, tt < DEP ? 'À LA SOURCE : OUVERTS' : 'À LA SOURCE : DÉJÀ FERMÉS', sx - 9 * u, 0.045 * H, u, 'left', PHOTON);
+      mot(g, tt < DEP ? 'À LA SOURCE : OUVERTS' : 'À LA SOURCE : DÉJÀ FERMÉS', 0.03 * W, 0.045 * H, u, 'left', PHOTON);
       mot(g, 'TABLEAU PLAT, VU DE FACE', 0.97 * W, 0.045 * H, u, 'right');
       // légende, dans le coin laissé libre par les lames
       const lx = 0.06 * W, l1 = 0.8 * H, l2 = 0.855 * H;
@@ -771,59 +788,71 @@ window.addEventListener('resize', marquerDefilement);
     }
   };
 
-  // Pilier 3. La toile de l'espace-temps, semée de galaxies. Loin de toute masse, elle bat partout à la cadence c.
-  // Près du trou noir elle s'étire, et les battements ralentissent et s'entassent, comme dans un goulot d'étranglement.
+  // Pilier 3. La toile de l'espace-temps tourne, tout entière, à la même cadence : ses battements et ses galaxies filent
+  // partout à la vitesse c. Un trou noir y creuse un puits : la toile s'étire, et tout ce qui passe près de lui ralentit.
   const TOILE = (() => {
-    const TX = 0.24, TY = 0.08, R0 = 0.17, pas = 0.2, lignes = [];
-    const frein = r => Math.max(0.035, r * r / (r * r + 0.075));       // 1 au loin, presque 0 au bord du trou noir
-    for (let sens = 0; sens < 2; sens++) for (let v = -1; v <= 1.001; v += pas) {
-      const temps = [0];
-      for (let i = 1; i <= 160; i++) {
-        const q = -1 + 2 * (i - 0.5) / 160, X = sens ? v : q, Y = sens ? q : v;
-        temps.push(temps[i - 1] + (2 / 160) / (0.3 * frein(Math.hypot(X - TX, Y - TY))));
+    const HX = 0.42, HY = 0.3, R0 = 0.2, V = 0.2, anneaux = [];
+    const frein = d => Math.max(0.04, d * d / (d * d + 0.05));        // 1 au loin, presque 0 au bord du trou noir
+    for (let i = 1; i <= 5; i++) {
+      const R = 0.2 * i, temps = [0];
+      for (let k = 1; k <= 240; k++) {
+        const psi = TOUR * (k - 0.5) / 240, d = Math.hypot(R * Math.cos(psi) - HX, R * Math.sin(psi) - HY);
+        temps.push(temps[k - 1] + (TOUR / 240) * R / (V * frein(d)));
       }
-      lignes.push({ sens: sens, v: v, temps: temps, total: temps[160] });
+      anneaux.push({ R: R, temps: temps, total: temps[240], grains: Math.round(13 * R) + 1 });
     }
-    return { TX: TX, TY: TY, R0: R0, lignes: lignes,
-      galaxies: [[-0.72, -0.62, 0.5], [-0.3, 0.55, -0.4], [0.74, -0.5, 0.2], [-0.82, 0.12, 1.1], [0.8, 0.62, -0.7], [0.1, -0.78, 0.9]] };
+    return { HX: HX, HY: HY, R0: R0, V: V, anneaux: anneaux,
+      galaxies: [[1, 0.05, 0.5], [2, 0.38, -0.4], [3, 0.7, 0.2], [4, 0.2, 1.1], [4, 0.62, -0.7], [3, 0.12, 0.9], [2, 0.85, 0.3]] };
   })();
   const toile = (g, W, H, t, u, petit) => {
     const S = TOILE;
     // la toile vue en perspective : le trou noir y creuse un puits, les mailles s'étirent vers le bas
     const P = (X, Y) => {
-      const r2 = (X - S.TX) * (X - S.TX) + (Y - S.TY) * (Y - S.TY);
-      return [(0.5 + 0.44 * X + 0.05 * Y) * W, (0.285 + 0.2 * Y + 0.225 / (1 + r2 / (S.R0 * S.R0))) * W];
+      const d2 = (X - S.HX) * (X - S.HX) + (Y - S.HY) * (Y - S.HY);
+      return [(0.5 + 0.44 * X) * W, (0.32 + 0.2 * Y + 0.235 / (1 + d2 / (S.R0 * S.R0))) * W];
+    };
+    // angle atteint sur un anneau après une durée donnée : régulier au loin, freiné près du trou noir
+    const angle = (A, duree) => {
+      const tau = ((duree % A.total) + A.total) % A.total;
+      let a = 0, b = 240;
+      while (b - a > 1) { const m = (a + b) >> 1; if (A.temps[m] <= tau) a = m; else b = m; }
+      return TOUR * (a + (tau - A.temps[a]) / (A.temps[b] - A.temps[a])) / 240;
     };
     g.save(); g.strokeStyle = TRAIT; g.lineWidth = u;
-    S.lignes.forEach(L => {
+    S.anneaux.forEach(A => {
       g.beginPath();
-      for (let i = 0; i <= 60; i++) { const q = -1 + i / 30, p = L.sens ? P(L.v, q) : P(q, L.v); if (i) g.lineTo(p[0], p[1]); else g.moveTo(p[0], p[1]); }
+      for (let i = 0; i <= 72; i++) { const a = TOUR * i / 72, p = P(A.R * Math.cos(a), A.R * Math.sin(a)); if (i) g.lineTo(p[0], p[1]); else g.moveTo(p[0], p[1]); }
       g.stroke();
     });
+    // les rayons de la toile tournent : c'est tout l'ensemble qui est en mouvement
+    for (let k = 0; k < 16; k++) {
+      const a = S.V * t + TOUR * k / 16;
+      g.beginPath();
+      for (let i = 0; i <= 24; i++) { const r = 0.05 + 0.95 * i / 24, p = P(r * Math.cos(a), r * Math.sin(a)); if (i) g.lineTo(p[0], p[1]); else g.moveTo(p[0], p[1]); }
+      g.stroke();
+    }
     g.restore();
-    // les battements : espacés au loin, entassés près du trou noir
-    S.lignes.forEach((L, n) => {
-      for (let k = 0; k < 7; k++) {
-        const tau = (t * 1 + (k + (n % 3) / 3) * L.total / 7) % L.total;
-        let a = 0, b = 160;
-        while (b - a > 1) { const m = (a + b) >> 1; if (L.temps[m] <= tau) a = m; else b = m; }
-        const q = -1 + 2 * (a + (tau - L.temps[a]) / (L.temps[b] - L.temps[a])) / 160, X = L.sens ? L.v : q, Y = L.sens ? q : L.v;
-        if (Math.hypot(X - S.TX, Y - S.TY) < 0.07) continue;
-        const p = P(X, Y); disque(g, p[0], p[1], 1.5 * u, PHOTON, 0.9);
+    // les battements : la même vitesse partout, sauf près du trou noir, où ils ralentissent et s'entassent
+    S.anneaux.forEach(A => {
+      for (let k = 0; k < A.grains; k++) {
+        const psi = angle(A, t + k * A.total / A.grains), X = A.R * Math.cos(psi), Y = A.R * Math.sin(psi);
+        if (Math.hypot(X - S.HX, Y - S.HY) < 0.06) continue;
+        const p = P(X, Y); disque(g, p[0], p[1], 1.6 * u, PHOTON, 0.9);
       }
     });
+    // les galaxies, emportées par la toile
     S.galaxies.forEach(G => {
-      const p = P(G[0], G[1]);
+      const A = S.anneaux[G[0]], psi = angle(A, t + G[1] * A.total), p = P(A.R * Math.cos(psi), A.R * Math.sin(psi));
       g.save(); g.translate(p[0], p[1]); g.rotate(G[2]); g.beginPath(); g.ellipse(0, 0, 11 * u, 4.2 * u, 0, 0, TOUR);
-      g.fillStyle = 'rgba(205,225,255,.16)'; g.fill(); g.strokeStyle = PALE; g.lineWidth = 1.1 * u; g.stroke(); g.restore();
-      disque(g, p[0], p[1], 1.8 * u, ENCRE);
+      g.fillStyle = 'rgba(205,225,255,.18)'; g.fill(); g.strokeStyle = PALE; g.lineWidth = 1.1 * u; g.stroke(); g.restore();
+      disque(g, p[0], p[1], 1.9 * u, ENCRE);
     });
-    const c = P(S.TX, S.TY);
+    const c = P(S.HX, S.HY);
     g.save(); g.beginPath(); g.ellipse(c[0], c[1] - 3 * u, 17 * u, 7 * u, 0, 0, TOUR); g.fillStyle = '#04102a'; g.fill();
     g.strokeStyle = PHOTON; g.lineWidth = 1.8 * u; g.stroke(); g.restore();
     if (!petit) {
-      mot(g, 'LOIN : LA TOILE BAT À LA CADENCE c', 0.045 * W, 0.075 * H, u);
-      mot(g, 'PRÈS DU TROU NOIR : TOUT RALENTIT', c[0], Math.min(0.95 * H, c[1] + 20 * u), u, 'center', PHOTON);
+      mot(g, 'TOUT L’ENSEMBLE TOURNE À LA CADENCE c', 0.045 * W, 0.075 * H, u);
+      mot(g, 'LE TROU NOIR ÉTIRE LA TOILE ET LA RALENTIT', 0.5 * W, 0.95 * H, u, 'center', PHOTON);
     }
   };
 
@@ -849,7 +878,7 @@ window.addEventListener('resize', marquerDefilement);
     return { N: N, A: A, YT: YT, YN: YN, YB: YB, demi: demi, haut: haut, bas: bas };
   })();
   const sablier = (g, W, H, t, u, petit) => {
-    const S = SABLIER, T = 20, tt = t % T, PAS = 0.105, CHUTE = 0.42, fondu = tt > T - 0.8 ? (T - tt) / 0.8 : 1;
+    const S = SABLIER, T = 55, tt = t % T, PAS = 0.42, CHUTE = 1.2, DEJA = 36, fondu = tt > T - 0.8 ? (T - tt) / 0.8 : 1;
     g.save(); g.globalAlpha = fondu;
     g.save(); g.strokeStyle = ENCRE; g.lineWidth = 1.6 * u;
     [-1, 1].forEach(c => {
@@ -860,7 +889,7 @@ window.addEventListener('resize', marquerDefilement);
     g.restore();
     trait(g, (0.5 - S.A - 0.025) * W, S.YT * W, (0.5 + S.A + 0.025) * W, S.YT * W, ENCRE, 2.4 * u);
     trait(g, (0.5 - S.A - 0.025) * W, S.YB * W, (0.5 + S.A + 0.025) * W, S.YB * W, ENCRE, 2.4 * u);
-    const partis = clamp(Math.floor((tt - 0.6) / PAS) + 1, 0, S.N);
+    const partis = DEJA + clamp(Math.floor((tt - 0.6) / PAS) + 1, 0, S.N - DEJA);
     // en haut, ce qui n'est pas encore constaté : des grains pâles
     g.fillStyle = PALE; g.globalAlpha = 0.5 * fondu;
     for (let j = 0; j < S.N - partis; j++) { g.beginPath(); g.arc((0.5 + S.haut[2 * j]) * W, S.haut[2 * j + 1] * W, 1.7 * u, 0, TOUR); g.fill(); }
@@ -868,10 +897,10 @@ window.addEventListener('resize', marquerDefilement);
     g.fillStyle = PHOTON;
     let poses = 0;
     for (let i = 0; i < partis; i++) {
-      const p = (tt - 0.6 - i * PAS) / CHUTE, x1 = S.bas[2 * i], y1 = S.bas[2 * i + 1];
+      const p = i < DEJA ? 1 : (tt - 0.6 - (i - DEJA) * PAS) / CHUTE, x1 = S.bas[2 * i], y1 = S.bas[2 * i + 1];
       if (p >= 1) { g.globalAlpha = 0.95 * fondu; g.beginPath(); g.arc((0.5 + x1) * W, y1 * W, 1.9 * u, 0, TOUR); g.fill(); poses++; }
       else {
-        const q = p * p, x = (0.5 + x1 * q) * W, y = (S.YN + (y1 - S.YN) * q) * W;
+        const q = Math.pow(p, 1.7), x = (0.5 + x1 * q) * W, y = (S.YN + (y1 - S.YN) * q) * W;
         g.globalAlpha = 0.28 * fondu; g.beginPath(); g.arc(x, y, 6.5 * u, 0, TOUR); g.fill();
         g.globalAlpha = fondu; g.beginPath(); g.arc(x, y, 2.4 * u, 0, TOUR); g.fill();
       }
@@ -890,19 +919,21 @@ window.addEventListener('resize', marquerDefilement);
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise comme le givre sur une vitre :
   // chaque rameau en porte d'autres, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const h = mulberry(1961), segs = [], V = 0.15, PAS = [9, 5, 3, 2], COEF = [0, 0.42, 0.44, 0.5], CHANCE = [0.92, 0.82, 0.5];
+    const h = mulberry(1961), niveaux = [[], [], [], [], []], V = 0.16;
+    const PAS = [9, 5, 4, 2, 2], COEF = [0, 0.42, 0.46, 0.5, 0.52], CHANCE = [0.95, 0.86, 0.6, 0.36];
+    let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
-      if (segs.length > 9000) return;
+      if (total > 16000 || len < 0.013) return;
       const n = PAS[prof], pas = len / n;
       let a = ang, t = t0;
       for (let k = 0; k < n; k++) {
-        a += (h() - 0.5) * 0.14;
+        a += (h() - 0.5) * 0.12;
         const x2 = x + pas * Math.cos(a), y2 = y + pas * Math.sin(a), d = pas / V;
-        segs.push([x, y, x2, y2, t, d, prof]);
-        x = x2; y = y2; t += d;
-        if (prof < 3 && k < n - 1) {
-          const l = len * COEF[prof + 1] * (1 - 0.62 * k / n) * (0.75 + 0.5 * h());
-          [1, -1].forEach(cote => { if (h() < CHANCE[prof]) branche(x, y, a + cote * (1.047 + (h() - 0.5) * 0.24), l, t, prof + 1); });
+        niveaux[prof].push(x, y, x2, y2, t, d); total++;
+        x = x2; y = y2; t += d; if (t > fin) fin = t;
+        if (prof < 4 && k < n - 1) {
+          const l = len * COEF[prof + 1] * (1 - 0.6 * k / n) * (0.8 + 0.4 * h());
+          [1, -1].forEach(cote => { if (h() < CHANCE[prof]) branche(x, y, a + cote * (1.047 + (h() - 0.5) * 0.2), l, t, prof + 1); });
         }
       }
     };
@@ -911,24 +942,25 @@ window.addEventListener('resize', marquerDefilement);
       const a = depart + i * 1.0472, bord = Math.min(0.5 / Math.abs(Math.cos(a)), 0.375 / Math.abs(Math.sin(a)));
       branche(0.5, 0.375, a, Math.min(0.66, bord * 1.04), 0, 0);
     }
-    return segs;
+    return { niveaux: niveaux, total: total, fin: fin };
   })();
   const cristal = (g, W, H, t, u, petit) => {
-    const T = 10, tt = t % T, cx = 0.5 * W, cy = 0.375 * W, tg = tt - 2.6;
+    const T = GIVRE.fin + 5.4, tt = t % T, cx = 0.5 * W, cy = 0.375 * W, tg = tt - 2.6;
     const fondu = tt > T - 0.8 ? (T - tt) / 0.8 : 1;
     const hexagone = r => { g.beginPath(); for (let i = 0; i < 6; i++) { const a = i * 1.0472 + 0.5236; g[i ? 'lineTo' : 'moveTo'](cx + r * Math.cos(a), cy + r * Math.sin(a)); } g.closePath(); };
     let n = 0;
     g.save(); g.globalAlpha = fondu;
     if (tg > 0) {
-      const EP = [1.7, 1.25, 0.95, 0.75], AL = [0.96, 0.86, 0.72, 0.58], pointes = [];
-      for (let p = 0; p < 4; p++) {
+      const EP = [1.8, 1.3, 1, 0.8, 0.62], AL = [0.97, 0.9, 0.78, 0.66, 0.54], pointes = [];
+      // sur une petite plaque, le dernier niveau de rameaux serait plus fin qu'un point : on s'arrête au précédent
+      for (let p = 0; p < (petit ? 4 : 5); p++) {
+        const s = GIVRE.niveaux[p];
         g.beginPath();
-        for (let i = 0; i < GIVRE.length; i++) {
-          const s = GIVRE[i];
-          if (s[6] !== p || tg <= s[4]) continue;
-          const f = Math.min(1, (tg - s[4]) / s[5]), x = s[0] + (s[2] - s[0]) * f, y = s[1] + (s[3] - s[1]) * f;
-          g.moveTo(s[0] * W, s[1] * W); g.lineTo(x * W, y * W);
-          if (f >= 1) n++; else if (pointes.length < 260) pointes.push(x * W, y * W);
+        for (let i = 0; i < s.length; i += 6) {
+          if (tg <= s[i + 4]) continue;
+          const f = Math.min(1, (tg - s[i + 4]) / s[i + 5]), x = s[i] + (s[i + 2] - s[i]) * f, y = s[i + 1] + (s[i + 3] - s[i + 1]) * f;
+          g.moveTo(s[i] * W, s[i + 1] * W); g.lineTo(x * W, y * W);
+          if (f >= 1) n++; else if (pointes.length < 320) pointes.push(x * W, y * W);
         }
         g.strokeStyle = ENCRE; g.lineWidth = EP[p] * u; g.globalAlpha = AL[p] * fondu; g.stroke();
       }

@@ -26,6 +26,7 @@ Chaque pilier se lit de trois façons : une **planche interactive** (figure à m
 - `dossier-complet.pdf` : le même dossier en PDF, avec les formules composées.
 - `apercu.png`, `favicon.svg`, `404.html`, `sitemap.xml` : l'image affichée quand le lien est partagé, l'icône de l'onglet, la page d'erreur et le plan du site.
 - `documents/` : les exports d'origine du dossier et des cinq articles, en PDF, Word et Markdown. Dans les exports du dossier, les formules sont écrites en code LaTeX ; pour le lire, préférer `dossier-complet.pdf`.
+- `CLAUDE.md`, `SUIVI.md` : le guide de reprise et le suivi du projet, pour continuer le travail d'une séance à l'autre.
 - `outils/` : le générateur du site (`construire_site.py`, `figures.py`) et ses gabarits : la feuille de style, les scripts communs, l'animation de l'accueil (`accueil.js`), les cinq dessins animés des en-têtes (`epures.js`) et les cinq planches interactives (`p1` à `p5`).
 
 ## Reconstruire le site
