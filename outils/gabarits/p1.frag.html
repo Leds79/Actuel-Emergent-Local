@@ -8,30 +8,39 @@
   <h2 id="p1-h-geo">Plus le point visé s'éloigne du centre, plus la diagonale s'allonge</h2>
   <div class="fig">
     <div class="stage">
-      <svg viewBox="0 0 660 400" role="img" aria-label="La source, l'écran plat et la diagonale que la lumière parcourt jusqu'au point visé">
+      <svg viewBox="0 0 660 432" role="img" aria-label="La source au pivot, l'écran plat, et les deux diagonales qui s'ouvrent comme les lames d'une paire de ciseaux">
         <defs>
-          <marker id="ar-ray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker>
           <marker id="ar-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker>
         </defs>
-        <line x1="30" y1="90" x2="640" y2="90" class="lnk"/>
-        <text x="30" y="82" class="tb">écran plat</text>
-        <path d="M90 90A250 250 0 0 1 340 340" class="ln dash"/>
-        <text x="300" y="372" class="tq">écran courbe : même distance partout</text>
-        <line x1="90" y1="340" x2="90" y2="90" class="ln"/>
-        <text x="80" y="222" text-anchor="end" class="tq">100 M km</text>
-        <text x="84" y="108" text-anchor="end" class="tm">centre</text>
-        <path id="g-arc" class="ln" d="M90 294A46 46 0 0 1 122 307"/>
-        <text id="g-theta" class="tq" text-anchor="middle" x="114" y="286">θ</text>
-        <line id="g-base" class="ln" style="stroke:var(--ink-2)" x1="90" y1="340" x2="267" y2="163"/>
-        <line id="g-extra" class="ray" x1="267" y1="163" x2="340" y2="90"/>
-        <circle id="g-dot" r="5.5" class="f-ray" cx="340" cy="90"/>
-        <g id="g-dim">
-          <line id="g-dimline" class="ln" x1="90" y1="58" x2="340" y2="58" marker-start="url(#ar-ax)" marker-end="url(#ar-ax)"/>
-          <text id="g-dimtxt" class="tm" text-anchor="middle" x="215" y="50">x</text>
+        <g id="g-tout">
+        <line id="g-screen" x1="24" y1="64" x2="636" y2="64" class="lnk"/>
+        <text id="g-ecr" x="24" y="55" class="tb">écran plat</text>
+        <text id="g-ctr" x="338" y="80" class="tm">centre</text>
+        <path id="g-courbe" class="ln dash" d="M330 64"/>
+        <line id="g-axis" class="ln" x1="330" y1="300" x2="330" y2="64"/>
+        <text id="g-dlab" x="320" y="190" text-anchor="end" class="tq">100 M km</text>
+        <path id="g-arc" class="ln" d="M330 250"/>
+        <text id="g-theta" class="tq" text-anchor="middle" x="345" y="236">θ</text>
+        <g class="ln" style="stroke:var(--ink-2)">
+          <line id="g-mancheL" x1="330" y1="300" x2="312" y2="344"/><line id="g-mancheR" x1="330" y1="300" x2="348" y2="344"/>
+          <ellipse id="g-anneauL" cx="306" cy="356" rx="16" ry="10"/><ellipse id="g-anneauR" cx="354" cy="356" rx="16" ry="10"/>
         </g>
-        <text id="g-out" class="tq" text-anchor="end" x="624" y="150" visibility="hidden">point visé hors du cadre</text>
-        <circle cx="90" cy="340" r="6" class="f-ink"/>
-        <text x="90" y="366" text-anchor="middle" class="tb">source et opérateur</text>
+        <line id="g-baseL" class="ln" style="stroke:var(--ink-2)" x1="330" y1="300" x2="330" y2="64"/>
+        <line id="g-baseR" class="ln" style="stroke:var(--ink-2)" x1="330" y1="300" x2="330" y2="64"/>
+        <line id="g-extraL" class="ray" x1="330" y1="64" x2="330" y2="64"/>
+        <line id="g-extraR" class="ray" x1="330" y1="64" x2="330" y2="64"/>
+        <circle id="g-dotL" r="5.5" class="f-ray" cx="330" cy="64"/>
+        <circle id="g-dotR" r="5.5" class="f-ray" cx="330" cy="64"/>
+        <g id="g-dim">
+          <line id="g-dimline" class="ln" x1="330" y1="36" x2="500" y2="36" marker-start="url(#ar-ax)" marker-end="url(#ar-ax)"/>
+          <text id="g-dimtxt" class="tm" text-anchor="middle" x="415" y="27">x</text>
+        </g>
+        <circle cx="330" cy="300" r="6" class="f-ink"/>
+        <text x="330" y="398" text-anchor="middle" class="tb">source et opérateur, au pivot</text>
+        </g>
+        <text id="g-out" class="tq" text-anchor="end" x="636" y="20" visibility="hidden">au-delà de 84°, l'ouverture n'est plus dessinée à l'échelle</text>
+        <line x1="24" y1="420" x2="52" y2="420" class="ln dash"/>
+        <text x="60" y="424" class="tq">écran courbe : même distance partout</text>
       </svg>
     </div>
     <div class="panel">
@@ -55,7 +64,7 @@
       <p class="state" id="p1-state"></p>
     </div>
   </div>
-  <p class="figcap">La partie orange est le trajet en plus par rapport à un écran courbe, où toutes les diagonales auraient la même longueur. C'est elle qui retarde l'ombre, et elle compte double pour l'opérateur.</p>
+  <p class="figcap">Les deux diagonales s'ouvrent comme les lames d'une paire de ciseaux, dont la source est le pivot. Le dessin se resserre à mesure, pour que les deux pointes restent visibles. La partie orange est le trajet en plus par rapport à un écran courbe, où toutes les diagonales auraient la même longueur. C'est elle qui retarde l'ombre, et elle compte double pour l'opérateur.</p>
 </section>
 
 <section aria-labelledby="p1-h-chart">
@@ -122,7 +131,7 @@
 <!--SCRIPT-->
 (function () {
   const C = 299792.458, D = 1e8, OM = Math.PI / 2, A = D * OM / C, YEAR = 31557600, LY = C * YEAR;
-  const O = { x: 90, y: 340 }, SY = 90, DP = 250, XEDGE = 630;
+  const O = { x: 330, y: 300 }, LAME = 236, TMAX = 1.466;      // pivot, longueur dessinée d'une lame, ouverture maximale dessinée (84°)
   const U0 = -4, U1 = 2.3;
   const calc = x => {
     const R = Math.hypot(D, x), s = x / R, c2 = (D / R) * (D / R), th = Math.atan2(x, D), tau = th / OM;
@@ -172,38 +181,49 @@
   const m2 = ch.appendChild(el('circle', { r: 6.5, class: 'f-ray ring' }));
   const hit = ch.appendChild(el('rect', { x: L, y: T, width: R - L, height: B - T, class: 'hit' }));
 
-  // --- géométrie
-  const gBase = $('#g-base'), gExtra = $('#g-extra'), gDot = $('#g-dot'), gDim = $('#g-dim'), gDimLine = $('#g-dimline'),
-    gDimTxt = $('#g-dimtxt'), gOut = $('#g-out'), gArc = $('#g-arc'), gTheta = $('#g-theta');
+  // --- géométrie : une paire de ciseaux dont les lames sont les deux diagonales
+  // La lame garde la même longueur à l'écran : c'est l'échelle du dessin qui change quand le point visé s'éloigne.
+  const gScreen = $('#g-screen'), gEcr = $('#g-ecr'), gCtr = $('#g-ctr'), gCourbe = $('#g-courbe'), gAxis = $('#g-axis'), gDlab = $('#g-dlab'),
+    gDim = $('#g-dim'), gDimLine = $('#g-dimline'), gDimTxt = $('#g-dimtxt'), gOut = $('#g-out'), gArc = $('#g-arc'), gTheta = $('#g-theta');
+  const cotes = [[-1, $('#g-baseL'), $('#g-extraL'), $('#g-dotL'), $('#g-mancheR'), $('#g-anneauR')],
+    [1, $('#g-baseR'), $('#g-extraR'), $('#g-dotR'), $('#g-mancheL'), $('#g-anneauL')]];
+  const f1 = v => v.toFixed(1);
   function drawGeo(k) {
-    const dx = Math.sin(k.th), dy = -Math.cos(k.th);
-    const ax = O.x + DP * dx, ay = O.y + DP * dy;
-    let ex = O.x + DP * (x / D), ey = SY, out = false;
-    if (ex > XEDGE) { out = true; ex = XEDGE; ey = O.y + (ex - O.x) / dx * dy; }
-    set(gBase, { x2: ax.toFixed(1), y2: ay.toFixed(1) });
-    set(gExtra, { x1: ax.toFixed(1), y1: ay.toFixed(1), x2: ex.toFixed(1), y2: ey.toFixed(1) });
-    if (out) {
-      gExtra.setAttribute('marker-end', 'url(#ar-ray)');
-      gDot.setAttribute('visibility', 'hidden');
-      gDim.setAttribute('visibility', 'hidden');
-      set(gOut, { visibility: 'visible', y: (ey - 12).toFixed(1) });
-    } else {
-      gExtra.removeAttribute('marker-end');
-      set(gDot, { visibility: 'visible', cx: ex.toFixed(1), cy: ey });
-      gOut.setAttribute('visibility', 'hidden');
-      if (ex - O.x > 60) {
-        gDim.setAttribute('visibility', 'visible');
-        gDimLine.setAttribute('x2', ex.toFixed(1));
-        set(gDimTxt, { x: ((O.x + ex) / 2).toFixed(1) });
-        gDimTxt.textContent = 'x = ' + dist(x);
-      } else gDim.setAttribute('visibility', 'hidden');
-    }
-    if (k.th > 0.12) {
-      const r = 46, h = k.th / 2;
-      gArc.setAttribute('d', 'M' + O.x + ' ' + (O.y - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (O.x + r * dx).toFixed(1) + ' ' + (O.y + r * dy).toFixed(1));
-      set(gTheta, { x: (O.x + 62 * Math.sin(h)).toFixed(1), y: (O.y - 62 * Math.cos(h) + 4).toFixed(1), visibility: 'visible' });
+    const th = Math.min(k.th, TMAX), sn = Math.sin(th), cs = Math.cos(th), dp = LAME * cs, ys = O.y - dp;
+    set(gScreen, { y1: f1(ys), y2: f1(ys) }); set(gEcr, { y: f1(ys - 9) }); set(gCtr, { y: f1(ys + 16) });
+    gAxis.setAttribute('y2', f1(ys));
+    // l'écran courbe : tous ses points sont à la distance du centre
+    const a = Math.min(th + 0.3, 1.5), ax = dp * Math.sin(a), ay = dp * Math.cos(a);
+    gCourbe.setAttribute('d', 'M' + f1(O.x - ax) + ' ' + f1(O.y - ay) + 'A' + f1(dp) + ' ' + f1(dp) + ' 0 0 1 ' + f1(O.x + ax) + ' ' + f1(O.y - ay));
+    // les deux lames, et pour chacune la branche et l'anneau du côté opposé
+    const ouv = 0.27 + 0.45 * th;
+    cotes.forEach(([d, base, extra, dot, manche, anneau]) => {
+      const bx = O.x + d * dp * sn, by = O.y - dp * cs, tx = O.x + d * LAME * sn;
+      set(base, { x2: f1(bx), y2: f1(by) });
+      set(extra, { x1: f1(bx), y1: f1(by), x2: f1(tx), y2: f1(ys) });
+      set(dot, { cx: f1(tx), cy: f1(ys) });
+      const mx = O.x - d * 44 * Math.sin(ouv), my = O.y + 44 * Math.cos(ouv), cx = O.x - d * 58 * Math.sin(ouv), cy = O.y + 58 * Math.cos(ouv);
+      set(manche, { x2: f1(mx), y2: f1(my) });
+      set(anneau, { cx: f1(cx), cy: f1(cy), transform: 'rotate(' + f1(d * (ouv * 180 / Math.PI) + 90) + ' ' + f1(cx) + ' ' + f1(cy) + ')' });
+    });
+    const tip = O.x + LAME * sn;
+    if (tip - O.x > 74) {
+      gDim.setAttribute('visibility', 'visible');
+      set(gDimLine, { y1: f1(ys - 28), y2: f1(ys - 28), x2: f1(tip) });
+      set(gDimTxt, { x: f1((O.x + tip) / 2), y: f1(ys - 37) });
+      gDimTxt.textContent = 'x = ' + dist(x);
+    } else gDim.setAttribute('visibility', 'hidden');
+    if (th > 0.4 && dp > 70) set(gDlab, { visibility: 'visible', y: f1(O.y - dp / 2 + 4) }); else gDlab.setAttribute('visibility', 'hidden');
+    if (th > 0.14) {
+      const r = 46, h = th / 2;
+      gArc.setAttribute('d', 'M' + O.x + ' ' + (O.y - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + f1(O.x + r * sn) + ' ' + f1(O.y - r * cs));
+      set(gTheta, { x: f1(O.x + 62 * Math.sin(h)), y: f1(O.y - 62 * Math.cos(h) + 4), visibility: 'visible' });
       gArc.setAttribute('visibility', 'visible');
     } else { gArc.setAttribute('visibility', 'hidden'); gTheta.setAttribute('visibility', 'hidden'); }
+    gOut.setAttribute('visibility', k.th > TMAX ? 'visible' : 'hidden');
+    gCtr.setAttribute('visibility', dp > 60 ? 'visible' : 'hidden');
+    // le dessin reste centré en hauteur quand les lames s'ouvrent
+    $('#g-tout').setAttribute('transform', 'translate(0 ' + f1((dp - LAME) / 2 * 0.92) + ')');
   }
 
   function render() {
