@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le choix qui ne réécrit pas le passé</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<style>
+/* Planche technique : feuille bordée, cartouche en tête, une figure interactive par planche, texte sur 65 caractères */
+:root{
+  --bg:#e9edf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+  --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
+  --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
+  --critical:#d03b3b; --good:#0ca30c;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --math:"IBM Plex Serif",Cambria,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+    --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
+    --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
+    --critical:#e66767; --good:#0ca30c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+  --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
+  --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
+  --critical:#e66767; --good:#0ca30c; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);
+  padding-block:clamp(14px,3vw,44px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-underline-offset:.18em}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
+p{margin:0;max-width:65ch}
+[hidden]{display:none!important}
+
+/* feuille et cartouche */
+.sheet{max-width:1080px;margin:0 auto;background:var(--sheet);border:1px solid var(--axis);
+  box-shadow:0 0 0 5px var(--sheet),0 0 0 6px var(--rule)}
+.cartouche{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr 1.1fr 1.35fr auto;border-bottom:1px solid var(--axis)}
+.cc{padding:.6rem .9rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
+.cc:last-child{border-right:0}
+.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.cv{font-weight:500;font-size:.9rem;line-height:1.3}
+.planches{display:flex;gap:4px}
+.planches a{display:grid;place-items:center;width:1.9rem;height:1.9rem;border:1px solid var(--axis);font:500 .85rem/1 var(--mono);text-decoration:none}
+.planches a:hover{border-color:var(--ink)}
+.planches a[aria-current="page"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+@media (max-width:920px){
+  .cartouche{grid-template-columns:1fr 1fr}
+  .cc{border-bottom:1px solid var(--rule)}
+  .cc:nth-child(2n){border-right:0}
+  .cc:nth-last-child(-n+2){border-bottom:0}
+}
+
+/* texte */
+main{padding:clamp(20px,4.2vw,52px);display:flex;flex-direction:column;gap:clamp(1.7rem,3.2vw,2.8rem)}
+.head{display:flex;flex-direction:column;gap:1rem}
+h1{font-size:clamp(1.85rem,1.1rem + 2.8vw,3rem);line-height:1.08;font-weight:600;letter-spacing:-.015em;margin:0;max-width:20ch;text-wrap:balance}
+.lead{font-size:1.14rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
+section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
+h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
+h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
+.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+
+/* figure interactive */
+.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig.solo{grid-template-columns:1fr}
+.stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.stage.plain{background-image:none}
+.stage{overflow-x:auto}
+.stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
+.stage>svg:not(.fit){min-width:460px}
+.stage>svg.wide{min-width:640px}
+.panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
+@media (max-width:820px){
+  .fig{grid-template-columns:1fr}
+  .panel{border-left:0;border-top:1px solid var(--axis)}
+}
+.figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
+.ctl{display:flex;flex-direction:column;gap:.4rem}
+.ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
+.ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
+.check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
+.check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 .78rem/1 var(--mono);padding:.52rem .6rem;border:1px solid var(--axis);background:transparent;color:var(--ink);cursor:pointer;border-radius:0}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
+.ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro dt{font-size:.88rem;color:var(--ink-2)}
+.ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:.5em}
+.legend i{display:inline-block;width:16px;height:3px}
+.k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
+.legend i.dot{width:10px;height:10px;border-radius:50%}
+.legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+/* jauges */
+.meter{display:flex;flex-direction:column;gap:.3rem}
+.meter .lab{display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:var(--ink-2)}
+.meter .lab b{font:500 .92rem var(--mono);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.track{height:12px;border:1px solid var(--axis);background:var(--sheet)}
+.track i{display:block;height:100%;background:var(--geo);width:0}
+.track i.ray{background:var(--ray)}
+
+/* formules */
+.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
+.formula .up,.m .up{font-style:normal}
+.m{font-family:var(--math);font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
+.frac>span:last-child{padding:.12em .3em 0}
+.formulas{display:flex;flex-direction:column;gap:.6rem}
+.fnote{font-size:.88rem;color:var(--ink-2)}
+
+/* encadrés */
+.lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.correction .eyebrow{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--rule);border-right:0;border-bottom:0}
+.stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
+.stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+.defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
+.defs div{padding:.85rem 1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem}
+.defs div:last-child{border-right:0}
+.defs dt{font-weight:600}
+.defs dd{margin:0;font-size:.9rem;color:var(--ink-2)}
+@media (max-width:700px){.defs{grid-template-columns:1fr}.defs div{border-right:0;border-bottom:1px solid var(--rule)}.defs div:last-child{border-bottom:0}}
+
+/* tableaux */
+.tablewrap{overflow-x:auto}
+table.data{border-collapse:collapse;width:100%;font-size:.94rem}
+.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.data td.n{font-family:var(--mono);font-size:.9rem}
+.data th:last-child,.data td:last-child{padding-right:0}
+
+/* barres de probabilité */
+.bars{display:flex;flex-direction:column;gap:.7rem}
+.bar{display:grid;grid-template-columns:6.5rem minmax(0,1fr) 3.6rem;gap:.7rem;align-items:center;font-size:.92rem}
+.bar .v{font:500 .92rem var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.bar .track{height:18px}
+
+/* dessin : classes SVG */
+.t{font:500 13px var(--sans);fill:var(--ink)}
+.tb{font:600 13px var(--sans);fill:var(--ink)}
+.tq{font:400 12px var(--sans);fill:var(--ink-2)}
+.tm{font:400 11px var(--mono);fill:var(--ink-3)}
+.ln{stroke:var(--axis);stroke-width:1.25;fill:none}
+.lnk{stroke:var(--ink);stroke-width:2;fill:none}
+.gr{stroke:var(--grid);stroke-width:1;fill:none}
+.ray{stroke:var(--ray);stroke-width:2.5;fill:none;stroke-linecap:round}
+.geo{stroke:var(--geo);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dash{stroke-dasharray:5 5}
+.f-ray{fill:var(--ray)} .f-geo{fill:var(--geo)} .f-ink{fill:var(--ink)} .f-sheet{fill:var(--sheet)} .f-axis{fill:var(--axis)} .f-ink3{fill:var(--ink-3)} .f-none{fill:none}
+.ring{stroke:var(--sheet);stroke-width:2}
+.box{fill:var(--sheet);stroke:var(--axis);stroke-width:1.25}
+.box.on{fill:var(--geo-wash);stroke:var(--geo);stroke-width:2}
+.hit{fill:transparent;cursor:ew-resize;touch-action:pan-y}
+
+footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
+.err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
+
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="cartouche">
+  <div class="cc"><span class="ck">Projet</span><span class="cv">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</span></div>
+  <div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div>
+  <div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div>
+  <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
+  <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
+  <nav class="cc" aria-label="Planches du modèle"><span class="ck">Planche 4 / 5</span><span class="cv planches"><a href="Pilier%201%20-%20L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="Pilier%202%20-%20On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.html" title="On ne voit jamais la lumière passer">2</a><a href="Pilier%203%20-%20La%20pente%20du%20temps.html" title="La pente du temps">3</a><a href="Pilier%204%20-%20Le%20choix%20qui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.html" aria-current="page" title="Le choix qui ne réécrit pas le passé">4</a><a href="Pilier%205%20-%20Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.html" title="Comment une réponse devient un fait">5</a></span></nav>
+</header>
+<main>
+<div class="head">
+  <h1>Le choix qui ne réécrit pas le passé</h1>
+  <p class="lead">Dans l'expérience du choix retardé, on décide au dernier moment comment mesurer un photon parti il y a des milliards d'années. Ce choix ne change rien au passé&nbsp;: il fixe seulement la question posée. Et entre «&nbsp;une route&nbsp;» et «&nbsp;deux routes&nbsp;», tous les intermédiaires existent.</p>
+</div>
+
+<section aria-labelledby="p4-h-build">
+  <span class="eyebrow">Figure interactive</span>
+  <h2 id="p4-h-build">Les franges se construisent clic après clic, et s'effacent quand la route est connue</h2>
+  <div class="fig">
+    <div class="stage plain">
+      <canvas id="p4-cv" width="1320" height="960" role="img" aria-label="Impacts de photons sur un écran, et décompte de leurs positions"></canvas>
+    </div>
+    <div class="panel">
+      <div class="ctl">
+        <label for="p4-d">Information gardée sur la route <output id="p4-do" for="p4-d"></output></label>
+        <input type="range" id="p4-d" min="0" max="100" step="1" value="0">
+      </div>
+      <div class="chips" id="p4-add" role="group" aria-label="Envoyer des photons">
+        <button class="chip" type="button" data-add="10">+ 10 photons</button>
+        <button class="chip" type="button" data-add="100">+ 100</button>
+        <button class="chip" type="button" data-add="1000">+ 1 000</button>
+        <button class="chip" type="button" data-add="0">Effacer</button>
+      </div>
+      <dl class="ro">
+        <dt>Photons détectés</dt><dd id="p4-n"></dd>
+        <dt>Contraste des franges</dt><dd id="p4-v"></dd>
+      </dl>
+      <svg viewBox="0 0 240 206" role="img" aria-label="Plus l'information de route est grande, plus le contraste des franges est faible" style="width:100%;max-width:230px;height:auto">
+        <line x1="46" y1="170" x2="212" y2="170" class="ln"/>
+        <line x1="46" y1="170" x2="46" y2="6" class="ln"/>
+        <path d="M46 10A160 160 0 0 1 206 170" class="geo"/>
+        <circle id="p4-pt" cx="46" cy="10" r="6.5" class="f-ray ring"/>
+        <text x="126" y="194" text-anchor="middle" class="tm">information de route</text>
+        <text x="18" y="94" text-anchor="middle" class="tm" transform="rotate(-90 18 94)">contraste</text>
+      </svg>
+      <p class="state" id="p4-state"></p>
+    </div>
+  </div>
+  <p class="figcap">En haut, chaque point est un photon détecté&nbsp;; en bas, le décompte par position. Un photon seul ne montre rien&nbsp;: la figure n'apparaît qu'en accumulant les clics.</p>
+</section>
+
+<section aria-labelledby="p4-h-choice">
+  <span class="eyebrow">Figure interactive</span>
+  <h2 id="p4-h-choice">Le choix de la mesure décide de la question, pas du passé</h2>
+  <div class="fig">
+    <div class="stage plain" style="padding:1.6rem 1.3rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem">
+      <span class="eyebrow">Probabilité de chaque réponse</span>
+      <div class="bars">
+        <div class="bar"><span id="p4-l1">Gauche</span><div class="track"><i id="p4-b1"></i></div><span class="v" id="p4-v1"></span></div>
+        <div class="bar"><span id="p4-l2">Droite</span><div class="track"><i id="p4-b2"></i></div><span class="v" id="p4-v2"></span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="chips" id="p4-mode" role="group" aria-label="Type de mesure">
+        <button class="chip" type="button" data-m="route" aria-pressed="true">Mesurer la route</button>
+        <button class="chip" type="button" data-m="interf" aria-pressed="false">Mesurer l'interférence</button>
+      </div>
+      <div class="ctl">
+        <label for="p4-phi">Décalage entre les deux routes <output id="p4-phio" for="p4-phi"></output></label>
+        <input type="range" id="p4-phi" min="0" max="360" step="1" value="60">
+      </div>
+      <p class="state" id="p4-cstate"></p>
+    </div>
+  </div>
+  <p class="figcap">Les deux mesures sont incompatibles&nbsp;: aucun appareil ne répond aux deux questions à la fois. Avant la mesure, l'état du photon est le même quel que soit le choix à venir.</p>
+</section>
+
+<div class="cols">
+  <section aria-labelledby="p4-h-f">
+    <span class="eyebrow">Formules</span>
+    <h2 id="p4-h-f">Trois relations suffisent</h2>
+    <div class="formulas">
+      <div class="formula">P<span class="up">(±) =</span> <span class="frac"><span><span class="up">1 ± cos</span> φ</span><span class="up">2</span></span></div>
+      <div class="formula">V² <span class="up">+</span> D² <span class="up">≤ 1</span></div>
+      <div class="formula">Δφ <span class="up">≥</span> <span class="frac"><span class="up">1</span><span><span class="up">√</span>N</span></span></div>
+    </div>
+    <p class="fnote">φ est le décalage entre les deux routes. V est le contraste des franges et D la qualité de l'information de route (Englert, 1996). N est le nombre de photons détectés&nbsp;: pour être dix fois plus précis, il en faut cent fois plus.</p>
+  </section>
+  <section aria-label="Lecture et correction">
+    <div class="lecture">
+      <span class="eyebrow">Lecture mécanique</span>
+      <p>L'information arrive par constats successifs, locaux et datés, comme dans un suivi de chantier. Aucun constat ne réécrit les précédents.</p>
+    </div>
+    <div class="correction">
+      <span class="eyebrow">Corrections apportées</span>
+      <p>Le choix n'exige pas d'intention consciente&nbsp;: en 2007, une machine l'a tiré au hasard, et les résultats sont les mêmes.</p>
+      <p>Dire que le réel «&nbsp;participe&nbsp;» est une interprétation. D'autres lectures donnent les mêmes prédictions, et l'expérience ne les départage pas.</p>
+    </div>
+  </section>
+</div>
+
+<section aria-label="Chiffres clés">
+  <span class="eyebrow">Chiffres clés</span>
+  <div class="stats">
+    <div class="stat"><b>48 m</b><span>longueur de l'interféromètre de l'expérience de 2007</span></div>
+    <div class="stat"><b>3 500 km</b><span>distance atteinte par la version satellite de 2017</span></div>
+    <div class="stat"><b>1 bit</b><span>au plus par photon détecté</span></div>
+    <div class="stat"><b>× 100</b><span>photons nécessaires pour une précision dix fois meilleure</span></div>
+  </div>
+  <p class="fnote">La version cosmique, avec un quasar et une galaxie, reste une expérience de pensée.</p>
+</section>
+</main>
+<footer>
+  <span>Planche 4 sur 5 · Choix retardé de Wheeler</span>
+  <a href="https://claude.ai/artifact/78b9FAVZcR9yRU4oXTfpyx">Article de vulgarisation</a>
+  <a href="https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r">Dossier mathématique complet</a>
+</footer>
+</div>
+<script>
+'use strict';
+window.addEventListener('error', function (e) {
+  var b = document.createElement('div');
+  b.className = 'err';
+  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+  document.body.appendChild(b);
+});
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const NS = 'http://www.w3.org/2000/svg';
+const set = (e, attrs) => { for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+const el = (tag, attrs, txt) => { const e = document.createElementNS(NS, tag); set(e, attrs || {}); if (txt != null) e.textContent = txt; return e; };
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+// nombres à la française
+const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
+const sig = (x, n = 3) => {
+  if (!isFinite(x)) return '—';
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  const d = clamp(n - 1 - e, 0, 12);
+  return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
+};
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = n => String(n).split('').map(ch => SUP[ch] || ch).join('');
+const sci = (x, n = 2) => {
+  if (x === 0) return '0';
+  let e = Math.floor(Math.log10(Math.abs(x)));
+  let m = x / Math.pow(10, e);
+  if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
+  return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
+};
+// durée en secondes -> texte lisible
+const duree = s => {
+  if (s < 1e-12) return sig(s * 1e15) + ' fs';
+  if (s < 1e-9) return sig(s * 1e12) + ' ps';
+  if (s < 1e-6) return sig(s * 1e9) + ' ns';
+  if (s < 1e-3) return sig(s * 1e6) + ' µs';
+  if (s < 1) return sig(s * 1e3) + ' ms';
+  if (s < 60) return sig(s) + ' s';
+  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
+  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) return sig(s / 86400) + ' jours';
+  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  return sig(s / 31557600e6) + ' millions d’années';
+};
+// générateur pseudo-aléatoire reproductible
+const mulberry = seed => () => {
+  let t = seed += 0x6D2B79F5;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+// espaces insécables dans les textes écrits par le script
+const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+new MutationObserver(ms => ms.forEach(m => {
+  const t = m.target;
+  if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
+})).observe(document.documentElement, { childList: true, subtree: true });
+// boutons à bascule exclusive
+const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+
+(function () {
+  // --- franges photon par photon
+  const cv = $('#p4-cv'), ctx = cv.getContext('2d'), dS = $('#p4-d'), pt = $('#p4-pt');
+  let N = 300;
+  function draw() {
+    const W = cv.width, H = cv.height, Dk = Number(dS.value) / 100, V = Math.sqrt(1 - Dk * Dk);
+    const top = Math.round(H * 0.66), base = H - 30, M = 24, BINS = 66, K = 6;
+    ctx.clearRect(0, 0, W, H);
+    const rnd = mulberry(11), bins = new Array(BINS).fill(0);
+    ctx.fillStyle = css('--ray');
+    for (let i = 0; i < N; i++) {
+      let xx = 0;
+      for (let g = 0; g < 400; g++) { xx = rnd(); if (rnd() < (1 + V * Math.cos(2 * Math.PI * K * xx)) / 2) break; }
+      const yy = rnd();
+      bins[Math.min(BINS - 1, Math.floor(xx * BINS))]++;
+      ctx.beginPath(); ctx.arc(M + xx * (W - 2 * M), 16 + yy * (top - 32), 3.4, 0, 6.2832); ctx.fill();
+    }
+    const mx = Math.max(1, Math.max.apply(null, bins)), bw = (W - 2 * M) / BINS;
+    ctx.fillStyle = css('--geo');
+    for (let b = 0; b < BINS; b++) { const hh = bins[b] / mx * (base - top - 22); ctx.fillRect(M + b * bw + 1.5, base - hh, bw - 3, hh); }
+    ctx.strokeStyle = css('--axis'); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(M, base + 1); ctx.lineTo(W - M, base + 1); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(M, top); ctx.lineTo(W - M, top); ctx.stroke();
+    $('#p4-do').textContent = Math.round(Dk * 100) + ' %';
+    $('#p4-n').textContent = frNum(N);
+    $('#p4-v').textContent = Math.round(V * 100) + ' %';
+    set(pt, { cx: (46 + 160 * Dk).toFixed(1), cy: (170 - 160 * V).toFixed(1) });
+    $('#p4-state').textContent = N === 0 ? 'Aucun photon détecté : rien n’est encore connu.'
+      : V > 0.9 ? 'La route est inconnue : les franges apparaissent, clic après clic.'
+        : V > 0.2 ? 'Une partie de l’information de route existe : les franges sont atténuées.'
+          : 'La route est connue : les franges ont disparu.';
+  }
+  dS.addEventListener('input', draw);
+  $$('#p4-add .chip').forEach(b => b.addEventListener('click', () => {
+    const a = Number(b.dataset.add); N = a === 0 ? 0 : Math.min(6000, N + a); draw();
+  }));
+  if (window.matchMedia) {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', draw);
+  }
+  draw();
+
+  // --- choix de la mesure
+  let mode = 'route';
+  const phi = $('#p4-phi');
+  function choice() {
+    const f = Number(phi.value) * Math.PI / 180;
+    const p1 = mode === 'route' ? 0.5 : (1 + Math.cos(f)) / 2, p2 = 1 - p1;
+    $('#p4-l1').textContent = mode === 'route' ? 'Gauche' : 'Sortie +';
+    $('#p4-l2').textContent = mode === 'route' ? 'Droite' : 'Sortie −';
+    $('#p4-b1').style.width = (p1 * 100).toFixed(1) + '%';
+    $('#p4-b2').style.width = (p2 * 100).toFixed(1) + '%';
+    $('#p4-v1').textContent = Math.round(p1 * 100) + ' %';
+    $('#p4-v2').textContent = Math.round(p2 * 100) + ' %';
+    $('#p4-phio').textContent = phi.value + '°';
+    $('#p4-cstate').textContent = mode === 'route'
+      ? 'Le décalage n’a aucun effet sur le résultat : cette mesure n’apprend rien sur lui.'
+      : 'Tout dépend du décalage : cette mesure n’apprend rien sur la route.';
+  }
+  phi.addEventListener('input', choice);
+  $$('#p4-mode .chip').forEach(b => b.addEventListener('click', () => { mode = b.dataset.m; pressOnly('#p4-mode .chip', b); choice(); }));
+  choice();
+})();
+</script>
+</body>
+</html>
