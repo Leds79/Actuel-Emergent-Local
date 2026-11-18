@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>L&#x27;univers à la cadence c et la masse comme frein local · Actuel, Émergent, Local</title>
-<meta name="description" content="Près d&#x27;une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, multipliée par c².">
+<meta name="description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/demonstration.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Actuel, Émergent, Local">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:title" content="L&#x27;univers à la cadence c et la masse comme frein local">
-<meta property="og:description" content="Près d&#x27;une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, multipliée par c².">
+<meta property="og:description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/demonstration.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
 <meta property="og:image:width" content="1200">
@@ -366,6 +366,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* l'intuition de départ, dans les mots de l'auteur */
+.intuition{margin:0;padding:1.05rem 0 1.1rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.6rem}
+.intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
+.intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.prose .intuition p{max-width:none}
+.plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
+
 /* lien d'évitement pour le clavier */
 .saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
 .saut:focus{left:8px;top:8px}
@@ -451,7 +458,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
   p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.intuition,.stats,.defs,table.data tr{break-inside:avoid}
+  .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
@@ -484,6 +492,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <main id="contenu">
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">3.1 Tout avance à la cadence c : la quadri-vitesse</a></li><li><a href="#s2">3.2 La masse ralentit son voisinage : la métrique de Schwarzschild</a></li><li><a href="#s3">3.3 La gravité comme réfraction vers la zone lente</a></li><li><a href="#s4">3.4 Conditions de validité</a></li><li><a href="#s5">Références</a></li></ol></nav>
 <article class="prose">
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l&#x27;espace localement est plus lente que l&#x27;ensemble. »</p><footer>Sylvain Leduc</footer></blockquote>
 <aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules que l'auteur proposait à partir de ses intuitions. Quand le texte dit « la formule demandée », il s'agit de l'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p></aside>
 <h2 id="s1">3.1 Tout avance à la cadence c : la quadri-vitesse</h2>
 <p>Un événement est repéré par quatre coordonnées (ct, x, y, z). Dans ce pilier, τ désigne le temps propre : le temps lu sur l'horloge que l'objet transporte avec lui. L'intervalle de Minkowski le relie au temps t d'un observateur qui voit l'objet passer à la vitesse v :</p>

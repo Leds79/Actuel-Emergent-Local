@@ -2,17 +2,17 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-Près d'une masse, le temps s'écoule plus lentement, et cette différence suffit à faire tomber les corps. La pesanteur que nous ressentons est exactement la pente de ce ralentissement, multipliée par le carré de la vitesse de la lumière. L'image d'une masse qui « freine » son voisinage est donc juste, à condition de ne pas y voir un frottement.
+L'intuition de départ renverse le point de vue habituel. Au lieu d'un espace immobile où la matière se déplace, tout l'Univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent localement cette cadence. La gravité devient alors le virage d'une trajectoire qui passe d'une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.
 
-## Tout avance, même immobile
+## Tout tourne à la vitesse de la lumière, même immobile
 
-Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.
+« Tourner » s'entend ici comme pour un moteur : il est question de cadence, pas de rotation. Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements, et rien n'y est jamais à l'arrêt : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.
 
 Ce budget se partage. Ce qu'un objet dépense en vitesse dans l'espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu'à 80 % de son rythme.
 
-## Une masse ralentit les horloges voisines
+## Une masse ralentit la cadence autour d'elle
 
-Le temps ne s'écoule pas partout au même rythme. Près d'une masse, une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.
+Dans l'intuition, les corps lourds agissent comme des goulots d'étranglement : planètes, étoiles et trous noirs ralentissent leur voisinage. La relativité le dit avec des horloges. Le temps ne s'écoule pas partout au même rythme, et près d'une masse une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.
 
 | Lieu | Retard de l'horloge par rapport à une horloge lointaine |
 | --- | --- |
@@ -25,9 +25,11 @@ Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut q
 
 Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.
 
+La lumière elle-même prend du retard en passant près d'une masse. Un écho radar renvoyé par Vénus, quand son trajet frôle le Soleil, revient avec environ deux dix-millièmes de seconde de retard.
+
 ## Tomber, c'est virer vers le temps lent
 
-Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle.
+Reste la troisième idée, celle d'une trajectoire qui vire en passant d'une zone rapide à une zone ralentie. Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle. Rien ne tire à distance : le virage se décide sur place, d'un point au suivant.
 
 &#91;embedded content: trajectoire courbée par la pente du temps · 3 fronts d'onde\]
 
@@ -43,11 +45,11 @@ La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes
 
 La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.
 
-L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites. La lumière met aussi plus de temps à passer près du Soleil : un écho radar renvoyé par Vénus revient avec environ deux dix-millièmes de seconde de retard.
+L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites.
 
 ## Un frein sans frottement
 
-L'image du frein a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.
+L'image du frein, ou du goulot d'étranglement, a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.
 
 Ensuite, rien ne s'use. Un frein ordinaire chauffe et dissipe de l'énergie ; ici, aucune énergie n'est perdue.
 

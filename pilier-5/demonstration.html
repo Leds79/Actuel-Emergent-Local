@@ -366,6 +366,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* l'intuition de départ, dans les mots de l'auteur */
+.intuition{margin:0;padding:1.05rem 0 1.1rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.6rem}
+.intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
+.intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.prose .intuition p{max-width:none}
+.plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
+
 /* lien d'évitement pour le clavier */
 .saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
 .saut:focus{left:8px;top:8px}
@@ -451,7 +458,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
   p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.intuition,.stats,.defs,table.data tr{break-inside:avoid}
+  .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
@@ -484,6 +492,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <main id="contenu">
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">5.1 Question = potentiel</a></li><li><a href="#s2">5.2 Actualiser : l'interaction inscrit la réponse</a></li><li><a href="#s3">5.3 Cristalliser : décohérence, copies, verrouillage</a></li><li><a href="#s4">5.4 Conditions de validité et nuances</a></li><li><a href="#s5">Références</a></li></ol></nav>
 <article class="prose">
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« La question est un potentiel. Actualiser, c&#x27;est cristalliser l&#x27;information. »</p><footer>Sylvain Leduc</footer></blockquote>
 <aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules que l'auteur proposait à partir de ses intuitions. Quand le texte dit « la formule demandée », il s'agit de l'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p></aside>
 <figure class="fig solo"><figcaption class="figtitle">Tant qu&#x27;elle n&#x27;est pas cristallisée, la réponse reste effaçable</figcaption><div class="stage"><svg viewBox="0 0 728 210" role="img" aria-label="Tant qu'elle n'est pas cristallisée, la réponse reste effaçable"><defs><marker id="ft-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker></defs><g class="ln" style="stroke:var(--ink-3)"><path d="M224 82H262" marker-end="url(#ft-a)"/><path d="M464 82H502" marker-end="url(#ft-a)"/><path d="M364 118V156H124V120" marker-end="url(#ft-a)"/></g><rect x="24" y="46" width="200" height="72" class="box"/><text x="124" y="70" text-anchor="middle" class="tb">Question</text><text x="124" y="88" text-anchor="middle" class="tq">potentiel de réponses</text><text x="124" y="104" text-anchor="middle" class="tq">valeur : H bits</text><rect x="264" y="46" width="200" height="72" class="box"/><text x="364" y="70" text-anchor="middle" class="tb">Inscription</text><text x="364" y="88" text-anchor="middle" class="tq">corrélation quantique</text><text x="364" y="104" text-anchor="middle" class="tq">2 bits, réversible</text><rect x="504" y="46" width="200" height="72" class="box on"/><text x="604" y="70" text-anchor="middle" class="tb">Cristallisation</text><text x="604" y="88" text-anchor="middle" class="tq">1 bit classique, recopié</text><text x="604" y="104" text-anchor="middle" class="tq">figé par l'environnement</text><text x="244" y="36" text-anchor="middle" class="tm">interaction locale</text><text x="484" y="36" text-anchor="middle" class="tm">décohérence</text><text x="244" y="176" text-anchor="middle" class="tq">gomme quantique : la réponse s'efface</text><text x="604" y="146" text-anchor="middle" class="tq">retour impossible en pratique</text></svg></div></figure>
 <p>La flèche de retour n'existe qu'entre l'inscription et la question : c'est la gomme quantique. Après la cristallisation, il n'y a plus de retour.</p>

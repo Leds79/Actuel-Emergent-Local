@@ -366,6 +366,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* l'intuition de départ, dans les mots de l'auteur */
+.intuition{margin:0;padding:1.05rem 0 1.1rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.6rem}
+.intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
+.intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.prose .intuition p{max-width:none}
+.plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
+
 /* lien d'évitement pour le clavier */
 .saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
 .saut:focus{left:8px;top:8px}
@@ -451,7 +458,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
   p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.intuition,.stats,.defs,table.data tr{break-inside:avoid}
+  .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
@@ -484,6 +492,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <main id="contenu">
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">2.1 Absence de causalité latérale</a></li><li><a href="#s2">2.2 Transparence en transit et émergence locale</a></li><li><a href="#s3">2.3 Conditions de validité et nuances</a></li><li><a href="#s4">Références</a></li></ol></nav>
 <article class="prose">
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« La lumière est comme l&#x27;eau : transparente. C&#x27;est sa définition par le langage qui est obsolète. Elle n&#x27;est pas absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local. »</p><footer>Sylvain Leduc</footer></blockquote>
 <aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules que l'auteur proposait à partir de ses intuitions. Quand le texte dit « la formule demandée », il s'agit de l'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p></aside>
 <h2 id="s1">2.1 Absence de causalité latérale</h2>
 <p>Soient deux impacts A et B sur le tableau, séparés par une durée Δt et une distance Δx. L'hypothèse est que la tache va plus vite que c entre les deux : |Δx| &gt; c|Δt|. L'intervalle d'espace-temps est alors négatif :</p>

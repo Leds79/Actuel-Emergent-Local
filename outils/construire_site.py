@@ -55,8 +55,8 @@ PILIERS = [
          clef=("1 clic", "par photon : deux détecteurs ne se déclenchent pratiquement jamais ensemble (1986)")),
     dict(n=3, titre="La pente du temps", objet="Cadence c et masse comme frein", echelle="Schémas de principe",
          article="Tomber, c'est suivre la pente du temps",
-         resume="Près d'une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, "
-                "multipliée par c².",
+         resume="La relativité lui donne un sens précis : tout avance dans l'espace-temps à la cadence de la lumière, et une "
+                "masse ralentit les horloges autour d'elle. Tomber, c'est virer vers cette zone ralentie.",
          clef=("9,81 m/s<sup>2</sup>", "la pesanteur, retrouvée en multipliant la pente du temps par c²")),
     dict(n=4, titre="Le choix qui ne réécrit pas le passé", objet="Choix retardé de Wheeler", echelle="Schémas de principe",
          article="Le choix d'aujourd'hui ne réécrit pas le passé",
@@ -69,6 +69,19 @@ PILIERS = [
                 "des milliards de fois et la grave.",
          clef=("10 ps", "dix picosecondes pour éteindre l'interférence d'un grain de poussière au soleil (calcul de 1985)")),
 ]
+# l'intuition de départ de chaque pilier, dans les mots de l'auteur (orthographe corrigée, phrases rapprochées)
+INTUITIONS = {
+    1: "L'observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, "
+       "je vois cela un peu comme un miroir face à un miroir : il y a un décalage.",
+    2: "La lumière est comme l'eau : transparente. C'est sa définition par le langage qui est obsolète. Elle n'est pas absolue "
+       "mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local.",
+    3: "Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur "
+       "environnement : la masse qui courbe l'espace localement est plus lente que l'ensemble.",
+    4: "C'est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire "
+       "qu'il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné.",
+    5: "La question est un potentiel. Actualiser, c'est cristalliser l'information.",
+}
+
 # épures : pour chaque pilier, l'instant montré quand l'animation est désactivée, et la description du dessin
 EPURES = {
     1: ("3.0", "Une source balaie un écran plat. Les photons filent en ligne droite et dessinent une spirale ; la tache avance là où elle touche l'écran"),
@@ -284,6 +297,12 @@ def chapeau(h):
 
 def bouton(href, texte, classe="btn"):
     return '<a class="%s" href="%s">%s <span aria-hidden="true">→</span></a>' % (classe, href, texte)
+
+
+def intuition(n):
+    """L'intuition de départ du pilier, citée en tête de ses pages."""
+    return typo('<blockquote class="intuition"><span class="eyebrow">L\'intuition de départ</span><p>« %s »</p>'
+                '<footer>%s</footer></blockquote>' % (e(INTUITIONS[n]), AUTEUR))
 
 
 def plaque(n, classe="plaque"):
@@ -520,7 +539,8 @@ def main():
             corps = corps.replace(a, b)
         m = re.match(r'\s*<div class="head">\s*<h1>(.*?)</h1>\s*<p class="lead">(.*?)</p>\s*</div>', corps, flags=re.S)
         corps = re.sub(r'<table class="data">(.*?)</table>', tableau_planche, corps[m.end():], flags=re.S)
-        page(dos + "index.html", p["titre"], p["resume"], entete_pilier(p, "index.html", m.group(1), m.group(2)), corps.strip(),
+        corps = intuition(n) + "\n" + corps.strip()
+        page(dos + "index.html", p["titre"], p["resume"], entete_pilier(p, "index.html", m.group(1), m.group(2)), corps,
              commun_js + "\n" + script.strip(), cart(p["objet"], "Échelle", p["echelle"], date), "p-planche",
              pilier=p, vue="index.html", bas=suite)
 
@@ -530,8 +550,8 @@ def main():
         date_art = date_fr(art) or date
         texte, reste = chapeau(md_html(sans_titre(art).replace(LIEN_DOSSIER_PRIVE, "demonstration.html"), "article"))
         sommaire, reste = rail(reste)
-        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n<p class="suite">%s%s</p>\n</article></div>'
-                 % (sommaire, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, intuition(n), reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
                     bouton("demonstration.html", "Lire la démonstration")))
         page(dos + "article.html", titre_art, p["resume"], entete_pilier(p, "article.html", t(titre_art), texte), corps, commun_js,
              cart(p["objet"], "Vue", "Article de vulgarisation", date_art), "p-article",
@@ -547,8 +567,8 @@ def main():
         texte, reste = chapeau(md_html(demo.strip(), "demonstration"))
         avis = typo(AVIS % (AVIS_MOT if "tableau plat" in demo else ""))
         sommaire, reste = rail(reste)
-        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
-                 % (sommaire, avis, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, intuition(n), avis, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
                     bouton("article.html", "Lire l'article")))
         page(dos + "demonstration.html", titre_demo, p["resume"], entete_pilier(p, "demonstration.html", t(titre_demo), texte),
              corps, commun_js + KATEX_JS, cart(p["objet"], "Vue", "Démonstration mathématique", date), "p-demo",
@@ -559,10 +579,11 @@ def main():
     for p in PILIERS:
         planches.append(typo(
             '<article class="plk"><div class="no"><span class="num">Pilier</span><b>%02d</b></div>'
-            '<div class="plt"><span class="eyebrow">%s</span><h3><a href="pilier-%d/index.html">%s</a></h3><p>%s</p>'
+            '<div class="plt"><span class="eyebrow">%s</span><h3><a href="pilier-%d/index.html">%s</a></h3>'
+            '<p class="mot">« %s »</p><p>%s</p>'
             '<p class="acces">%s<a href="pilier-%d/article.html">Article</a><a href="pilier-%d/demonstration.html">Démonstration</a></p></div>'
             '<div class="vis">%s<p class="clef"><b>%s</b><span>%s</span></p></div></article>'
-            % (p["n"], e(p["objet"]), p["n"], e(p["titre"]), e(p["resume"]),
+            % (p["n"], e(p["objet"]), p["n"], e(p["titre"]), e(INTUITIONS[p["n"]]), e(p["resume"]),
                bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"],
                plaque(p["n"], "plaque mini"), p["clef"][0], e(p["clef"][1]))))
     dessin_frise, nb_refs, an_debut, an_fin = frise(refs)
@@ -631,6 +652,12 @@ def main():
     <tbody>%s</tbody>
   </table></div>
   <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
+</section>
+
+<section aria-labelledby="h-apropos">
+  <span class="eyebrow">À propos</span>
+  <h2 id="h-apropos">Comment ce site a été fait</h2>
+  <p>Les intuitions sont celles de Sylvain Leduc, qui fait du suivi de projet et s'intéresse à la cosmologie. Leur mise en équations, les articles et ce site ont été réalisés à sa demande avec l'aide d'une intelligence artificielle, Claude, d'Anthropic. Les calculs ont été vérifiés numériquement et les références contrôlées une à une ; les exceptions sont signalées dans le dossier.</p>
 </section>""") % ("\n".join(planches), md_html(intro, "accueil"), md_html(sections.get("Synthèse", "").strip(), "accueil"), rangs)
     corps = (corps.replace("NBREFS", str(nb_refs)).replace("ANDEBUT", str(an_debut)).replace("ANFIN", str(an_fin))
              .replace("DESSINFRISE", dessin_frise))
@@ -654,6 +681,7 @@ def main():
     table = '<nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol>%s</ol></nav>' % "".join(sommaire)
     h = h.replace('<h2 id="pilier-1">', table + '\n<h2 id="pilier-1">', 1)
     lateral, h = rail(h)
+    h = re.sub(r'(<h2 id="pilier-(\d)">.*?</h2>)', lambda m: m.group(1) + "\n" + intuition(int(m.group(2))), h, flags=re.S)
     corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_MOT), h)
     haut = entete(["Dossier complet", "Cinq démonstrations, synthèse, références"], t(DOSSIER), texte,
                   suite='<p class="actions">%s</p>\n' % bouton(PDF_DOSSIER, "Télécharger le PDF", "btn plein"))

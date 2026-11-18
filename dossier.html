@@ -366,6 +366,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* l'intuition de départ, dans les mots de l'auteur */
+.intuition{margin:0;padding:1.05rem 0 1.1rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.6rem}
+.intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
+.intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.prose .intuition p{max-width:none}
+.plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
+
 /* lien d'évitement pour le clavier */
 .saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
 .saut:focus{left:8px;top:8px}
@@ -451,7 +458,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
   p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.intuition,.stats,.defs,table.data tr{break-inside:avoid}
+  .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
@@ -485,6 +493,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <p>Le modèle est une relecture cohérente de résultats connus, retrouvés par un chemin indépendant. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.</p>
 <nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol><li><a href="#pilier-1">Pilier 1 — La géométrie de l'observateur et le tableau plat</a></li><li><a href="#pilier-2">Pilier 2 — La lumière « actuelle, émergente, locale »</a></li><li><a href="#pilier-3">Pilier 3 — L'univers à la cadence c et la masse comme frein local</a></li><li><a href="#pilier-4">Pilier 4 — Le choix retardé de Wheeler et le réel « graduellement donné »</a></li><li><a href="#pilier-5">Pilier 5 — La cristallisation de l'information</a></li><li><a href="#synthese">Synthèse</a></li><li><a href="#references">Références</a></li></ol></nav>
 <h2 id="pilier-1">Pilier 1 — La géométrie de l'observateur et le tableau plat</h2>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« L&#x27;observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, je vois cela un peu comme un miroir face à un miroir : il y a un décalage. »</p><footer>Sylvain Leduc</footer></blockquote>
 <p>L'intuition est exacte : sur un tableau plat, la diagonale qui s'allonge ramène la vitesse de la tache vers c, et le trajet retour ramène la vitesse perçue vers c/2. Un seul mot est à corriger. Avec les chiffres choisis, c/2 n'est pas un plafond mais un plancher, approché par le haut.</p>
 <h3>1.1 Géométrie et notations</h3>
 <p>La source et l'observateur sont au même point O. Le tableau est un plan perpendiculaire à l'axe de visée, à la distance D = 10⁸ km. Un point du tableau est repéré par sa distance latérale x au centre, là où tombe l'ombre du pivot.</p>
@@ -703,6 +712,7 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 <li>Ces vitesses sont celles d'un motif, une succession d'impacts indépendants. Ni matière, ni énergie, ni information ne va d'un point du tableau à l'autre : c'est l'objet du pilier 2.</li>
 </ul>
 <h2 id="pilier-2">Pilier 2 — La lumière « actuelle, émergente, locale »</h2>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« La lumière est comme l&#x27;eau : transparente. C&#x27;est sa définition par le langage qui est obsolète. Elle n&#x27;est pas absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local. »</p><footer>Sylvain Leduc</footer></blockquote>
 <p>Les deux volets de l'intuition se démontrent : rien ne se propage de A vers B le long du tableau, et toute détection est un événement local, produit par une interaction avec la matière. Une nuance s'impose : en transit, le champ n'est pas « rien », il transporte de l'énergie et de l'impulsion.</p>
 <h3>2.1 Absence de causalité latérale</h3>
 <p>Soient deux impacts A et B sur le tableau, séparés par une durée Δt et une distance Δx. L'hypothèse est que la tache va plus vite que c entre les deux : |Δx| &gt; c|Δt|. L'intervalle d'espace-temps est alors négatif :</p>
@@ -786,6 +796,7 @@ w(\vec{r},t) &amp;= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\v
 <li>Approximations du calcul : couplage dipolaire (atome petit devant la longueur d'onde), premier ordre de perturbation, détecteur à large bande.</li>
 </ul>
 <h2 id="pilier-3">Pilier 3 — L'univers à la cadence c et la masse comme frein local</h2>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l&#x27;espace localement est plus lente que l&#x27;ensemble. »</p><footer>Sylvain Leduc</footer></blockquote>
 <p>La relativité donne un sens précis à l'intuition : tout objet avance dans l'espace-temps à la cadence c, et une masse ralentit les horloges voisines par rapport aux horloges lointaines. La gravité de Newton vaut exactement c² fois la pente de ce ralentissement. Deux corrections portent sur la formule de réfraction : son signe, et un facteur 2 entre la lumière et la matière lente.</p>
 <h3>3.1 Tout avance à la cadence c : la quadri-vitesse</h3>
 <p>Un événement est repéré par quatre coordonnées (ct, x, y, z). Dans ce pilier, τ désigne le temps propre : le temps lu sur l'horloge que l'objet transporte avec lui. L'intervalle de Minkowski le relie au temps t d'un observateur qui voit l'objet passer à la vitesse v :</p>
@@ -983,6 +994,7 @@ N(r) &amp;\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2
 <li>L'image d'un vide d'indice variable a été formulée par Einstein (1911), puis par Dicke (1957). Evans, Nandi et Islam (1996) en ont donné la forme exacte pour les champs statiques. C'est une réécriture de la relativité générale, pas une théorie de remplacement.</li>
 </ul>
 <h2 id="pilier-4">Pilier 4 — Le choix retardé de Wheeler et le réel « graduellement donné »</h2>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« C&#x27;est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire qu&#x27;il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné. »</p><footer>Sylvain Leduc</footer></blockquote>
 <p>Le formalisme donne raison au refus du cadre binaire : avant la mesure, l'état n'est ni « une route » ni « deux routes », et le choix fait sur Terre ne modifie aucun fait passé. Deux nuances s'imposent. Le choix n'exige pas d'intention consciente, et la lecture participative est une interprétation, pas un théorème.</p>
 <h3>4.1 L'état en transit, le choix de la mesure, les probabilités</h3>
 <p><strong>L'état.</strong> Le photon peut contourner la galaxie par la gauche ou par la droite. On note |G⟩ et |D⟩ les deux états correspondants. L'état en transit est leur superposition :</p>
@@ -1087,6 +1099,7 @@ p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|
 <li>Les formules de la section 4.3 supposent deux routes de même poids, un état conjoint pur et des photons indépendants.</li>
 </ul>
 <h2 id="pilier-5">Pilier 5 — La cristallisation de l'information</h2>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« La question est un potentiel. Actualiser, c&#x27;est cristalliser l&#x27;information. »</p><footer>Sylvain Leduc</footer></blockquote>
 <p>L'intuition se formalise en trois temps, tous établis : une question est un potentiel qui se compte en bits, l'interaction inscrit la réponse, et la décohérence la fige en un enregistrement stable et recopié. Deux précisions s'imposent. « Actualiser » et « cristalliser » sont deux temps distincts, et ces équations ne disent pas pourquoi c'est telle réponse qui sort plutôt que l'autre.</p>
 <figure class="fig solo"><figcaption class="figtitle">Tant qu&#x27;elle n&#x27;est pas cristallisée, la réponse reste effaçable</figcaption><div class="stage"><svg viewBox="0 0 728 210" role="img" aria-label="Tant qu'elle n'est pas cristallisée, la réponse reste effaçable"><defs><marker id="ft-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker></defs><g class="ln" style="stroke:var(--ink-3)"><path d="M224 82H262" marker-end="url(#ft-a)"/><path d="M464 82H502" marker-end="url(#ft-a)"/><path d="M364 118V156H124V120" marker-end="url(#ft-a)"/></g><rect x="24" y="46" width="200" height="72" class="box"/><text x="124" y="70" text-anchor="middle" class="tb">Question</text><text x="124" y="88" text-anchor="middle" class="tq">potentiel de réponses</text><text x="124" y="104" text-anchor="middle" class="tq">valeur : H bits</text><rect x="264" y="46" width="200" height="72" class="box"/><text x="364" y="70" text-anchor="middle" class="tb">Inscription</text><text x="364" y="88" text-anchor="middle" class="tq">corrélation quantique</text><text x="364" y="104" text-anchor="middle" class="tq">2 bits, réversible</text><rect x="504" y="46" width="200" height="72" class="box on"/><text x="604" y="70" text-anchor="middle" class="tb">Cristallisation</text><text x="604" y="88" text-anchor="middle" class="tq">1 bit classique, recopié</text><text x="604" y="104" text-anchor="middle" class="tq">figé par l'environnement</text><text x="244" y="36" text-anchor="middle" class="tm">interaction locale</text><text x="484" y="36" text-anchor="middle" class="tm">décohérence</text><text x="244" y="176" text-anchor="middle" class="tq">gomme quantique : la réponse s'efface</text><text x="604" y="146" text-anchor="middle" class="tq">retour impossible en pratique</text></svg></div></figure>
 <p>La flèche de retour n'existe qu'entre l'inscription et la question : c'est la gomme quantique. Après la cristallisation, il n'y a plus de retour.</p>

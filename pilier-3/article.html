@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tomber, c&#x27;est suivre la pente du temps · Actuel, Émergent, Local</title>
-<meta name="description" content="Près d&#x27;une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, multipliée par c².">
+<meta name="description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/article.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Actuel, Émergent, Local">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:title" content="Tomber, c&#x27;est suivre la pente du temps">
-<meta property="og:description" content="Près d&#x27;une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, multipliée par c².">
+<meta property="og:description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/article.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
 <meta property="og:image:width" content="1200">
@@ -364,6 +364,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* l'intuition de départ, dans les mots de l'auteur */
+.intuition{margin:0;padding:1.05rem 0 1.1rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.6rem}
+.intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
+.intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.prose .intuition p{max-width:none}
+.plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
+
 /* lien d'évitement pour le clavier */
 .saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
 .saut:focus{left:8px;top:8px}
@@ -449,7 +456,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
   p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.intuition,.stats,.defs,table.data tr{break-inside:avoid}
+  .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
@@ -472,7 +480,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <div class="tete"><div>
 <p class="repere"><span>Pilier 3 / 5</span><span>Cadence c et masse comme frein</span></p>
 <h1>Tomber, c&#x27;est suivre la pente du temps</h1>
-<p class="chapeau">Près d'une masse, le temps s'écoule plus lentement, et cette différence suffit à faire tomber les corps. La pesanteur que nous ressentons est exactement la pente de ce ralentissement, multipliée par le carré de la vitesse de la lumière. L'image d'une masse qui « freine » son voisinage est donc juste, à condition de ne pas y voir un frottement.</p>
+<p class="chapeau">L'intuition de départ renverse le point de vue habituel. Au lieu d'un espace immobile où la matière se déplace, tout l'Univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent localement cette cadence. La gravité devient alors le virage d'une trajectoire qui passe d'une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.</p>
 </div>
 <figure class="epure"><div class="plaque"><canvas data-epure="3" data-fige="2.0" role="img" aria-label="Deux horloges battent à des rythmes différents. Des fronts d&#x27;onde pivotent et la trajectoire vire vers la masse"></canvas></div></figure></div>
 <nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche<span class="plus"> interactive</span></a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
@@ -480,13 +488,14 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <div class="pose"><div class="sheet">
 <div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Cadence c et masse comme frein</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
 <main id="contenu">
-<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">Tout avance, même immobile</a></li><li><a href="#s2">Une masse ralentit les horloges voisines</a></li><li><a href="#s3">Tomber, c'est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></nav>
+<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">Tout tourne à la vitesse de la lumière, même immobile</a></li><li><a href="#s2">Une masse ralentit la cadence autour d'elle</a></li><li><a href="#s3">Tomber, c'est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></nav>
 <article class="prose">
-<h2 id="s1">Tout avance, même immobile</h2>
-<p>Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.</p>
+<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l&#x27;espace localement est plus lente que l&#x27;ensemble. »</p><footer>Sylvain Leduc</footer></blockquote>
+<h2 id="s1">Tout tourne à la vitesse de la lumière, même immobile</h2>
+<p>« Tourner » s'entend ici comme pour un moteur : il est question de cadence, pas de rotation. Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements, et rien n'y est jamais à l'arrêt : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.</p>
 <p>Ce budget se partage. Ce qu'un objet dépense en vitesse dans l'espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu'à 80 % de son rythme.</p>
-<h2 id="s2">Une masse ralentit les horloges voisines</h2>
-<p>Le temps ne s'écoule pas partout au même rythme. Près d'une masse, une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.</p>
+<h2 id="s2">Une masse ralentit la cadence autour d'elle</h2>
+<p>Dans l'intuition, les corps lourds agissent comme des goulots d'étranglement : planètes, étoiles et trous noirs ralentissent leur voisinage. La relativité le dit avec des horloges. Le temps ne s'écoule pas partout au même rythme, et près d'une masse une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.</p>
 <div class="tablewrap"><table class="data">
 <thead>
 <tr>
@@ -515,8 +524,9 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </table></div>
 <p>Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait de 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.</p>
 <p>Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.</p>
+<p>La lumière elle-même prend du retard en passant près d'une masse. Un écho radar renvoyé par Vénus, quand son trajet frôle le Soleil, revient avec environ deux dix-millièmes de seconde de retard.</p>
 <h2 id="s3">Tomber, c'est virer vers le temps lent</h2>
-<p>Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle.</p>
+<p>Reste la troisième idée, celle d'une trajectoire qui vire en passant d'une zone rapide à une zone ralentie. Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle. Rien ne tire à distance : le virage se décide sur place, d'un point au suivant.</p>
 <figure class="fig solo"><figcaption class="figtitle">Le côté lent avance moins : la trajectoire vire vers la masse</figcaption><div class="stage"><svg viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="44" y1="48" x2="44" y2="222" class="ln"/><text x="24" y="38" class="tq">temps plus rapide</text><text x="24" y="240" class="tq">temps plus lent</text><rect x="24" y="254" width="712" height="28" class="box" style="fill:var(--grid)"/><text x="380" y="273" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M200 66Q470 66 680 186" class="ray" marker-end="url(#fp-a)"/><text x="700" y="210" text-anchor="end" class="tq">trajectoire</text><g class="lnk" style="stroke:var(--ink-2)"><line x1="200" y1="31" x2="200" y2="101"/><line x1="387.5" y1="46.2" x2="375.8" y2="115.2"/><line x1="560.7" y1="92" x2="536.5" y2="157.6"/></g><text x="200" y="20" text-anchor="middle" class="tq">front d'onde</text><text x="574" y="86" class="tq">le haut avance plus vite</text><text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text></svg></div></figure>
 <p>Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s'incurve vers la masse.</p>
 <p>Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.</p>
@@ -524,9 +534,9 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <h2 id="s4">La lumière tombe deux fois plus</h2>
 <p>La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc.</p>
 <p>La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.</p>
-<p>L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites. La lumière met aussi plus de temps à passer près du Soleil : un écho radar renvoyé par Vénus revient avec environ deux dix-millièmes de seconde de retard.</p>
+<p>L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites.</p>
 <h2 id="s5">Un frein sans frottement</h2>
-<p>L'image du frein a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.</p>
+<p>L'image du frein, ou du goulot d'étranglement, a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.</p>
 <p>Ensuite, rien ne s'use. Un frein ordinaire chauffe et dissipe de l'énergie ; ici, aucune énergie n'est perdue.</p>
 <p>Enfin, l'image dit comment les choses tombent, pas pourquoi une masse ralentit le temps. Cette question relève des équations d'Einstein, qui décrivent aussi ce que l'image ne couvre pas : les ondes gravitationnelles et l'expansion de l'univers.</p>
 <h2 id="s6">Sources et précisions</h2>
