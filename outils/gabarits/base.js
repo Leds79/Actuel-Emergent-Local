@@ -77,6 +77,18 @@ const marquerDefilement = () => $$('.stage').forEach(s => {
 });
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// liste des piliers, dans la barre du haut : elle se referme quand on touche ailleurs, quand le clavier en sort, avec Échap,
+// ou quand on revient sur la page
+(() => {
+  const menu = $('.barre .menu');
+  if (!menu) return;
+  document.addEventListener('pointerdown', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); }
+  });
+  window.addEventListener('pageshow', () => { menu.open = false; });
+})();
 // rail de lecture : la section en cours est marquée pendant le défilement
 (() => {
   const liens = $$('.rail a');

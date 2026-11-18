@@ -27,7 +27,7 @@ Chaque pilier se lit de trois façons : une **planche interactive** (figure à m
 - `apercu.png`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `404.html`, `sitemap.xml` : l'image affichée quand le lien est partagé, les icônes, la page d'erreur et le plan du site.
 - `documents/` : les exports d'origine du dossier et des cinq articles, en PDF, Word et Markdown. Dans les exports du dossier, les formules sont écrites en code LaTeX ; pour le lire, préférer `dossier-complet.pdf`.
 - `CLAUDE.md`, `SUIVI.md` : le guide de reprise et le suivi du projet, pour continuer le travail d'une séance à l'autre.
-- `outils/` : le générateur du site (`construire_site.py`, `figures.py`, `icones.py`) et ses gabarits : la feuille de style, les scripts communs, l'animation de l'accueil (`accueil.js`), les cinq dessins animés des en-têtes (`epures.js`) et les cinq planches interactives (`p1` à `p5`).
+- `outils/` : le générateur du site (`construire_site.py`, `figures.py`, `icones.py`) et ses gabarits : la feuille de style, les scripts communs, l'animation de l'accueil (`accueil.js`), les cinq dessins animés des en-têtes (`epures.js`) et les cinq planches interactives (`p1` à `p5`). Le sous-dossier `controle/` réunit les outils de vérification : capture d'une page à la largeur d'un téléphone, recherche des débordements, comparaison du site publié avec la copie locale.
 
 ## Reconstruire le site
 
@@ -44,7 +44,7 @@ Pour refaire aussi le PDF du dossier et l'image de partage, ajouter l'option `--
 python outils/construire_site.py --pdf
 ```
 
-Après la modification d'un document, remplacer son export `.md` dans `documents/`, relancer la commande, puis publier les fichiers générés.
+Après la modification d'un document, remplacer son export `.md` dans `documents/` en gardant le même nom de fichier, relancer la commande, puis publier les fichiers générés.
 
 ## Statut du modèle
 

@@ -13,9 +13,12 @@
 <meta property="og:description" content="Cinq intuitions sur la lumière, la gravité et la mesure, traduites en équations et confrontées à la physique établie.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -69,31 +72,58 @@ p{margin:0;max-width:65ch}
 
 /* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
 .barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
-.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
-.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.barre .dedans{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;min-width:0;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .marque svg{flex:none}
-.barre nav{display:flex;align-items:center;gap:.3rem}
-.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
-.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
-.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
-@media (max-width:640px){
-  .marque span,.barre .lib{display:none}
-  .marque{min-width:2.75rem;min-height:2.75rem}
-  .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.25rem;height:2.75rem}
-}
+/* si la place manque (police de titre non chargée, très gros caractères), le nom du site s'abrège : la barre ne déborde pas */
+.marque span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.barre nav{display:flex;align-items:center;gap:.3rem;flex:none}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.barre nav>a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+@media (hover:hover){.barre nav>a:hover{background:rgba(205,225,255,.16)}}
+.barre nav>a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav>a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 
-@media (max-width:380px){
-  .barre .dedans{gap:.4rem}
-  .barre nav{gap:.2rem}
-  .barre nav a{min-width:2.05rem;padding:0 .1rem}
-  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+/* liste des piliers : le mot « Piliers » ouvre leurs titres. Sur petit écran, elle remplace les numéros, muets sans survol. */
+/* le bouton est un élément placé dans le résumé : tous les navigateurs ne savent pas mettre un résumé en ligne flexible */
+.menu summary{display:block;margin-right:.1rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bouton{display:flex;align-items:center;gap:.5rem;height:2.1rem;padding:0 .55rem;border:1px solid transparent}
+.menu .bouton::after{content:"";flex:none;width:.4rem;height:.4rem;margin-top:-.22rem;border:solid var(--plan-ink-2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.menu[open] .bouton::after{margin-top:.22rem;transform:rotate(-135deg)}
+.menu[open] .bouton{background:rgba(205,225,255,.16);border-color:var(--plan-trait-2)}
+.menu[open] .lib{color:var(--plan-ink)}
+@media (hover:hover){.menu summary:hover .bouton{background:rgba(205,225,255,.16)}.menu summary:hover .lib{color:var(--plan-ink)}}
+.menu summary:focus-visible{outline:2px solid var(--photon);outline-offset:2px}
+.menu .ici{display:none}
+/* la liste ne dépasse jamais le bas de l'écran : sur un téléphone couché, elle défile */
+.menu ul{position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));z-index:1;width:min(25rem,calc(100% - 32px));margin:0;padding:.35rem 0;list-style:none;
+  max-height:calc(100vh - 3.5rem);max-height:calc(100dvh - 3.5rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--plan-2);border:1px solid var(--plan-trait-2);border-top:0;box-shadow:0 16px 32px rgba(0,0,0,.38)}
+.menu li a{display:grid;grid-template-columns:2.1rem minmax(0,1fr);align-items:center;gap:.85rem;min-height:3rem;padding:.45rem 1rem;text-decoration:none;font-size:.95rem;line-height:1.3}
+.menu li b{display:grid;place-items:center;height:2.1rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono)}
+.menu li a[aria-current="page"] b{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+@media (hover:hover){.menu li a:hover{background:rgba(205,225,255,.12)}}
+@media (max-width:700px){
+  .marque{min-height:2.75rem}
+  .barre nav{gap:.5rem}
+  .barre nav>a:not(.dos){display:none}
+  .barre nav>a.dos{height:2.75rem;margin-left:0}
+  .menu summary{margin-right:0}
+  .menu .bouton{height:2.75rem;padding:0 .8rem;border-color:var(--plan-trait-2)}
+  .menu .lib{font-size:.7rem;letter-spacing:.09em;color:var(--plan-ink)}
+  .menu .ici{display:grid;place-items:center;min-width:1.5rem;height:1.5rem;background:var(--photon);color:var(--plan-2);font:500 .8rem/1 var(--mono)}
+  .menu ul{left:0;right:0;width:auto;border-left:0;border-right:0}
+  .menu li a{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (max-width:640px){
+  .marque span{display:none}
+  .marque{min-width:2.75rem}
 }
 @media (max-width:340px){
-  .marque{min-width:2rem}
-  .barre nav a{min-width:1.9rem}
+  .barre .dedans{gap:.5rem}
+  .menu .bouton{padding:0 .6rem}
+  .barre nav>a.dos{padding:0 .6rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -412,7 +442,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
 @media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis>a{display:block}
+/* la vignette : le dessin, et par-dessus un lien vers la planche, pour la souris et le doigt */
+.vignette{margin:0;min-width:0}
+.cadre{position:relative}
+.voile{position:absolute;top:0;left:0;right:0;bottom:0}
+.vignette figcaption{margin-top:.5rem;font-size:.8rem;line-height:1.4;color:var(--ink-2)}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
 .clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
@@ -647,7 +681,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="index.html" aria-label="Accueil : Actuel, Émergent, Local" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><details class="menu"><summary><span class="bouton"><span class="lib">Piliers</span></span></summary><ul><li><a href="pilier-1/index.html"><b>1</b> <span>L’ombre plus rapide que la lumière</span></a></li><li><a href="pilier-2/index.html"><b>2</b> <span>On ne voit jamais la lumière passer</span></a></li><li><a href="pilier-3/index.html"><b>3</b> <span>La pente du temps</span></a></li><li><a href="pilier-4/index.html"><b>4</b> <span>Le choix d’aujourd’hui ne réécrit pas le passé</span></a></li><li><a href="pilier-5/index.html"><b>5</b> <span>Comment une réponse devient un fait</span></a></li></ul></details><a href="pilier-1/index.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan accueil"><div class="dedans hero">
 <div>
@@ -670,11 +704,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   <h2 id="h-liste">Les cinq piliers</h2>
   <p>Chaque pilier se lit de trois façons : une planche interactive à manipuler, un article sans équation, et une démonstration complète avec ses références.</p>
   <div class="planches">
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>01</b></div><div class="plt"><span class="eyebrow">Géométrie de l’observateur</span><h3><a href="pilier-1/index.html">L’ombre plus rapide que la lumière</a></h3><p class="mot">« L’observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. […] Je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage. […] Alors, un tableau parfaitement plat. »</p><p>Sur un écran plat à 100 millions de kilomètres, l’ombre de ciseaux fermés en une seconde part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.</p><p class="acces"><a class="btn encre" href="pilier-1/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-1/article.html">Article</a><a class="btn fin" href="pilier-1/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-1/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme peu à peu, du centre vers la pointe, chaque point avec son propre retard ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div></a><p class="clef"><b>524 c</b><span>vitesse de l’ombre au centre de l’écran, dans l’exemple chiffré</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>02</b></div><div class="plt"><span class="eyebrow">Lumière actuelle, émergente, locale</span><h3><a href="pilier-2/index.html">On ne voit jamais la lumière passer</a></h3><p class="mot">« La lumière est comme l’eau, transparente. Je pense que c’est la définition de la lumière par le langage qui est obsolète. […] La lumière n’est pas absolue mais émergente : alors les vrais mots seraient, selon moi, actuel, émergent, local. »</p><p>Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu’à l’endroit et à l’instant où elle rencontre de la matière.</p><p class="acces"><a class="btn encre" href="pilier-2/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-2/article.html">Article</a><a class="btn fin" href="pilier-2/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-2/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="2" data-fige="4.0" role="img" aria-label="En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"></canvas></div></a><p class="clef"><b>1 clic</b><span>par photon : deux détecteurs se déclenchent ensemble bien plus rarement que ne le permettrait une onde (1986)</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>03</b></div><div class="plt"><span class="eyebrow">Cadence <span class="sym">c</span> et masse comme frein</span><h3><a href="pilier-3/index.html">La pente du temps</a></h3><p class="mot">« Je risque de me tromper, mais selon moi, ici, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement. […] La masse qui courbe l’espace gravitationnel localement est plus lente que l’ensemble, qui tourne à la vitesse de la lumière. »</p><p>La relativité donne un sens précis à cette intuition : tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.</p><p class="acces"><a class="btn encre" href="pilier-3/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-3/article.html">Article</a><a class="btn fin" href="pilier-3/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-3/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div></a><p class="clef"><b>9,81 m/s<sup>2</sup></b><span>la pesanteur, retrouvée en multipliant la pente du temps par c<sup>2</sup></span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>04</b></div><div class="plt"><span class="eyebrow">Choix retardé de Wheeler</span><h3><a href="pilier-4/index.html">Le choix d’aujourd’hui ne réécrit pas le passé</a></h3><p class="mot">« C’est bizarre de devoir rester dans ce cadre fermé de ces deux options. Je vais formuler mon intuition, cela va sembler peut-être bizarre : on parle de choix retardé ; pour moi, cela veut dire qu’il y a intention, et que ce que nous concevons, connaissons, est graduellement donné. »</p><p>Choisir aujourd’hui comment mesurer un photon ne change rien au passé. Entre « une route » et « deux routes », tous les intermédiaires existent.</p><p class="acces"><a class="btn encre" href="pilier-4/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-4/article.html">Article</a><a class="btn fin" href="pilier-4/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-4/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="4" data-fige="24.0" role="img" aria-label="Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"></canvas></div></a><p class="clef"><b>3 500 km</b><span>au plus, parcourus par les photons quand l’expérience a été refaite avec un satellite, en 2017</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>05</b></div><div class="plt"><span class="eyebrow">Cristallisation de l’information</span><h3><a href="pilier-5/index.html">Comment une réponse devient un fait</a></h3><p class="mot">« La cristallisation de l’information fait suite à la quatrième hypothèse : la question est un potentiel ; actualiser, c’est cristalliser l’information. »</p><p>La réponse est d’abord inscrite au crayon, encore effaçable. L’environnement la recopie ensuite des milliards de fois et la grave.</p><p class="acces"><a class="btn encre" href="pilier-5/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-5/article.html">Article</a><a class="btn fin" href="pilier-5/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-5/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="5" data-fige="7.0" role="img" aria-label="Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"></canvas></div></a><p class="clef"><b>10 ps</b><span>dix picosecondes : le temps que met le soleil à brouiller l’interférence d’un grain de poussière</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>01</b></div><div class="plt"><span class="eyebrow">Géométrie de l’observateur</span><h3><a href="pilier-1/index.html">L’ombre plus rapide que la lumière</a></h3><p class="mot">« L’observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. […] Je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage. […] Alors, un tableau parfaitement plat. »</p><p>Sur un écran plat à 100 millions de kilomètres, l’ombre de ciseaux fermés en une seconde part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.</p><p class="acces"><a class="btn encre" href="pilier-1/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-1/article.html">Article</a><a class="btn fin" href="pilier-1/demonstration.html">Démonstration</a></p></div><div class="vis"><figure class="vignette"><div class="cadre"><div class="plaque mini"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme peu à peu, du centre vers la pointe, chaque point avec son propre retard ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div><a class="voile" href="pilier-1/index.html" tabindex="-1" aria-hidden="true"></a></div></figure><p class="clef"><b>524 c</b><span>vitesse de l’ombre au centre de l’écran, dans l’exemple chiffré</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>02</b></div><div class="plt"><span class="eyebrow">Lumière actuelle, émergente, locale</span><h3><a href="pilier-2/index.html">On ne voit jamais la lumière passer</a></h3><p class="mot">« La lumière est comme l’eau, transparente. Je pense que c’est la définition de la lumière par le langage qui est obsolète. […] La lumière n’est pas absolue mais émergente : alors les vrais mots seraient, selon moi, actuel, émergent, local. »</p><p>Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu’à l’endroit et à l’instant où elle rencontre de la matière.</p><p class="acces"><a class="btn encre" href="pilier-2/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-2/article.html">Article</a><a class="btn fin" href="pilier-2/demonstration.html">Démonstration</a></p></div><div class="vis"><figure class="vignette"><div class="cadre"><div class="plaque mini"><canvas data-epure="2" data-fige="4.0" role="img" aria-label="En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"></canvas></div><a class="voile" href="pilier-2/index.html" tabindex="-1" aria-hidden="true"></a></div></figure><p class="clef"><b>1 clic</b><span>par photon : deux détecteurs se déclenchent ensemble bien plus rarement que ne le permettrait une onde (1986)</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>03</b></div><div class="plt"><span class="eyebrow">Cadence <span class="sym">c</span> et masse comme frein</span><h3><a href="pilier-3/index.html">La pente du temps</a></h3><p class="mot">« Je risque de me tromper, mais selon moi, ici, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement. […] La masse qui courbe l’espace gravitationnel localement est plus lente que l’ensemble, qui tourne à la vitesse de la lumière. »</p><p>La relativité donne un sens précis à cette intuition : tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.</p><p class="acces"><a class="btn encre" href="pilier-3/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-3/article.html">Article</a><a class="btn fin" href="pilier-3/demonstration.html">Démonstration</a></p></div><div class="vis"><figure class="vignette"><div class="cadre"><div class="plaque mini"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div><a class="voile" href="pilier-3/index.html" tabindex="-1" aria-hidden="true"></a></div><figcaption>Une image de l’auteur : la cadence est figurée par une toile qui tourne. L’espace, lui, ne tourne pas.</figcaption></figure><p class="clef"><b>9,81 m/⁠s<sup>2</sup></b><span>la pesanteur, retrouvée en multipliant la pente du temps par c<sup>2</sup></span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>04</b></div><div class="plt"><span class="eyebrow">Choix retardé de Wheeler</span><h3><a href="pilier-4/index.html">Le choix d’aujourd’hui ne réécrit pas le passé</a></h3><p class="mot">« C’est bizarre de devoir rester dans ce cadre fermé de ces deux options. Je vais formuler mon intuition, cela va sembler peut-être bizarre : on parle de choix retardé ; pour moi, cela veut dire qu’il y a intention, et que ce que nous concevons, connaissons, est graduellement donné. »</p><p>Choisir aujourd’hui comment mesurer un photon ne change rien au passé. Entre « une route » et « deux routes », tous les intermédiaires existent.</p><p class="acces"><a class="btn encre" href="pilier-4/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-4/article.html">Article</a><a class="btn fin" href="pilier-4/demonstration.html">Démonstration</a></p></div><div class="vis"><figure class="vignette"><div class="cadre"><div class="plaque mini"><canvas data-epure="4" data-fige="24.0" role="img" aria-label="Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"></canvas></div><a class="voile" href="pilier-4/index.html" tabindex="-1" aria-hidden="true"></a></div></figure><p class="clef"><b>3 500 km</b><span>au plus, parcourus par les photons quand l’expérience a été refaite avec un satellite, en 2017</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>05</b></div><div class="plt"><span class="eyebrow">Cristallisation de l’information</span><h3><a href="pilier-5/index.html">Comment une réponse devient un fait</a></h3><p class="mot">« La cristallisation de l’information fait suite à la quatrième hypothèse : la question est un potentiel ; actualiser, c’est cristalliser l’information. »</p><p>La réponse est d’abord inscrite au crayon, encore effaçable. L’environnement la recopie ensuite des milliards de fois et la grave.</p><p class="acces"><a class="btn encre" href="pilier-5/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-5/article.html">Article</a><a class="btn fin" href="pilier-5/demonstration.html">Démonstration</a></p></div><div class="vis"><figure class="vignette"><div class="cadre"><div class="plaque mini"><canvas data-epure="5" data-fige="7.0" role="img" aria-label="Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"></canvas></div><a class="voile" href="pilier-5/index.html" tabindex="-1" aria-hidden="true"></a></div></figure><p class="clef"><b>10 ps</b><span>environ dix picosecondes : le temps que met le soleil à brouiller l’interférence d’un grain de poussière de 10 µm, entre deux positions distantes de 0,1 µm (d’après Joos et Zeh, 1985)</span></p></div></article>
   </div>
 </section>
 
@@ -694,8 +728,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   <span class="eyebrow">Verdict</span>
   <h2 id="h-verdict">Ce que les équations confirment, et ce qu’elles corrigent</h2>
   <div class="verdict">
-    <p>Le dossier part des formules de la demande qui a lancé ce travail, écrites à partir des intuitions de l’auteur. Il démontre ou corrige une à une ces « formules demandées ».</p>
-<p>Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
+    <p>Le dossier examine une à une les formules de départ, écrites à partir des intuitions de l’auteur : il les démontre ou les corrige.</p>
+<p>Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules de départ se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
 <p>Le modèle est une relecture cohérente de résultats connus, abordés par un autre chemin : celui du suivi de projet. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.</p>
   </div>
 </section>
@@ -725,32 +759,32 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <tbody>
 <tr>
 <td data-th="Intuition, en langage mécanique">1. Géométrie de l’observateur : sur un tableau plat, la diagonale s’allonge et le photon doit revenir à la source</td>
-<td data-th="Équations démontrées">Sur le tableau : 1/v = 1/ẋ + sin θ / c, limite c. Vitesse perçue : 1/v = 1/ẋ + 2 sin θ / c, limite c/2. Jets : v sin θ / (1 − (v/c) cos θ)</td>
-<td data-th="Théorèmes et travaux établis">Échos de lumière (Couderc, 1939). Vitesses apparentes supraluminiques (Rees, 1966)</td>
+<td data-th="Équations démontrées">Vitesse de la tache sur le tableau : 1/⁠v = 1/⁠ẋ + sin θ / c, limite c. Vitesse perçue par l’observateur : 1/⁠v = 1/⁠ẋ + 2 sin θ / c, limite c/2. Jets de quasars : vitesse apparente βc sin θ / (1 − β cos θ), où βc est la vitesse du jet et θ, cette fois, son angle avec la ligne de visée</td>
+<td data-th="Théorèmes et travaux établis">Échos de lumière (Couderc, 1939). Vitesses apparentes supraluminiques (Rees, 1966)</td>
 <td data-th="Correction ou limite">c/2 est une limite. C’est un plancher pour un balayage rapide, comme dans le cas chiffré, et un plafond seulement si Dω ≤ c/2</td>
 </tr>
 <tr>
 <td data-th="Intuition, en langage mécanique">2. Lumière actuelle, émergente, locale : rien ne voyage de A à B, et l’éclat naît à l’impact</td>
-<td data-th="Équations démontrées">Intervalle Δs<sup>2</sup> = c<sup>2</sup>Δt<sup>2</sup> − Δx<sup>2</sup> négatif et invariant. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l’instant du détecteur</td>
-<td data-th="Théorèmes et travaux établis">Causalité relativiste (Einstein, Minkowski). Théorie de la photodétection (Glauber, 1963). « Potentia » (Heisenberg, 1958)</td>
+<td data-th="Équations démontrées">Entre deux impacts A et B d’une tache plus rapide que c : intervalle Δs<sup>2</sup> = c<sup>2</sup>Δt<sup>2</sup> − Δx<sup>2</sup> négatif (genre espace) et invariant. De chaque impact à son émission : intervalle nul. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l’instant du détecteur</td>
+<td data-th="Théorèmes et travaux établis">Causalité relativiste (Einstein, Minkowski). Théorie de la photodétection (Glauber, 1963). « Potentia » (Heisenberg, 1958)</td>
 <td data-th="Correction ou limite">La formule de Glauber est une valeur moyenne. En transit, le champ porte énergie et impulsion : « potentiel » ne veut pas dire « rien »</td>
 </tr>
 <tr>
 <td data-th="Intuition, en langage mécanique">3. Cadence c et masse comme frein : la gravité est une déviation vers la zone lente</td>
-<td data-th="Équations démontrées">Norme de la quadri-vitesse égale à c. Budget : (c dτ/dt)<sup>2</sup> + v<sup>2</sup> = c<sup>2</sup>. Horloges : dτ = dt √(1 − 2GM/(rc<sup>2</sup>)). Indice : n ≈ 1 + 2GM/(rc<sup>2</sup>). Matière lente : a = −c<sup>2</sup>∇N. Lumière : déviation 4GM/(bc<sup>2</sup>)</td>
+<td data-th="Équations démontrées">Norme de la quadri-vitesse égale à c. Budget : (c dτ/⁠dt)<sup>2</sup> + v<sup>2</sup> = c<sup>2</sup>. Horloges : dτ = dt √(1 − 2GM/(rc<sup>2</sup>)). Indice : n ≈ 1 + 2GM/(rc<sup>2</sup>). Matière lente : a = −c<sup>2</sup>∇N, où N est la cadence des horloges immobiles. Lumière : déviation 4GM/(bc<sup>2</sup>) pour un rayon qui passe à la distance b de la masse</td>
 <td data-th="Théorèmes et travaux établis">Espace-temps de Minkowski. Solution de Schwarzschild. Principe de Fermat. Effet Shapiro. Analogie optique (Einstein, 1911 ; Dicke, 1957)</td>
 <td data-th="Correction ou limite">La déviation suit +∇n. Un facteur 2 sépare la lumière de la matière lente. Sur place, la lumière va toujours à c</td>
 </tr>
 <tr>
 <td data-th="Intuition, en langage mécanique">4. Choix retardé : le choix est local et actuel, et le réel est graduellement donné</td>
-<td data-th="Équations démontrées">Superposition des deux routes avec une phase φ. Probabilités (1 ± cos φ)/2. État de tout autre système inchangé par le choix. Visibilité<sup>2</sup> + distinguabilité<sup>2</sup> ≤ 1. Précision Δφ ≥ 1/√N</td>
+<td data-th="Équations démontrées">Superposition des deux routes avec une phase φ. Probabilités (1 ± cos φ)/2. État de tout autre système inchangé par le choix. Visibilité<sup>2</sup> + distinguabilité<sup>2</sup> ≤ 1. Précision Δφ ≥ 1/√N</td>
 <td data-th="Théorèmes et travaux établis">Règle de Born. Théorème de non-communication (Ghirardi, Rimini, Weber, 1980). Complémentarité (Bohr ; Englert, 1996). Wheeler, Rovelli, QBisme</td>
 <td data-th="Correction ou limite">Le choix n’exige pas d’intention consciente. Les lectures participatives sont des interprétations, que l’expérience ne départage pas</td>
 </tr>
 <tr>
 <td data-th="Intuition, en langage mécanique">5. Cristallisation de l’information : la question est un potentiel, et l’actualisation fige la réponse</td>
-<td data-th="Équations démontrées">Potentiel H = −Σ p log₂ p, borné à 1 bit pour deux routes. Inscription : 2 bits de corrélation quantique, réversibles. Cristallisation : cohérence multipliée par ε à la puissance N, soit exp(−t/τ) ; il reste 1 bit classique, recopié dans l’environnement</td>
-<td data-th="Théorèmes et travaux établis">Entropie de Shannon. Borne de Holevo. Schéma de mesure de von Neumann. Décohérence (Zeh, Zurek). Darwinisme quantique (Zurek, 2009). Principe de Landauer (1961)</td>
+<td data-th="Équations démontrées">Potentiel H = −Σ p log₂ p, borné à 1 bit pour deux routes. Inscription : 2 bits de corrélation quantique, réversibles. Cristallisation : cohérence multipliée par ε à la puissance N, soit exp(−t/⁠τ) ; il reste 1 bit classique, recopié dans l’environnement</td>
+<td data-th="Théorèmes et travaux établis">Entropie de Shannon. Borne de Holevo. Schéma de mesure de von Neumann. Décohérence (Zeh, Zurek). Darwinisme quantique (Zurek, 2009). Principe de Landauer (1961)</td>
 <td data-th="Correction ou limite">Inscrire et cristalliser sont deux temps distincts. La décohérence fige la réponse mais ne la choisit pas. L’irréversibilité est pratique, pas de principe</td>
 </tr>
 </tbody>
@@ -763,7 +797,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   <span class="eyebrow">Documents</span>
   <h2 id="h-docs">Tout lire, tout télécharger</h2>
   <p>Le <a href="dossier.html">dossier complet</a> réunit sur une seule page les cinq démonstrations, la synthèse et les références.</p>
-  <ul class="docs"><li><span>Dossier mathématique complet</span><span class="liens"><a href="dossier.html">Lire en ligne</a><a href="dossier-complet.pdf">PDF</a><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.docx">Word</a><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.md">Markdown</a></span></li><li><span>Article du pilier 1 — L’ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</span><span class="liens"><a href="pilier-1/article.html">Lire en ligne</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">PDF</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.docx">Word</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.md">Markdown</a></span></li><li><span>Article du pilier 2 — On ne voit jamais la lumière passer</span><span class="liens"><a href="pilier-2/article.html">Lire en ligne</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">PDF</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.docx">Word</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.md">Markdown</a></span></li><li><span>Article du pilier 3 — Tomber, c’est suivre la pente du temps</span><span class="liens"><a href="pilier-3/article.html">Lire en ligne</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">PDF</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.docx">Word</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.md">Markdown</a></span></li><li><span>Article du pilier 4 — Le choix d’aujourd’hui ne réécrit pas le passé</span><span class="liens"><a href="pilier-4/article.html">Lire en ligne</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">PDF</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.docx">Word</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.md">Markdown</a></span></li><li><span>Article du pilier 5 — Comment une réponse devient un fait</span><span class="liens"><a href="pilier-5/article.html">Lire en ligne</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">PDF</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.docx">Word</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.md">Markdown</a></span></li></ul>
+  <ul class="docs"><li><span>Dossier mathématique complet</span><span class="liens"><a href="dossier.html">Lire en ligne</a><a href="dossier-complet.pdf">PDF</a><a href="documents/dossier-actuel-emergent-local.docx">Word</a><a href="documents/dossier-actuel-emergent-local.md">Markdown</a></span></li><li><span>Article du pilier 1 — L’ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</span><span class="liens"><a href="pilier-1/article.html">Lire en ligne</a><a href="documents/article-1-ombre-plus-rapide-que-la-lumiere.pdf">PDF</a><a href="documents/article-1-ombre-plus-rapide-que-la-lumiere.docx">Word</a><a href="documents/article-1-ombre-plus-rapide-que-la-lumiere.md">Markdown</a></span></li><li><span>Article du pilier 2 — On ne voit jamais la lumière passer</span><span class="liens"><a href="pilier-2/article.html">Lire en ligne</a><a href="documents/article-2-on-ne-voit-jamais-la-lumiere-passer.pdf">PDF</a><a href="documents/article-2-on-ne-voit-jamais-la-lumiere-passer.docx">Word</a><a href="documents/article-2-on-ne-voit-jamais-la-lumiere-passer.md">Markdown</a></span></li><li><span>Article du pilier 3 — Tomber, c’est suivre la pente du temps</span><span class="liens"><a href="pilier-3/article.html">Lire en ligne</a><a href="documents/article-3-la-pente-du-temps.pdf">PDF</a><a href="documents/article-3-la-pente-du-temps.docx">Word</a><a href="documents/article-3-la-pente-du-temps.md">Markdown</a></span></li><li><span>Article du pilier 4 — Le choix d’aujourd’hui ne réécrit pas le passé</span><span class="liens"><a href="pilier-4/article.html">Lire en ligne</a><a href="documents/article-4-le-choix-ne-reecrit-pas-le-passe.pdf">PDF</a><a href="documents/article-4-le-choix-ne-reecrit-pas-le-passe.docx">Word</a><a href="documents/article-4-le-choix-ne-reecrit-pas-le-passe.md">Markdown</a></span></li><li><span>Article du pilier 5 — Comment une réponse devient un fait</span><span class="liens"><a href="pilier-5/article.html">Lire en ligne</a><a href="documents/article-5-comment-une-reponse-devient-un-fait.pdf">PDF</a><a href="documents/article-5-comment-une-reponse-devient-un-fait.docx">Word</a><a href="documents/article-5-comment-une-reponse-devient-un-fait.md">Markdown</a></span></li></ul>
   <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>
 
@@ -858,6 +892,18 @@ const marquerDefilement = () => $$('.stage').forEach(s => {
 });
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// liste des piliers, dans la barre du haut : elle se referme quand on touche ailleurs, quand le clavier en sort, avec Échap,
+// ou quand on revient sur la page
+(() => {
+  const menu = $('.barre .menu');
+  if (!menu) return;
+  document.addEventListener('pointerdown', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); }
+  });
+  window.addEventListener('pageshow', () => { menu.open = false; });
+})();
 // rail de lecture : la section en cours est marquée pendant le défilement
 (() => {
   const liens = $$('.rail a');

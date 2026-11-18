@@ -43,31 +43,58 @@ p{margin:0;max-width:65ch}
 
 /* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
 .barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
-.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
-.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.barre .dedans{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;min-width:0;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .marque svg{flex:none}
-.barre nav{display:flex;align-items:center;gap:.3rem}
-.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
-.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
-.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
-@media (max-width:640px){
-  .marque span,.barre .lib{display:none}
-  .marque{min-width:2.75rem;min-height:2.75rem}
-  .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.25rem;height:2.75rem}
-}
+/* si la place manque (police de titre non chargée, très gros caractères), le nom du site s'abrège : la barre ne déborde pas */
+.marque span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.barre nav{display:flex;align-items:center;gap:.3rem;flex:none}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.barre nav>a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+@media (hover:hover){.barre nav>a:hover{background:rgba(205,225,255,.16)}}
+.barre nav>a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav>a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 
-@media (max-width:380px){
-  .barre .dedans{gap:.4rem}
-  .barre nav{gap:.2rem}
-  .barre nav a{min-width:2.05rem;padding:0 .1rem}
-  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+/* liste des piliers : le mot « Piliers » ouvre leurs titres. Sur petit écran, elle remplace les numéros, muets sans survol. */
+/* le bouton est un élément placé dans le résumé : tous les navigateurs ne savent pas mettre un résumé en ligne flexible */
+.menu summary{display:block;margin-right:.1rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bouton{display:flex;align-items:center;gap:.5rem;height:2.1rem;padding:0 .55rem;border:1px solid transparent}
+.menu .bouton::after{content:"";flex:none;width:.4rem;height:.4rem;margin-top:-.22rem;border:solid var(--plan-ink-2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.menu[open] .bouton::after{margin-top:.22rem;transform:rotate(-135deg)}
+.menu[open] .bouton{background:rgba(205,225,255,.16);border-color:var(--plan-trait-2)}
+.menu[open] .lib{color:var(--plan-ink)}
+@media (hover:hover){.menu summary:hover .bouton{background:rgba(205,225,255,.16)}.menu summary:hover .lib{color:var(--plan-ink)}}
+.menu summary:focus-visible{outline:2px solid var(--photon);outline-offset:2px}
+.menu .ici{display:none}
+/* la liste ne dépasse jamais le bas de l'écran : sur un téléphone couché, elle défile */
+.menu ul{position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));z-index:1;width:min(25rem,calc(100% - 32px));margin:0;padding:.35rem 0;list-style:none;
+  max-height:calc(100vh - 3.5rem);max-height:calc(100dvh - 3.5rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--plan-2);border:1px solid var(--plan-trait-2);border-top:0;box-shadow:0 16px 32px rgba(0,0,0,.38)}
+.menu li a{display:grid;grid-template-columns:2.1rem minmax(0,1fr);align-items:center;gap:.85rem;min-height:3rem;padding:.45rem 1rem;text-decoration:none;font-size:.95rem;line-height:1.3}
+.menu li b{display:grid;place-items:center;height:2.1rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono)}
+.menu li a[aria-current="page"] b{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+@media (hover:hover){.menu li a:hover{background:rgba(205,225,255,.12)}}
+@media (max-width:700px){
+  .marque{min-height:2.75rem}
+  .barre nav{gap:.5rem}
+  .barre nav>a:not(.dos){display:none}
+  .barre nav>a.dos{height:2.75rem;margin-left:0}
+  .menu summary{margin-right:0}
+  .menu .bouton{height:2.75rem;padding:0 .8rem;border-color:var(--plan-trait-2)}
+  .menu .lib{font-size:.7rem;letter-spacing:.09em;color:var(--plan-ink)}
+  .menu .ici{display:grid;place-items:center;min-width:1.5rem;height:1.5rem;background:var(--photon);color:var(--plan-2);font:500 .8rem/1 var(--mono)}
+  .menu ul{left:0;right:0;width:auto;border-left:0;border-right:0}
+  .menu li a{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (max-width:640px){
+  .marque span{display:none}
+  .marque{min-width:2.75rem}
 }
 @media (max-width:340px){
-  .marque{min-width:2rem}
-  .barre nav a{min-width:1.9rem}
+  .barre .dedans{gap:.5rem}
+  .menu .bouton{padding:0 .6rem}
+  .barre nav>a.dos{padding:0 .6rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -386,7 +413,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
 @media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis>a{display:block}
+/* la vignette : le dessin, et par-dessus un lien vers la planche, pour la souris et le doigt */
+.vignette{margin:0;min-width:0}
+.cadre{position:relative}
+.voile{position:absolute;top:0;left:0;right:0;bottom:0}
+.vignette figcaption{margin-top:.5rem;font-size:.8rem;line-height:1.4;color:var(--ink-2)}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
 .clef sup{font-size:.56em;top:-.62em;margin-left:.04em}

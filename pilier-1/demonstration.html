@@ -13,9 +13,12 @@
 <meta property="og:description" content="Sur un écran plat à 100 millions de kilomètres, l’ombre de ciseaux fermés en une seconde part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-1/demonstration.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
@@ -71,31 +74,58 @@ p{margin:0;max-width:65ch}
 
 /* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
 .barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
-.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
-.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.barre .dedans{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;min-width:0;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .marque svg{flex:none}
-.barre nav{display:flex;align-items:center;gap:.3rem}
-.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
-.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
-.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
-@media (max-width:640px){
-  .marque span,.barre .lib{display:none}
-  .marque{min-width:2.75rem;min-height:2.75rem}
-  .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.25rem;height:2.75rem}
-}
+/* si la place manque (police de titre non chargée, très gros caractères), le nom du site s'abrège : la barre ne déborde pas */
+.marque span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.barre nav{display:flex;align-items:center;gap:.3rem;flex:none}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.barre nav>a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+@media (hover:hover){.barre nav>a:hover{background:rgba(205,225,255,.16)}}
+.barre nav>a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav>a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 
-@media (max-width:380px){
-  .barre .dedans{gap:.4rem}
-  .barre nav{gap:.2rem}
-  .barre nav a{min-width:2.05rem;padding:0 .1rem}
-  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+/* liste des piliers : le mot « Piliers » ouvre leurs titres. Sur petit écran, elle remplace les numéros, muets sans survol. */
+/* le bouton est un élément placé dans le résumé : tous les navigateurs ne savent pas mettre un résumé en ligne flexible */
+.menu summary{display:block;margin-right:.1rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bouton{display:flex;align-items:center;gap:.5rem;height:2.1rem;padding:0 .55rem;border:1px solid transparent}
+.menu .bouton::after{content:"";flex:none;width:.4rem;height:.4rem;margin-top:-.22rem;border:solid var(--plan-ink-2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.menu[open] .bouton::after{margin-top:.22rem;transform:rotate(-135deg)}
+.menu[open] .bouton{background:rgba(205,225,255,.16);border-color:var(--plan-trait-2)}
+.menu[open] .lib{color:var(--plan-ink)}
+@media (hover:hover){.menu summary:hover .bouton{background:rgba(205,225,255,.16)}.menu summary:hover .lib{color:var(--plan-ink)}}
+.menu summary:focus-visible{outline:2px solid var(--photon);outline-offset:2px}
+.menu .ici{display:none}
+/* la liste ne dépasse jamais le bas de l'écran : sur un téléphone couché, elle défile */
+.menu ul{position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));z-index:1;width:min(25rem,calc(100% - 32px));margin:0;padding:.35rem 0;list-style:none;
+  max-height:calc(100vh - 3.5rem);max-height:calc(100dvh - 3.5rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--plan-2);border:1px solid var(--plan-trait-2);border-top:0;box-shadow:0 16px 32px rgba(0,0,0,.38)}
+.menu li a{display:grid;grid-template-columns:2.1rem minmax(0,1fr);align-items:center;gap:.85rem;min-height:3rem;padding:.45rem 1rem;text-decoration:none;font-size:.95rem;line-height:1.3}
+.menu li b{display:grid;place-items:center;height:2.1rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono)}
+.menu li a[aria-current="page"] b{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+@media (hover:hover){.menu li a:hover{background:rgba(205,225,255,.12)}}
+@media (max-width:700px){
+  .marque{min-height:2.75rem}
+  .barre nav{gap:.5rem}
+  .barre nav>a:not(.dos){display:none}
+  .barre nav>a.dos{height:2.75rem;margin-left:0}
+  .menu summary{margin-right:0}
+  .menu .bouton{height:2.75rem;padding:0 .8rem;border-color:var(--plan-trait-2)}
+  .menu .lib{font-size:.7rem;letter-spacing:.09em;color:var(--plan-ink)}
+  .menu .ici{display:grid;place-items:center;min-width:1.5rem;height:1.5rem;background:var(--photon);color:var(--plan-2);font:500 .8rem/1 var(--mono)}
+  .menu ul{left:0;right:0;width:auto;border-left:0;border-right:0}
+  .menu li a{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (max-width:640px){
+  .marque span{display:none}
+  .marque{min-width:2.75rem}
 }
 @media (max-width:340px){
-  .marque{min-width:2rem}
-  .barre nav a{min-width:1.9rem}
+  .barre .dedans{gap:.5rem}
+  .menu .bouton{padding:0 .6rem}
+  .barre nav>a.dos{padding:0 .6rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -414,7 +444,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
 @media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis>a{display:block}
+/* la vignette : le dessin, et par-dessus un lien vers la planche, pour la souris et le doigt */
+.vignette{margin:0;min-width:0}
+.cadre{position:relative}
+.voile{position:absolute;top:0;left:0;right:0;bottom:0}
+.vignette figcaption{margin-top:.5rem;font-size:.8rem;line-height:1.4;color:var(--ink-2)}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
 .clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
@@ -649,7 +683,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/demonstration.html" aria-current="page" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><details class="menu"><summary><span class="bouton"><span class="lib">Piliers</span><b class="ici" aria-hidden="true">1</b></span></summary><ul><li><a href="../pilier-1/demonstration.html" aria-current="page"><b>1</b> <span>L’ombre plus rapide que la lumière</span></a></li><li><a href="../pilier-2/demonstration.html"><b>2</b> <span>On ne voit jamais la lumière passer</span></a></li><li><a href="../pilier-3/demonstration.html"><b>3</b> <span>La pente du temps</span></a></li><li><a href="../pilier-4/demonstration.html"><b>4</b> <span>Le choix d’aujourd’hui ne réécrit pas le passé</span></a></li><li><a href="../pilier-5/demonstration.html"><b>5</b> <span>Comment une réponse devient un fait</span></a></li></ul></details><a href="../pilier-1/demonstration.html" aria-current="page" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
@@ -666,7 +700,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">1.1 Géométrie et notations</a></li><li><a href="#s2">1.2 Vitesse réelle de la tache sur le tableau</a></li><li><a href="#s3">1.3 Vitesse perçue par l’observateur : l’aller-retour du photon</a></li><li><a href="#s4">1.4 Application numérique</a></li><li><a href="#s5">1.5 Inversion du signe : les jets de quasars</a></li><li><a href="#s6">1.6 Conditions de validité</a></li><li><a href="#s7">Références</a></li></ol></nav>
 <article class="prose">
 <div class="amorce"><span class="eyebrow">Démonstration mathématique</span><h2 class="doc-titre">La géométrie de l’observateur et le tableau plat</h2><p class="lead">L’intuition est exacte : sur un tableau plat, la diagonale qui s’allonge ramène la vitesse de la tache vers c, et le trajet retour ramène la vitesse perçue vers c/2. Un seul mot est à corriger. Avec les chiffres choisis, c/2 n’est pas un plafond mais un plancher, approché par le haut.</p></div>
-<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l’auteur, dans la demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s’agit de l’une d’elles : elle est démontrée telle quelle, ou corrigée.</p><p>Le dossier dit « tableau », « tache », « observateur » et « vitesse perçue » là où l’article et la planche disent « écran », « ombre », « opérateur » et « vitesse vue ». Ce sont les mêmes choses.</p></aside>
+<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ, écrites à partir des intuitions de l’auteur au lancement de ce travail. Chacune est démontrée telle quelle, ou corrigée. Quand le texte dit « la formule de départ », il s’agit de l’une d’elles.</p><p>Le dossier dit « tableau », « tache », « observateur » et « vitesse perçue » là où l’article et la planche disent « écran », « ombre », « opérateur » et « vitesse vue ». Ce sont les mêmes choses.</p></aside>
 <details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol><li><a href="#s1">1.1 Géométrie et notations</a></li><li><a href="#s2">1.2 Vitesse réelle de la tache sur le tableau</a></li><li><a href="#s3">1.3 Vitesse perçue par l’observateur : l’aller-retour du photon</a></li><li><a href="#s4">1.4 Application numérique</a></li><li><a href="#s5">1.5 Inversion du signe : les jets de quasars</a></li><li><a href="#s6">1.6 Conditions de validité</a></li><li><a href="#s7">Références</a></li></ol></details>
 <h2 id="s1">1.1 Géométrie et notations</h2>
 <p>La source et l’observateur sont au même point O. Le tableau est un plan perpendiculaire à l’axe de visée, à la distance D = 10<sup>8</sup> km. Un point du tableau est repéré par sa distance latérale x au centre, là où tombe l’ombre du pivot.</p>
@@ -678,16 +712,16 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </ul>
 <p>La fermeture des ciseaux fait tourner la direction visée à vitesse angulaire constante :</p>
 <div class="tex">\theta(\tau) = \omega\tau, \qquad x(\tau) = D\tan(\omega\tau)</div>
-<p>Pour les calculs chiffrés, la fermeture en 1 s est traduite ainsi : la direction visée passe de l’axe (θ = 0) au rasant (θ = 90°) en 1 s, soit ω = π/2 rad/s. Toutes les formules restent vraies pour un ω quelconque.</p>
-<p>Attention au sens de x(τ) : c’est le point du tableau que vise la lumière émise à l’instant τ. La tache n’y apparaît que plus tard, après le temps de trajet R/c.</p>
-<p>La dérivée de x par rapport à τ s’obtient avec deux règles : la dérivée de tan u est 1/cos<sup>2</sup> u, et 1/cos<sup>2</sup> θ = 1 + tan<sup>2</sup> θ.</p>
+<p>Pour les calculs chiffrés, la fermeture en 1 s est traduite ainsi : la direction visée passe de l’axe (θ = 0) au rasant (θ = 90°) en 1 s, soit ω = π/2 rad/⁠s. Toutes les formules restent vraies pour un ω quelconque.</p>
+<p>Attention au sens de x(τ) : c’est le point du tableau que vise la lumière émise à l’instant τ. La tache n’y apparaît que plus tard, après le temps de trajet R/⁠c.</p>
+<p>La dérivée de x par rapport à τ s’obtient avec deux règles : la dérivée de tan u est 1/⁠cos<sup>2</sup> u, et 1/⁠cos<sup>2</sup> θ = 1 + tan<sup>2</sup> θ.</p>
 <div class="tex">\begin{aligned}
 \dot{x} \equiv \frac{dx}{d\tau} &amp;= \frac{D\,\omega}{\cos^2(\omega\tau)} = D\,\omega\left(1 + \frac{x^2}{D^2}\right) \\
 &amp;= \frac{\omega\,(D^2 + x^2)}{D} = \frac{\omega R^2}{D}
 \end{aligned}</div>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>ẋ est la vitesse de visée : la vitesse à laquelle le point visé glisse sur le tableau. C’est une quantité purement géométrique, que rien ne limite à c. Au centre, elle vaut Dω = 1,571 × 10<sup>8</sup> km/s, soit 524 fois c, et elle grandit sans borne quand la visée devient rasante.</p></div>
-<p>Deux repères chiffrés servent dans toute la suite : c = 299 792,458 km/s, et D/c = 333,6 s, soit 5 min 34 s de trajet jusqu’au centre du tableau.</p>
-<figure class="fig solo"><figcaption class="figtitle">Sur un tableau plat, la diagonale s’allonge quand on s’éloigne du centre</figcaption><div class="stage"><svg class="bureau" viewBox="0 0 760 404" role="img" aria-label="Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre"><defs><marker id="fg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs><line x1="40" y1="100" x2="736" y2="100" class="lnk"/><text x="736" y="84" text-anchor="end" class="tb">tableau plat</text><path d="M140 100A240 240 0 0 1 380 340" class="ln dash"/><text x="392" y="318" class="tq">écran sphérique : R = D partout</text><line x1="140" y1="340" x2="140" y2="100" class="ln"/><text x="128" y="226" text-anchor="end" class="tb">D</text><text x="132" y="118" text-anchor="end" class="tq">centre du tableau</text><line x1="140" y1="340" x2="284" y2="148" class="ln" style="stroke:var(--ink-2)"/><line x1="284" y1="148" x2="320" y2="100" class="ray"/><circle cx="320" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="342.9" y2="211.8" class="ln" style="stroke:var(--ink-2)"/><line x1="342.9" y1="211.8" x2="520" y2="100" class="ray"/><circle cx="520" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="360.6" y2="245.5" class="ln" style="stroke:var(--ink-2)"/><line x1="360.6" y1="245.5" x2="700" y2="100" class="ray"/><circle cx="700" cy="100" r="4.5" class="f-ray"/><text x="234" y="196" text-anchor="end" class="tb">diagonale R</text><text x="538" y="150" text-anchor="middle" class="tb">R − D</text><line x1="140" y1="78" x2="320" y2="78" class="ln" marker-start="url(#fg-ar)" marker-end="url(#fg-ar)"/><text x="230" y="70" text-anchor="middle" class="tb">x</text><path d="M140 290A50 50 0 0 1 170 300" class="ln"/><text x="161" y="283" text-anchor="middle" class="t">θ</text><circle cx="140" cy="340" r="5" class="f-ink"/><text x="24" y="366" class="tb">O : source et observateur</text><text x="24" y="384" class="tq">La lumière part de O et y revient : trajet total 2R</text></svg><svg class="mobile" viewBox="0 0 350 384" role="img" aria-label="Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre"><defs><marker id="fg-arm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs><line x1="16" y1="70" x2="340" y2="70" class="lnk"/><text x="340" y="56" text-anchor="end" class="tb">tableau plat</text><path d="M46 70A230 230 0 0 1 276 300" class="ln dash"/><line x1="46" y1="300" x2="46" y2="70" class="ln"/><text x="36" y="192" text-anchor="end" class="tb">D</text><line x1="46" y1="300" x2="107.7" y2="78.4" class="ln" style="stroke:var(--ink-2)"/><line x1="107.7" y1="78.4" x2="110" y2="70" class="ray"/><circle cx="110" cy="70" r="4.5" class="f-ray"/><line x1="46" y1="300" x2="174.0" y2="108.9" class="ln" style="stroke:var(--ink-2)"/><line x1="174.0" y1="108.9" x2="200" y2="70" class="ray"/><circle cx="200" cy="70" r="4.5" class="f-ray"/><line x1="46" y1="300" x2="221.1" y2="150.9" class="ln" style="stroke:var(--ink-2)"/><line x1="221.1" y1="150.9" x2="316" y2="70" class="ray"/><circle cx="316" cy="70" r="4.5" class="f-ray"/><text x="120" y="262" class="tb">diagonale R</text><text x="282" y="126" class="tb">R − D</text><line x1="46" y1="48" x2="110" y2="48" class="ln" marker-start="url(#fg-arm)" marker-end="url(#fg-arm)"/><text x="78" y="40" text-anchor="middle" class="tb">x</text><path d="M46 252A48 48 0 0 1 58.4 253.6" class="ln"/><text x="58" y="240" text-anchor="middle" class="t">θ</text><circle cx="46" cy="300" r="5" class="f-ink"/><text x="340" y="320" text-anchor="end" class="tq">écran sphérique : R = D partout</text><text x="16" y="344" class="tb">O : source et observateur</text><text x="16" y="362" class="tq">La lumière part de O et y revient :</text><text x="16" y="378" class="tq">trajet total 2R</text></svg></div></figure>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>ẋ est la vitesse de visée : la vitesse à laquelle le point visé glisse sur le tableau. C’est une quantité purement géométrique, que rien ne limite à c. Au centre, elle vaut Dω = 1,571 × 10<sup>8</sup> km/⁠s, soit 524 fois c, et elle grandit sans borne quand la visée devient rasante.</p></div>
+<p>Deux repères chiffrés servent dans toute la suite : c = 299 792,458 km/⁠s, et D/⁠c = 333,6 s, soit 5 min 34 s de trajet jusqu’au centre du tableau.</p>
+<figure class="fig solo"><figcaption class="figtitle">Sur un tableau plat, la diagonale s’allonge quand on s’éloigne du centre</figcaption><div class="stage"><svg class="bureau" viewBox="0 0 760 404" role="img" aria-label="Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre"><defs><marker id="fg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs><line x1="40" y1="100" x2="736" y2="100" class="lnk"/><text x="736" y="84" text-anchor="end" class="tb">tableau plat</text><path d="M140 100A240 240 0 0 1 380 340" class="ln dash"/><text x="392" y="318" class="tq">écran sphérique : R = D partout</text><line x1="140" y1="340" x2="140" y2="100" class="ln"/><text x="128" y="226" text-anchor="end" class="tb">D</text><text x="132" y="118" text-anchor="end" class="tq">centre du tableau</text><line x1="140" y1="340" x2="284" y2="148" class="ln" style="stroke:var(--ink-2)"/><line x1="284" y1="148" x2="320" y2="100" class="ray"/><circle cx="320" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="342.9" y2="211.8" class="ln" style="stroke:var(--ink-2)"/><line x1="342.9" y1="211.8" x2="520" y2="100" class="ray"/><circle cx="520" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="360.6" y2="245.5" class="ln" style="stroke:var(--ink-2)"/><line x1="360.6" y1="245.5" x2="700" y2="100" class="ray"/><circle cx="700" cy="100" r="4.5" class="f-ray"/><text x="234" y="196" text-anchor="end" class="tb">diagonale R</text><text x="538" y="150" text-anchor="middle" class="tb">R − D</text><line x1="140" y1="78" x2="320" y2="78" class="ln" marker-start="url(#fg-ar)" marker-end="url(#fg-ar)"/><text x="230" y="70" text-anchor="middle" class="tb">x</text><path d="M140 290A50 50 0 0 1 170 300" class="ln"/><text x="161" y="283" text-anchor="middle" class="t">θ</text><circle cx="140" cy="340" r="5" class="f-ink"/><text x="24" y="366" class="tb">O : source et observateur</text><text x="24" y="384" class="tq">La lumière part de O et y revient : trajet total 2R</text></svg><svg class="mobile" viewBox="0 0 350 384" role="img" aria-label="Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre"><defs><marker id="fg-arm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs><line x1="16" y1="70" x2="340" y2="70" class="lnk"/><text x="340" y="56" text-anchor="end" class="tb">tableau plat</text><path d="M46 70A230 230 0 0 1 276 300" class="ln dash"/><line x1="46" y1="300" x2="46" y2="70" class="ln"/><text x="36" y="192" text-anchor="end" class="tb">D</text><line x1="46" y1="300" x2="107.7" y2="78.4" class="ln" style="stroke:var(--ink-2)"/><line x1="107.7" y1="78.4" x2="110" y2="70" class="ray"/><circle cx="110" cy="70" r="4.5" class="f-ray"/><line x1="46" y1="300" x2="174.0" y2="108.9" class="ln" style="stroke:var(--ink-2)"/><line x1="174.0" y1="108.9" x2="200" y2="70" class="ray"/><circle cx="200" cy="70" r="4.5" class="f-ray"/><line x1="46" y1="300" x2="221.1" y2="150.9" class="ln" style="stroke:var(--ink-2)"/><line x1="221.1" y1="150.9" x2="316" y2="70" class="ray"/><circle cx="316" cy="70" r="4.5" class="f-ray"/><text x="120" y="262" class="tb">diagonale R</text><text x="282" y="126" class="tb">R − D</text><line x1="46" y1="48" x2="110" y2="48" class="ln" marker-start="url(#fg-arm)" marker-end="url(#fg-arm)"/><text x="78" y="40" text-anchor="middle" class="tb">x</text><path d="M46 252A48 48 0 0 1 58.4 253.6" class="ln"/><text x="58" y="240" text-anchor="middle" class="t">θ</text><circle cx="46" cy="300" r="5" class="f-ink"/><text x="340" y="320" text-anchor="end" class="tq">écran sphérique : R = D partout</text><text x="16" y="344" class="tb">O : source et observateur</text><text x="16" y="362" class="tq">La lumière part de O et y revient :</text><text x="16" y="378" class="tq">trajet total 2R</text></svg></div></figure>
 <p>Les trois rayons partent du même point O. La partie en couleur, absente sur un écran sphérique, grandit avec x : c’est elle qui retarde la tache.</p>
 <h2 id="s2">1.2 Vitesse réelle de la tache sur le tableau</h2>
 <p>La tache dépasse largement c près du centre, puis sa vitesse retombe vers c à mesure que la diagonale s’allonge.</p>
@@ -700,28 +734,28 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 \end{aligned}</div>
 <p>La vitesse de la tache est le rapport de deux dérivées prises par rapport au même paramètre τ :</p>
 <div class="tex">v_{\text{écran}} = \frac{dx}{dt_{\text{écran}}} = \frac{dx/d\tau}{dt_{\text{écran}}/d\tau} = \frac{\dot{x}}{1 + \dfrac{\dot{x}}{c}\,\sin\theta}</div>
-<p>C’est exactement la formule demandée. En inversant les deux membres, elle devient une addition de délais :</p>
+<p>C’est exactement la formule de départ. En inversant les deux membres, elle devient une addition de délais :</p>
 <div class="tex">\frac{1}{v_{\text{écran}}} = \frac{1}{\dot{x}} + \frac{\sin\theta}{c}
 \qquad\Longleftrightarrow\qquad
 v_{\text{écran}} = \frac{c}{\sin\theta + \dfrac{c}{\dot{x}}}</div>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Les délais s’additionnent comme deux tâches en série. Pour avancer d’un kilomètre sur le tableau, il faut le temps que la source vise ce kilomètre (1/ẋ), plus le supplément de trajet dû à l’allongement de la diagonale (sin θ / c).</p></div>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Les délais s’additionnent comme deux tâches en série. Pour avancer d’un kilomètre sur le tableau, il faut le temps que la source vise ce kilomètre (1/⁠ẋ), plus le supplément de trajet dû à l’allongement de la diagonale (sin θ / c).</p></div>
 <p>Près du centre, la diagonale ne s’allonge presque pas : la source donne le rythme. Loin du centre, le trajet de la lumière devient le goulot d’étranglement.</p>
 <p><strong>Au centre</strong> (θ → 0, donc sin θ → 0), le second délai disparaît :</p>
 <div class="tex">v_{\text{écran}} \;\longrightarrow\; \dot{x}(0) = D\,\omega \approx 1{,}571 \times 10^{8}\ \text{km/s} \approx 524\,c</div>
-<p><strong>Très loin</strong> (x → ∞), sin θ → 1 et c/ẋ → 0 :</p>
+<p><strong>Très loin</strong> (x → ∞), sin θ → 1 et c/⁠ẋ → 0 :</p>
 <div class="tex">\lim_{x \to \infty} v_{\text{écran}} = \lim_{x \to \infty} \frac{c}{\dfrac{x}{\sqrt{D^2 + x^2}} + \dfrac{c\,D}{\omega\,(D^2 + x^2)}} = \frac{c}{1 + 0} = c</div>
-<p>Pour savoir de quel côté la limite est approchée, on développe pour x ≫ D. On utilise sin θ ≈ 1 − D<sup>2</sup>/(2x<sup>2</sup>) et c/ẋ ≈ cD/(ωx<sup>2</sup>) :</p>
+<p>Pour savoir de quel côté la limite est approchée, on développe pour x ≫ D. On utilise sin θ ≈ 1 − D<sup>2</sup>/(2x<sup>2</sup>) et c/⁠ẋ ≈ cD/(ωx<sup>2</sup>) :</p>
 <div class="tex">v_{\text{écran}} \approx c\left[\,1 + \frac{D}{x^2}\left(\frac{D}{2} - \frac{c}{\omega}\right)\right] \qquad (x \gg D)</div>
-<p>Ici D/2 = 5 × 10<sup>7</sup> km dépasse largement c/ω = 1,9 × 10<sup>5</sup> km : la parenthèse est positive, et la tache approche c par le haut.</p>
-<p>Le critère exact s’obtient avec c/ẋ = (c/Dω) cos<sup>2</sup> θ et cos<sup>2</sup> θ = (1 − sin θ)(1 + sin θ) :</p>
+<p>Ici D/2 = 5 × 10<sup>7</sup> km dépasse largement c/⁠ω = 1,9 × 10<sup>5</sup> km : la parenthèse est positive, et la tache approche c par le haut.</p>
+<p>Le critère exact s’obtient avec c/⁠ẋ = (c/⁠Dω) cos<sup>2</sup> θ et cos<sup>2</sup> θ = (1 − sin θ)(1 + sin θ) :</p>
 <div class="tex">\begin{aligned}
 v_{\text{écran}} &gt; c \;&amp;\iff\; \sin\theta + \frac{c}{D\omega}\cos^2\theta &lt; 1 \\
 &amp;\iff\; \frac{c}{D\omega}\,(1 - \sin\theta)(1 + \sin\theta) &lt; 1 - \sin\theta \\
 &amp;\iff\; 1 + \sin\theta &lt; \frac{D\omega}{c}
 \end{aligned}</div>
-<p>Comme 1 + sin θ ne dépasse jamais 2, la tache est supraluminique partout dès que Dω &gt; 2c. Ici Dω/c = 524 : la vitesse décroît de 524 c vers c sans jamais l’atteindre. Avec un balayage lent (Dω &lt; c), la tache resterait sous c et tendrait vers c par le bas : la limite est la même dans tous les cas.</p>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Loin du centre, la tache ne peut pas distancer la lumière qui la peint. Pour un éclair instantané (ω infini), il reste v = c / sin θ : c’est la vitesse à laquelle une sphère de lumière en expansion coupe un plan.</p></div>
-<p><strong>Contre-épreuve : l’écran sphérique.</strong> Sur un écran courbé autour de la source, R = D est constant, donc dR/dx = 0 et le second délai n’existe pas. La tache y court à Dω partout, sans frein. La vulgarisation qui annonce « Dω » suppose donc, sans le dire, un écran courbe ou de petits angles.</p>
+<p>Comme 1 + sin θ ne dépasse jamais 2, la tache est supraluminique partout dès que Dω &gt; 2c. Ici Dω/⁠c = 524 : la vitesse décroît de 524 c vers c sans jamais l’atteindre. Avec un balayage lent (Dω &lt; c), la tache resterait sous c et tendrait vers c par le bas : la limite est la même dans tous les cas.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Loin du centre, la tache ne peut pas distancer la lumière qui la peint. Pour un éclair instantané (ω infini), il reste v = c / sin θ : c’est la vitesse à laquelle une sphère de lumière en expansion coupe un plan.</p></div>
+<p><strong>Contre-épreuve : l’écran sphérique.</strong> Sur un écran courbé autour de la source, R = D est constant, donc dR/⁠dx = 0 et le second délai n’existe pas. La tache y court à Dω partout, sans frein. La vulgarisation qui annonce « Dω » suppose donc, sans le dire, un écran courbe ou de petits angles.</p>
 <h2 id="s3">1.3 Vitesse perçue par l’observateur : l’aller-retour du photon</h2>
 <p>La vitesse perçue tend bien vers c/2 quand la tache s’éloigne à l’infini. Avec un balayage rapide, elle y tend par le haut : c/2 est alors un plancher, pas un plafond.</p>
 <p>Pour que l’observateur voie la tache, la lumière doit revenir du tableau jusqu’à O. Le tableau diffuse la lumière dans toutes les directions, et le chemin du retour est la même diagonale R :</p>
@@ -731,11 +765,11 @@ v_{\text{écran}} &gt; c \;&amp;\iff\; \sin\theta + \frac{c}{D\omega}\cos^2\thet
 \frac{dt_{\text{obs}}}{d\tau} &amp;= 1 + \frac{2}{c}\,\frac{dR}{dx}\,\frac{dx}{d\tau} = 1 + \frac{2\,\dot{x}}{c}\,\sin\theta \\
 v_{\text{obs}} &amp;= \frac{dx}{dt_{\text{obs}}} = \frac{dx/d\tau}{dt_{\text{obs}}/d\tau} = \frac{\dot{x}}{1 + \dfrac{2\,\dot{x}}{c}\,\sin\theta}
 \end{aligned}</div>
-<p>C’est exactement la formule demandée. Sous forme de délais en série :</p>
+<p>C’est exactement la formule de départ. Sous forme de délais en série :</p>
 <div class="tex">\frac{1}{v_{\text{obs}}} = \frac{1}{\dot{x}} + \frac{2\sin\theta}{c}
 \qquad\Longleftrightarrow\qquad
 v_{\text{obs}} = \frac{c}{2\sin\theta + \dfrac{c}{\dot{x}}}</div>
-<p><strong>Preuve de la limite c/2.</strong> Quand x → ∞, sin θ = x/√(D<sup>2</sup> + x<sup>2</sup>) → 1 et c/ẋ = cD/(ω(D<sup>2</sup> + x<sup>2</sup>)) → 0 :</p>
+<p><strong>Preuve de la limite c/2.</strong> Quand x → ∞, sin θ = x/√(D<sup>2</sup> + x<sup>2</sup>) → 1 et c/⁠ẋ = cD/(ω(D<sup>2</sup> + x<sup>2</sup>)) → 0 :</p>
 <div class="tex">\lim_{x \to \infty} v_{\text{obs}} = \frac{c}{2 \times 1 + 0} = \frac{c}{2} = 149\,896{,}229\ \text{km/s}</div>
 <p>Cette limite ne dépend ni de ω ni de D. Le développement pour x ≫ D précise comment elle est approchée :</p>
 <div class="tex">v_{\text{obs}} \approx \frac{c}{2}\left[\,1 + \frac{D}{2x^2}\left(D - \frac{c}{\omega}\right)\right] \qquad (x \gg D)</div>
@@ -772,7 +806,7 @@ v_{\text{obs}} &gt; \frac{c}{2} \;&amp;\iff\; 2\sin\theta + \frac{c}{D\omega}\co
 </tr>
 </tbody>
 </table></div>
-<p>Avec les chiffres du problème, Dω/c = 524 : le régime est rapide. L’observateur voit la tache démarrer à 524 c, ralentir, passer sous c vers x ≈ 57,6 millions de km (θ ≈ 30°), puis tendre vers c/2 par le haut.</p>
+<p>Avec les chiffres du problème, Dω/⁠c = 524 : le régime est rapide. L’observateur voit la tache démarrer à 524 c, ralentir, passer sous c vers x ≈ 57,6 millions de km (θ ≈ 30°), puis tendre vers c/2 par le haut.</p>
 <div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction du mot « plafonne ».</strong> La limite c/2 est démontrée. Mais ici la vitesse perçue ne monte pas vers un plafond : elle descend vers un plancher. c/2 ne serait un plafond que pour un balayage lent, Dω ≤ c/2.</p></div>
 <div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le retour du photon double le second délai : loin du centre, chaque kilomètre de tableau coûte presque deux kilomètres de trajet. À l’instant t, l’observateur voit ce qui se trouve sur une sphère centrée sur lui, dont le rayon grandit à c/2.</p></div>
 <div class="tex">R_{\text{vu}}(t) = \frac{c\,(t - \tau)}{2}
@@ -781,7 +815,7 @@ v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \
 <p>Cette « sphère du visible » fixe le rythme loin du centre. L’analogie du tunnel entre deux miroirs est juste : chaque image plus lointaine est plus vieille d’un aller-retour.</p>
 <h2 id="s4">1.4 Application numérique</h2>
 <p>Les quatre cas confirment les deux limites : dès que x dépasse quelques fois D, la tache court à c et l’observateur la voit avancer à c/2. Pour x = 1 million d’années-lumière, il attend bien 2 millions d’années.</p>
-<p>Données : D = 10<sup>8</sup> km, ω = π/2 rad/s, c = 299 792,458 km/s, 1 année-lumière = 9,4607 × 10<sup>12</sup> km. Les temps sont comptés depuis le début de la fermeture.</p>
+<p>Données : D = 10<sup>8</sup> km, ω = π/2 rad/⁠s, c = 299 792,458 km/⁠s, 1 année-lumière = 9,4607 × 10<sup>12</sup> km. Les temps sont comptés depuis le début de la fermeture.</p>
 <div class="tablewrap"><table class="data empile">
 <thead>
 <tr>
@@ -828,18 +862,18 @@ v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \
 </tr>
 <tr>
 <td data-th="Position x">1 million d’années-lumière (θ ≈ 90°)</td>
-<td data-th="Émission τ (s)">1 − 7 × 10<sup>−12</sup></td>
-<td data-th="Arrivée sur le tableau">1 000 000 ans + 1 s</td>
-<td data-th="Vue par l&#x27;observateur">2 000 000 ans + 1 s</td>
-<td data-th="Vitesse sur le tableau (en c)">1 + 6 × 10<sup>−23</sup></td>
-<td data-th="Vitesse perçue (en c)">0,5 + 3 × 10<sup>−23</sup></td>
+<td data-th="Émission τ (s)">1 − 7 × 10<sup>−12</sup></td>
+<td data-th="Arrivée sur le tableau">1 000 000 ans + 1 s</td>
+<td data-th="Vue par l&#x27;observateur">2 000 000 ans + 1 s</td>
+<td data-th="Vitesse sur le tableau (en c)">1 + 6 × 10<sup>−23</sup></td>
+<td data-th="Vitesse perçue (en c)">0,5 + 3 × 10<sup>−23</sup></td>
 </tr>
 </tbody>
 </table></div>
-<p>En km/s, la vitesse perçue vaut successivement 1 492 000, 211 842, 150 642 puis 149 896 km/s pour les quatre distances demandées.</p>
-<p><strong>Détail du dernier cas.</strong> Pour x = 10<sup>6</sup> années-lumière = 9,46 × 10<sup>18</sup> km, le rapport x/D vaut 9,46 × 10<sup>10</sup>. La diagonale se confond alors avec x :</p>
+<p>En km/⁠s, la vitesse perçue vaut successivement 1 492 000, 211 842, 150 642 puis 149 896 km/⁠s pour les quatre distances étudiées.</p>
+<p><strong>Détail du dernier cas.</strong> Pour x = 10<sup>6</sup> années-lumière = 9,46 × 10<sup>18</sup> km, le rapport x/⁠D vaut 9,46 × 10<sup>10</sup>. La diagonale se confond alors avec x :</p>
 <div class="tex">R = x\,\sqrt{1 + \frac{D^2}{x^2}} \approx x\left(1 + \frac{D^2}{2x^2}\right) = x\,\big(1 + 5{,}6 \times 10^{-23}\big)</div>
-<p>Par définition de l’année-lumière, x/c vaut exactement un million d’années. Le temps de réception suit :</p>
+<p>Par définition de l’année-lumière, x/⁠c vaut exactement un million d’années. Le temps de réception suit :</p>
 <div class="tex">\begin{aligned}
 t_{\text{obs}} &amp;= \tau + \frac{2R}{c} \approx 1\ \text{s} + 2 \times \frac{10^{6}\ \text{années-lumière}}{c} \\
 &amp;= 2\,000\,000\ \text{ans} + 1\ \text{s}
@@ -853,7 +887,7 @@ t_{\text{obs}}(\tau) &amp;= \tau + \frac{L(\tau)}{c} \\
 v_{\text{app}} &amp;= \frac{dx_{\perp}/d\tau}{dt_{\text{obs}}/d\tau} = \frac{\dot{x}_{\perp}}{1 + \dfrac{\dot{L}}{c}}
 \end{aligned}</div>
 <ul>
-<li>Tableau plat : L = 2R, donc L̇ = 2ẋ sin θ est positif. Le trajet s’allonge et la vitesse apparente est comprimée.</li>
+<li>Tableau plat : L = 2R, donc L̇ = 2ẋ sin θ est positif. Le trajet s’allonge et la vitesse apparente est comprimée.</li>
 <li>Jet de quasar : la source est un nodule de matière qui avance vers l’observateur. Le trajet raccourcit, L̇ est négatif, et la vitesse apparente est amplifiée.</li>
 </ul>
 <p>Le nodule avance à la vitesse v, sous un angle θ par rapport à la ligne de visée. Ici θ n’est plus l’angle du tableau : c’est l’angle entre le jet et la direction de l’observateur. Pour un observateur très lointain, à la distance d₀ :</p>
@@ -861,16 +895,16 @@ v_{\text{app}} &amp;= \frac{dx_{\perp}/d\tau}{dt_{\text{obs}}/d\tau} = \frac{\do
 <div class="tex">\frac{dt_{\text{obs}}}{d\tau} = 1 - \frac{v}{c}\cos\theta
 \qquad\Longrightarrow\qquad
 v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
-<p>C’est exactement la formule demandée. Son maximum se trouve en dérivant par rapport à θ, avec β = v/c :</p>
+<p>C’est exactement la formule de départ. Son maximum se trouve en dérivant par rapport à θ, avec β = v/⁠c :</p>
 <div class="tex">\begin{aligned}
 \frac{d}{d\theta}\left(\frac{\beta\sin\theta}{1 - \beta\cos\theta}\right) &amp;= \frac{\beta\cos\theta\,(1 - \beta\cos\theta) - \beta^2\sin^2\theta}{(1 - \beta\cos\theta)^2} \\
 &amp;= \frac{\beta\,(\cos\theta - \beta)}{(1 - \beta\cos\theta)^2}
 \end{aligned}</div>
-<p>La dérivée s’annule pour cos θ = β, donc sin θ = √(1 − β<sup>2</sup>) :</p>
+<p>La dérivée s’annule pour cos θ = β, donc sin θ = √(1 − β<sup>2</sup>) :</p>
 <div class="tex">v_{\text{app}}^{\max} = \frac{\beta\sqrt{1 - \beta^2}}{1 - \beta^2}\;c = \gamma\,\beta\,c, \qquad \gamma = \frac{1}{\sqrt{1 - \beta^2}}</div>
 <p>La vitesse apparente dépasse c dès que γβ &gt; 1, c’est-à-dire v &gt; c/√2 ≈ 0,707 c. Exemple : pour v = 0,99 c et θ = 8,1°, on trouve γ = 7,09 et une vitesse apparente de 7,02 c. Rien ne dépasse pourtant c.</p>
 <div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le nodule court presque aussi vite que sa propre lumière. Les photons émis plus tard ont moins de chemin à faire et arrivent presque en même temps que les premiers. L’observateur voit un long déplacement latéral comprimé dans un temps de réception très court.</p></div>
-<p><strong>Une différence de nature.</strong> Pour un nodule matériel, v &lt; c : le dénominateur ne s’annule jamais et l’ordre des événements est préservé. Pour une tache qui revient vers le centre du tableau (ẋ négatif), rien ne borne la vitesse de visée :</p>
+<p><strong>Une différence de nature.</strong> Pour un nodule matériel, v &lt; c : le dénominateur ne s’annule jamais et l’ordre des événements est préservé. Pour une tache qui revient vers le centre du tableau (ẋ négatif), rien ne borne la vitesse de visée :</p>
 <div class="tex">\frac{dt_{\text{obs}}}{d\tau} = 1 - \frac{2\,|\dot{x}|}{c}\,\sin\theta</div>
 <p>Dès que 2|ẋ| sin θ dépasse c, ce facteur devient négatif : l’observateur voit le film à l’envers. Nemiroff (2015) a décrit ces images de taches inversées ou dédoublées.</p>
 <p><strong>Travaux établis.</strong> Couderc (1939) a expliqué ainsi l’expansion apparente plus rapide que c des auréoles de la Nova Persei 1901 : ce sont des échos de lumière. Les points vus au même instant forment un ellipsoïde dont la source et l’observateur sont les foyers. Quand les deux foyers se confondent, comme ici, l’ellipsoïde devient la sphère de la section 1.3.</p>
@@ -881,7 +915,7 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 <li>Optique géométrique : l’ombre a un bord net. À 10<sup>8</sup> km, la diffraction étale ce bord sur environ 230 m en lumière visible. L’ombre de vrais ciseaux serait noyée : c’est une expérience de pensée, ou une tache laser.</li>
 <li>Le tableau diffuse la lumière sans délai et dans toutes les directions.</li>
 <li>L’observateur est exactement à la source. Sinon le retour n’emprunte plus la même diagonale, et la sphère du visible redevient un ellipsoïde.</li>
-<li>La vitesse angulaire ω est constante. Seul le terme c/ẋ en dépend : les limites c et c/2 n’en dépendent pas.</li>
+<li>La vitesse angulaire ω est constante. Seul le terme c/⁠ẋ en dépend : les limites c et c/2 n’en dépendent pas.</li>
 <li>Ces vitesses sont celles d’un motif, une succession d’impacts indépendants. Ni matière, ni énergie, ni information ne va d’un point du tableau à l’autre : c’est l’objet du pilier 2.</li>
 </ul>
 <h2 id="s7">Références</h2>
@@ -897,7 +931,7 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 </div></div>
 <footer class="pied"><div class="dedans">
 <p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
-<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
+<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/article-1-ombre-plus-rapide-que-la-lumiere.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
 </div></footer>
 <a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>
 <script>
@@ -980,6 +1014,18 @@ const marquerDefilement = () => $$('.stage').forEach(s => {
 });
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// liste des piliers, dans la barre du haut : elle se referme quand on touche ailleurs, quand le clavier en sort, avec Échap,
+// ou quand on revient sur la page
+(() => {
+  const menu = $('.barre .menu');
+  if (!menu) return;
+  document.addEventListener('pointerdown', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); }
+  });
+  window.addEventListener('pageshow', () => { menu.open = false; });
+})();
 // rail de lecture : la section en cours est marquée pendant le défilement
 (() => {
   const liens = $$('.rail a');

@@ -13,9 +13,12 @@
 <meta property="og:description" content="Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu’à l’endroit et à l’instant où elle rencontre de la matière.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-2/demonstration.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
@@ -71,31 +74,58 @@ p{margin:0;max-width:65ch}
 
 /* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
 .barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
-.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
-.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.barre .dedans{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;min-width:0;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .marque svg{flex:none}
-.barre nav{display:flex;align-items:center;gap:.3rem}
-.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
-.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
-.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
-@media (max-width:640px){
-  .marque span,.barre .lib{display:none}
-  .marque{min-width:2.75rem;min-height:2.75rem}
-  .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.25rem;height:2.75rem}
-}
+/* si la place manque (police de titre non chargée, très gros caractères), le nom du site s'abrège : la barre ne déborde pas */
+.marque span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.barre nav{display:flex;align-items:center;gap:.3rem;flex:none}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.barre nav>a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+@media (hover:hover){.barre nav>a:hover{background:rgba(205,225,255,.16)}}
+.barre nav>a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav>a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 
-@media (max-width:380px){
-  .barre .dedans{gap:.4rem}
-  .barre nav{gap:.2rem}
-  .barre nav a{min-width:2.05rem;padding:0 .1rem}
-  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+/* liste des piliers : le mot « Piliers » ouvre leurs titres. Sur petit écran, elle remplace les numéros, muets sans survol. */
+/* le bouton est un élément placé dans le résumé : tous les navigateurs ne savent pas mettre un résumé en ligne flexible */
+.menu summary{display:block;margin-right:.1rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bouton{display:flex;align-items:center;gap:.5rem;height:2.1rem;padding:0 .55rem;border:1px solid transparent}
+.menu .bouton::after{content:"";flex:none;width:.4rem;height:.4rem;margin-top:-.22rem;border:solid var(--plan-ink-2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.menu[open] .bouton::after{margin-top:.22rem;transform:rotate(-135deg)}
+.menu[open] .bouton{background:rgba(205,225,255,.16);border-color:var(--plan-trait-2)}
+.menu[open] .lib{color:var(--plan-ink)}
+@media (hover:hover){.menu summary:hover .bouton{background:rgba(205,225,255,.16)}.menu summary:hover .lib{color:var(--plan-ink)}}
+.menu summary:focus-visible{outline:2px solid var(--photon);outline-offset:2px}
+.menu .ici{display:none}
+/* la liste ne dépasse jamais le bas de l'écran : sur un téléphone couché, elle défile */
+.menu ul{position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));z-index:1;width:min(25rem,calc(100% - 32px));margin:0;padding:.35rem 0;list-style:none;
+  max-height:calc(100vh - 3.5rem);max-height:calc(100dvh - 3.5rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--plan-2);border:1px solid var(--plan-trait-2);border-top:0;box-shadow:0 16px 32px rgba(0,0,0,.38)}
+.menu li a{display:grid;grid-template-columns:2.1rem minmax(0,1fr);align-items:center;gap:.85rem;min-height:3rem;padding:.45rem 1rem;text-decoration:none;font-size:.95rem;line-height:1.3}
+.menu li b{display:grid;place-items:center;height:2.1rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono)}
+.menu li a[aria-current="page"] b{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+@media (hover:hover){.menu li a:hover{background:rgba(205,225,255,.12)}}
+@media (max-width:700px){
+  .marque{min-height:2.75rem}
+  .barre nav{gap:.5rem}
+  .barre nav>a:not(.dos){display:none}
+  .barre nav>a.dos{height:2.75rem;margin-left:0}
+  .menu summary{margin-right:0}
+  .menu .bouton{height:2.75rem;padding:0 .8rem;border-color:var(--plan-trait-2)}
+  .menu .lib{font-size:.7rem;letter-spacing:.09em;color:var(--plan-ink)}
+  .menu .ici{display:grid;place-items:center;min-width:1.5rem;height:1.5rem;background:var(--photon);color:var(--plan-2);font:500 .8rem/1 var(--mono)}
+  .menu ul{left:0;right:0;width:auto;border-left:0;border-right:0}
+  .menu li a{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (max-width:640px){
+  .marque span{display:none}
+  .marque{min-width:2.75rem}
 }
 @media (max-width:340px){
-  .marque{min-width:2rem}
-  .barre nav a{min-width:1.9rem}
+  .barre .dedans{gap:.5rem}
+  .menu .bouton{padding:0 .6rem}
+  .barre nav>a.dos{padding:0 .6rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -414,7 +444,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
 @media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis>a{display:block}
+/* la vignette : le dessin, et par-dessus un lien vers la planche, pour la souris et le doigt */
+.vignette{margin:0;min-width:0}
+.cadre{position:relative}
+.voile{position:absolute;top:0;left:0;right:0;bottom:0}
+.vignette figcaption{margin-top:.5rem;font-size:.8rem;line-height:1.4;color:var(--ink-2)}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
 .clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
@@ -649,7 +683,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/demonstration.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" aria-current="page" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><details class="menu"><summary><span class="bouton"><span class="lib">Piliers</span><b class="ici" aria-hidden="true">2</b></span></summary><ul><li><a href="../pilier-1/demonstration.html"><b>1</b> <span>L’ombre plus rapide que la lumière</span></a></li><li><a href="../pilier-2/demonstration.html" aria-current="page"><b>2</b> <span>On ne voit jamais la lumière passer</span></a></li><li><a href="../pilier-3/demonstration.html"><b>3</b> <span>La pente du temps</span></a></li><li><a href="../pilier-4/demonstration.html"><b>4</b> <span>Le choix d’aujourd’hui ne réécrit pas le passé</span></a></li><li><a href="../pilier-5/demonstration.html"><b>5</b> <span>Comment une réponse devient un fait</span></a></li></ul></details><a href="../pilier-1/demonstration.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" aria-current="page" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
@@ -666,7 +700,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">2.1 Absence de causalité latérale</a></li><li><a href="#s2">2.2 Transparence en transit et émergence locale</a></li><li><a href="#s3">2.3 Conditions de validité et nuances</a></li><li><a href="#s4">Références</a></li></ol></nav>
 <article class="prose">
 <div class="amorce"><span class="eyebrow">Démonstration mathématique</span><h2 class="doc-titre">La lumière « actuelle, émergente, locale »</h2><p class="lead">Les deux volets de l’intuition se démontrent : rien ne se propage de A vers B le long du tableau, et toute détection est un événement local, produit par une interaction avec la matière. Une nuance s’impose : en transit, le champ n’est pas « rien », il transporte de l’énergie et de l’impulsion.</p></div>
-<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l’auteur, dans la demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s’agit de l’une d’elles : elle est démontrée telle quelle, ou corrigée.</p><p>Le dossier dit « tableau » là où l’article et la planche disent « écran » ou « mur ». C’est le même objet.</p></aside>
+<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ, écrites à partir des intuitions de l’auteur au lancement de ce travail. Chacune est démontrée telle quelle, ou corrigée. Quand le texte dit « la formule de départ », il s’agit de l’une d’elles.</p><p>Le dossier dit « tableau » là où l’article et la planche disent « écran » ou « mur ». C’est le même objet.</p></aside>
 <details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol><li><a href="#s1">2.1 Absence de causalité latérale</a></li><li><a href="#s2">2.2 Transparence en transit et émergence locale</a></li><li><a href="#s3">2.3 Conditions de validité et nuances</a></li><li><a href="#s4">Références</a></li></ol></details>
 <h2 id="s1">2.1 Absence de causalité latérale</h2>
 <p>Soient deux impacts A et B sur le tableau, séparés par une durée Δt et une distance Δx. L’hypothèse est que la tache va plus vite que c entre les deux : |Δx| &gt; c|Δt|. L’intervalle d’espace-temps est alors négatif :</p>
@@ -731,7 +765,7 @@ u^{*} &amp;= \frac{c^2\,\Delta t}{\Delta x}, \qquad |u^{*}| = c \times \frac{c\,
 w(\vec{r},t) &amp;= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\vec{r},t)|\psi\rangle \\
 &amp;= \eta\,\big\|\hat{E}^{(+)}(\vec{r},t)\,|\psi\rangle\big\|^2 \;\ge\; 0
 \end{aligned}</div>
-<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de la formule demandée.</strong> La probabilité n’est pas le module d’un élément de matrice entre deux états différents i et f. C’est la valeur moyenne du produit E(−)E(+) dans l’état du champ, soit la somme des probabilités sur tous les états finals.</p></div>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de la formule de départ.</strong> La probabilité n’est pas le module d’un élément de matrice entre deux états différents i et f. C’est la valeur moyenne du produit E(−)E(+) dans l’état du champ, soit la somme des probabilités sur tous les états finals.</p></div>
 <div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Les trois mots du modèle se lisent dans la formule. Local : seul le champ au point r du détecteur intervient. Actuel : seul l’instant t de l’interaction intervient. Émergent : sans atome ni couplage, il n’y a pas de clic du tout.</p></div>
 <p><strong>Pourquoi le faisceau est invisible de côté.</strong> Pour un photon unique, le taux de clic en un point r’ est le carré d’une amplitude :</p>
 <div class="tex">w(\vec{r}^{\,\prime},t) = \eta\,\big|\langle 0|\hat{E}^{(+)}(\vec{r}^{\,\prime},t)|\psi\rangle\big|^2</div>
@@ -743,7 +777,7 @@ w(\vec{r},t) &amp;= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\v
 <ul>
 <li>« Potentiel » ne veut pas dire « rien ». En transit, chaque photon porte une énergie ħω et une impulsion ħk ; on peut le bloquer, le retarder ou le dévier. Ce qui reste potentiel, c’est l’événement de détection.</li>
 <li>Le photon n’a pas d’opérateur de position au sens strict (Newton et Wigner, 1949). La question « où est le photon en transit ? » n’a pas de réponse générale : seules existent des probabilités de détection. Ce point appuie l’émergence locale.</li>
-<li>La transparence du vide est une excellente approximation, pas un absolu. L’électrodynamique quantique prévoit une diffusion de la lumière par la lumière, mise en évidence à très haute énergie (ATLAS, 2017) et négligeable en lumière visible.</li>
+<li>La transparence du vide est une excellente approximation, pas un absolu. L’électrodynamique quantique prévoit une diffusion de la lumière par la lumière, mise en évidence à très haute énergie (ATLAS, 2017) et négligeable en lumière visible.</li>
 <li>Détecter n’exige pas toujours d’absorber. Certaines mesures comptent des photons sans les détruire (travaux de Serge Haroche). Elles exigent quand même une interaction locale avec la matière.</li>
 <li>Le formalisme ne tranche pas l’interprétation : l’état du champ est-il une onde réelle ou un catalogue de probabilités ? Heisenberg (1958) parlait de « potentia », la formulation historique la plus proche de l’intuition.</li>
 <li>Le mot « rayon » reste valide comme approximation des petites longueurs d’onde. Un rayon est la perpendiculaire aux fronts d’onde, pas une tige rigide : sur ce point, l’intuition vise juste.</li>
@@ -765,7 +799,7 @@ w(\vec{r},t) &amp;= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\v
 </div></div>
 <footer class="pied"><div class="dedans">
 <p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
-<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
+<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/article-2-on-ne-voit-jamais-la-lumiere-passer.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
 </div></footer>
 <a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>
 <script>
@@ -848,6 +882,18 @@ const marquerDefilement = () => $$('.stage').forEach(s => {
 });
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// liste des piliers, dans la barre du haut : elle se referme quand on touche ailleurs, quand le clavier en sort, avec Échap,
+// ou quand on revient sur la page
+(() => {
+  const menu = $('.barre .menu');
+  if (!menu) return;
+  document.addEventListener('pointerdown', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); }
+  });
+  window.addEventListener('pageshow', () => { menu.open = false; });
+})();
 // rail de lecture : la section en cours est marquée pendant le défilement
 (() => {
   const liens = $$('.rail a');

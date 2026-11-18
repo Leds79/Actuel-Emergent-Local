@@ -13,9 +13,12 @@
 <meta property="og:description" content="Tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/demonstration.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d’un écran de détection où des impacts de photons dessinent des franges">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
@@ -71,31 +74,58 @@ p{margin:0;max-width:65ch}
 
 /* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
 .barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
-.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
-.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.barre .dedans{position:relative;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;min-width:0;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .marque svg{flex:none}
-.barre nav{display:flex;align-items:center;gap:.3rem}
-.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
-.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
-.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
-@media (max-width:640px){
-  .marque span,.barre .lib{display:none}
-  .marque{min-width:2.75rem;min-height:2.75rem}
-  .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.25rem;height:2.75rem}
-}
+/* si la place manque (police de titre non chargée, très gros caractères), le nom du site s'abrège : la barre ne déborde pas */
+.marque span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.barre nav{display:flex;align-items:center;gap:.3rem;flex:none}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.barre nav>a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+@media (hover:hover){.barre nav>a:hover{background:rgba(205,225,255,.16)}}
+.barre nav>a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav>a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 
-@media (max-width:380px){
-  .barre .dedans{gap:.4rem}
-  .barre nav{gap:.2rem}
-  .barre nav a{min-width:2.05rem;padding:0 .1rem}
-  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+/* liste des piliers : le mot « Piliers » ouvre leurs titres. Sur petit écran, elle remplace les numéros, muets sans survol. */
+/* le bouton est un élément placé dans le résumé : tous les navigateurs ne savent pas mettre un résumé en ligne flexible */
+.menu summary{display:block;margin-right:.1rem;cursor:pointer;list-style:none;-webkit-user-select:none;user-select:none}
+.menu summary::-webkit-details-marker{display:none}
+.menu .bouton{display:flex;align-items:center;gap:.5rem;height:2.1rem;padding:0 .55rem;border:1px solid transparent}
+.menu .bouton::after{content:"";flex:none;width:.4rem;height:.4rem;margin-top:-.22rem;border:solid var(--plan-ink-2);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
+.menu[open] .bouton::after{margin-top:.22rem;transform:rotate(-135deg)}
+.menu[open] .bouton{background:rgba(205,225,255,.16);border-color:var(--plan-trait-2)}
+.menu[open] .lib{color:var(--plan-ink)}
+@media (hover:hover){.menu summary:hover .bouton{background:rgba(205,225,255,.16)}.menu summary:hover .lib{color:var(--plan-ink)}}
+.menu summary:focus-visible{outline:2px solid var(--photon);outline-offset:2px}
+.menu .ici{display:none}
+/* la liste ne dépasse jamais le bas de l'écran : sur un téléphone couché, elle défile */
+.menu ul{position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));z-index:1;width:min(25rem,calc(100% - 32px));margin:0;padding:.35rem 0;list-style:none;
+  max-height:calc(100vh - 3.5rem);max-height:calc(100dvh - 3.5rem);overflow-y:auto;overscroll-behavior:contain;
+  background:var(--plan-2);border:1px solid var(--plan-trait-2);border-top:0;box-shadow:0 16px 32px rgba(0,0,0,.38)}
+.menu li a{display:grid;grid-template-columns:2.1rem minmax(0,1fr);align-items:center;gap:.85rem;min-height:3rem;padding:.45rem 1rem;text-decoration:none;font-size:.95rem;line-height:1.3}
+.menu li b{display:grid;place-items:center;height:2.1rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono)}
+.menu li a[aria-current="page"] b{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+@media (hover:hover){.menu li a:hover{background:rgba(205,225,255,.12)}}
+@media (max-width:700px){
+  .marque{min-height:2.75rem}
+  .barre nav{gap:.5rem}
+  .barre nav>a:not(.dos){display:none}
+  .barre nav>a.dos{height:2.75rem;margin-left:0}
+  .menu summary{margin-right:0}
+  .menu .bouton{height:2.75rem;padding:0 .8rem;border-color:var(--plan-trait-2)}
+  .menu .lib{font-size:.7rem;letter-spacing:.09em;color:var(--plan-ink)}
+  .menu .ici{display:grid;place-items:center;min-width:1.5rem;height:1.5rem;background:var(--photon);color:var(--plan-2);font:500 .8rem/1 var(--mono)}
+  .menu ul{left:0;right:0;width:auto;border-left:0;border-right:0}
+  .menu li a{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+}
+@media (max-width:640px){
+  .marque span{display:none}
+  .marque{min-width:2.75rem}
 }
 @media (max-width:340px){
-  .marque{min-width:2rem}
-  .barre nav a{min-width:1.9rem}
+  .barre .dedans{gap:.5rem}
+  .menu .bouton{padding:0 .6rem}
+  .barre nav>a.dos{padding:0 .6rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -414,7 +444,11 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
 @media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis>a{display:block}
+/* la vignette : le dessin, et par-dessus un lien vers la planche, pour la souris et le doigt */
+.vignette{margin:0;min-width:0}
+.cadre{position:relative}
+.voile{position:absolute;top:0;left:0;right:0;bottom:0}
+.vignette figcaption{margin-top:.5rem;font-size:.8rem;line-height:1.4;color:var(--ink-2)}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
 .clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
@@ -649,7 +683,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/demonstration.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" aria-current="page" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><details class="menu"><summary><span class="bouton"><span class="lib">Piliers</span><b class="ici" aria-hidden="true">3</b></span></summary><ul><li><a href="../pilier-1/demonstration.html"><b>1</b> <span>L’ombre plus rapide que la lumière</span></a></li><li><a href="../pilier-2/demonstration.html"><b>2</b> <span>On ne voit jamais la lumière passer</span></a></li><li><a href="../pilier-3/demonstration.html" aria-current="page"><b>3</b> <span>La pente du temps</span></a></li><li><a href="../pilier-4/demonstration.html"><b>4</b> <span>Le choix d’aujourd’hui ne réécrit pas le passé</span></a></li><li><a href="../pilier-5/demonstration.html"><b>5</b> <span>Comment une réponse devient un fait</span></a></li></ul></details><a href="../pilier-1/demonstration.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" aria-current="page" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
@@ -666,10 +700,10 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">3.1 Tout avance à la cadence c : la quadri-vitesse</a></li><li><a href="#s2">3.2 La masse ralentit son voisinage : la métrique de Schwarzschild</a></li><li><a href="#s3">3.3 La gravité comme réfraction vers la zone lente</a></li><li><a href="#s4">3.4 Conditions de validité</a></li><li><a href="#s5">Références</a></li></ol></nav>
 <article class="prose">
 <div class="amorce"><span class="eyebrow">Démonstration mathématique</span><h2 class="doc-titre">L’univers à la cadence c et la masse comme frein local</h2><p class="lead">La relativité donne un sens précis à l’intuition : tout objet avance dans l’espace-temps à la cadence c, et une masse ralentit les horloges voisines par rapport aux horloges lointaines. La gravité de Newton vaut exactement c<sup>2</sup> fois la pente de ce ralentissement. Deux corrections portent sur la formule de réfraction : son signe, et un facteur 2 entre la lumière et la matière lente.</p></div>
-<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l’auteur, dans la demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s’agit de l’une d’elles : elle est démontrée telle quelle, ou corrigée.</p></aside>
+<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ, écrites à partir des intuitions de l’auteur au lancement de ce travail. Chacune est démontrée telle quelle, ou corrigée. Quand le texte dit « la formule de départ » ou « l’énoncé de départ », il s’agit de l’une d’elles.</p></aside>
 <details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol><li><a href="#s1">3.1 Tout avance à la cadence c : la quadri-vitesse</a></li><li><a href="#s2">3.2 La masse ralentit son voisinage : la métrique de Schwarzschild</a></li><li><a href="#s3">3.3 La gravité comme réfraction vers la zone lente</a></li><li><a href="#s4">3.4 Conditions de validité</a></li><li><a href="#s5">Références</a></li></ol></details>
 <h2 id="s1">3.1 Tout avance à la cadence c : la quadri-vitesse</h2>
-<p>Un événement est repéré par quatre coordonnées (ct, x, y, z). Dans ce pilier, τ désigne le temps propre : le temps lu sur l’horloge que l’objet transporte avec lui. L’intervalle de Minkowski le relie au temps t d’un observateur qui voit l’objet passer à la vitesse v :</p>
+<p>Un événement est repéré par quatre coordonnées (ct, x, y, z). Dans ce pilier, τ désigne le temps propre : le temps lu sur l’horloge que l’objet transporte avec lui. L’intervalle de Minkowski le relie au temps t d’un observateur qui voit l’objet passer à la vitesse v :</p>
 <div class="tex">\begin{aligned}
 c^2\,d\tau^2 &amp;= c^2\,dt^2 - dx^2 - dy^2 - dz^2 = c^2\,dt^2\left(1 - \frac{v^2}{c^2}\right) \\
 d\tau &amp;= \frac{dt}{\gamma}, \qquad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
@@ -681,7 +715,7 @@ d\tau &amp;= \frac{dt}{\gamma}, \qquad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
 \eta_{\mu\nu}\,U^{\mu}U^{\nu} &amp;= (\gamma c)^2 - (\gamma v)^2 = \gamma^2 c^2\left(1 - \frac{v^2}{c^2}\right) = c^2 \\
 \|U\| &amp;= c
 \end{aligned}</div>
-<p>C’est exactement le résultat demandé : la norme vaut c pour tout objet massif, quelle que soit sa vitesse. Le partage du budget s’obtient en divisant l’intervalle par dt<sup>2</sup> :</p>
+<p>C’est exactement l’énoncé de départ : la norme vaut c pour tout objet massif, quelle que soit sa vitesse. Le partage du budget s’obtient en divisant l’intervalle par dt<sup>2</sup> :</p>
 <div class="tex">c^2\,d\tau^2 = c^2\,dt^2 - v^2\,dt^2
 \qquad\Longrightarrow\qquad
 \left(c\,\frac{d\tau}{dt}\right)^2 + v^2 = c^2</div>
@@ -711,7 +745,7 @@ r_s &amp;= \frac{2GM}{c^2}
 <div class="tex">c^2\,d\tau^2 = \left(1 - \frac{r_s}{r}\right)c^2\,dt^2
 \qquad\Longrightarrow\qquad
 d\tau = dt\,\sqrt{1 - \frac{r_s}{r}}</div>
-<p>C’est exactement la formule demandée. En termes de budget, la cadence d’une horloge immobile, comptée en temps lointain, n’est plus c mais c multiplié par cette racine.</p>
+<p>C’est exactement la formule de départ. En termes de budget, la cadence d’une horloge immobile, comptée en temps lointain, n’est plus c mais c multiplié par cette racine.</p>
 <div class="tablewrap"><table class="data empile">
 <thead>
 <tr>
@@ -748,7 +782,7 @@ d\tau = dt\,\sqrt{1 - \frac{r_s}{r}}</div>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Le gel à l’horizon.</strong> Quand r tend vers le rayon de Schwarzschild, le rapport dτ/dt tend vers 0. Ce gel est bien « apparent », comme le dit l’intuition : il décrit ce que constate l’observateur lointain. Un objet qui tombe franchit l’horizon en un temps propre fini, sans rien remarquer sur place.</p>
+<p><strong>Le gel à l’horizon.</strong> Quand r tend vers le rayon de Schwarzschild, le rapport dτ/⁠dt tend vers 0. Ce gel est bien « apparent », comme le dit l’intuition : il décrit ce que constate l’observateur lointain. Un objet qui tombe franchit l’horizon en un temps propre fini, sans rien remarquer sur place.</p>
 <p><strong>La lumière, comptée en temps lointain.</strong> Pour la lumière, ds<sup>2</sup> = 0. Sur un trajet radial (dΩ = 0) :</p>
 <div class="tex">\begin{aligned}
 0 &amp;= \left(1 - \frac{r_s}{r}\right)c^2\,dt^2 - \left(1 - \frac{r_s}{r}\right)^{-1}dr^2 \\
@@ -770,7 +804,7 @@ d\ell &amp;= \frac{dr}{\sqrt{1 - r_s/r}}, \qquad d\tau = dt\,\sqrt{1 - \frac{r_s
 <p>Les satellites GPS en donnent une preuve quotidienne. Plus haut dans le champ terrestre, leurs horloges avancent de 45,7 microsecondes par jour. Leur vitesse les retarde de 7,2 microsecondes, et le système corrige l’écart net de 38,5.</p>
 <div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>La masse agit comme un goulot d’étranglement sur les cadences : près d’elle, tout processus prend plus de temps lointain. Ce frein n’est pourtant pas un frottement. Aucune énergie n’est dissipée, et sur place tout paraît normal.</p></div>
 <h2 id="s3">3.3 La gravité comme réfraction vers la zone lente</h2>
-<p>Réécrite en coordonnées isotropes, la métrique donne au vide un indice n ≈ 1 + 2GM/(rc<sup>2</sup>), et le principe de Fermat courbe les rayons vers la masse. Deux corrections s’imposent : la déviation suit +∇n, et cet indice donne pour la lumière le double de la gravité de Newton.</p>
+<p>Réécrite en coordonnées isotropes, la métrique donne au vide un indice n ≈ 1 + 2GM/(rc<sup>2</sup>), et le principe de Fermat courbe les rayons vers la masse. Deux corrections s’imposent : la déviation suit +∇n, et cet indice donne pour la lumière le double de la gravité de Newton.</p>
 <p><strong>Coordonnées isotropes.</strong> Dans la métrique de Schwarzschild, la vitesse coordonnée de la lumière diffère selon la direction. Pour définir un indice unique, on cherche une coordonnée radiale ρ qui traite toutes les directions de la même façon :</p>
 <div class="tex">\left(1 - \frac{r_s}{r}\right)^{-1}dr^2 + r^2\,d\Omega^2 = \lambda(\rho)^2\left(d\rho^2 + \rho^2\,d\Omega^2\right)</div>
 <p>L’identification des parties angulaires, puis des parties radiales, impose deux relations :</p>
@@ -787,7 +821,7 @@ r &amp;= \rho\left(1 + \frac{r_s}{4\rho}\right)^{2}
 \end{aligned}</div>
 <p>En reportant dans la métrique de Schwarzschild :</p>
 <div class="tex">ds^2 = \left(\frac{1 - \dfrac{r_s}{4\rho}}{1 + \dfrac{r_s}{4\rho}}\right)^{2} c^2\,dt^2 - \left(1 + \frac{r_s}{4\rho}\right)^{4}\left(d\rho^2 + \rho^2\,d\Omega^2\right)</div>
-<p><strong>L’indice du vide.</strong> Pour la lumière, ds<sup>2</sup> = 0. On note dℓ<sup>2</sup> = dρ<sup>2</sup> + ρ<sup>2</sup> dΩ<sup>2</sup> la longueur coordonnée, identique dans toutes les directions :</p>
+<p><strong>L’indice du vide.</strong> Pour la lumière, ds<sup>2</sup> = 0. On note dℓ<sup>2</sup> = dρ<sup>2</sup> + ρ<sup>2</sup> dΩ<sup>2</sup> la longueur coordonnée, identique dans toutes les directions :</p>
 <div class="tex">\begin{aligned}
 \frac{d\ell}{dt} &amp;= c\,\frac{1 - \dfrac{r_s}{4\rho}}{\left(1 + \dfrac{r_s}{4\rho}\right)^{3}} \equiv \frac{c}{n(\rho)} \\
 n(\rho) &amp;= \frac{\left(1 + \dfrac{r_s}{4\rho}\right)^{3}}{1 - \dfrac{r_s}{4\rho}}
@@ -797,7 +831,7 @@ n(\rho) &amp;= \frac{\left(1 + \dfrac{r_s}{4\rho}\right)^{3}}{1 - \dfrac{r_s}{4\
 n(r) &amp;\approx 1 + \frac{r_s}{r} = 1 + \frac{2GM}{r\,c^2} \\
 v(r) &amp;= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 \end{aligned}</div>
-<p>Ce sont exactement les deux formules demandées. L’écart n − 1 vaut 4,2 × 10<sup>−6</sup> au bord du Soleil et 1,4 × 10<sup>−9</sup> à la surface de la Terre.</p>
+<p>Ce sont exactement les deux formules de départ. L’écart n − 1 vaut 4,2 × 10<sup>−6</sup> au bord du Soleil et 1,4 × 10<sup>−9</sup> à la surface de la Terre.</p>
 <p><strong>Deux moitiés.</strong> L’excès d’indice vient pour moitié du temps et pour moitié de l’espace. Les horloges ralenties comptent pour GM/(rc<sup>2</sup>), les longueurs modifiées pour GM/(rc<sup>2</sup>) aussi. Ce partage explique le facteur 2 qui apparaît plus bas.</p>
 <p><strong>Principe de Fermat.</strong> La lumière suit le trajet qui rend stationnaire le temps de parcours, proportionnel à ∫ n dℓ. On décrit le trajet par une position qui dépend d’un paramètre σ, et le point désigne la dérivée par rapport à σ :</p>
 <div class="tex">\delta\int n(\vec{r})\,\big|\dot{\vec{r}}\big|\,d\sigma = 0, \qquad \mathcal{L} = n(\vec{r})\,\big|\dot{\vec{r}}\big|</div>
@@ -806,7 +840,7 @@ v(r) &amp;= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 <div class="tex">\frac{d}{d\sigma}\left(\frac{\partial\mathcal{L}}{\partial\dot{\vec{r}}}\right) = \frac{\partial\mathcal{L}}{\partial\vec{r}}
 \qquad\Longrightarrow\qquad
 \frac{d}{d\ell}\big(n\,\hat{s}\big) = \vec{\nabla}n</div>
-<p>On développe la dérivée du produit, avec dn/dℓ = ŝ · ∇n. Il reste la partie du gradient perpendiculaire au rayon, notée ∇⊥ :</p>
+<p>On développe la dérivée du produit, avec dn/⁠dℓ = ŝ · ∇n. Il reste la partie du gradient perpendiculaire au rayon, notée ∇⊥ :</p>
 <div class="tex">\frac{d\hat{s}}{d\ell} = \frac{1}{n}\Big[\vec{\nabla}n - (\hat{s}\cdot\vec{\nabla}n)\,\hat{s}\Big] = \frac{\vec{\nabla}_{\!\perp}n}{n} \approx \vec{\nabla}_{\!\perp}n</div>
 <p>Le rayon tourne vers les n croissants, c’est-à-dire vers la zone où la lumière est la plus lente. Huygens dit la même chose : le côté du front d’onde le plus proche de la masse avance moins vite, et le front pivote vers elle.</p>
 <p><strong>Accélération transverse de la lumière.</strong> Le rayon est parcouru à une vitesse très proche de c. L’accélération transverse vaut donc c<sup>2</sup> fois le taux de rotation du rayon. Comme n augmente quand on s’approche de la masse, son gradient pointe vers elle :</p>
@@ -826,10 +860,10 @@ v(r) &amp;= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 \Delta t &amp;= \frac{1}{c}\int (n - 1)\,dz = \frac{2GM}{c^3}\int_{-z_1}^{z_2}\frac{dz}{\sqrt{b^2 + z^2}} \\
 &amp;\approx \frac{2GM}{c^3}\,\ln\frac{4\,r_1 r_2}{b^2}
 \end{aligned}</div>
-<div class="correction"><span class="eyebrow">Correction</span><p><strong>Corrections de la formule demandée.</strong> La formule proposée était une accélération proportionnelle à −c<sup>2</sup>∇n, égale à −GM/r<sup>2</sup>. Deux points changent.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Corrections de la formule de départ.</strong> La formule proposée était une accélération proportionnelle à −c<sup>2</sup>∇n, égale à −GM/⁠r<sup>2</sup>. Deux points changent.</p>
 <ol>
 <li>Le signe. Le gradient de n pointe vers la masse, et la déviation suit +c<sup>2</sup>∇n. Avec un signe moins, la lumière serait repoussée. Le signe moins redevient correct si l’on dérive la vitesse : a = −c∇v.</li>
-<li>Le facteur 2. Avec n = 1 + 2GM/(rc<sup>2</sup>), on trouve 2GM/r<sup>2</sup>, le double de Newton. Ce n’est pas une erreur de calcul : c’est le résultat propre à la relativité générale.</li>
+<li>Le facteur 2. Avec n = 1 + 2GM/(rc<sup>2</sup>), on trouve 2GM/⁠r<sup>2</sup>, le double de Newton. Ce n’est pas une erreur de calcul : c’est le résultat propre à la relativité générale.</li>
 </ol></div>
 <p>Einstein (1911), avec le seul ralentissement du temps, annonçait 0,83 seconde d’arc, la moitié environ. Sa théorie complète, publiée en 1916, ajoute la part de l’espace et donne 1,7 seconde d’arc. L’éclipse de 1919 a tranché en faveur du double : 1,98 ± 0,12 seconde d’arc à Sobral, 1,61 ± 0,30 à Principe.</p>
 <p><strong>La matière lente et la loi de Newton.</strong> Un corps libre suit la trajectoire qui rend stationnaire son temps propre. En champ faible, avec le potentiel de Newton Φ, la métrique isotrope s’écrit :</p>
@@ -842,13 +876,13 @@ v(r) &amp;= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 <div class="tex">\frac{d}{dt}\big(m\,\vec{v}\big) = -m\,\vec{\nabla}\Phi
 \qquad\Longrightarrow\qquad
 \vec{a} = -\vec{\nabla}\Phi = -\frac{GM}{r^2}\,\hat{r}</div>
-<p>La loi de Newton est retrouvée. Elle s’écrit avec la cadence N des horloges immobiles, c’est-à-dire le rapport dτ/dt au repos :</p>
+<p>La loi de Newton est retrouvée. Elle s’écrit avec la cadence N des horloges immobiles, c’est-à-dire le rapport dτ/⁠dt au repos :</p>
 <div class="tex">\begin{aligned}
 N(r) &amp;\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2} = 1 - \frac{GM}{r\,c^2} \\
 \vec{a} &amp;= -\,c^2\,\vec{\nabla}N
 \end{aligned}</div>
-<p>C’est la forme correcte de la formule demandée : un signe moins, le facteur c<sup>2</sup>, et le gradient de la cadence des horloges plutôt que celui de l’indice de la lumière.</p>
-<p><strong>Vérification chiffrée.</strong> À la surface de la Terre, une horloge placée 1 m plus haut avance de 1,09 × 10<sup>−16</sup> en valeur relative. Multipliée par c<sup>2</sup>, cette pente par mètre donne 9,81 m/s<sup>2</sup> : la pesanteur. Chou et ses collègues (2010) ont mesuré cet écart entre deux horloges optiques séparées de 33 cm en hauteur.</p>
+<p>C’est la forme correcte de la formule de départ : un signe moins, le facteur c<sup>2</sup>, et le gradient de la cadence des horloges plutôt que celui de l’indice de la lumière.</p>
+<p><strong>Vérification chiffrée.</strong> À la surface de la Terre, une horloge placée 1 m plus haut avance de 1,09 × 10<sup>−16</sup> en valeur relative. Multipliée par c<sup>2</sup>, cette pente par mètre donne 9,81 m/⁠s<sup>2</sup> : la pesanteur. Chou et ses collègues (2010) ont mesuré cet écart entre deux horloges optiques séparées de 33 cm en hauteur.</p>
 <p><strong>Formule unifiée.</strong> Les géodésiques de la métrique en champ faible donnent, pour un corps de vitesse v quelconque :</p>
 <div class="tex">\vec{a}_{\perp} = -\left(1 + \frac{v^2}{c^2}\right)\vec{\nabla}_{\!\perp}\Phi</div>
 <p>Pour v très petit devant c, on retrouve Newton. Pour v = c, on retrouve le double.</p>
@@ -881,7 +915,7 @@ N(r) &amp;\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2
 </div></div>
 <footer class="pied"><div class="dedans">
 <p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
-<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
+<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/article-3-la-pente-du-temps.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
 </div></footer>
 <a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>
 <script>
@@ -964,6 +998,18 @@ const marquerDefilement = () => $$('.stage').forEach(s => {
 });
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// liste des piliers, dans la barre du haut : elle se referme quand on touche ailleurs, quand le clavier en sort, avec Échap,
+// ou quand on revient sur la page
+(() => {
+  const menu = $('.barre .menu');
+  if (!menu) return;
+  document.addEventListener('pointerdown', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+  menu.addEventListener('focusout', e => { if (e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.open) { menu.open = false; $('summary', menu).focus(); }
+  });
+  window.addEventListener('pageshow', () => { menu.open = false; });
+})();
 // rail de lecture : la section en cours est marquée pendant le défilement
 (() => {
   const liens = $$('.rail a');

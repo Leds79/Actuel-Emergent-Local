@@ -2,7 +2,7 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.
+Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules de départ se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.
 
 Le modèle est une relecture cohérente de résultats connus, abordés par un autre chemin : celui du suivi de projet. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.
 
@@ -74,7 +74,7 @@ La vitesse de la tache est le rapport de deux dérivées prises par rapport au m
 v_{\text{écran}} = \frac{dx}{dt_{\text{écran}}} = \frac{dx/d\tau}{dt_{\text{écran}}/d\tau} = \frac{\dot{x}}{1 + \dfrac{\dot{x}}{c}\,\sin\theta}
 ```
 
-C'est exactement la formule demandée. En inversant les deux membres, elle devient une addition de délais :
+C'est exactement la formule de départ. En inversant les deux membres, elle devient une addition de délais :
 
 ```latex
 \frac{1}{v_{\text{écran}}} = \frac{1}{\dot{x}} + \frac{\sin\theta}{c}
@@ -141,7 +141,7 @@ v_{\text{obs}} &= \frac{dx}{dt_{\text{obs}}} = \frac{dx/d\tau}{dt_{\text{obs}}/d
 \end{aligned}
 ```
 
-C'est exactement la formule demandée. Sous forme de délais en série :
+C'est exactement la formule de départ. Sous forme de délais en série :
 
 ```latex
 \frac{1}{v_{\text{obs}}} = \frac{1}{\dot{x}} + \frac{2\sin\theta}{c}
@@ -207,7 +207,7 @@ Données : D = 10⁸ km, ω = π/2 rad/s, c = 299 792,458 km/s, 1 année-lumièr
 | 1 milliard de km (θ = 84,3°) | 0,937 | 55 min 53 s | 1 h 51 min 45 s | 1,0050 | 0,5025 |
 | 1 million d'années-lumière (θ ≈ 90°) | 1 − 7 × 10⁻¹² | 1 000 000 ans + 1 s | 2 000 000 ans + 1 s | 1 + 6 × 10⁻²³ | 0,5 + 3 × 10⁻²³ |
 
-En km/s, la vitesse perçue vaut successivement 1 492 000, 211 842, 150 642 puis 149 896 km/s pour les quatre distances demandées.
+En km/s, la vitesse perçue vaut successivement 1 492 000, 211 842, 150 642 puis 149 896 km/s pour les quatre distances étudiées.
 
 **Détail du dernier cas.** Pour x = 10⁶ années-lumière = 9,46 × 10¹⁸ km, le rapport x/D vaut 9,46 × 10¹⁰. La diagonale se confond alors avec x :
 
@@ -254,7 +254,7 @@ x_{\perp}(\tau) = v\,\tau\,\sin\theta, \qquad L(\tau) = d_0 - v\,\tau\,\cos\thet
 v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}
 ```
 
-C'est exactement la formule demandée. Son maximum se trouve en dérivant par rapport à θ, avec β = v/c :
+C'est exactement la formule de départ. Son maximum se trouve en dérivant par rapport à θ, avec β = v/c :
 
 ```latex
 \begin{aligned}
@@ -430,7 +430,7 @@ w(\vec{r},t) &= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\vec{r
 \end{aligned}
 ```
 
-**Correction de la formule demandée.** La probabilité n'est pas le module d'un élément de matrice entre deux états différents i et f. C'est la valeur moyenne du produit E(−)E(+) dans l'état du champ, soit la somme des probabilités sur tous les états finals.
+**Correction de la formule de départ.** La probabilité n'est pas le module d'un élément de matrice entre deux états différents i et f. C'est la valeur moyenne du produit E(−)E(+) dans l'état du champ, soit la somme des probabilités sur tous les états finals.
 
 **Lecture mécanique.** Les trois mots du modèle se lisent dans la formule. Local : seul le champ au point r du détecteur intervient. Actuel : seul l'instant t de l'interaction intervient. Émergent : sans atome ni couplage, il n'y a pas de clic du tout.
 
@@ -490,7 +490,7 @@ Sa norme se calcule avec la métrique de Minkowski, qui compte le temps en posit
 \end{aligned}
 ```
 
-C'est exactement le résultat demandé : la norme vaut c pour tout objet massif, quelle que soit sa vitesse. Le partage du budget s'obtient en divisant l'intervalle par dt² :
+C'est exactement l'énoncé de départ : la norme vaut c pour tout objet massif, quelle que soit sa vitesse. Le partage du budget s'obtient en divisant l'intervalle par dt² :
 
 ```latex
 c^2\,d\tau^2 = c^2\,dt^2 - v^2\,dt^2
@@ -536,7 +536,7 @@ c^2\,d\tau^2 = \left(1 - \frac{r_s}{r}\right)c^2\,dt^2
 d\tau = dt\,\sqrt{1 - \frac{r_s}{r}}
 ```
 
-C'est exactement la formule demandée. En termes de budget, la cadence d'une horloge immobile, comptée en temps lointain, n'est plus c mais c multiplié par cette racine.
+C'est exactement la formule de départ. En termes de budget, la cadence d'une horloge immobile, comptée en temps lointain, n'est plus c mais c multiplié par cette racine.
 
 | Lieu | Rayon de Schwarzschild | Rapport rayon de Schwarzschild / r | Retard de l'horloge locale |
 | --- | --- | --- | --- |
@@ -642,7 +642,7 @@ v(r) &= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 \end{aligned}
 ```
 
-Ce sont exactement les deux formules demandées. L'écart n − 1 vaut 4,2 × 10⁻⁶ au bord du Soleil et 1,4 × 10⁻⁹ à la surface de la Terre.
+Ce sont exactement les deux formules de départ. L'écart n − 1 vaut 4,2 × 10⁻⁶ au bord du Soleil et 1,4 × 10⁻⁹ à la surface de la Terre.
 
 **Deux moitiés.** L'excès d'indice vient pour moitié du temps et pour moitié de l'espace. Les horloges ralenties comptent pour GM/(rc²), les longueurs modifiées pour GM/(rc²) aussi. Ce partage explique le facteur 2 qui apparaît plus bas.
 
@@ -701,7 +701,7 @@ Au bord du Soleil, on trouve 1,75 seconde d'arc, une valeur compatible avec les 
 \end{aligned}
 ```
 
-**Corrections de la formule demandée.** La formule proposée était une accélération proportionnelle à −c²∇n, égale à −GM/r². Deux points changent.
+**Corrections de la formule de départ.** La formule proposée était une accélération proportionnelle à −c²∇n, égale à −GM/r². Deux points changent.
 
 1. Le signe. Le gradient de n pointe vers la masse, et la déviation suit +c²∇n. Avec un signe moins, la lumière serait repoussée. Le signe moins redevient correct si l'on dérive la vitesse : a = −c∇v.
 2. Le facteur 2. Avec n = 1 + 2GM/(rc²), on trouve 2GM/r², le double de Newton. Ce n'est pas une erreur de calcul : c'est le résultat propre à la relativité générale.
@@ -743,7 +743,7 @@ N(r) &\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2} = 
 \end{aligned}
 ```
 
-C'est la forme correcte de la formule demandée : un signe moins, le facteur c², et le gradient de la cadence des horloges plutôt que celui de l'indice de la lumière.
+C'est la forme correcte de la formule de départ : un signe moins, le facteur c², et le gradient de la cadence des horloges plutôt que celui de l'indice de la lumière.
 
 **Vérification chiffrée.** À la surface de la Terre, une horloge placée 1 m plus haut avance de 1,09 × 10⁻¹⁶ en valeur relative. Multipliée par c², cette pente par mètre donne 9,81 m/s² : la pesanteur. Chou et ses collègues (2010) ont mesuré cet écart entre deux horloges optiques séparées de 33 cm en hauteur.
 
@@ -1156,9 +1156,9 @@ Chaque intuition correspond à un résultat établi. Le tableau donne les équat
 
 | Intuition, en langage mécanique | Équations démontrées | Théorèmes et travaux établis | Correction ou limite |
 | --- | --- | --- | --- |
-| 1. Géométrie de l'observateur : sur un tableau plat, la diagonale s'allonge et le photon doit revenir à la source | Sur le tableau : 1/v = 1/ẋ + sin θ / c, limite c. Vitesse perçue : 1/v = 1/ẋ + 2 sin θ / c, limite c/2. Jets : v sin θ / (1 − (v/c) cos θ) | Échos de lumière (Couderc, 1939). Vitesses apparentes supraluminiques (Rees, 1966) | c/2 est une limite. C'est un plancher pour un balayage rapide, comme dans le cas chiffré, et un plafond seulement si Dω ≤ c/2 |
-| 2. Lumière actuelle, émergente, locale : rien ne voyage de A à B, et l'éclat naît à l'impact | Intervalle Δs² = c²Δt² − Δx² négatif et invariant. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l'instant du détecteur | Causalité relativiste (Einstein, Minkowski). Théorie de la photodétection (Glauber, 1963). « Potentia » (Heisenberg, 1958) | La formule de Glauber est une valeur moyenne. En transit, le champ porte énergie et impulsion : « potentiel » ne veut pas dire « rien » |
-| 3. Cadence c et masse comme frein : la gravité est une déviation vers la zone lente | Norme de la quadri-vitesse égale à c. Budget : (c dτ/dt)² + v² = c². Horloges : dτ = dt √(1 − 2GM/(rc²)). Indice : n ≈ 1 + 2GM/(rc²). Matière lente : a = −c²∇N. Lumière : déviation 4GM/(bc²) | Espace-temps de Minkowski. Solution de Schwarzschild. Principe de Fermat. Effet Shapiro. Analogie optique (Einstein, 1911 ; Dicke, 1957) | La déviation suit +∇n. Un facteur 2 sépare la lumière de la matière lente. Sur place, la lumière va toujours à c |
+| 1. Géométrie de l'observateur : sur un tableau plat, la diagonale s'allonge et le photon doit revenir à la source | Vitesse de la tache sur le tableau : 1/v = 1/ẋ + sin θ / c, limite c. Vitesse perçue par l'observateur : 1/v = 1/ẋ + 2 sin θ / c, limite c/2. Jets de quasars : vitesse apparente βc sin θ / (1 − β cos θ), où βc est la vitesse du jet et θ, cette fois, son angle avec la ligne de visée | Échos de lumière (Couderc, 1939). Vitesses apparentes supraluminiques (Rees, 1966) | c/2 est une limite. C'est un plancher pour un balayage rapide, comme dans le cas chiffré, et un plafond seulement si Dω ≤ c/2 |
+| 2. Lumière actuelle, émergente, locale : rien ne voyage de A à B, et l'éclat naît à l'impact | Entre deux impacts A et B d'une tache plus rapide que c : intervalle Δs² = c²Δt² − Δx² négatif (genre espace) et invariant. De chaque impact à son émission : intervalle nul. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l'instant du détecteur | Causalité relativiste (Einstein, Minkowski). Théorie de la photodétection (Glauber, 1963). « Potentia » (Heisenberg, 1958) | La formule de Glauber est une valeur moyenne. En transit, le champ porte énergie et impulsion : « potentiel » ne veut pas dire « rien » |
+| 3. Cadence c et masse comme frein : la gravité est une déviation vers la zone lente | Norme de la quadri-vitesse égale à c. Budget : (c dτ/dt)² + v² = c². Horloges : dτ = dt √(1 − 2GM/(rc²)). Indice : n ≈ 1 + 2GM/(rc²). Matière lente : a = −c²∇N, où N est la cadence des horloges immobiles. Lumière : déviation 4GM/(bc²) pour un rayon qui passe à la distance b de la masse | Espace-temps de Minkowski. Solution de Schwarzschild. Principe de Fermat. Effet Shapiro. Analogie optique (Einstein, 1911 ; Dicke, 1957) | La déviation suit +∇n. Un facteur 2 sépare la lumière de la matière lente. Sur place, la lumière va toujours à c |
 | 4. Choix retardé : le choix est local et actuel, et le réel est graduellement donné | Superposition des deux routes avec une phase φ. Probabilités (1 ± cos φ)/2. État de tout autre système inchangé par le choix. Visibilité² + distinguabilité² ≤ 1. Précision Δφ ≥ 1/√N | Règle de Born. Théorème de non-communication (Ghirardi, Rimini, Weber, 1980). Complémentarité (Bohr ; Englert, 1996). Wheeler, Rovelli, QBisme | Le choix n'exige pas d'intention consciente. Les lectures participatives sont des interprétations, que l'expérience ne départage pas |
 | 5. Cristallisation de l'information : la question est un potentiel, et l'actualisation fige la réponse | Potentiel H = −Σ p log₂ p, borné à 1 bit pour deux routes. Inscription : 2 bits de corrélation quantique, réversibles. Cristallisation : cohérence multipliée par ε à la puissance N, soit exp(−t/τ) ; il reste 1 bit classique, recopié dans l'environnement | Entropie de Shannon. Borne de Holevo. Schéma de mesure de von Neumann. Décohérence (Zeh, Zurek). Darwinisme quantique (Zurek, 2009). Principe de Landauer (1961) | Inscrire et cristalliser sont deux temps distincts. La décohérence fige la réponse mais ne la choisit pas. L'irréversibilité est pratique, pas de principe |
 

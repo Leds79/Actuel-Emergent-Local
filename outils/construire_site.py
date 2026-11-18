@@ -31,9 +31,13 @@ DOCS = os.path.join(RACINE, "documents")
 NOM = "Actuel, Émergent, Local"
 AUTEUR = "Sylvain Leduc"
 DOSSIER = "Formalisation du modèle « Actuel, Émergent, Local »"
+# nom des trois exports du dossier dans documents/ (.md, .pdf, .docx) : sans accent ni espace, pour des liens qui se partagent sans casse
+FICHIER_DOSSIER = "dossier-actuel-emergent-local"
 LIEN_DOSSIER_PRIVE = "https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r"
 PDF_DOSSIER = "dossier-complet.pdf"
 IMAGE_PARTAGE = "apercu.png"
+ALT_PARTAGE = ("Le titre « Actuel, Émergent, Local » sur un plan bleu, à côté d'un écran de détection où des impacts de photons "
+               "dessinent des franges")
 SITE = "https://leds79.github.io/Actuel-Emergent-Local/"
 DEPOT = "https://github.com/Leds79/Actuel-Emergent-Local"
 ACCROCHE = ("Cinq intuitions sur la lumière, la gravité et la mesure, nées du suivi de projet : flux, délais, goulots "
@@ -42,34 +46,38 @@ POLICES = ("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;6
            "&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap")
 
 # clef : un chiffre tiré des documents, affiché sous la vignette de la page d'accueil
+# fichier : nom des trois exports de l'article dans documents/ (.md, .pdf, .docx)
 PILIERS = [
     dict(n=1, titre="L'ombre plus rapide que la lumière", objet="Géométrie de l'observateur", echelle="Variable : le dessin se resserre",
          article="L'ombre plus rapide que la lumière, vue par celui qui tient les ciseaux",
+         fichier="article-1-ombre-plus-rapide-que-la-lumiere",
          resume="Sur un écran plat à 100 millions de kilomètres, l'ombre de ciseaux fermés en une seconde part de 524 fois la vitesse "
                 "de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.",
          clef=("524 c", "vitesse de l'ombre au centre de l'écran, dans l'exemple chiffré")),
     dict(n=2, titre="On ne voit jamais la lumière passer", objet="Lumière actuelle, émergente, locale", echelle="Schémas de principe",
-         article="On ne voit jamais la lumière passer",
+         article="On ne voit jamais la lumière passer", fichier="article-2-on-ne-voit-jamais-la-lumiere-passer",
          resume="Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu'à l'endroit "
                 "et à l'instant où elle rencontre de la matière.",
          clef=("1 clic", "par photon : deux détecteurs se déclenchent ensemble bien plus rarement que ne le permettrait une onde (1986)")),
     dict(n=3, titre="La pente du temps", objet="Cadence c et masse comme frein", echelle="Schémas de principe",
-         article="Tomber, c'est suivre la pente du temps",
+         article="Tomber, c'est suivre la pente du temps", fichier="article-3-la-pente-du-temps",
          resume="La relativité donne un sens précis à cette intuition : tout avance dans l'espace-temps à la cadence de la "
                 "lumière, et une masse ralentit les horloges autour d'elle. Tomber, c'est virer vers cette zone ralentie.",
          meta="Tout avance dans l'espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d'elle. "
               "Tomber, c'est virer vers cette zone ralentie.",
          clef=("9,81 m/s<sup>2</sup>", "la pesanteur, retrouvée en multipliant la pente du temps par c²")),
     dict(n=4, titre="Le choix d'aujourd'hui ne réécrit pas le passé", objet="Choix retardé de Wheeler", echelle="Schémas de principe",
-         article="Le choix d'aujourd'hui ne réécrit pas le passé",
+         article="Le choix d'aujourd'hui ne réécrit pas le passé", fichier="article-4-le-choix-ne-reecrit-pas-le-passe",
          resume="Choisir aujourd'hui comment mesurer un photon ne change rien au passé. Entre « une route » "
                 "et « deux routes », tous les intermédiaires existent.",
          clef=("3 500 km", "au plus, parcourus par les photons quand l'expérience a été refaite avec un satellite, en 2017")),
     dict(n=5, titre="Comment une réponse devient un fait", objet="Cristallisation de l'information", echelle="Schémas de principe",
-         article="Comment une réponse devient un fait",
+         article="Comment une réponse devient un fait", fichier="article-5-comment-une-reponse-devient-un-fait",
          resume="La réponse est d'abord inscrite au crayon, encore effaçable. L'environnement la recopie ensuite "
                 "des milliards de fois et la grave.",
-         clef=("10 ps", "dix picosecondes : le temps que met le soleil à brouiller l'interférence d'un grain de poussière")),
+         # un ordre de grandeur, qui dépend de la taille du grain et de l'écart entre ses deux positions : les donner (dossier, section 5.3)
+         clef=("10 ps", "environ dix picosecondes : le temps que met le soleil à brouiller l'interférence d'un grain de poussière "
+                        "de 10 µm, entre deux positions distantes de 0,1 µm (d'après Joos et Zeh, 1985)")),
 ]
 # l'intuition de départ de chaque pilier, dans les mots de l'auteur : orthographe corrigée, rien d'ajouté, et « […] »
 # là où deux de ses messages sont rapprochés. Piliers 1 à 4 : sa conversation d'origine. Pilier 5 : sa demande d'ajout
@@ -152,10 +160,12 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 """
 
+# l'avis placé en tête du dossier et des démonstrations ; voir avis()
 AVIS = ('<aside class="avis"><span class="eyebrow">À savoir avant de lire</span>'
-        '<p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l\'auteur, dans la '
-        'demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s\'agit de l\'une d\'elles : elle est '
-        'démontrée telle quelle, ou corrigée.</p>%s</aside>')
+        "<p>Ce dossier examine une à une les formules de départ, écrites à partir des intuitions de l'auteur au lancement de ce travail. "
+        "Chacune est démontrée telle quelle, ou corrigée.%s</p>%s</aside>")
+# les expressions par lesquelles le texte renvoie à ces formules : l'avis ne cite que celles que la page emploie
+AVIS_RENVOIS = ((r"formules? de départ", "« la formule de départ »"), (r"énoncé de départ", "« l'énoncé de départ »"))
 # le dossier et les autres vues ne nomment pas tout à fait les choses de la même façon
 AVIS_MOTS = {
     1: '<p>Le dossier dit « tableau », « tache », « observateur » et « vitesse perçue » là où l\'article et la planche disent '
@@ -180,9 +190,12 @@ GABARIT = """<!doctype html>
 <meta property="og:description" content="%%DESCRIPTION%%">
 <meta property="og:url" content="%%ADRESSE%%">
 <meta property="og:image" content="%%IMAGE%%">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="%%IMAGEALT%%">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="%%IMAGEALT%%">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="%%RACINE%%favicon.svg" type="image/svg+xml">
 <link rel="icon" href="%%RACINE%%favicon-32.png" type="image/png" sizes="32x32">
@@ -227,10 +240,6 @@ def ecrire(relatif, texte):
     print("  écrit : %-34s %6d octets" % (relatif, len(texte.encode("utf-8"))))
 
 
-def url(nom):
-    return urllib.parse.quote(nom)
-
-
 def e(texte):
     return html.escape(texte, quote=True)
 
@@ -244,16 +253,29 @@ def nombres(t):
     t = re.sub(r"(?<=\d) (?=\d{3}(?!\d))", "\u00a0", t)
     t = re.sub(r"(?<=\d) (?=[^\W\d_])", "\u00a0", t)
     t = t.replace(" × ", "\u00a0×\u00a0")
+    # un court coefficient reste avec la fonction qu'il multiplie : « βc sin θ », « 2ẋ sin θ » ; un petit mot français, non
+    t = re.sub(r"(?<![\w’'])(?!(?:de|du|des|le|la|les|un|et|ou|où|en|au|par|que|est|car|sur|a|à) )(\w{1,3}) (?=(?:sin|cos|tan) )",
+               lambda m: m.group(1) + "\u00a0", t)
     # un symbole d'une lettre ne commence pas une ligne : « à la cadence c », « vers c/2 »
     t = re.sub(r"(?<=[^\W\d_]) (?=(?:c/2|[cxvtθτφ])(?![\w’'/-]))", "\u00a0", t)
     t = re.sub(r"(?<=\d)–(?=\d)", "\u2060–\u2060", t)
-    morceaux = re.split(r" (=|≥|≤|≈|&lt;|&gt;|/|±) ", t)
+    # une courte parenthèse ne se coupe pas en fin de ligne : « (1 − β cos θ) », « (genre espace) », « (Rees, 1966) »
+    t = re.sub(r"\((?:[^()<>&]|\([^()<>&]*\)){1,14}\)",
+               lambda m: m.group(0).replace(" ", "\u00a0") if len(m.group(0)) <= 24 else m.group(0), t)
+    morceaux = re.split(r" (=|≥|≤|≈|&lt;|&gt;|/|±|\+|−) ", t)
     t = morceaux[0]
     for i in range(1, len(morceaux), 2):
         avant, signe, apres = morceaux[i - 1], morceaux[i], morceaux[i + 1]
-        courts = len(avant.rsplit(" ", 1)[-1]) <= 12 and len(apres.split(" ", 1)[0]) <= 12
+        # « apres » peut commencer par une parenthèse déjà rendue insécable : on ne compte que son premier mot
+        courts = len(avant.rsplit(" ", 1)[-1]) <= 12 and len((apres.split() or [""])[0]) <= 12
+        if signe in "+−":
+            # le signe reste avec le terme qui le suit : il ne finit jamais une ligne. Les deux termes ne sont pas soudés,
+            # ce qui élargirait les colonnes de chiffres. Une énumération n'est pas touchée : « les deux résultats possibles, + et − ».
+            t += (" %s " if avant[-1:] in ",;:." else " %s\u00a0") % signe + apres
+            continue
         t += ("\u00a0%s\u00a0" if courts else " %s ") % signe + apres
-    return t
+    # une fraction ou une unité ne se coupe pas après sa barre : « 1/ẋ », « km/s », « GM/r² » (un DOI ou une adresse restent intacts)
+    return re.sub(r"(?<=[\w)])/(?=[^\W\d_]{1,4}(?!\w|\.\w))", "/\u2060", t)
 
 
 def typo(fragment, exposants=True):
@@ -390,6 +412,13 @@ def chapeau(h):
 
 def bouton(href, texte, classe="btn"):
     return '<a class="%s" href="%s">%s <span aria-hidden="true">→</span></a>' % (classe, href, t(texte))
+
+
+def avis(texte, mots=""):
+    """L'avis en tête d'une démonstration ou du dossier. Il n'annonce que les expressions que le texte emploie vraiment."""
+    dits = [nom for motif, nom in AVIS_RENVOIS if re.search(motif, texte)]
+    renvoi = " Quand le texte dit %s, il s'agit de l'une d'elles." % " ou ".join(dits) if dits else ""
+    return typo(AVIS % (renvoi, mots))
 
 
 def intuition(n):
@@ -543,17 +572,25 @@ def page(relatif, titre, description, haut, corps, js, cart, classe, pilier=None
     if racine is None:
         racine = "../" if pilier else ""
     fichier = vue or "index.html"
+
+    def ici(p):
+        return ' aria-current="page"' if pilier and p["n"] == pilier["n"] else ""
     nav = "".join('<a href="%spilier-%d/%s"%s title="%s" aria-label="Pilier %d : %s">%d</a>' % (
-        racine, p["n"], fichier, ' aria-current="page"' if pilier and p["n"] == pilier["n"] else "", simple(p["titre"]), p["n"],
-        simple(p["titre"]), p["n"]) for p in PILIERS)
+        racine, p["n"], fichier, ici(p), simple(p["titre"]), p["n"], simple(p["titre"]), p["n"]) for p in PILIERS)
+    # la liste des piliers, avec leurs titres : le mot « Piliers » l'ouvre. Sur téléphone, elle remplace les numéros,
+    # qui ne disent rien sans survol ; le numéro du pilier en cours reste affiché à côté du mot.
+    liste = "".join('<li><a href="%spilier-%d/%s"%s><b>%d</b> <span>%s</span></a></li>' % (
+        racine, p["n"], fichier, ici(p), p["n"], t(p["titre"])) for p in PILIERS)
+    menu = ('<details class="menu"><summary><span class="bouton"><span class="lib">Piliers</span>%s</span></summary><ul>%s</ul></details>'
+            % ('<b class="ici" aria-hidden="true">%d</b>' % pilier["n"] if pilier else "", liste))
     barre = ('<div class="barre"><div class="dedans">\n<a class="marque" href="%sindex.html" aria-label="Accueil : %s"%s>%s<span>%s</span></a>\n'
-             '<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span>%s<a class="dos" href="%sdossier.html"%s>Dossier</a></nav>\n'
-             '</div></div>' % (racine, NOM, ' aria-current="page"' if accueil else "", ICONE, NOM, nav, racine,
+             '<nav aria-label="Piliers et dossier">%s%s<a class="dos" href="%sdossier.html"%s>Dossier</a></nav>\n'
+             '</div></div>' % (racine, NOM, ' aria-current="page"' if accueil else "", ICONE, NOM, menu, nav, racine,
                                ' aria-current="page"' if relatif == "dossier.html" else ""))
     liens = ['<a href="%sindex.html">Accueil</a>' % racine, '<a href="%sdossier.html">Dossier complet</a>' % racine,
              '<a href="%s%s">Dossier en PDF</a>' % (racine, PDF_DOSSIER)]
     if pilier:
-        liens.append('<a href="../documents/%s.pdf">Article en PDF</a>' % url(pilier["article"]))
+        liens.append('<a href="../documents/%s.pdf">Article en PDF</a>' % pilier["fichier"])
     liens.append('<a href="%s">Code source</a>' % DEPOT)
     pied = typo('<footer class="pied"><div class="dedans">\n<p class="sig">%s<span>%s · un modèle de %s</span></p>\n'
                 '<nav aria-label="Liens de bas de page">%s</nav>\n</div></footer>' % ("ICONEICI", NOM, AUTEUR, "".join(liens))).replace("ICONEICI", ICONE)
@@ -563,6 +600,7 @@ def page(relatif, titre, description, haut, corps, js, cart, classe, pilier=None
     adresse = SITE + (relatif[:-len("index.html")] if relatif.endswith("index.html") else relatif)
     doc = (GABARIT.replace("%%TITREPAGE%%", simple(titre if accueil else "%s · %s" % (titre, NOM))).replace("%%TITRE%%", simple(titre))
            .replace("%%DESCRIPTION%%", simple(description)).replace("%%REMONTER%%", remonter).replace("%%ADRESSE%%", adresse).replace("%%IMAGE%%", SITE + IMAGE_PARTAGE)
+           .replace("%%IMAGEALT%%", simple(ALT_PARTAGE))
            .replace("%%OGTYPE%%", "website" if accueil else "article").replace("%%RACINE%%", racine).replace("%%POLICES%%", POLICES)
            .replace("%%TETE%%", tete).replace("%%CLASSE%%", classe).replace("%%BARRE%%", barre).replace("%%ENTETE%%", haut)
            .replace("%%CARTOUCHE%%", cartouche).replace("%%PAGINATION%%", bas).replace("%%PIED%%", pied)
@@ -644,7 +682,10 @@ def main():
     base_js = lire(os.path.join(GAB, "base.js"))
     accueil_js = lire(os.path.join(GAB, "accueil.js"))
     commun_js = base_js + "\n" + lire(os.path.join(GAB, "epures.js"))
-    dossier = lire(os.path.join(DOCS, DOSSIER + ".md"))
+    absents = [f + ".md" for f in [FICHIER_DOSSIER] + [p["fichier"] for p in PILIERS] if not os.path.exists(os.path.join(DOCS, f + ".md"))]
+    if absents:
+        sys.exit("Arrêt : exports introuvables dans documents/ : " + ", ".join(absents))
+    dossier = lire(os.path.join(DOCS, FICHIER_DOSSIER + ".md"))
     date = date_fr(dossier)
     morceaux = re.split(r"^## (.+)$", dossier, flags=re.M)
     intro = sans_titre(morceaux[0])
@@ -675,7 +716,7 @@ def main():
              pilier=p, vue="index.html", tete=KATEX, bas=pagination(p, "index.html"))
 
         # 2. article de vulgarisation
-        art = lire(os.path.join(DOCS, p["article"] + ".md"))
+        art = lire(os.path.join(DOCS, p["fichier"] + ".md"))
         titre_art = re.search(r"^# (.+)$", art, flags=re.M).group(1).strip()
         date_art = date_fr(art) or date
         texte, reste = chapeau(md_html(sans_titre(art).replace(LIEN_DOSSIER_PRIVE, "demonstration.html"), "article"))
@@ -695,10 +736,9 @@ def main():
         if m:
             demo += "\n\n## Références\n\n" + m.group(1)
         texte, reste = chapeau(md_html(demo.strip(), "demonstration"))
-        avis = typo(AVIS % AVIS_MOTS.get(n, ""))
         sommaire, plie, reste = rail(reste)
         corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n%s%s\n<p class="suite">%s%s</p>\n</article></div>'
-                 % (sommaire, amorce("Démonstration mathématique", texte, titre_demo, p["titre"]), avis, plie, reste,
+                 % (sommaire, amorce("Démonstration mathématique", texte, titre_demo, p["titre"]), avis(demo, AVIS_MOTS.get(n, "")), plie, reste,
                     bouton("index.html", "Manipuler la planche interactive", "btn encre"), bouton("article.html", "Lire l'article")))
         page(dos + "demonstration.html", titre_demo, meta, entete_pilier(p, "demonstration.html"),
              corps, commun_js + KATEX_JS, cart(p["objet"], "Vue", "Démonstration mathématique", date), "p-demo",
@@ -707,23 +747,28 @@ def main():
     # 4. page d'accueil
     planches = []
     for p in PILIERS:
+        # Le dessin garde sa description pour les lecteurs d'écran. Le lien posé dessus double celui du titre : il sert
+        # à la souris et au doigt, et reste hors du parcours du clavier et des lecteurs d'écran.
+        note = NOTES_EPURES.get(p["n"])
         planches.append(typo(
             '<article class="plk"><div class="no"><span class="num">Pilier</span><b>%02d</b></div>'
             '<div class="plt"><span class="eyebrow">%s</span><h3><a href="pilier-%d/index.html">%s</a></h3>'
             '<p class="mot">« %s »</p><p>%s</p>'
             '<p class="acces">%s<a class="btn fin" href="pilier-%d/article.html">Article</a>'
             '<a class="btn fin" href="pilier-%d/demonstration.html">Démonstration</a></p></div>'
-            '<div class="vis"><a href="pilier-%d/index.html" tabindex="-1" aria-hidden="true">%s</a><p class="clef"><b>%s</b><span>%s</span></p></div></article>'
+            '<div class="vis"><figure class="vignette"><div class="cadre">%s<a class="voile" href="pilier-%d/index.html" tabindex="-1" aria-hidden="true"></a></div>'
+            '%s</figure><p class="clef"><b>%s</b><span>%s</span></p></div></article>'
             % (p["n"], symboles(e(p["objet"])), p["n"], e(p["titre"]), e(INTUITIONS[p["n"]]), e(p["resume"]),
-               bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"], p["n"],
-               plaque(p["n"], "plaque mini"), p["clef"][0], e(p["clef"][1]))))
+               bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"],
+               plaque(p["n"], "plaque mini"), p["n"], "<figcaption>%s</figcaption>" % e(note) if note else "",
+               p["clef"][0], e(p["clef"][1]))))
     dessin_frise, nb_refs, an_debut, an_fin = frise(refs)
-    docs = [("Dossier mathématique complet", "dossier.html", PDF_DOSSIER, DOSSIER)] + [
+    docs = [("Dossier mathématique complet", "dossier.html", PDF_DOSSIER, FICHIER_DOSSIER)] + [
         ("Article du pilier %d — %s" % (p["n"], p["article"]), "pilier-%d/article.html" % p["n"],
-         "documents/%s.pdf" % url(p["article"]), p["article"]) for p in PILIERS]
+         "documents/%s.pdf" % p["fichier"], p["fichier"]) for p in PILIERS]
     rangs = "".join(
         '<li><span>%s</span><span class="liens"><a href="%s">Lire en ligne</a><a href="%s">PDF</a><a href="documents/%s.docx">Word</a>'
-        '<a href="documents/%s.md">Markdown</a></span></li>' % (t(nom), web, pdf, url(f), url(f)) for nom, web, pdf, f in docs)
+        '<a href="documents/%s.md">Markdown</a></span></li>' % (t(nom), web, pdf, f, f) for nom, web, pdf, f in docs)
     haut = ('<header class="plan accueil"><div class="dedans hero">\n<div>\n<p class="repere"><span>Modèle de %s</span><span>Cinq piliers</span></p>\n'
             '<h1><span>Actuel,</span> <span>Émergent,</span> <span>Local</span></h1>\n<p class="chapeau">%s</p>\n'
             '<p class="actions">%s%s</p>\n</div>\n'
@@ -765,7 +810,7 @@ def main():
   <span class="eyebrow">Verdict</span>
   <h2 id="h-verdict">Ce que les équations confirment, et ce qu'elles corrigent</h2>
   <div class="verdict">
-    <p>Le dossier part des formules de la demande qui a lancé ce travail, écrites à partir des intuitions de l'auteur. Il démontre ou corrige une à une ces « formules demandées ».</p>
+    <p>Le dossier examine une à une les formules de départ, écrites à partir des intuitions de l'auteur : il les démontre ou les corrige.</p>
 %s
   </div>
 </section>
@@ -824,7 +869,7 @@ def main():
     h = h.replace('<h2 id="pilier-1">', table + '\n<h2 id="pilier-1">', 1)
     lateral, _, h = rail(h)
     h = re.sub(r'(<h2 id="pilier-(\d)">.*?</h2>)', lambda m: m.group(1) + "\n" + intuition(int(m.group(2))), h, flags=re.S)
-    corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_DOSSIER), h)
+    corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, avis(dossier, AVIS_DOSSIER), h)
     bilan = "".join('<p><b>%d</b><span>%s</span></p>' % (n, mot) for n, mot in (
         (len(PILIERS), "démonstrations"), (h.count('class="tex"'), "formules"), (len(re.findall(r"^- ", refs, flags=re.M)), "références")))
     haut = entete(["Dossier complet", "Cinq démonstrations, synthèse, références"], t(DOSSIER), texte,

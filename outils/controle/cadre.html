@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>cadre</title>
+<meta name="robots" content="noindex">
+<style>
+html,body{margin:0;background:#888}
+#boite{position:absolute;left:0;top:0;overflow:hidden}
+iframe{display:block;border:0;background:#fff}
+</style></head><body>
+<div id="boite"><iframe id="f"></iframe></div>
+<pre id="mesures" hidden></pre>
+<script>
+// Outil de contrôle, pour le poste de travail seulement : capture.py charge ici une page du site dans un cadre de la largeur
+// voulue, car le navigateur sans interface ne descend pas sous 500 px. Hors du poste de travail, cette page ne fait rien.
+// Paramètres : u = page du site, w = largeur, v = hauteur de fenêtre simulée, y et h = tranche à montrer (h = 0 : toute la page),
+// theme = dark | light, js = script de ce dossier exécuté dans la page (il peut poser window.__mesures), attente = délai en ms.
+const q = new URLSearchParams(location.search);
+const W = +q.get('w') || 390, Y = +q.get('y') || 0, H = +q.get('h') || 0, V = +q.get('v') || 844;
+const f = document.getElementById('f'), boite = document.getElementById('boite');
+const surLePoste = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+const cible = new URL(q.get('u') || '/', location.origin);
+const script = /^[a-z0-9_-]+\.js$/.test(q.get('js') || '') ? q.get('js') : '';
+const fin = async () => {
+  const d = f.contentDocument, w = f.contentWindow;
+  let panne = null;
+  if (q.get('theme') === 'dark' || q.get('theme') === 'light') d.documentElement.setAttribute('data-theme', q.get('theme'));
+  if (script) {
+    const code = await (await fetch('/__o/' + script)).text();
+    try { await w.eval('(async()=>{' + code + '\n})()'); } catch (e) { panne = String(e); }
+  }
+  await new Promise(r => setTimeout(r, +q.get('attente') || 1200));
+  const haut = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight);
+  const mesures = {
+    largeur: W, hauteur: haut,
+    debord: d.documentElement.scrollWidth - d.documentElement.clientWidth,
+    erreurs: Array.from(d.querySelectorAll('.err')).map(e => e.textContent).concat(panne ? ['script de contrôle : ' + panne] : []),
+    extra: w.__mesures || null
+  };
+  f.style.height = haut + 'px';
+  if (H) { boite.style.height = H + 'px'; f.style.marginTop = (-Y) + 'px'; }
+  await new Promise(r => setTimeout(r, 600));
+  document.getElementById('mesures').textContent = JSON.stringify(mesures);
+  document.title = 'pret';
+};
+if (surLePoste && cible.origin === location.origin) {
+  f.style.width = W + 'px'; f.style.height = V + 'px'; boite.style.width = W + 'px';
+  f.addEventListener('load', () => { fin(); });
+  f.src = cible.href;
+} else document.title = 'outil local';
+</script></body></html>
