@@ -820,8 +820,11 @@ def main():
     lateral, _, h = rail(h)
     h = re.sub(r'(<h2 id="pilier-(\d)">.*?</h2>)', lambda m: m.group(1) + "\n" + intuition(int(m.group(2))), h, flags=re.S)
     corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_DOSSIER), h)
+    bilan = "".join('<p><b>%d</b><span>%s</span></p>' % (n, mot) for n, mot in (
+        (len(PILIERS), "démonstrations"), (h.count('class="tex"'), "formules"), (len(re.findall(r"^- ", refs, flags=re.M)), "références")))
     haut = entete(["Dossier complet", "Cinq démonstrations, synthèse, références"], t(DOSSIER), texte,
-                  suite='<p class="actions">%s</p>\n' % bouton(PDF_DOSSIER, "Télécharger le PDF", "btn plein"))
+                  suite='<p class="actions">%s</p>\n' % bouton(PDF_DOSSIER, "Télécharger le PDF", "btn plein"),
+                  dessin='<div class="bilan" role="group" aria-label="Le dossier en chiffres">%s</div>' % bilan)
     page("dossier.html", DOSSIER, "Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.",
          haut, corps, base_js + KATEX_JS, cart("Les cinq piliers", "Vue", "Dossier complet", date), "p-dossier", tete=KATEX)
 

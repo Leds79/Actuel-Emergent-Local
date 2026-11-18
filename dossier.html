@@ -77,7 +77,7 @@ p{margin:0;max-width:65ch}
 .barre nav{display:flex;align-items:center;gap:.3rem}
 .barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
 .barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
-.barre nav a:hover{background:rgba(205,225,255,.16)}
+@media (hover:hover){.barre nav a:hover{background:rgba(205,225,255,.16)}}
 .barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
 .barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 @media (max-width:640px){
@@ -119,13 +119,13 @@ h1{margin:0;font-weight:600}
 .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border:1px solid currentColor;background:transparent;color:inherit;
   font:500 .76rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer}
 .btn span{transition:transform .18s ease}
-.btn:hover span{transform:translateX(4px)}
-.btn:hover{background:var(--geo-wash)}
-.plan .btn:hover{background:rgba(205,225,255,.14)}
+@media (hover:hover){.btn:hover span{transform:translateX(4px)}}
+@media (hover:hover){.btn:hover{background:var(--geo-wash)}}
+@media (hover:hover){.plan .btn:hover{background:rgba(205,225,255,.14)}}
 .btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.plan .btn.plein:hover{background:#fff;border-color:#fff}
+@media (hover:hover){.plan .btn.plein:hover{background:#fff;border-color:#fff}}
 .btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}
+@media (hover:hover){.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}}
 @media (prefers-reduced-motion:reduce){.btn span{transition:none}}
 
 /* accueil : le titre, et l'écran qui s'expose photon par photon */
@@ -156,7 +156,7 @@ h1{margin:0;font-weight:600}
 .vues{display:flex;margin-top:clamp(1.7rem,3.6vw,2.7rem)}
 .vues a{padding:.98rem 1.25rem;border:1px solid var(--plan-trait-2);border-bottom:0;margin-right:-1px;background:var(--plan);color:var(--plan-ink-2);
   font:500 .74rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
-.vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
+@media (hover:hover){.vues a:hover{background:var(--plan-2);color:var(--plan-ink)}}
 .vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
 @media (max-width:640px){
   .vues a{flex:1 1 0;text-align:center;padding:1.05rem .3rem;letter-spacing:.05em}
@@ -190,7 +190,7 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .pagination{order:2;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--axis)}
 .pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
 .pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
-.pagination a:hover{background:var(--geo-wash)}
+@media (hover:hover){.pagination a:hover{background:var(--geo-wash)}}
 .pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.12 var(--display);letter-spacing:.01em;text-wrap:balance}
 @media (max-width:640px){.pagination b{font-weight:500;font-size:1.3rem}.pagination a{padding:1.1rem 20px}}
 
@@ -201,7 +201,7 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .sig svg{flex:none}
 .pied nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
 .pied nav a{padding:.45rem 0}
-.pied a:hover{color:var(--plan-ink)}
+@media (hover:hover){.pied a:hover{color:var(--plan-ink)}}
 
 /* texte */
 .head{display:flex;flex-direction:column;gap:1rem}
@@ -260,7 +260,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font:500 .78rem/1 var(--mono);padding:.52rem .6rem;border:1px solid var(--axis);background:transparent;color:var(--ink);cursor:pointer;border-radius:0}
-.chip:hover{border-color:var(--ink)}
+@media (hover:hover){.chip:hover{border-color:var(--ink)}}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
 .ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
@@ -384,7 +384,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .toc a{text-decoration:none}
-.toc a:hover{text-decoration:underline}
+@media (hover:hover){.toc a:hover{text-decoration:underline}}
 .dossier>h2{margin-top:2.8rem;padding-top:1.7rem;border-top:1px solid var(--axis);font:600 clamp(1.9rem,3.6vw,2.5rem)/1.05 var(--display);letter-spacing:.004em;max-width:26ch}
 .dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
@@ -402,12 +402,12 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .plt{display:flex;flex-direction:column;gap:.55rem;min-width:0}
 .plt h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.2}
 .plt h3 a{text-decoration:none}
-.plt h3 a:hover{text-decoration:underline}
+@media (hover:hover){.plt h3 a:hover{text-decoration:underline}}
 .plt>p{color:var(--ink-2)}
 .acces{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:.55rem;max-width:none}
 .acces .btn{padding:.78rem .95rem}
 .acces .btn.fin{border-color:var(--axis);color:var(--ink)}
-.acces .btn.fin:hover{border-color:var(--ink);background:transparent}
+@media (hover:hover){.acces .btn.fin:hover{border-color:var(--ink);background:transparent}}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
 .vis>a{display:block}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
@@ -485,6 +485,18 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
 .epure{margin:0;min-width:0}
 .epure figcaption{margin-top:.55rem;font-size:.8rem;line-height:1.4;color:var(--plan-ink-2)}
+.bilan{display:grid;grid-template-columns:1fr;border:1px solid var(--plan-trait-2)}
+.bilan p{display:flex;align-items:baseline;gap:1rem;max-width:none;padding:.9rem 1.2rem;border-bottom:1px solid var(--plan-trait-2)}
+.bilan p:last-child{border-bottom:0}
+.bilan b{min-width:2.6ch;font:600 clamp(2.4rem,4.4vw,3.4rem)/1 var(--display);color:var(--photon);text-align:right}
+.bilan span{font:500 .72rem/1.3 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+@media (max-width:760px){
+  .bilan{grid-template-columns:repeat(3,1fr)}
+  .bilan p{flex-direction:column;gap:.3rem;padding:.8rem .7rem;border-bottom:0;border-right:1px solid var(--plan-trait-2)}
+  .bilan p:last-child{border-right:0}
+  .bilan b{text-align:left;min-width:0}
+  .bilan span{letter-spacing:.06em;font-size:.66rem}
+}
 .epure .plaque,.plaque.mini{aspect-ratio:4/3}
 @media (max-width:980px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,21rem)}}
 @media (max-width:760px){
@@ -499,7 +511,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .jeton{min-height:2.5rem;padding:.6rem .85rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
   font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .jeton+.jeton{margin-left:-1px}
-.jeton:hover{background:rgba(205,225,255,.14)}
+@media (hover:hover){.jeton:hover{background:rgba(205,225,255,.14)}}
 .jeton[aria-pressed="true"]{background:var(--plan-ink);border-color:var(--plan-ink);color:var(--plan-2)}
 .choix .lien{font-size:.86rem;min-height:2.5rem}
 
@@ -514,7 +526,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
   .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
   .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
-  .rail a:hover{color:var(--ink)}
+  @media (hover:hover){.rail a:hover{color:var(--ink)}}
   .rail a[aria-current="true"]{border-left-color:var(--ink);color:var(--ink);font-weight:500}
   .avec-rail .toc{display:none}
 }
@@ -523,7 +535,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .fig{position:relative}
 .frise .ref{cursor:pointer;outline:none}
 .frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
-.frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .ref:focus .pt{fill:var(--ink)}
+@media (hover:hover){.frise .ref:hover .pt{fill:var(--ink)}}
 .frise .ref:focus-visible .touche{stroke:var(--ink);stroke-width:1.5}
 .frise .touche{fill:transparent}
 .bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
@@ -566,7 +579,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .docs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem 1.5rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--rule)}
 .docs .liens{display:flex;flex-wrap:wrap;gap:.4rem}
 .docs .liens a{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .75rem;border:1px solid var(--axis);font:500 .74rem/1 var(--mono);letter-spacing:.04em;text-decoration:none}
-.docs .liens a:hover{border-color:var(--ink)}
+@media (hover:hover){.docs .liens a:hover{border-color:var(--ink)}}
 @media (max-width:640px){.docs li{grid-template-columns:1fr}.docs li>span:first-child{font-weight:600}}
 
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
@@ -626,10 +639,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html" aria-current="page">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans">
+<div class="tete"><div>
 <p class="repere"><span>Dossier complet</span><span>Cinq démonstrations, synthèse, références</span></p>
 <h1>Formalisation du modèle « Actuel, Émergent, Local »</h1>
 <p class="chapeau">Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
 <p class="actions"><a class="btn plein" href="dossier-complet.pdf">Télécharger le PDF <span aria-hidden="true">→</span></a></p>
+</div>
+<figure class="epure"><div class="bilan" role="group" aria-label="Le dossier en chiffres"><p><b>5</b><span>démonstrations</span></p><p><b>106</b><span>formules</span></p><p><b>46</b><span>références</span></p></div></figure></div>
 </div></header>
 <div class="pose"><div class="sheet">
 <div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Les cinq piliers</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Dossier complet</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
