@@ -227,6 +227,11 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
 .stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
 .halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
+/* un graphique large passe à sa mise en page étroite dès la tablette : ses textes resteraient trop petits */
+@media (max-width:900px){
+  .stage>svg.wide.bureau:not(.frise){display:none}
+  .stage>svg.wide.bureau:not(.frise)+svg.mobile{display:block}
+}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -843,7 +848,7 @@ N(r) &amp;\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2
 <li>Chou, C. W., Hume, D. B., Rosenband, T., Wineland, D. J. (2010). <a href="https://tf.nist.gov/general/pdf/2447.pdf">Optical Clocks and Relativity</a>. Science 329, 1630⁠–⁠1633.</li>
 <li>Evans, J., Nandi, K. K., Islam, A. (1996). <a href="https://link.springer.com/article/10.1007/BF02105085">The optical-mechanical analogy in general relativity</a>. General Relativity and Gravitation 28, 413⁠–⁠439.</li>
 </ul>
-<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l'article <span aria-hidden="true">→</span></a></p>
+<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l’article <span aria-hidden="true">→</span></a></p>
 </article></div>
 </main>
 <nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-2/demonstration.html"><span class="num">← Pilier 2</span><b>On ne voit jamais la lumière passer</b></a><a href="../pilier-4/demonstration.html"><span class="num">Pilier 4 →</span><b>Le choix d’aujourd’hui ne réécrit pas le passé</b></a></nav>

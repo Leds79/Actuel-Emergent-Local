@@ -227,6 +227,11 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
 .stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
 .halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
+/* un graphique large passe à sa mise en page étroite dès la tablette : ses textes resteraient trop petits */
+@media (max-width:900px){
+  .stage>svg.wide.bureau:not(.frise){display:none}
+  .stage>svg.wide.bureau:not(.frise)+svg.mobile{display:block}
+}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -859,7 +864,7 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 <li>Rees, M. J. (1966). <a href="https://www.nature.com/articles/211468a0">Appearance of Relativistically Expanding Radio Sources</a>. Nature 211, 468⁠–⁠470.</li>
 <li>Nemiroff, R. J. (2015). <a href="https://arxiv.org/abs/1412.7581">Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams</a>. Publications of the Astronomical Society of Australia 32, e001.</li>
 </ul>
-<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l'article <span aria-hidden="true">→</span></a></p>
+<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l’article <span aria-hidden="true">→</span></a></p>
 </article></div>
 </main>
 <nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../index.html"><span class="num">← Accueil</span><b>Les cinq piliers</b></a><a href="../pilier-2/demonstration.html"><span class="num">Pilier 2 →</span><b>On ne voit jamais la lumière passer</b></a></nav>

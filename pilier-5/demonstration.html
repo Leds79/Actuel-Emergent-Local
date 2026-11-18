@@ -227,6 +227,11 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
 .stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
 .halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
+/* un graphique large passe à sa mise en page étroite dès la tablette : ses textes resteraient trop petits */
+@media (max-width:900px){
+  .stage>svg.wide.bureau:not(.frise){display:none}
+  .stage>svg.wide.bureau:not(.frise)+svg.mobile{display:block}
+}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -767,7 +772,7 @@ I(S\!:\!M) :\quad 2\ \text{bits} \;&amp;\longrightarrow\; 1\ \text{bit}
 <li>Belloni, J. (2002). <a href="https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/S1631-0705(02)01321-X.pdf">The role of silver clusters in photography</a>. Comptes Rendus Physique 3, 381⁠–⁠390.</li>
 <li>Gain des photomultiplicateurs : <a href="https://evidentscientific.com/en/microscope-resource/knowledge-hub/digitalimaging/concepts/photomultipliers">page technique d’Evident Scientific</a>.</li>
 </ul>
-<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l'article <span aria-hidden="true">→</span></a></p>
+<p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l’article <span aria-hidden="true">→</span></a></p>
 </article></div>
 </main>
 <nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-4/demonstration.html"><span class="num">← Pilier 4</span><b>Le choix d’aujourd’hui ne réécrit pas le passé</b></a><a href="../dossier.html"><span class="num">Pour finir →</span><b>Le dossier complet</b></a></nav>

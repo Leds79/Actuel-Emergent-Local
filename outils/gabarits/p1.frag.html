@@ -282,7 +282,7 @@
     const u = clamp(U0 + (sx - LG) / (RD - LG) * (U1 - U0), U0, U1);
     x = D * Math.pow(10, u); slider.value = u.toFixed(2); pressOnly('#p1-chips .chip', null); render();
   }
-  const etroit = window.matchMedia('(max-width: 640px)');
+  const etroit = window.matchMedia('(max-width: 900px)');      // sous cette largeur, le graphique large aurait des textes trop petits
   const poser = () => { chart(etroit.matches); render(); };
   if (etroit.addEventListener) etroit.addEventListener('change', poser);
   poser();

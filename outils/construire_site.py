@@ -386,7 +386,7 @@ def chapeau(h):
 
 
 def bouton(href, texte, classe="btn"):
-    return '<a class="%s" href="%s">%s <span aria-hidden="true">→</span></a>' % (classe, href, texte)
+    return '<a class="%s" href="%s">%s <span aria-hidden="true">→</span></a>' % (classe, href, t(texte))
 
 
 def intuition(n):
