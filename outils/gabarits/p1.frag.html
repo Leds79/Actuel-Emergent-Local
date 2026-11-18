@@ -1,0 +1,246 @@
+<div class="head">
+  <h1>L'ombre plus rapide que la lumière</h1>
+  <p class="lead">Sur un écran plat à 100 millions de kilomètres, l'ombre des ciseaux démarre à 524 fois la vitesse de la lumière. Elle retombe ensuite vers c, et celui qui tient les ciseaux la voit ralentir jusqu'à c/2. Déplacez le point visé pour le vérifier.</p>
+</div>
+
+<section aria-labelledby="p1-h-geo">
+  <span class="eyebrow">Figure interactive</span>
+  <h2 id="p1-h-geo">Plus le point visé s'éloigne du centre, plus la diagonale s'allonge</h2>
+  <div class="fig">
+    <div class="stage">
+      <svg viewBox="0 0 660 400" role="img" aria-label="La source, l'écran plat et la diagonale que la lumière parcourt jusqu'au point visé">
+        <defs>
+          <marker id="ar-ray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker>
+          <marker id="ar-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker>
+        </defs>
+        <line x1="30" y1="90" x2="640" y2="90" class="lnk"/>
+        <text x="30" y="82" class="tb">écran plat</text>
+        <path d="M90 90A250 250 0 0 1 340 340" class="ln dash"/>
+        <text x="300" y="372" class="tq">écran courbe : même distance partout</text>
+        <line x1="90" y1="340" x2="90" y2="90" class="ln"/>
+        <text x="80" y="222" text-anchor="end" class="tq">100 M km</text>
+        <text x="84" y="108" text-anchor="end" class="tm">centre</text>
+        <path id="g-arc" class="ln" d="M90 294A46 46 0 0 1 122 307"/>
+        <text id="g-theta" class="tq" text-anchor="middle" x="114" y="286">θ</text>
+        <line id="g-base" class="ln" style="stroke:var(--ink-2)" x1="90" y1="340" x2="267" y2="163"/>
+        <line id="g-extra" class="ray" x1="267" y1="163" x2="340" y2="90"/>
+        <circle id="g-dot" r="5.5" class="f-ray" cx="340" cy="90"/>
+        <g id="g-dim">
+          <line id="g-dimline" class="ln" x1="90" y1="58" x2="340" y2="58" marker-start="url(#ar-ax)" marker-end="url(#ar-ax)"/>
+          <text id="g-dimtxt" class="tm" text-anchor="middle" x="215" y="50">x</text>
+        </g>
+        <text id="g-out" class="tq" text-anchor="end" x="624" y="150" visibility="hidden">point visé hors du cadre</text>
+        <circle cx="90" cy="340" r="6" class="f-ink"/>
+        <text x="90" y="366" text-anchor="middle" class="tb">source et opérateur</text>
+      </svg>
+    </div>
+    <div class="panel">
+      <div class="ctl">
+        <label for="p1-x">Point visé sur l'écran <output id="p1-xo" for="p1-x"></output></label>
+        <input type="range" id="p1-x" min="-4" max="2.3" step="0.01" value="0">
+      </div>
+      <div class="chips" id="p1-chips" role="group" aria-label="Positions repères">
+        <button class="chip" type="button" data-x="0" aria-pressed="false">Centre</button>
+        <button class="chip" type="button" data-x="1e7" aria-pressed="false">10 M km</button>
+        <button class="chip" type="button" data-x="1e8" aria-pressed="true">100 M km</button>
+        <button class="chip" type="button" data-x="1e9" aria-pressed="false">1 G km</button>
+        <button class="chip" type="button" data-x="ly" aria-pressed="false">1 M d'années-lumière</button>
+      </div>
+      <dl class="ro">
+        <dt>Vitesse réelle de l'ombre</dt><dd id="p1-ve"></dd>
+        <dt>Vitesse vue par l'opérateur</dt><dd id="p1-vo"></dd>
+        <dt>L'opérateur la voit après</dt><dd id="p1-to"></dd>
+        <dt>Trajet en plus, aller simple</dt><dd id="p1-ex"></dd>
+      </dl>
+      <p class="state" id="p1-state"></p>
+    </div>
+  </div>
+  <p class="figcap">La partie orange est le trajet en plus par rapport à un écran courbe, où toutes les diagonales auraient la même longueur. C'est elle qui retarde l'ombre, et elle compte double pour l'opérateur.</p>
+</section>
+
+<section aria-labelledby="p1-h-chart">
+  <span class="eyebrow">Graphique</span>
+  <h2 id="p1-h-chart">L'ombre retombe vers c, et l'opérateur la voit tendre vers c/2</h2>
+  <div class="legend"><span><i class="k-geo"></i>Vitesse réelle de l'ombre sur l'écran</span><span><i class="k-ray"></i>Vitesse vue par l'opérateur</span></div>
+  <div class="fig solo"><div class="stage plain">
+    <svg id="p1-chart" class="wide" viewBox="0 0 1000 400" role="img" aria-label="Les deux vitesses en fonction de la distance au centre : elles partent de 524 c et tendent vers c et c/2"></svg>
+  </div></div>
+  <p class="figcap">Échelles logarithmiques. Cliquez ou glissez sur le graphique pour déplacer le point visé.</p>
+</section>
+
+<section aria-label="Chiffres clés">
+  <span class="eyebrow">Chiffres clés</span>
+  <div class="stats">
+    <div class="stat"><b>524 c</b><span>vitesse de l'ombre au centre de l'écran</span></div>
+    <div class="stat"><b>c</b><span>limite de la vitesse réelle, très loin du centre</span></div>
+    <div class="stat"><b>c/2</b><span>limite de la vitesse vue par l'opérateur</span></div>
+    <div class="stat"><b>2 millions d'années</b><span>attente pour voir une pointe située à 1 million d'années-lumière</span></div>
+  </div>
+</section>
+
+<div class="cols">
+  <section aria-labelledby="p1-h-f">
+    <span class="eyebrow">Formules</span>
+    <h2 id="p1-h-f">Deux délais qui s'additionnent</h2>
+    <div class="formulas">
+      <div class="formula"><span class="frac"><span>1</span><span>v<sub class="up">écran</sub></span></span><span class="up">=</span><span class="frac"><span>1</span><span>v<sub class="up">visée</sub></span></span><span class="up">+</span><span class="frac"><span><span class="up">sin</span> θ</span><span>c</span></span></div>
+      <div class="formula"><span class="frac"><span>1</span><span>v<sub class="up">vue</sub></span></span><span class="up">=</span><span class="frac"><span>1</span><span>v<sub class="up">visée</sub></span></span><span class="up">+</span><span class="frac"><span>2 <span class="up">sin</span> θ</span><span>c</span></span></div>
+    </div>
+    <p class="fnote">La vitesse de visée est celle à laquelle la source déplace le point visé. L'angle θ sépare l'axe de la diagonale. Quand le point s'éloigne, sin θ tend vers 1 et la vitesse de visée devient énorme : il reste c pour l'ombre, et c/2 pour l'opérateur.</p>
+  </section>
+  <section aria-label="Lecture et correction">
+    <div class="lecture">
+      <span class="eyebrow">Lecture mécanique</span>
+      <p>Ce sont deux tâches en série. Pour avancer d'un kilomètre sur l'écran, la source doit viser ce kilomètre, puis la lumière doit parcourir le supplément de diagonale.</p>
+      <p>Près du centre, la source donne le rythme. Loin du centre, le trajet de la lumière devient le goulot d'étranglement.</p>
+    </div>
+    <div class="correction">
+      <span class="eyebrow">Correction apportée</span>
+      <p>La vitesse vue ne « plafonne » pas à c/2 : elle y descend. Avec une fermeture d'une seconde, elle part de 524 c et tend vers c/2 sans jamais passer dessous.</p>
+      <p>c/2 ne serait un plafond que pour un balayage lent.</p>
+    </div>
+  </section>
+</div>
+
+<section aria-labelledby="p1-h-t">
+  <span class="eyebrow">Tableau</span>
+  <h2 id="p1-h-t">Les distances du problème</h2>
+  <div class="tablewrap">
+    <table class="data">
+      <thead><tr><th>Distance au centre</th><th class="n">Vitesse réelle (en c)</th><th class="n">Vitesse vue (en c)</th><th class="n">Vue par l'opérateur après</th></tr></thead>
+      <tbody>
+        <tr><td>Au centre</td><td class="n">524</td><td class="n">524</td><td class="n">11 min 7 s</td></tr>
+        <tr><td>10 millions de km</td><td class="n">9,86</td><td class="n">4,98</td><td class="n">11 min 11 s</td></tr>
+        <tr><td>100 millions de km</td><td class="n">1,412</td><td class="n">0,707</td><td class="n">15 min 44 s</td></tr>
+        <tr><td>1 milliard de km</td><td class="n">1,0050</td><td class="n">0,5025</td><td class="n">1 h 52 min</td></tr>
+        <tr><td>1 million d'années-lumière</td><td class="n">1</td><td class="n">0,5</td><td class="n">2 millions d'années</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="fnote">Hypothèses : écran à 100 millions de kilomètres, direction de l'ombre balayant 90° en une seconde, opérateur placé à la source. À cette distance la diffraction noierait l'ombre de vrais ciseaux : c'est une expérience de pensée.</p>
+</section>
+<!--SCRIPT-->
+(function () {
+  const C = 299792.458, D = 1e8, OM = Math.PI / 2, A = D * OM / C, YEAR = 31557600, LY = C * YEAR;
+  const O = { x: 90, y: 340 }, SY = 90, DP = 250, XEDGE = 630;
+  const U0 = -4, U1 = 2.3;
+  const calc = x => {
+    const R = Math.hypot(D, x), s = x / R, c2 = (D / R) * (D / R), th = Math.atan2(x, D), tau = th / OM;
+    return { R, s, th, tau, ve: 1 / (s + c2 / A), vo: 1 / (2 * s + c2 / A), tO: tau + 2 * R / C };
+  };
+  const dist = x => {
+    if (x === 0) return 'au centre';
+    if (x >= 1e15) return sig(x / LY / 1e6, 2) + ' M d’années-lumière';
+    if (x >= 1e9) return sig(x / 1e9) + (x < 2e9 ? ' milliard de km' : ' milliards de km');
+    if (x >= 1e6) return sig(x / 1e6) + (x < 2e6 ? ' million de km' : ' millions de km');
+    return frNum(Math.round(x / 1000) * 1000) + ' km';
+  };
+  const km = v => v >= 1e15 ? sci(v) + ' km' : v >= 1e9 ? sig(v / 1e9) + ' G km' : v >= 1e6 ? sig(v / 1e6) + ' M km' : frNum(Math.round(v)) + ' km';
+  const slider = $('#p1-x');
+  let x = D;
+
+  // --- graphique des deux vitesses
+  const ch = $('#p1-chart'), L = 92, R = 968, T = 26, B = 330, Y0 = Math.log10(0.25), Y1 = 3;
+  const px = u => L + (u - U0) / (U1 - U0) * (R - L);
+  const py = v => B - (Math.log10(v) - Y0) / (Y1 - Y0) * (B - T);
+  [[0.5, 'c/2'], [1, 'c'], [10, '10 c'], [100, '100 c'], [1000, '1 000 c']].forEach(([v, lab]) => {
+    const lim = v <= 1;
+    ch.appendChild(el('line', { x1: L, x2: R, y1: py(v), y2: py(v), class: lim ? 'ln dash' : 'gr' }));
+    ch.appendChild(el('text', { x: L - 10, y: py(v) + 4, 'text-anchor': 'end', class: lim ? 'tb' : 'tm' }, lab));
+  });
+  [[-4, '10 000 km'], [-3, '100 000 km'], [-2, '1 M km'], [-1, '10 M km'], [0, '100 M km'], [1, '1 G km'], [2, '10 G km']].forEach(([u, lab]) => {
+    ch.appendChild(el('line', { x1: px(u), x2: px(u), y1: B, y2: B + 6, class: 'ln' }));
+    ch.appendChild(el('text', { x: px(u), y: B + 22, 'text-anchor': 'middle', class: 'tm' }, lab));
+  });
+  ch.appendChild(el('line', { x1: L, x2: R, y1: B, y2: B, class: 'ln' }));
+  ch.appendChild(el('text', { x: (L + R) / 2, y: B + 50, 'text-anchor': 'middle', class: 'tq' }, 'distance du point visé au centre de l’écran'));
+  const curve = key => {
+    let d = '';
+    for (let i = 0; i <= 252; i++) {
+      const u = U0 + (U1 - U0) * i / 252, k = calc(D * Math.pow(10, u));
+      d += (i ? 'L' : 'M') + px(u).toFixed(1) + ' ' + py(k[key]).toFixed(1);
+    }
+    return d;
+  };
+  ch.appendChild(el('path', { d: curve('ve'), class: 'geo' }));
+  ch.appendChild(el('path', { d: curve('vo'), class: 'ray' }));
+  const kl = calc(D * Math.pow(10, -1.5));
+  ch.appendChild(el('text', { x: px(-1.5) + 14, y: py(kl.ve) - 12, class: 't' }, 'vitesse réelle de l’ombre'));
+  ch.appendChild(el('text', { x: px(-1.5) - 14, y: py(kl.vo) + 24, 'text-anchor': 'end', class: 't' }, 'vitesse vue par l’opérateur'));
+  const cross = ch.appendChild(el('line', { y1: T, y2: B, class: 'ln', style: 'stroke:var(--ink-2)' }));
+  const m1 = ch.appendChild(el('circle', { r: 6.5, class: 'f-geo ring' }));
+  const m2 = ch.appendChild(el('circle', { r: 6.5, class: 'f-ray ring' }));
+  const hit = ch.appendChild(el('rect', { x: L, y: T, width: R - L, height: B - T, class: 'hit' }));
+
+  // --- géométrie
+  const gBase = $('#g-base'), gExtra = $('#g-extra'), gDot = $('#g-dot'), gDim = $('#g-dim'), gDimLine = $('#g-dimline'),
+    gDimTxt = $('#g-dimtxt'), gOut = $('#g-out'), gArc = $('#g-arc'), gTheta = $('#g-theta');
+  function drawGeo(k) {
+    const dx = Math.sin(k.th), dy = -Math.cos(k.th);
+    const ax = O.x + DP * dx, ay = O.y + DP * dy;
+    let ex = O.x + DP * (x / D), ey = SY, out = false;
+    if (ex > XEDGE) { out = true; ex = XEDGE; ey = O.y + (ex - O.x) / dx * dy; }
+    set(gBase, { x2: ax.toFixed(1), y2: ay.toFixed(1) });
+    set(gExtra, { x1: ax.toFixed(1), y1: ay.toFixed(1), x2: ex.toFixed(1), y2: ey.toFixed(1) });
+    if (out) {
+      gExtra.setAttribute('marker-end', 'url(#ar-ray)');
+      gDot.setAttribute('visibility', 'hidden');
+      gDim.setAttribute('visibility', 'hidden');
+      set(gOut, { visibility: 'visible', y: (ey - 12).toFixed(1) });
+    } else {
+      gExtra.removeAttribute('marker-end');
+      set(gDot, { visibility: 'visible', cx: ex.toFixed(1), cy: ey });
+      gOut.setAttribute('visibility', 'hidden');
+      if (ex - O.x > 60) {
+        gDim.setAttribute('visibility', 'visible');
+        gDimLine.setAttribute('x2', ex.toFixed(1));
+        set(gDimTxt, { x: ((O.x + ex) / 2).toFixed(1) });
+        gDimTxt.textContent = 'x = ' + dist(x);
+      } else gDim.setAttribute('visibility', 'hidden');
+    }
+    if (k.th > 0.12) {
+      const r = 46, h = k.th / 2;
+      gArc.setAttribute('d', 'M' + O.x + ' ' + (O.y - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (O.x + r * dx).toFixed(1) + ' ' + (O.y + r * dy).toFixed(1));
+      set(gTheta, { x: (O.x + 62 * Math.sin(h)).toFixed(1), y: (O.y - 62 * Math.cos(h) + 4).toFixed(1), visibility: 'visible' });
+      gArc.setAttribute('visibility', 'visible');
+    } else { gArc.setAttribute('visibility', 'hidden'); gTheta.setAttribute('visibility', 'hidden'); }
+  }
+
+  function render() {
+    const k = calc(x);
+    $('#p1-xo').textContent = dist(x);
+    $('#p1-ve').innerHTML = sig(k.ve, 4) + ' c<small>' + frNum(Math.round(k.ve * C)) + ' km/s</small>';
+    $('#p1-vo').innerHTML = sig(k.vo, 4) + ' c<small>' + frNum(Math.round(k.vo * C)) + ' km/s</small>';
+    $('#p1-to').textContent = duree(k.tO);
+    $('#p1-ex').textContent = x === 0 ? '0 km' : km(k.R - D);
+    $('#p1-state').textContent =
+      x === 0 ? 'Au centre, la diagonale ne s’allonge pas : seule la source donne le rythme.'
+        : k.vo > 1 ? 'Ici l’ombre dépasse c, et l’opérateur la voit lui aussi plus rapide que c.'
+          : k.vo > 0.52 ? 'L’ombre dépasse toujours c, mais l’opérateur la voit maintenant plus lente que c.'
+            : 'Très loin du centre, l’ombre court presque à c et l’opérateur la voit avancer presque à c/2.';
+    drawGeo(k);
+    const u = x > 0 ? Math.log10(x / D) : U0;
+    const vis = u <= U1 ? 'visible' : 'hidden', uc = clamp(u, U0, U1);
+    set(cross, { x1: px(uc), x2: px(uc), visibility: vis });
+    set(m1, { cx: px(uc), cy: py(k.ve), visibility: vis });
+    set(m2, { cx: px(uc), cy: py(k.vo), visibility: vis });
+  }
+
+  slider.addEventListener('input', () => { x = D * Math.pow(10, Number(slider.value)); pressOnly('#p1-chips .chip', null); render(); });
+  $$('#p1-chips .chip').forEach(b => b.addEventListener('click', () => {
+    x = b.dataset.x === 'ly' ? 1e6 * LY : Number(b.dataset.x);
+    slider.value = x > 0 ? clamp(Math.log10(x / D), U0, U1) : U0;
+    pressOnly('#p1-chips .chip', b); render();
+  }));
+  const fromPointer = e => {
+    const r = ch.getBoundingClientRect(), sx = (e.clientX - r.left) / r.width * 1000;
+    const u = clamp(U0 + (sx - L) / (R - L) * (U1 - U0), U0, U1);
+    x = D * Math.pow(10, u); slider.value = u.toFixed(2); pressOnly('#p1-chips .chip', null); render();
+  };
+  let drag = false;
+  hit.addEventListener('pointerdown', e => { drag = true; hit.setPointerCapture(e.pointerId); fromPointer(e); });
+  hit.addEventListener('pointermove', e => { if (drag) fromPointer(e); });
+  hit.addEventListener('pointerup', () => { drag = false; });
+  hit.addEventListener('pointercancel', () => { drag = false; });
+  render();
+})();

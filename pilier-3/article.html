@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>On ne voit jamais la lumière passer</title>
+<title>Tomber, c&#x27;est suivre la pente du temps</title>
+<meta name="description" content="Près d&#x27;une masse, les horloges battent plus lentement. La pesanteur est la pente de ce ralentissement, multipliée par c².">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
@@ -181,131 +182,147 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
 .err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
 
+/* cartouche : liens */
+.cv a{text-decoration:none}
+.cv a:hover{text-decoration:underline}
+.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+
+/* onglets : les trois vues d'un pilier */
+.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
+.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
+.vues a:hover{color:var(--ink)}
+.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
+
+/* texte long : articles et démonstrations */
+.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.prose>h2{margin-top:1.5rem;font-size:1.4rem}
+.prose>h3{margin-top:.5rem;font-size:1.05rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+.prose li{padding-left:.15rem}
+.prose .fig{margin:0}
+.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
+.tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
+.tex .katex-display{margin:.5em 0}
+.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
+
+/* accueil : liste des planches */
+.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
+.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
+.pl:last-child{border-bottom:0}
+.pl>svg{width:132px;height:auto;display:block}
+.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.pl h3{font-size:1.18rem}
+.pl h3 a{text-decoration:none}
+.pl h3 a:hover{text-decoration:underline}
+.pl p{font-size:.94rem;color:var(--ink-2)}
+.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
+@media (max-width:760px){
+  .pl{grid-template-columns:1fr;gap:.8rem}
+  .pl>svg{width:110px}
+  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
+}
+
+/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
+table.large{min-width:34rem}
+table.large.c6{min-width:46rem}
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td{border:0;padding:.3rem 0}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
+@media (max-width:640px){
+  .tex.ok{padding:.4rem .7rem}
+  .tex .katex{font-size:1.05em}
+}
+
 </style>
 </head>
 <body>
 <div class="sheet">
 <header class="cartouche">
-  <div class="cc"><span class="ck">Projet</span><span class="cv">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</span></div>
-  <div class="cc"><span class="ck">Objet</span><span class="cv">Lumière actuelle, émergente, locale</span></div>
-  <div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div>
+  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="../index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
+  <div class="cc"><span class="ck">Objet</span><span class="cv">Cadence c et masse comme frein</span></div>
+  <div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div>
   <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
   <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
-  <nav class="cc" aria-label="Planches du modèle"><span class="ck">Planche 2 / 5</span><span class="cv planches"><a href="Pilier%201%20-%20L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="Pilier%202%20-%20On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.html" aria-current="page" title="On ne voit jamais la lumière passer">2</a><a href="Pilier%203%20-%20La%20pente%20du%20temps.html" title="La pente du temps">3</a><a href="Pilier%204%20-%20Le%20choix%20qui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="Pilier%205%20-%20Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.html" title="Comment une réponse devient un fait">5</a></span></nav>
+  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Pilier 3 / 5</span><span class="cv planches"><a class="som" href="../index.html">Sommaire</a><a href="../pilier-1/article.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" aria-current="page" title="La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait">5</a></span></nav>
 </header>
+<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche interactive</a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
 <main>
-<div class="head">
-  <h1>On ne voit jamais la lumière passer</h1>
-  <p class="lead">Un faisceau qui traverse le vide est invisible de côté&nbsp;: l'œil ne voit que la lumière qui entre en lui. Ajoutez de la poussière et le faisceau apparaît, parce que la matière renvoie un peu de lumière. Ce qu'on voit est toujours de la matière éclairée.</p>
-</div>
-
-<section aria-labelledby="p2-h-dust">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p2-h-dust">Sans matière sur son trajet, le faisceau ne se voit pas</h2>
-  <div class="fig">
-    <div class="stage">
-      <svg viewBox="0 0 660 410" role="img" aria-label="Un laser éclaire un mur. Un œil placé de côté ne voit le faisceau que si de la poussière se trouve sur son trajet">
-        <rect x="34" y="136" width="46" height="28" class="box"/>
-        <text x="57" y="126" text-anchor="middle" class="tb">laser</text>
-        <line x1="604" y1="50" x2="604" y2="250" class="lnk"/>
-        <text x="604" y="40" text-anchor="middle" class="tb">mur</text>
-        <g id="b-path" visibility="hidden">
-          <line x1="80" y1="150" x2="596" y2="150" class="geo dash" style="stroke-width:1.5"/>
-          <text x="330" y="136" text-anchor="middle" class="tq">trajet calculé, invisible pour l'œil</text>
-        </g>
-        <line id="b-wall-eye" x1="598" y1="154" x2="344" y2="340" class="ray" style="stroke-width:1.25;opacity:.55"/>
-        <g id="b-dust"></g>
-        <circle id="b-spot" cx="604" cy="150" r="9" class="f-ray"/>
-        <path d="M296 352Q330 326 364 352Q330 378 296 352Z" class="box"/>
-        <circle cx="330" cy="352" r="9" class="f-ink"/>
-        <text x="330" y="398" text-anchor="middle" class="tb">œil, placé de côté</text>
-        <text x="492" y="268" class="tq">la tache sur le mur, elle, se voit</text>
-      </svg>
-    </div>
-    <div class="panel">
-      <div class="ctl">
-        <label for="p2-d">Poussière dans la pièce <output id="p2-do" for="p2-d"></output></label>
-        <input type="range" id="p2-d" min="0" max="100" step="1" value="0">
-      </div>
-      <label class="check"><input type="checkbox" id="p2-path"><span>Montrer le trajet calculé du faisceau</span></label>
-      <dl class="ro">
-        <dt>Grains de poussière dans la pièce</dt><dd id="p2-n"></dd>
-        <dt>Grains éclairés, visibles de côté</dt><dd id="p2-lit"></dd>
-        <dt>Lumière qui atteint encore le mur</dt><dd id="p2-wall"></dd>
-      </dl>
-      <p class="state" id="p2-state"></p>
-    </div>
-  </div>
-  <p class="figcap">Chaque trait orange est de la lumière qui entre réellement dans l'œil. Dans le vide, aucun ne part du faisceau&nbsp;: il n'y a rien à voir de côté.</p>
-</section>
-
-<section aria-labelledby="p2-h-fan">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p2-h-fan">Chaque impact vient de la source, aucun ne vient de son voisin</h2>
-  <div class="fig">
-    <div class="stage">
-      <svg id="p2-fan" viewBox="0 0 660 300" role="img" aria-label="Trois rayons partent de la source vers trois points A, B et C de l'écran. Masquer un point ne change rien aux deux autres">
-        <line x1="60" y1="70" x2="600" y2="70" class="lnk"/>
-        <text x="600" y="56" text-anchor="end" class="tb">écran</text>
-        <circle cx="330" cy="262" r="6" class="f-ink"/>
-        <text x="330" y="288" text-anchor="middle" class="tb">source</text>
-      </svg>
-    </div>
-    <div class="panel">
-      <div class="chips" id="p2-chips" role="group" aria-label="Masquer un point de l'écran">
-        <button class="chip" type="button" data-i="0" aria-pressed="false">Poser la main devant A</button>
-        <button class="chip" type="button" data-i="1" aria-pressed="false">Poser la main devant B</button>
-        <button class="chip" type="button" data-i="2" aria-pressed="false">Poser la main devant C</button>
-      </div>
-      <p class="state" id="p2-fstate"></p>
-      <p class="fnote">Quand on balaie l'écran, la tache semble glisser de A vers B puis C. Elle n'est pourtant pas un objet&nbsp;: c'est une suite d'arrivées séparées.</p>
-    </div>
-  </div>
-</section>
-
-<section aria-label="Les trois mots du modèle">
-  <span class="eyebrow">Les trois mots du modèle</span>
-  <dl class="defs">
-    <div><dt>Actuel</dt><dd>Un événement lumineux se produit à un instant précis.</dd></div>
-    <div><dt>Émergent</dt><dd>Il naît de la rencontre entre la lumière et la matière.</dd></div>
-    <div><dt>Local</dt><dd>Il a lieu à un endroit précis, et nulle part ailleurs.</dd></div>
-  </dl>
-</section>
-
-<div class="cols">
-  <section aria-labelledby="p2-h-f">
-    <span class="eyebrow">Formule</span>
-    <h2 id="p2-h-f">Quand la tache dépasse c, l'ordre des impacts n'est plus absolu</h2>
-    <div class="formula">Δs² <span class="up">=</span> c² Δt² <span class="up">−</span> Δx² <span class="up">&lt; 0</span></div>
-    <p class="fnote">Entre deux impacts A et B, Δt est la durée et Δx la distance. Quand cet intervalle est négatif, deux observateurs en mouvement ne s'accordent plus sur l'ordre de A et de B. Or une cause précède son effet pour tout le monde&nbsp;: aucun des deux impacts ne peut causer l'autre.</p>
-  </section>
-  <section aria-label="Lecture et correction">
-    <div class="lecture">
-      <span class="eyebrow">Lecture mécanique</span>
-      <p>A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne. Bloquer l'une ne retarde pas l'autre.</p>
-    </div>
-    <div class="correction">
-      <span class="eyebrow">Correction apportée</span>
-      <p>«&nbsp;Potentiel&nbsp;» ne veut pas dire «&nbsp;rien&nbsp;». En chemin, la lumière transporte de l'énergie&nbsp;: si le Soleil s'éteignait, elle continuerait d'arriver pendant 8 minutes 20 secondes.</p>
-      <p>Ce qui reste en suspens, c'est seulement l'événement&nbsp;: où et quand elle sera reçue.</p>
-    </div>
-  </section>
-</div>
-
-<section aria-label="Chiffres clés">
-  <span class="eyebrow">Chiffres clés</span>
-  <div class="stats">
-    <div class="stat"><b>0</b><span>lumière reçue de côté quand le faisceau traverse le vide</span></div>
-    <div class="stat"><b>1 clic</b><span>un photon ne déclenche jamais deux détecteurs à la fois (Grangier, Roger et Aspect, 1986)</span></div>
-    <div class="stat"><b>8 min 20 s</b><span>lumière déjà en route entre le Soleil et la Terre</span></div>
-  </div>
-  <p class="fnote">Regarder un photon passer voudrait dire interagir avec lui&nbsp;: on ne peut pas observer le voyage sans y prendre part.</p>
-</section>
+<article class="prose">
+<div class="head"><span class="eyebrow">Article · pilier 3</span><h1>Tomber, c&#x27;est suivre la pente du temps</h1></div>
+<p>Près d'une masse, le temps s'écoule plus lentement, et cette différence suffit à faire tomber les corps. La pesanteur que nous ressentons est exactement la pente de ce ralentissement, multipliée par le carré de la vitesse de la lumière. L'image d'une masse qui « freine » son voisinage est donc juste, à condition de ne pas y voir un frottement.</p>
+<h2>Tout avance, même immobile</h2>
+<p>Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.</p>
+<p>Ce budget se partage. Ce qu'un objet dépense en vitesse dans l'espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu'à 80 % de son rythme.</p>
+<h2>Une masse ralentit les horloges voisines</h2>
+<p>Le temps ne s'écoule pas partout au même rythme. Près d'une masse, une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.</p>
+<div class="tablewrap"><table class="data">
+<thead>
+<tr>
+<th>Lieu</th>
+<th>Retard de l'horloge par rapport à une horloge lointaine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Surface de la Terre</td>
+<td>22 millièmes de seconde par an</td>
+</tr>
+<tr>
+<td>Surface du Soleil</td>
+<td>67 secondes par an</td>
+</tr>
+<tr>
+<td>Surface d'une étoile à neutrons</td>
+<td>19 %, soit 69 jours par an</td>
+</tr>
+<tr>
+<td>Horizon d'un trou noir</td>
+<td>arrêt complet, vu de loin</td>
+</tr>
+</tbody>
+</table></div>
+<p>Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait de 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.</p>
+<p>Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.</p>
+<h2>Tomber, c'est virer vers le temps lent</h2>
+<p>Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle.</p>
+<figure class="fig solo"><figcaption class="figtitle">Le côté lent avance moins : la trajectoire vire vers la masse</figcaption><div class="stage"><svg viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="44" y1="48" x2="44" y2="222" class="ln"/><text x="24" y="38" class="tq">temps plus rapide</text><text x="24" y="240" class="tq">temps plus lent</text><rect x="24" y="254" width="712" height="28" class="box" style="fill:var(--grid)"/><text x="380" y="273" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M200 66Q470 66 680 186" class="ray" marker-end="url(#fp-a)"/><text x="700" y="210" text-anchor="end" class="tq">trajectoire</text><g class="lnk" style="stroke:var(--ink-2)"><line x1="200" y1="31" x2="200" y2="101"/><line x1="387.5" y1="46.2" x2="375.8" y2="115.2"/><line x1="560.7" y1="92" x2="536.5" y2="157.6"/></g><text x="200" y="20" text-anchor="middle" class="tq">front d'onde</text><text x="574" y="86" class="tq">le haut avance plus vite</text><text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text></svg></div></figure>
+<p>Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s'incurve vers la masse.</p>
+<p>Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.</p>
+<p>Votre tête vieillit donc un peu plus vite que vos pieds. Sur une vie de 80 ans, l'écart atteint à peine un demi-millionième de seconde. C'est pourtant lui qui vous tient au sol.</p>
+<h2>La lumière tombe deux fois plus</h2>
+<p>La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc.</p>
+<p>La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.</p>
+<p>L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites. La lumière met aussi plus de temps à passer près du Soleil : un écho radar renvoyé par Vénus revient avec environ deux dix-millièmes de seconde de retard.</p>
+<h2>Un frein sans frottement</h2>
+<p>L'image du frein a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.</p>
+<p>Ensuite, rien ne s'use. Un frein ordinaire chauffe et dissipe de l'énergie ; ici, aucune énergie n'est perdue.</p>
+<p>Enfin, l'image dit comment les choses tombent, pas pourquoi une masse ralentit le temps. Cette question relève des équations d'Einstein, qui décrivent aussi ce que l'image ne couvre pas : les ondes gravitationnelles et l'expansion de l'univers.</p>
+<h2>Sources et précisions</h2>
+<ul>
+<li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 3. Les chiffres du tableau, du GPS et de l'écart entre la tête et les pieds en sont tirés par calcul.</li>
+<li>Déviation de la lumière : Einstein, A. (1911). <a href="https://zenodo.org/records/1424213">Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes</a>. Annalen der Physik 35, 898–908. Einstein, A. (1916). <a href="https://zenodo.org/records/1424302">Die Grundlage der allgemeinen Relativitätstheorie</a>. Annalen der Physik 49, 769–822.</li>
+<li>Éclipse de 1919 : Dyson, F. W., Eddington, A. S., Davidson, C. (1920). <a href="https://zenodo.org/records/1432106">A Determination of the Deflection of Light by the Sun's Gravitational Field</a>. Philosophical Transactions of the Royal Society A 220, 291–333.</li>
+<li>Retard des échos radar : Shapiro, I. I. (1964). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.13.789">Fourth Test of General Relativity</a>. Physical Review Letters 13, 789–791. Confirmé à 0,002 % près par la sonde Cassini : Bertotti, B., Iess, L., Tortora, P. (2003). <a href="https://www.nature.com/articles/nature01997">A test of general relativity using radio links with the Cassini spacecraft</a>. Nature 425, 374–376.</li>
+<li>Horloges séparées de 33 centimètres : Chou, C. W., Hume, D. B., Rosenband, T., Wineland, D. J. (2010). <a href="https://tf.nist.gov/general/pdf/2447.pdf">Optical Clocks and Relativity</a>. Science 329, 1630–1633.</li>
+<li>L'image d'un vide qui ralentit la lumière remonte à Einstein (1911). Elle a été reprise par Dicke, R. H. (1957). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.363">Gravitation without a Principle of Equivalence</a>. Reviews of Modern Physics 29, 363–376.</li>
+</ul>
+<p class="suite"><a href="index.html">Manipuler la planche interactive</a> · <a href="demonstration.html">Lire la démonstration</a></p>
+</article>
 </main>
 <footer>
-  <span>Planche 2 sur 5 · Lumière actuelle, émergente, locale</span>
-  <a href="https://claude.ai/artifact/YEjHcNgNhtbPRzWdHrZUJ4">Article de vulgarisation</a>
-  <a href="https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r">Dossier mathématique complet</a>
+  <span>Pilier 3 sur 5 · Cadence c et masse comme frein</span>
+  <a href="../documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">Article en PDF</a>
+  <a href="../documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="../index.html">Sommaire</a>
 </footer>
 </div>
 <script>
@@ -373,67 +390,6 @@ new MutationObserver(ms => ms.forEach(m => {
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
 
-(function () {
-  // --- scène : laser, poussière, œil
-  const rnd = mulberry(7), lit = [], dark = [];
-  for (let i = 0; i < 40; i++) lit.push({ x: 104 + rnd() * 470, y: 150 + (rnd() - 0.5) * 10 });
-  for (let i = 0; i < 90; i++) {
-    let y; do { y = 58 + rnd() * 226; } while (Math.abs(y - 150) < 16);
-    dark.push({ x: 100 + rnd() * 480, y: y });
-  }
-  const gDust = $('#b-dust'), spot = $('#b-spot'), slider = $('#p2-d'), EYE = { x: 330, y: 343 };
-  function scene() {
-    const s = Number(slider.value) / 100, nLit = Math.round(40 * s), nDark = Math.round(90 * s);
-    while (gDust.firstChild) gDust.removeChild(gDust.firstChild);
-    for (let i = 0; i < nLit; i++) gDust.appendChild(el('line', { x1: lit[i].x.toFixed(1), y1: lit[i].y.toFixed(1), x2: EYE.x, y2: EYE.y, class: 'ray', style: 'stroke-width:1;opacity:.3' }));
-    for (let i = 0; i < nDark; i++) gDust.appendChild(el('circle', { cx: dark[i].x.toFixed(1), cy: dark[i].y.toFixed(1), r: 2, class: 'f-ink3', opacity: 0.55 }));
-    for (let i = 0; i < nLit; i++) gDust.appendChild(el('circle', { cx: lit[i].x.toFixed(1), cy: lit[i].y.toFixed(1), r: 3.2, class: 'f-ray' }));
-    const wall = 100 - 1.2 * nLit;
-    spot.setAttribute('opacity', (wall / 100).toFixed(2));
-    $('#p2-do').textContent = nLit + nDark === 0 ? 'vide' : slider.value + ' %';
-    $('#p2-n').textContent = String(nLit + nDark);
-    $('#p2-lit').textContent = String(nLit);
-    $('#p2-wall').textContent = Math.round(wall) + ' %';
-    $('#p2-state').textContent = nLit === 0
-      ? 'Dans le vide, le faisceau est invisible de côté. L’œil ne voit que la tache sur le mur.'
-      : 'L’œil voit des grains éclairés, pas la lumière en route. Chaque grain vu a pris un peu de lumière au faisceau.';
-  }
-  slider.addEventListener('input', scene);
-  $('#p2-path').addEventListener('change', e => $('#b-path').setAttribute('visibility', e.target.checked ? 'visible' : 'hidden'));
-  scene();
-
-  // --- éventail : trois envois séparés
-  const fan = $('#p2-fan'), S = { x: 330, y: 262 }, PTS = [{ n: 'A', x: 150 }, { n: 'B', x: 330 }, { n: 'C', x: 510 }], blocked = [false, false, false];
-  const T_HAND = (S.y - 98) / (S.y - 70);
-  const parts = PTS.map(p => {
-    const hx = S.x + (p.x - S.x) * T_HAND;
-    const ray = fan.insertBefore(el('line', { x1: S.x, y1: S.y, x2: p.x, y2: 70, class: 'ray' }), fan.firstChild);
-    const hand = fan.appendChild(el('rect', { x: (hx - 26).toFixed(1), y: 94, width: 52, height: 8, class: 'f-ink', visibility: 'hidden' }));
-    const dot = fan.appendChild(el('circle', { cx: p.x, cy: 70, r: 7.5, class: 'f-ray ring' }));
-    fan.appendChild(el('text', { x: p.x, y: 52, 'text-anchor': 'middle', class: 'tb' }, p.n));
-    return { ray: ray, hand: hand, dot: dot, hx: hx };
-  });
-  const liste = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' et ' + a[a.length - 1];
-  function fanDraw() {
-    parts.forEach((q, i) => {
-      const b = blocked[i];
-      set(q.ray, { x2: (b ? q.hx : PTS[i].x).toFixed(1), y2: b ? 102 : 70 });
-      q.hand.setAttribute('visibility', b ? 'visible' : 'hidden');
-      q.dot.setAttribute('class', b ? 'f-sheet' : 'f-ray ring');
-      q.dot.setAttribute('style', b ? 'stroke:var(--axis);stroke-width:1.5' : '');
-    });
-    const off = PTS.filter((p, i) => blocked[i]).map(p => p.n), on = PTS.filter((p, i) => !blocked[i]).map(p => p.n);
-    $('#p2-fstate').textContent = off.length === 0 ? 'Les trois impacts viennent chacun directement de la source.'
-      : on.length === 0 ? 'Les trois points sont masqués, un par un : aucun n’a dépendu des autres.'
-        : liste(off) + (off.length > 1 ? ' sont masqués. ' : ' est masqué. ') + liste(on) + (on.length > 1 ? ' s’allument' : ' s’allume')
-        + ' quand même : sa lumière n’est jamais passée par ' + liste(off) + '.';
-  }
-  $$('#p2-chips .chip').forEach(b => b.addEventListener('click', () => {
-    const i = Number(b.dataset.i); blocked[i] = !blocked[i];
-    b.setAttribute('aria-pressed', blocked[i] ? 'true' : 'false'); fanDraw();
-  }));
-  fanDraw();
-})();
 </script>
 </body>
 </html>

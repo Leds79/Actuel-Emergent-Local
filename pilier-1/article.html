@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le choix qui ne réécrit pas le passé</title>
+<title>L&#x27;ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</title>
+<meta name="description" content="Sur un écran plat, l&#x27;ombre des ciseaux part de 524 fois la vitesse de la lumière et retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
@@ -181,125 +182,166 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
 .err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
 
+/* cartouche : liens */
+.cv a{text-decoration:none}
+.cv a:hover{text-decoration:underline}
+.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+
+/* onglets : les trois vues d'un pilier */
+.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
+.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
+.vues a:hover{color:var(--ink)}
+.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
+
+/* texte long : articles et démonstrations */
+.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.prose>h2{margin-top:1.5rem;font-size:1.4rem}
+.prose>h3{margin-top:.5rem;font-size:1.05rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+.prose li{padding-left:.15rem}
+.prose .fig{margin:0}
+.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
+.tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
+.tex .katex-display{margin:.5em 0}
+.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
+
+/* accueil : liste des planches */
+.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
+.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
+.pl:last-child{border-bottom:0}
+.pl>svg{width:132px;height:auto;display:block}
+.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.pl h3{font-size:1.18rem}
+.pl h3 a{text-decoration:none}
+.pl h3 a:hover{text-decoration:underline}
+.pl p{font-size:.94rem;color:var(--ink-2)}
+.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
+@media (max-width:760px){
+  .pl{grid-template-columns:1fr;gap:.8rem}
+  .pl>svg{width:110px}
+  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
+}
+
+/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
+table.large{min-width:34rem}
+table.large.c6{min-width:46rem}
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td{border:0;padding:.3rem 0}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
+@media (max-width:640px){
+  .tex.ok{padding:.4rem .7rem}
+  .tex .katex{font-size:1.05em}
+}
+
 </style>
 </head>
 <body>
 <div class="sheet">
 <header class="cartouche">
-  <div class="cc"><span class="ck">Projet</span><span class="cv">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</span></div>
-  <div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div>
-  <div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div>
+  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="../index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
+  <div class="cc"><span class="ck">Objet</span><span class="cv">Géométrie de l&#x27;observateur</span></div>
+  <div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div>
   <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
   <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
-  <nav class="cc" aria-label="Planches du modèle"><span class="ck">Planche 4 / 5</span><span class="cv planches"><a href="Pilier%201%20-%20L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="Pilier%202%20-%20On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.html" title="On ne voit jamais la lumière passer">2</a><a href="Pilier%203%20-%20La%20pente%20du%20temps.html" title="La pente du temps">3</a><a href="Pilier%204%20-%20Le%20choix%20qui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.html" aria-current="page" title="Le choix qui ne réécrit pas le passé">4</a><a href="Pilier%205%20-%20Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.html" title="Comment une réponse devient un fait">5</a></span></nav>
+  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Pilier 1 / 5</span><span class="cv planches"><a class="som" href="../index.html">Sommaire</a><a href="../pilier-1/article.html" aria-current="page" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" title="La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait">5</a></span></nav>
 </header>
+<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche interactive</a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
 <main>
-<div class="head">
-  <h1>Le choix qui ne réécrit pas le passé</h1>
-  <p class="lead">Dans l'expérience du choix retardé, on décide au dernier moment comment mesurer un photon parti il y a des milliards d'années. Ce choix ne change rien au passé&nbsp;: il fixe seulement la question posée. Et entre «&nbsp;une route&nbsp;» et «&nbsp;deux routes&nbsp;», tous les intermédiaires existent.</p>
-</div>
-
-<section aria-labelledby="p4-h-build">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p4-h-build">Les franges se construisent clic après clic, et s'effacent quand la route est connue</h2>
-  <div class="fig">
-    <div class="stage plain">
-      <canvas id="p4-cv" width="1320" height="960" role="img" aria-label="Impacts de photons sur un écran, et décompte de leurs positions"></canvas>
-    </div>
-    <div class="panel">
-      <div class="ctl">
-        <label for="p4-d">Information gardée sur la route <output id="p4-do" for="p4-d"></output></label>
-        <input type="range" id="p4-d" min="0" max="100" step="1" value="0">
-      </div>
-      <div class="chips" id="p4-add" role="group" aria-label="Envoyer des photons">
-        <button class="chip" type="button" data-add="10">+ 10 photons</button>
-        <button class="chip" type="button" data-add="100">+ 100</button>
-        <button class="chip" type="button" data-add="1000">+ 1 000</button>
-        <button class="chip" type="button" data-add="0">Effacer</button>
-      </div>
-      <dl class="ro">
-        <dt>Photons détectés</dt><dd id="p4-n"></dd>
-        <dt>Contraste des franges</dt><dd id="p4-v"></dd>
-      </dl>
-      <svg viewBox="0 0 240 206" role="img" aria-label="Plus l'information de route est grande, plus le contraste des franges est faible" style="width:100%;max-width:230px;height:auto">
-        <line x1="46" y1="170" x2="212" y2="170" class="ln"/>
-        <line x1="46" y1="170" x2="46" y2="6" class="ln"/>
-        <path d="M46 10A160 160 0 0 1 206 170" class="geo"/>
-        <circle id="p4-pt" cx="46" cy="10" r="6.5" class="f-ray ring"/>
-        <text x="126" y="194" text-anchor="middle" class="tm">information de route</text>
-        <text x="18" y="94" text-anchor="middle" class="tm" transform="rotate(-90 18 94)">contraste</text>
-      </svg>
-      <p class="state" id="p4-state"></p>
-    </div>
-  </div>
-  <p class="figcap">En haut, chaque point est un photon détecté&nbsp;; en bas, le décompte par position. Un photon seul ne montre rien&nbsp;: la figure n'apparaît qu'en accumulant les clics.</p>
-</section>
-
-<section aria-labelledby="p4-h-choice">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p4-h-choice">Le choix de la mesure décide de la question, pas du passé</h2>
-  <div class="fig">
-    <div class="stage plain" style="padding:1.6rem 1.3rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem">
-      <span class="eyebrow">Probabilité de chaque réponse</span>
-      <div class="bars">
-        <div class="bar"><span id="p4-l1">Gauche</span><div class="track"><i id="p4-b1"></i></div><span class="v" id="p4-v1"></span></div>
-        <div class="bar"><span id="p4-l2">Droite</span><div class="track"><i id="p4-b2"></i></div><span class="v" id="p4-v2"></span></div>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="chips" id="p4-mode" role="group" aria-label="Type de mesure">
-        <button class="chip" type="button" data-m="route" aria-pressed="true">Mesurer la route</button>
-        <button class="chip" type="button" data-m="interf" aria-pressed="false">Mesurer l'interférence</button>
-      </div>
-      <div class="ctl">
-        <label for="p4-phi">Décalage entre les deux routes <output id="p4-phio" for="p4-phi"></output></label>
-        <input type="range" id="p4-phi" min="0" max="360" step="1" value="60">
-      </div>
-      <p class="state" id="p4-cstate"></p>
-    </div>
-  </div>
-  <p class="figcap">Les deux mesures sont incompatibles&nbsp;: aucun appareil ne répond aux deux questions à la fois. Avant la mesure, l'état du photon est le même quel que soit le choix à venir.</p>
-</section>
-
-<div class="cols">
-  <section aria-labelledby="p4-h-f">
-    <span class="eyebrow">Formules</span>
-    <h2 id="p4-h-f">Trois relations suffisent</h2>
-    <div class="formulas">
-      <div class="formula">P<span class="up">(±) =</span> <span class="frac"><span><span class="up">1 ± cos</span> φ</span><span class="up">2</span></span></div>
-      <div class="formula">V² <span class="up">+</span> D² <span class="up">≤ 1</span></div>
-      <div class="formula">Δφ <span class="up">≥</span> <span class="frac"><span class="up">1</span><span><span class="up">√</span>N</span></span></div>
-    </div>
-    <p class="fnote">φ est le décalage entre les deux routes. V est le contraste des franges et D la qualité de l'information de route (Englert, 1996). N est le nombre de photons détectés&nbsp;: pour être dix fois plus précis, il en faut cent fois plus.</p>
-  </section>
-  <section aria-label="Lecture et correction">
-    <div class="lecture">
-      <span class="eyebrow">Lecture mécanique</span>
-      <p>L'information arrive par constats successifs, locaux et datés, comme dans un suivi de chantier. Aucun constat ne réécrit les précédents.</p>
-    </div>
-    <div class="correction">
-      <span class="eyebrow">Corrections apportées</span>
-      <p>Le choix n'exige pas d'intention consciente&nbsp;: en 2007, une machine l'a tiré au hasard, et les résultats sont les mêmes.</p>
-      <p>Dire que le réel «&nbsp;participe&nbsp;» est une interprétation. D'autres lectures donnent les mêmes prédictions, et l'expérience ne les départage pas.</p>
-    </div>
-  </section>
-</div>
-
-<section aria-label="Chiffres clés">
-  <span class="eyebrow">Chiffres clés</span>
-  <div class="stats">
-    <div class="stat"><b>48 m</b><span>longueur de l'interféromètre de l'expérience de 2007</span></div>
-    <div class="stat"><b>3 500 km</b><span>distance atteinte par la version satellite de 2017</span></div>
-    <div class="stat"><b>1 bit</b><span>au plus par photon détecté</span></div>
-    <div class="stat"><b>× 100</b><span>photons nécessaires pour une précision dix fois meilleure</span></div>
-  </div>
-  <p class="fnote">La version cosmique, avec un quasar et une galaxie, reste une expérience de pensée.</p>
-</section>
+<article class="prose">
+<div class="head"><span class="eyebrow">Article · pilier 1</span><h1>L&#x27;ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</h1></div>
+<p>L'ombre d'une paire de ciseaux peut bel et bien courir plus vite que la lumière. Mais sur un écran plat, elle retombe toujours vers la vitesse de la lumière, et celui qui tient les ciseaux la voit ralentir jusqu'à la moitié de cette vitesse. Tout tient à deux détails que le récit habituel oublie : la forme de l'écran et le trajet retour de la lumière.</p>
+<h2>L'histoire qu'on raconte</h2>
+<p>Fermez une paire de ciseaux. Le point où les deux lames se croisent file du pivot vers la pointe, bien plus vite que vos doigts. Projetez l'ombre de ce point sur un écran très lointain : plus l'écran est loin, plus l'ombre court vite.</p>
+<p>Prenons un écran à 100 millions de kilomètres, les deux tiers de la distance entre la Terre et le Soleil. Les ciseaux se ferment en une seconde, et la direction de l'ombre balaie un quart de tour. Au centre de l'écran, l'ombre démarre à 157 millions de kilomètres par seconde, soit 524 fois la vitesse de la lumière.</p>
+<p>Einstein n'est pas contredit, car rien ne voyage le long de l'écran. Chaque point de l'ombre est fixé par la lumière partie de la source dans sa direction. Posez la main sur l'écran : l'ombre réapparaît plus loin, comme si de rien n'était.</p>
+<h2>Premier oubli : l'écran est plat</h2>
+<p>Le chiffre de 524 n'est vrai qu'au centre. Sur un écran plat, plus le point visé s'éloigne du centre, plus la lumière doit parcourir une longue diagonale pour l'atteindre.</p>
+<figure class="fig solo"><figcaption class="figtitle">Sur un écran plat, la diagonale s&#x27;allonge quand on s&#x27;éloigne du centre</figcaption><div class="stage"><svg viewBox="0 0 760 404" role="img" aria-label="Sur un écran plat, la diagonale s'allonge quand on s'éloigne du centre"><line x1="40" y1="100" x2="736" y2="100" class="lnk"/><text x="736" y="84" text-anchor="end" class="tb">écran plat</text><path d="M180 100A240 240 0 0 1 420 340" class="ln dash"/><text x="432" y="318" class="tq">écran courbe : même distance partout</text><line x1="180" y1="340" x2="180" y2="100" class="ln"/><text x="168" y="226" text-anchor="end" class="tb">100 millions de km</text><text x="172" y="118" text-anchor="end" class="tq">centre de l'écran</text><line x1="180" y1="340" x2="313.1" y2="140.3" class="ln" style="stroke:var(--ink-2)"/><line x1="313.1" y1="140.3" x2="340" y2="100" class="ray"/><circle cx="340" cy="100" r="4.5" class="f-ray"/><line x1="180" y1="340" x2="376.1" y2="201.6" class="ln" style="stroke:var(--ink-2)"/><line x1="376.1" y1="201.6" x2="520" y2="100" class="ray"/><circle cx="520" cy="100" r="4.5" class="f-ray"/><line x1="180" y1="340" x2="396.4" y2="236.1" class="ln" style="stroke:var(--ink-2)"/><line x1="396.4" y1="236.1" x2="680" y2="100" class="ray"/><circle cx="680" cy="100" r="4.5" class="f-ray"/><text x="262" y="196" text-anchor="end" class="tb">diagonale</text><circle cx="180" cy="340" r="5" class="f-ink"/><text x="24" y="366" class="tb">Source et opérateur</text><text x="24" y="384" class="tq">La lumière part d'ici et y revient : le trajet est doublé</text></svg></div></figure>
+<p>Les trois rayons partent du même point. La partie en couleur, absente sur un écran courbe, grandit avec l'éloignement : c'est elle qui retarde l'ombre.</p>
+<p>Pour que l'ombre avance d'un kilomètre sur l'écran, il faut deux choses. La source doit viser ce kilomètre, et la lumière doit parcourir le supplément de diagonale. Ce sont deux tâches en série, comme sur un chantier : les deux délais s'additionnent, et le plus long fixe la cadence.</p>
+<p>Près du centre, la diagonale ne s'allonge presque pas, et c'est la fermeture des ciseaux qui donne le rythme. Loin du centre, chaque kilomètre d'écran coûte presque un kilomètre de trajet en plus. Le trajet de la lumière devient le goulot d'étranglement : l'ombre ne peut pas distancer la lumière qui la dessine.</p>
+<p>Sa vitesse retombe donc de 524 fois la vitesse de la lumière vers une fois, sans jamais passer dessous. Sur un écran courbé autour de la source, ce frein n'existerait pas : toutes les diagonales auraient la même longueur.</p>
+<h2>Second oubli : la lumière doit revenir</h2>
+<p>Celui qui ferme les ciseaux ne voit rien tant que la lumière n'est pas revenue de l'écran jusqu'à son œil. Le délai de trajet est doublé : loin du centre, chaque kilomètre d'écran coûte presque deux kilomètres de parcours.</p>
+<p>L'ombre qu'il voit ne tend donc pas vers la vitesse de la lumière, mais vers sa moitié : 150 000 kilomètres par seconde. Elle n'y arrive pas par le bas. Elle démarre à 524 fois la vitesse de la lumière, passe sous cette vitesse à 58 millions de kilomètres du centre, puis ralentit vers la moitié sans jamais l'atteindre.</p>
+<div class="tablewrap"><table class="data large c4">
+<thead>
+<tr>
+<th>Distance au centre de l'écran</th>
+<th>Vitesse réelle de l'ombre (en c)</th>
+<th>Vitesse vue par l'opérateur (en c)</th>
+<th>L'opérateur la voit après</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Au centre</td>
+<td>524</td>
+<td>524</td>
+<td>11 min 7 s</td>
+</tr>
+<tr>
+<td>10 millions de km</td>
+<td>9,9</td>
+<td>5,0</td>
+<td>11 min 11 s</td>
+</tr>
+<tr>
+<td>100 millions de km</td>
+<td>1,41</td>
+<td>0,71</td>
+<td>15 min 44 s</td>
+</tr>
+<tr>
+<td>1 milliard de km</td>
+<td>1,005</td>
+<td>0,5025</td>
+<td>1 h 52 min</td>
+</tr>
+<tr>
+<td>1 million d'années-lumière</td>
+<td>1</td>
+<td>0,5</td>
+<td>2 millions d'années</td>
+</tr>
+</tbody>
+</table></div>
+<p>La lettre c désigne la vitesse de la lumière, soit 299 792 kilomètres par seconde.</p>
+<p>L'image à garder est celle d'une sphère centrée sur l'opérateur. À chaque instant, il voit ce qui se trouve sur cette sphère, et son rayon grandit à la moitié de la vitesse de la lumière. C'est elle qui règle le spectacle loin du centre.</p>
+<h2>Deux millions d'années pour une seconde</h2>
+<p>Poussons l'écran plat jusqu'à l'absurde. Pour atteindre un point situé à un million d'années-lumière du centre, la lumière part pendant les sept derniers millièmes de milliardième de seconde de la fermeture. Elle voyage ensuite un million d'années, et il lui en faut autant pour revenir.</p>
+<p>Toute la lumière a quitté la source en une seconde. Le spectacle, lui, dure deux millions d'années pour l'opérateur. Cette durée ne doit rien aux ciseaux : c'est du temps de trajet.</p>
+<h2>Le même jeu de délais, dans le ciel</h2>
+<p>Les astronomes connaissent bien ce jeu de délais. En 1901, des auréoles ont semblé s'étendre plus vite que la lumière autour d'une étoile qui venait d'exploser, la Nova Persei. Paul Couderc en a donné l'explication en 1939 : ce sont des échos, car l'éclair de l'explosion éclaire des poussières de plus en plus éloignées.</p>
+<p>Les jets de matière des quasars font l'inverse des ciseaux. Un jet lancé presque vers nous court derrière sa propre lumière, et le trajet raccourcit au lieu de s'allonger. La vitesse apparente est alors amplifiée : un jet à 99 % de la vitesse de la lumière, vu sous un angle de 8 degrés, semble avancer à 7 fois cette vitesse.</p>
+<p>Martin Rees l'avait prédit en 1966, avant les premières observations.</p>
+<h2>La question à poser</h2>
+<p>Une vitesse apparente n'est jamais une donnée brute. C'est une distance divisée par un temps de réception, et ce temps contient toujours le trajet de la lumière. Avant de s'étonner d'une vitesse, il faut demander où est l'écran, quelle est sa forme, et où se tient celui qui regarde.</p>
+<h2>Sources et précisions</h2>
+<ul>
+<li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 1.</li>
+<li>Hypothèses chiffrées : écran à 100 millions de kilomètres, direction de l'ombre balayant 90 degrés en une seconde, opérateur placé à la source.</li>
+<li>À cette distance, la diffraction noierait l'ombre de vrais ciseaux. C'est une expérience de pensée ; un faisceau laser balayé à la même cadence obéirait aux mêmes délais.</li>
+<li>Couderc, P. (1939). « Les auréoles lumineuses des novae ». Annales d'Astrophysique 2, 271–302. Cité et résumé par <a href="https://ar5iv.labs.arxiv.org/html/astro-ph/0306555">R. Tylenda, « On the light echo in V838 Mon »</a>.</li>
+<li>Rees, M. J. (1966). <a href="https://www.nature.com/articles/211468a0">Appearance of Relativistically Expanding Radio Sources</a>. Nature 211, 468–470.</li>
+</ul>
+<p class="suite"><a href="index.html">Manipuler la planche interactive</a> · <a href="demonstration.html">Lire la démonstration</a></p>
+</article>
 </main>
 <footer>
-  <span>Planche 4 sur 5 · Choix retardé de Wheeler</span>
-  <a href="https://claude.ai/artifact/78b9FAVZcR9yRU4oXTfpyx">Article de vulgarisation</a>
-  <a href="https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r">Dossier mathématique complet</a>
+  <span>Pilier 1 sur 5 · Géométrie de l&#x27;observateur</span>
+  <a href="../documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">Article en PDF</a>
+  <a href="../documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="../index.html">Sommaire</a>
 </footer>
 </div>
 <script>
@@ -367,69 +409,6 @@ new MutationObserver(ms => ms.forEach(m => {
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
 
-(function () {
-  // --- franges photon par photon
-  const cv = $('#p4-cv'), ctx = cv.getContext('2d'), dS = $('#p4-d'), pt = $('#p4-pt');
-  let N = 300;
-  function draw() {
-    const W = cv.width, H = cv.height, Dk = Number(dS.value) / 100, V = Math.sqrt(1 - Dk * Dk);
-    const top = Math.round(H * 0.66), base = H - 30, M = 24, BINS = 66, K = 6;
-    ctx.clearRect(0, 0, W, H);
-    const rnd = mulberry(11), bins = new Array(BINS).fill(0);
-    ctx.fillStyle = css('--ray');
-    for (let i = 0; i < N; i++) {
-      let xx = 0;
-      for (let g = 0; g < 400; g++) { xx = rnd(); if (rnd() < (1 + V * Math.cos(2 * Math.PI * K * xx)) / 2) break; }
-      const yy = rnd();
-      bins[Math.min(BINS - 1, Math.floor(xx * BINS))]++;
-      ctx.beginPath(); ctx.arc(M + xx * (W - 2 * M), 16 + yy * (top - 32), 3.4, 0, 6.2832); ctx.fill();
-    }
-    const mx = Math.max(1, Math.max.apply(null, bins)), bw = (W - 2 * M) / BINS;
-    ctx.fillStyle = css('--geo');
-    for (let b = 0; b < BINS; b++) { const hh = bins[b] / mx * (base - top - 22); ctx.fillRect(M + b * bw + 1.5, base - hh, bw - 3, hh); }
-    ctx.strokeStyle = css('--axis'); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(M, base + 1); ctx.lineTo(W - M, base + 1); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(M, top); ctx.lineTo(W - M, top); ctx.stroke();
-    $('#p4-do').textContent = Math.round(Dk * 100) + ' %';
-    $('#p4-n').textContent = frNum(N);
-    $('#p4-v').textContent = Math.round(V * 100) + ' %';
-    set(pt, { cx: (46 + 160 * Dk).toFixed(1), cy: (170 - 160 * V).toFixed(1) });
-    $('#p4-state').textContent = N === 0 ? 'Aucun photon détecté : rien n’est encore connu.'
-      : V > 0.9 ? 'La route est inconnue : les franges apparaissent, clic après clic.'
-        : V > 0.2 ? 'Une partie de l’information de route existe : les franges sont atténuées.'
-          : 'La route est connue : les franges ont disparu.';
-  }
-  dS.addEventListener('input', draw);
-  $$('#p4-add .chip').forEach(b => b.addEventListener('click', () => {
-    const a = Number(b.dataset.add); N = a === 0 ? 0 : Math.min(6000, N + a); draw();
-  }));
-  if (window.matchMedia) {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mq.addEventListener) mq.addEventListener('change', draw);
-  }
-  draw();
-
-  // --- choix de la mesure
-  let mode = 'route';
-  const phi = $('#p4-phi');
-  function choice() {
-    const f = Number(phi.value) * Math.PI / 180;
-    const p1 = mode === 'route' ? 0.5 : (1 + Math.cos(f)) / 2, p2 = 1 - p1;
-    $('#p4-l1').textContent = mode === 'route' ? 'Gauche' : 'Sortie +';
-    $('#p4-l2').textContent = mode === 'route' ? 'Droite' : 'Sortie −';
-    $('#p4-b1').style.width = (p1 * 100).toFixed(1) + '%';
-    $('#p4-b2').style.width = (p2 * 100).toFixed(1) + '%';
-    $('#p4-v1').textContent = Math.round(p1 * 100) + ' %';
-    $('#p4-v2').textContent = Math.round(p2 * 100) + ' %';
-    $('#p4-phio').textContent = phi.value + '°';
-    $('#p4-cstate').textContent = mode === 'route'
-      ? 'Le décalage n’a aucun effet sur le résultat : cette mesure n’apprend rien sur lui.'
-      : 'Tout dépend du décalage : cette mesure n’apprend rien sur la route.';
-  }
-  phi.addEventListener('input', choice);
-  $$('#p4-mode .chip').forEach(b => b.addEventListener('click', () => { mode = b.dataset.m; pressOnly('#p4-mode .chip', b); choice(); }));
-  choice();
-})();
 </script>
 </body>
 </html>

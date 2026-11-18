@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comment une réponse devient un fait</title>
+<title>On ne voit jamais la lumière passer</title>
+<meta name="description" content="Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu&#x27;à l&#x27;endroit et à l&#x27;instant où elle rencontre de la matière.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
@@ -181,154 +182,130 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
 .err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
 
+/* cartouche : liens */
+.cv a{text-decoration:none}
+.cv a:hover{text-decoration:underline}
+.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+
+/* onglets : les trois vues d'un pilier */
+.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
+.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
+.vues a:hover{color:var(--ink)}
+.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
+
+/* texte long : articles et démonstrations */
+.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.prose>h2{margin-top:1.5rem;font-size:1.4rem}
+.prose>h3{margin-top:.5rem;font-size:1.05rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+.prose li{padding-left:.15rem}
+.prose .fig{margin:0}
+.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
+.tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
+.tex .katex-display{margin:.5em 0}
+.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
+
+/* accueil : liste des planches */
+.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
+.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
+.pl:last-child{border-bottom:0}
+.pl>svg{width:132px;height:auto;display:block}
+.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.pl h3{font-size:1.18rem}
+.pl h3 a{text-decoration:none}
+.pl h3 a:hover{text-decoration:underline}
+.pl p{font-size:.94rem;color:var(--ink-2)}
+.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
+@media (max-width:760px){
+  .pl{grid-template-columns:1fr;gap:.8rem}
+  .pl>svg{width:110px}
+  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
+}
+
+/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
+table.large{min-width:34rem}
+table.large.c6{min-width:46rem}
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td{border:0;padding:.3rem 0}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
+@media (max-width:640px){
+  .tex.ok{padding:.4rem .7rem}
+  .tex .katex{font-size:1.05em}
+}
+
 </style>
 </head>
 <body>
 <div class="sheet">
 <header class="cartouche">
-  <div class="cc"><span class="ck">Projet</span><span class="cv">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</span></div>
-  <div class="cc"><span class="ck">Objet</span><span class="cv">Cristallisation de l&#x27;information</span></div>
-  <div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div>
+  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="../index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
+  <div class="cc"><span class="ck">Objet</span><span class="cv">Lumière actuelle, émergente, locale</span></div>
+  <div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div>
   <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
   <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
-  <nav class="cc" aria-label="Planches du modèle"><span class="ck">Planche 5 / 5</span><span class="cv planches"><a href="Pilier%201%20-%20L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="Pilier%202%20-%20On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.html" title="On ne voit jamais la lumière passer">2</a><a href="Pilier%203%20-%20La%20pente%20du%20temps.html" title="La pente du temps">3</a><a href="Pilier%204%20-%20Le%20choix%20qui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="Pilier%205%20-%20Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.html" aria-current="page" title="Comment une réponse devient un fait">5</a></span></nav>
+  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Pilier 2 / 5</span><span class="cv planches"><a class="som" href="../index.html">Sommaire</a><a href="../pilier-1/article.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" aria-current="page" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" title="La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait">5</a></span></nav>
 </header>
+<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche interactive</a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
 <main>
-<div class="head">
-  <h1>Comment une réponse devient un fait</h1>
-  <p class="lead">Une mesure se joue en deux temps. La réponse est d'abord inscrite au crayon, encore effaçable&nbsp;; puis l'environnement la recopie des milliards de fois et la grave. Faites avancer le temps, et essayez d'effacer.</p>
-</div>
-
-<section aria-labelledby="p5-h-st">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p5-h-st">Tant qu'elle n'est pas cristallisée, la réponse reste effaçable</h2>
-  <div class="fig">
-    <div class="stage">
-      <svg viewBox="0 0 660 232" role="img" aria-label="Trois temps&nbsp;: la question, l'inscription de la réponse, puis sa cristallisation. Une flèche de retour relie l'inscription à la question">
-        <defs>
-          <marker id="ar-fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker>
-        </defs>
-        <g class="ln" style="stroke:var(--ink-3)">
-          <path d="M205 102H233" marker-end="url(#ar-fl)"/>
-          <path d="M425 102H453" marker-end="url(#ar-fl)"/>
-          <path id="s-loop" d="M330 140V186H110V142" marker-end="url(#ar-fl)"/>
-        </g>
-        <rect id="s-q" x="15" y="64" width="190" height="76" class="box"/>
-        <text x="110" y="90" text-anchor="middle" class="tb">Question</text>
-        <text x="110" y="110" text-anchor="middle" class="tq">des réponses possibles</text>
-        <text x="110" y="126" text-anchor="middle" class="tq">valeur&nbsp;: 1 bit au plus</text>
-        <rect id="s-i" x="235" y="64" width="190" height="76" class="box"/>
-        <text x="330" y="90" text-anchor="middle" class="tb">Inscription</text>
-        <text x="330" y="110" text-anchor="middle" class="tq">au crayon</text>
-        <text x="330" y="126" text-anchor="middle" class="tq">encore effaçable</text>
-        <rect id="s-c" x="455" y="64" width="190" height="76" class="box"/>
-        <text x="550" y="90" text-anchor="middle" class="tb">Cristallisation</text>
-        <text x="550" y="110" text-anchor="middle" class="tq">gravée en copies multiples</text>
-        <text x="550" y="126" text-anchor="middle" class="tq">définitive en pratique</text>
-        <text x="220" y="54" text-anchor="middle" class="tm">détecteur</text>
-        <text x="440" y="54" text-anchor="middle" class="tm">environnement</text>
-        <text x="220" y="206" text-anchor="middle" class="tq">gomme quantique&nbsp;: la réponse s'efface</text>
-        <text x="550" y="166" text-anchor="middle" class="tq">retour impossible en pratique</text>
-      </svg>
-    </div>
-    <div class="panel">
-      <div class="ctl">
-        <label for="p5-t">Temps écoulé <output id="p5-to" for="p5-t"></output></label>
-        <input type="range" id="p5-t" min="0" max="120" step="1" value="25">
-      </div>
-      <div class="meter"><div class="lab"><span>Possibilité d'interférer encore</span><b id="p5-coh"></b></div><div class="track"><i id="p5-cohb"></i></div></div>
-      <div class="meter"><div class="lab"><span>Copies dans l'environnement</span><b id="p5-cop"></b></div><div class="track"><i id="p5-copb" class="ray"></i></div></div>
-      <div class="chips"><button class="chip" type="button" id="p5-erase">Effacer la réponse</button></div>
-      <p class="state" id="p5-state"></p>
-    </div>
-  </div>
-  <p class="figcap">Exemple chiffré&nbsp;: une mémoire d'un centimètre carré en plein jour, que chaque photon distingue très mal. La barre des copies est en échelle logarithmique. Une picoseconde (ps) vaut un millième de milliardième de seconde.</p>
-</section>
-
-<section aria-labelledby="p5-h-h">
-  <span class="eyebrow">Figure interactive</span>
-  <h2 id="p5-h-h">Une question vaut d'autant plus que sa réponse est incertaine</h2>
-  <div class="fig">
-    <div class="stage">
-      <svg class="fit" viewBox="0 0 480 300" role="img" aria-label="Valeur d'une question en bits selon les chances de sa première réponse&nbsp;: maximale, un bit, quand les deux réponses sont également probables" style="max-width:600px;margin:0 auto">
-        <line x1="64" y1="250" x2="452" y2="250" class="ln"/>
-        <line x1="64" y1="250" x2="64" y2="30" class="ln"/>
-        <line x1="64" y1="40" x2="444" y2="40" class="gr"/>
-        <path id="hc-c" class="geo" d=""/>
-        <line id="hc-v" class="ln dash" x1="349" y1="80" x2="349" y2="250"/>
-        <line id="hc-h" class="ln dash" x1="64" y1="80" x2="349" y2="80"/>
-        <circle id="hc-m" cx="349" cy="80" r="7" class="f-ray ring"/>
-        <text x="56" y="44" text-anchor="end" class="tm">1 bit</text>
-        <text x="56" y="254" text-anchor="end" class="tm">0</text>
-        <text x="64" y="268" text-anchor="middle" class="tm">0</text>
-        <text x="254" y="268" text-anchor="middle" class="tm">1 sur 2</text>
-        <text x="444" y="268" text-anchor="middle" class="tm">1</text>
-        <text x="254" y="290" text-anchor="middle" class="tq">chances de la première réponse</text>
-        <text x="72" y="22" class="tq">valeur de la question</text>
-      </svg>
-    </div>
-    <div class="panel">
-      <div class="ctl">
-        <label for="p5-p">Chances des deux réponses <output id="p5-po" for="p5-p"></output></label>
-        <input type="range" id="p5-p" min="0" max="1" step="0.01" value="0.75">
-      </div>
-      <div class="chips" id="p5-pc" role="group" aria-label="Cas repères">
-        <button class="chip" type="button" data-p="0.5" aria-pressed="false">1 sur 2</button>
-        <button class="chip" type="button" data-p="0.75" aria-pressed="true">3 sur 4</button>
-        <button class="chip" type="button" data-p="1" aria-pressed="false">Réponse certaine</button>
-      </div>
-      <dl class="ro"><dt>Valeur de la question</dt><dd id="p5-hval"></dd></dl>
-      <p class="state" id="p5-hstate"></p>
-    </div>
-  </div>
-  <p class="figcap">Le stock est limité&nbsp;: un photon qui a le choix entre deux routes ne livre jamais plus d'un bit. Poser une autre question ne l'augmente pas, elle le redistribue.</p>
-</section>
-
-<div class="cols">
-  <section aria-labelledby="p5-h-f">
-    <span class="eyebrow">Formules</span>
-    <h2 id="p5-h-f">Un potentiel en bits, une extinction exponentielle</h2>
-    <div class="formulas">
-      <div class="formula">H <span class="up">= −</span> <span class="up">Σ</span> p <span class="up">log₂</span> p</div>
-      <div class="formula"><span class="up">cohérence =</span><span>e<sup>−t/τ</sup></span></div>
-    </div>
-    <p class="fnote">H est la valeur d'une question et p la chance de chaque réponse. τ est le temps que met l'environnement à emporter une copie de la réponse&nbsp;: quelques millièmes de milliardième de seconde dans l'exemple de la figure.</p>
-  </section>
-  <section aria-label="Lecture et correction">
-    <div class="lecture">
-      <span class="eyebrow">Lecture mécanique</span>
-      <p>Cristalliser, c'est passer du crayon à la gravure. La réponse ne peut plus interférer, elle existe en d'innombrables copies, et une barrière d'énergie la protège.</p>
-    </div>
-    <div class="correction">
-      <span class="eyebrow">Corrections apportées</span>
-      <p>«&nbsp;Actualiser&nbsp;» et «&nbsp;cristalliser&nbsp;» sont deux temps distincts&nbsp;: une inscription réversible, puis la gravure par l'environnement.</p>
-      <p>La cristallisation fige la réponse, elle ne la choisit pas. Pourquoi telle réponse plutôt que l'autre reste une question ouverte.</p>
-    </div>
-  </section>
-</div>
-
-<section aria-labelledby="p5-h-t">
-  <span class="eyebrow">Tableau</span>
-  <h2 id="p5-h-t">Ce que disent les calculs et les mesures</h2>
-  <div class="tablewrap">
-    <table class="data">
-      <thead><tr><th>Situation</th><th>Résultat</th><th>Source</th></tr></thead>
-      <tbody>
-        <tr><td>Grain de poussière de 10 micromètres, au soleil</td><td>toute interférence éteinte en un cent-milliardième de seconde</td><td>Joos et Zeh, 1985</td></tr>
-        <tr><td>Le même grain, dans le vide interstellaire</td><td>moins de trois heures</td><td>Joos et Zeh, 1985</td></tr>
-        <tr><td>Grain d'une pellicule photographique</td><td>3 à 5 atomes d'argent suffisent, effet multiplié par cent millions</td><td>Belloni, 2002</td></tr>
-        <tr><td>Bit conservé dix ans à température ambiante</td><td>barrière d'environ 40 fois l'agitation thermique</td><td>calcul du dossier</td></tr>
-        <tr><td>Effacer un bit</td><td>au moins 2,9 × 10⁻²¹ joule dissipé à 300 K</td><td>Landauer, 1961</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="fnote">Le grain de pellicule est un cristal d'halogénure d'argent&nbsp;: le mot «&nbsp;cristallisation&nbsp;» y est littéral.</p>
-</section>
+<article class="prose">
+<div class="head"><span class="eyebrow">Article · pilier 2</span><h1>On ne voit jamais la lumière passer</h1></div>
+<p>Un faisceau de lumière qui traverse le vide est invisible de côté : on ne voit que la lumière qui entre dans l'œil. La lumière ne se manifeste qu'à l'endroit et à l'instant où elle rencontre de la matière. Elle n'est pas « rien » en chemin pour autant : elle transporte de l'énergie, et c'est la nuance à garder.</p>
+<h2>Le faisceau qu'on croit voir</h2>
+<p>Dans une salle de spectacle, les faisceaux des projecteurs se dessinent dans l'air. Ce qu'on voit n'est pas la lumière en route. Ce sont des gouttelettes de fumée, éclairées au passage, qui renvoient un peu de lumière vers chaque spectateur.</p>
+<p>Sans fumée ni poussière, le faisceau disparaît. Un pointeur laser ordinaire, dans un air propre, ne montre guère qu'un point sur le mur. Dans le vide de l'espace, il ne montrerait rien du tout, quoi qu'en disent les films.</p>
+<p>Le ciel nocturne en donne la preuve chaque soir. Peu après le coucher du Soleil, on voit passer des satellites, encore en plein soleil à quelques centaines de kilomètres d'altitude. La lumière qui les éclaire traverse le ciel au-dessus de nos têtes, et ce ciel est pourtant noir.</p>
+<h2>Voir, c'est recevoir</h2>
+<p>L'œil est un détecteur. Il ne signale que la lumière qui entre par la pupille et que la rétine absorbe. Une lumière qui passe à côté ne laisse aucune trace en lui.</p>
+<p>Quand on dit « voir un objet », on reçoit en fait de la lumière que cet objet a renvoyée. On ne voit donc pas la lumière : on voit avec elle. Et ce qu'on voit, c'est toujours de la matière éclairée.</p>
+<h2>Rien ne court le long de l'écran</h2>
+<p>Balayez un mur avec un pointeur laser : une tache semble glisser d'un bout à l'autre. Cette tache n'est pas un objet qui se déplace. C'est une suite d'arrivées indépendantes, chacune venue directement du pointeur.</p>
+<figure class="fig solo"><figcaption class="figtitle">Chaque impact vient de la source, aucun ne vient de son voisin</figcaption><div class="stage"><svg viewBox="0 0 760 330" role="img" aria-label="Chaque impact vient de la source, aucun ne vient de son voisin"><defs><marker id="fe-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker><marker id="fe-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--critical)"/></marker></defs><line x1="380" y1="14" x2="380" y2="316" class="gr"/><text x="194" y="34" text-anchor="middle" class="tb">Ce qui se passe</text><line x1="44" y1="84" x2="344" y2="84" class="lnk"/><text x="344" y="70" text-anchor="end" class="tq">écran</text><g class="ln" style="stroke:var(--ink-3)"><path d="M190.3 246.9L107.3 90.2" marker-end="url(#fe-a)"/><path d="M194 246V91" marker-end="url(#fe-a)"/><path d="M197.7 246.9L280.7 90.2" marker-end="url(#fe-a)"/></g><circle cx="104" cy="84" r="5" class="f-ray"/><circle cx="194" cy="84" r="5" class="f-ray"/><circle cx="284" cy="84" r="5" class="f-ray"/><text x="104" y="70" text-anchor="middle" class="tb">A</text><text x="194" y="70" text-anchor="middle" class="tb">B</text><text x="284" y="70" text-anchor="middle" class="tb">C</text><circle cx="194" cy="254" r="5" class="f-ink"/><text x="194" y="276" text-anchor="middle" class="tq">source</text><text x="194" y="302" text-anchor="middle" class="tq">trois envois séparés depuis la source</text><text x="566" y="34" text-anchor="middle" class="tb">Ce qu'on croit voir</text><line x1="416" y1="84" x2="716" y2="84" class="lnk"/><text x="716" y="70" text-anchor="end" class="tq">écran</text><g style="fill:none;stroke:var(--critical);stroke-width:1.5;stroke-dasharray:5 4"><path d="M478 96Q521 136 560 98" marker-end="url(#fe-b)"/><path d="M568 96Q611 136 650 98" marker-end="url(#fe-b)"/></g><circle cx="476" cy="84" r="5" class="f-ray"/><circle cx="566" cy="84" r="5" class="f-ray"/><circle cx="656" cy="84" r="5" class="f-ray"/><text x="476" y="70" text-anchor="middle" class="tb">A</text><text x="566" y="70" text-anchor="middle" class="tb">B</text><text x="656" y="70" text-anchor="middle" class="tb">C</text><text x="566" y="168" text-anchor="middle" class="tq">une tache qui glisserait de A vers B puis C</text><text x="566" y="188" text-anchor="middle" class="tb">ce lien n'existe pas</text></svg></div></figure>
+<p>À gauche, ce qui se passe : trois envois séparés, partis de la source. À droite, ce qu'on croit voir : une tache qui passerait d'un point au suivant.</p>
+<p>Le test est simple. Posez la main sur le mur, au milieu du trajet : la tache réapparaît de l'autre côté, car la lumière qui arrive en B n'est jamais passée par A. En langage de chantier, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne.</p>
+<p>Sur un écran assez lointain, la tache peut même aller plus vite que la lumière. La relativité ajoute alors un fait étonnant : deux observateurs en mouvement l'un par rapport à l'autre ne s'accordent plus sur l'ordre des impacts. Pour l'un, A précède B ; pour l'autre, B précède A.</p>
+<p>Or une cause précède son effet pour tout le monde. Aucun des deux impacts ne peut donc être la cause de l'autre.</p>
+<h2>Un grain de lumière, un seul clic</h2>
+<p>À l'échelle la plus fine, la lumière arrive par grains, les photons. Un détecteur ne signale jamais une fraction de photon. Il clique, à un endroit et à un instant précis, ou il ne clique pas.</p>
+<p>En 1986, Philippe Grangier, Gérard Roger et Alain Aspect ont envoyé des photons un par un sur un miroir semi-réfléchissant, avec un détecteur derrière chaque sortie. Les deux détecteurs ne cliquaient pratiquement jamais ensemble : un photon, un seul clic.</p>
+<p>Regarder un photon passer voudrait donc dire interagir avec lui. S'il clique dans votre œil, il n'arrivera pas sur l'écran. On ne peut pas observer le voyage sans y prendre part.</p>
+<h2>Ce que la lumière est quand même en chemin</h2>
+<p>Invisible ne veut pas dire absente. Si le Soleil s'éteignait, nous le verrions encore briller pendant environ 8 minutes 20 secondes. La lumière déjà partie continuerait d'arriver, avec toute son énergie.</p>
+<p>En route, cette lumière peut être arrêtée par un obstacle, ralentie par une vitre ou déviée par une lentille. Elle existe donc bel et bien entre la source et l'œil. Ce qui reste en suspens, c'est seulement l'événement : où et quand elle sera reçue.</p>
+<p>Les physiciens ne s'accordent pas sur la meilleure façon de décrire cet entre-deux. Werner Heisenberg y voyait une « potentia » : quelque chose entre la simple possibilité et le fait accompli.</p>
+<h2>Trois mots pour le dire</h2>
+<p>Le mot « rayon » fait penser à une tige tendue entre la lampe et le mur. Il désigne seulement la direction dans laquelle la lumière avance. Un « rayon de soleil » visible dans une pièce, c'est de la poussière éclairée.</p>
+<p>Trois mots décrivent mieux ce qu'on observe réellement d'un événement lumineux :</p>
+<ul>
+<li>Actuel : il se produit à un instant précis.</li>
+<li>Émergent : il naît de la rencontre entre la lumière et la matière.</li>
+<li>Local : il a lieu à un endroit précis, et nulle part ailleurs.</li>
+</ul>
+<h2>Sources et précisions</h2>
+<ul>
+<li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 2.</li>
+<li>Photon unique sur un miroir semi-réfléchissant : Grangier, P., Roger, G., Aspect, A. (1986). <a href="https://iopscience.iop.org/article/10.1209/0295-5075/1/4/004">Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter</a>. Europhysics Letters 1, 173–179.</li>
+<li>Un clic ne dépend que de la lumière présente au détecteur : Glauber, R. J. (1963). <a href="https://journals.aps.org/pr/abstract/10.1103/PhysRev.130.2529">The Quantum Theory of Optical Coherence</a>. Physical Review 130, 2529–2539.</li>
+<li>La « potentia » : Heisenberg, W. (1958). Physics and Philosophy, chapitre 2. Harper &amp; Brothers, New York.</li>
+<li>Le vide n'est pas rigoureusement transparent : deux faisceaux peuvent se dévier l'un l'autre. L'effet n'a été mis en évidence qu'à très haute énergie (<a href="https://www.nature.com/articles/nphys4208">ATLAS, 2017</a>) et il est négligeable en lumière visible.</li>
+<li>Les 8 minutes 20 secondes sont le temps de trajet de la lumière du Soleil à la Terre : 150 millions de kilomètres à 299 792 kilomètres par seconde.</li>
+</ul>
+<p class="suite"><a href="index.html">Manipuler la planche interactive</a> · <a href="demonstration.html">Lire la démonstration</a></p>
+</article>
 </main>
 <footer>
-  <span>Planche 5 sur 5 · Cristallisation de l&#x27;information</span>
-  <a href="https://claude.ai/artifact/RcmHSTG2bYS2WtFscNFwJG">Article de vulgarisation</a>
-  <a href="https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r">Dossier mathématique complet</a>
+  <span>Pilier 2 sur 5 · Lumière actuelle, émergente, locale</span>
+  <a href="../documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">Article en PDF</a>
+  <a href="../documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="../index.html">Sommaire</a>
 </footer>
 </div>
 <script>
@@ -396,56 +373,6 @@ new MutationObserver(ms => ms.forEach(m => {
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
 
-(function () {
-  // --- les trois temps de la mesure
-  const TAU = 4e-12, tS = $('#p5-t'), er = $('#p5-erase'), loop = $('#s-loop');
-  const boxes = { q: $('#s-q'), i: $('#s-i'), c: $('#s-c') };
-  const tOf = i => i === 0 ? 0 : Math.pow(10, -15 + (i - 1) * 15 / 119);
-  let erased = false;
-  function render() {
-    const i = Number(tS.value), t = tOf(i), coh = i === 0 ? 1 : Math.exp(-t / TAU), copies = t / TAU;
-    const stage = i === 0 ? 'q' : coh >= 0.01 ? 'i' : 'c';
-    for (const k in boxes) boxes[k].setAttribute('class', 'box' + (k === stage ? ' on' : ''));
-    loop.setAttribute('opacity', stage === 'c' ? 0.3 : 1);
-    er.disabled = stage !== 'i';
-    const nb = copies < 1 ? (i === 0 ? '0' : 'moins d’une') : copies < 1e6 ? frNum(Math.round(copies)) : sci(copies);
-    $('#p5-to').textContent = i === 0 ? 'avant la détection' : duree(t);
-    $('#p5-coh').textContent = coh >= 0.001 ? sig(coh * 100, 3) + ' %' : 'pratiquement nulle';
-    $('#p5-cohb').style.width = (coh * 100).toFixed(1) + '%';
-    $('#p5-cop').textContent = nb;
-    $('#p5-copb').style.width = (copies < 1 ? 0 : Math.min(100, Math.log10(copies) / 11.4 * 100)).toFixed(1) + '%';
-    $('#p5-state').textContent = stage === 'q'
-      ? (erased ? 'Réponse effacée : la mémoire est revenue à l’état « prêt », et l’interférence est de nouveau possible.'
-        : 'Avant la détection, la question est ouverte : aucune réponse n’existe encore.')
-      : stage === 'i' ? 'La réponse est inscrite au crayon. Elle peut encore être effacée.'
-        : 'La réponse est cristallisée : pour l’effacer, il faudrait rattraper ' + nb + ' copies.';
-  }
-  tS.addEventListener('input', () => { erased = false; render(); });
-  er.addEventListener('click', () => { tS.value = 0; erased = true; render(); });
-  render();
-
-  // --- valeur d'une question, en bits
-  const h = p => (p <= 0 || p >= 1) ? 0 : -p * Math.log2(p) - (1 - p) * Math.log2(1 - p);
-  const X = p => 64 + 380 * p, Y = v => 250 - 210 * v;
-  let d = '';
-  for (let k = 0; k <= 200; k++) { const p = k / 200; d += (k ? 'L' : 'M') + X(p).toFixed(1) + ' ' + Y(h(p)).toFixed(1); }
-  $('#hc-c').setAttribute('d', d);
-  const pS = $('#p5-p'), hm = $('#hc-m'), hv = $('#hc-v'), hh = $('#hc-h');
-  function hRender() {
-    const p = Number(pS.value), v = h(p);
-    set(hm, { cx: X(p).toFixed(1), cy: Y(v).toFixed(1) });
-    set(hv, { x1: X(p).toFixed(1), x2: X(p).toFixed(1), y1: Y(v).toFixed(1) });
-    set(hh, { x2: X(p).toFixed(1), y1: Y(v).toFixed(1), y2: Y(v).toFixed(1) });
-    $('#p5-po').textContent = Math.round(p * 100) + ' % et ' + Math.round((1 - p) * 100) + ' %';
-    $('#p5-hval').textContent = v === 0 ? '0 bit' : sig(v, 2) + ' bit';
-    $('#p5-hstate').textContent = v === 0 ? 'La réponse est connue d’avance : la question n’apprend rien.'
-      : Math.abs(p - 0.5) < 0.005 ? 'Les deux réponses sont également probables : la question vaut un bit entier.'
-        : 'Plus une réponse est probable d’avance, moins la question apprend.';
-  }
-  pS.addEventListener('input', () => { pressOnly('#p5-pc .chip', null); hRender(); });
-  $$('#p5-pc .chip').forEach(b => b.addEventListener('click', () => { pS.value = b.dataset.p; pressOnly('#p5-pc .chip', b); hRender(); }));
-  hRender();
-})();
 </script>
 </body>
 </html>

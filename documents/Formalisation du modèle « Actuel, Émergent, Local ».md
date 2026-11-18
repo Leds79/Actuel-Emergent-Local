@@ -437,7 +437,7 @@ w(\vec{r},t) &= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\vec{r
 **Pourquoi le faisceau est invisible de côté.** Pour un photon unique, le taux de clic en un point r' est le carré d'une amplitude :
 
 ```latex
-w(\vec{r}\,',t) = \eta\,\big|\langle 0|\hat{E}^{(+)}(\vec{r}\,',t)|\psi\rangle\big|^2
+w(\vec{r}^{\,\prime},t) = \eta\,\big|\langle 0|\hat{E}^{(+)}(\vec{r}^{\,\prime},t)|\psi\rangle\big|^2
 ```
 
 Cette amplitude est nulle hors du faisceau : un œil placé sur le côté ne reçoit rien. Pour voir un faisceau de profil, il faut de la matière sur son trajet, poussière ou air, qui dévie des photons vers l'œil. On voit alors la matière éclairée, pas la lumière en transit.

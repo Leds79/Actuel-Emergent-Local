@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pilier 5 — La cristallisation de l&#x27;information</title>
+<meta name="description" content="La réponse est d&#x27;abord inscrite au crayon, encore effaçable. L&#x27;environnement la recopie ensuite des milliards de fois et la grave.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+/* Planche technique : feuille bordée, cartouche en tête, une figure interactive par planche, texte sur 65 caractères */
+:root{
+  --bg:#e9edf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+  --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
+  --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
+  --critical:#d03b3b; --good:#0ca30c;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --math:"IBM Plex Serif",Cambria,Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+    --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
+    --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
+    --critical:#e66767; --good:#0ca30c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+  --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
+  --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
+  --critical:#e66767; --good:#0ca30c; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);
+  padding-block:clamp(14px,3vw,44px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-underline-offset:.18em}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
+p{margin:0;max-width:65ch}
+[hidden]{display:none!important}
+
+/* feuille et cartouche */
+.sheet{max-width:1080px;margin:0 auto;background:var(--sheet);border:1px solid var(--axis);
+  box-shadow:0 0 0 5px var(--sheet),0 0 0 6px var(--rule)}
+.cartouche{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr 1.1fr 1.35fr auto;border-bottom:1px solid var(--axis)}
+.cc{padding:.6rem .9rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
+.cc:last-child{border-right:0}
+.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.cv{font-weight:500;font-size:.9rem;line-height:1.3}
+.planches{display:flex;gap:4px}
+.planches a{display:grid;place-items:center;width:1.9rem;height:1.9rem;border:1px solid var(--axis);font:500 .85rem/1 var(--mono);text-decoration:none}
+.planches a:hover{border-color:var(--ink)}
+.planches a[aria-current="page"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+@media (max-width:920px){
+  .cartouche{grid-template-columns:1fr 1fr}
+  .cc{border-bottom:1px solid var(--rule)}
+  .cc:nth-child(2n){border-right:0}
+  .cc:nth-last-child(-n+2){border-bottom:0}
+}
+
+/* texte */
+main{padding:clamp(20px,4.2vw,52px);display:flex;flex-direction:column;gap:clamp(1.7rem,3.2vw,2.8rem)}
+.head{display:flex;flex-direction:column;gap:1rem}
+h1{font-size:clamp(1.85rem,1.1rem + 2.8vw,3rem);line-height:1.08;font-weight:600;letter-spacing:-.015em;margin:0;max-width:20ch;text-wrap:balance}
+.lead{font-size:1.14rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
+section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
+h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
+h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
+.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+
+/* figure interactive */
+.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig.solo{grid-template-columns:1fr}
+.stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.stage.plain{background-image:none}
+.stage{overflow-x:auto}
+.stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
+.stage>svg:not(.fit){min-width:460px}
+.stage>svg.wide{min-width:640px}
+.panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
+@media (max-width:820px){
+  .fig{grid-template-columns:1fr}
+  .panel{border-left:0;border-top:1px solid var(--axis)}
+}
+.figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
+.ctl{display:flex;flex-direction:column;gap:.4rem}
+.ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
+.ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
+.check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
+.check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 .78rem/1 var(--mono);padding:.52rem .6rem;border:1px solid var(--axis);background:transparent;color:var(--ink);cursor:pointer;border-radius:0}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
+.ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro dt{font-size:.88rem;color:var(--ink-2)}
+.ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:.5em}
+.legend i{display:inline-block;width:16px;height:3px}
+.k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
+.legend i.dot{width:10px;height:10px;border-radius:50%}
+.legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+/* jauges */
+.meter{display:flex;flex-direction:column;gap:.3rem}
+.meter .lab{display:flex;justify-content:space-between;gap:1rem;font-size:.88rem;color:var(--ink-2)}
+.meter .lab b{font:500 .92rem var(--mono);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.track{height:12px;border:1px solid var(--axis);background:var(--sheet)}
+.track i{display:block;height:100%;background:var(--geo);width:0}
+.track i.ray{background:var(--ray)}
+
+/* formules */
+.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
+.formula .up,.m .up{font-style:normal}
+.m{font-family:var(--math);font-style:italic;white-space:nowrap}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
+.frac>span:last-child{padding:.12em .3em 0}
+.formulas{display:flex;flex-direction:column;gap:.6rem}
+.fnote{font-size:.88rem;color:var(--ink-2)}
+
+/* encadrés */
+.lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.correction .eyebrow{color:var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--rule);border-right:0;border-bottom:0}
+.stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
+.stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
+.stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+.defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
+.defs div{padding:.85rem 1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem}
+.defs div:last-child{border-right:0}
+.defs dt{font-weight:600}
+.defs dd{margin:0;font-size:.9rem;color:var(--ink-2)}
+@media (max-width:700px){.defs{grid-template-columns:1fr}.defs div{border-right:0;border-bottom:1px solid var(--rule)}.defs div:last-child{border-bottom:0}}
+
+/* tableaux */
+.tablewrap{overflow-x:auto}
+table.data{border-collapse:collapse;width:100%;font-size:.94rem}
+.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.data td.n{font-family:var(--mono);font-size:.9rem}
+.data th:last-child,.data td:last-child{padding-right:0}
+
+/* barres de probabilité */
+.bars{display:flex;flex-direction:column;gap:.7rem}
+.bar{display:grid;grid-template-columns:6.5rem minmax(0,1fr) 3.6rem;gap:.7rem;align-items:center;font-size:.92rem}
+.bar .v{font:500 .92rem var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.bar .track{height:18px}
+
+/* dessin : classes SVG */
+.t{font:500 13px var(--sans);fill:var(--ink)}
+.tb{font:600 13px var(--sans);fill:var(--ink)}
+.tq{font:400 12px var(--sans);fill:var(--ink-2)}
+.tm{font:400 11px var(--mono);fill:var(--ink-3)}
+.ln{stroke:var(--axis);stroke-width:1.25;fill:none}
+.lnk{stroke:var(--ink);stroke-width:2;fill:none}
+.gr{stroke:var(--grid);stroke-width:1;fill:none}
+.ray{stroke:var(--ray);stroke-width:2.5;fill:none;stroke-linecap:round}
+.geo{stroke:var(--geo);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.dash{stroke-dasharray:5 5}
+.f-ray{fill:var(--ray)} .f-geo{fill:var(--geo)} .f-ink{fill:var(--ink)} .f-sheet{fill:var(--sheet)} .f-axis{fill:var(--axis)} .f-ink3{fill:var(--ink-3)} .f-none{fill:none}
+.ring{stroke:var(--sheet);stroke-width:2}
+.box{fill:var(--sheet);stroke:var(--axis);stroke-width:1.25}
+.box.on{fill:var(--geo-wash);stroke:var(--geo);stroke-width:2}
+.hit{fill:transparent;cursor:ew-resize;touch-action:pan-y}
+
+footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
+.err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
+
+/* cartouche : liens */
+.cv a{text-decoration:none}
+.cv a:hover{text-decoration:underline}
+.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+
+/* onglets : les trois vues d'un pilier */
+.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
+.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
+.vues a:hover{color:var(--ink)}
+.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
+
+/* texte long : articles et démonstrations */
+.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
+.prose>h2{margin-top:1.5rem;font-size:1.4rem}
+.prose>h3{margin-top:.5rem;font-size:1.05rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+.prose li{padding-left:.15rem}
+.prose .fig{margin:0}
+.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
+.tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
+.tex .katex-display{margin:.5em 0}
+.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
+
+/* accueil : liste des planches */
+.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
+.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
+.pl:last-child{border-bottom:0}
+.pl>svg{width:132px;height:auto;display:block}
+.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.pl h3{font-size:1.18rem}
+.pl h3 a{text-decoration:none}
+.pl h3 a:hover{text-decoration:underline}
+.pl p{font-size:.94rem;color:var(--ink-2)}
+.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
+@media (max-width:760px){
+  .pl{grid-template-columns:1fr;gap:.8rem}
+  .pl>svg{width:110px}
+  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
+}
+
+/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
+table.large{min-width:34rem}
+table.large.c6{min-width:46rem}
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td{border:0;padding:.3rem 0}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
+@media (max-width:640px){
+  .tex.ok{padding:.4rem .7rem}
+  .tex .katex{font-size:1.05em}
+}
+
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="cartouche">
+  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="../index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
+  <div class="cc"><span class="ck">Objet</span><span class="cv">Cristallisation de l&#x27;information</span></div>
+  <div class="cc"><span class="ck">Vue</span><span class="cv">Démonstration mathématique</span></div>
+  <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
+  <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
+  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Pilier 5 / 5</span><span class="cv planches"><a class="som" href="../index.html">Sommaire</a><a href="../pilier-1/demonstration.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps">3</a><a href="../pilier-4/demonstration.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" aria-current="page" title="Comment une réponse devient un fait">5</a></span></nav>
+</header>
+<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche interactive</a><a href="article.html">Article</a><a href="demonstration.html" aria-current="page">Démonstration</a></nav>
+<main>
+<article class="prose">
+<div class="head"><span class="eyebrow">Démonstration · pilier 5</span><h1>La cristallisation de l&#x27;information</h1></div>
+<p>L'intuition se formalise en trois temps, tous établis : une question est un potentiel qui se compte en bits, l'interaction inscrit la réponse, et la décohérence la fige en un enregistrement stable et recopié. Deux précisions s'imposent. « Actualiser » et « cristalliser » sont deux temps distincts, et ces équations ne disent pas pourquoi c'est telle réponse qui sort plutôt que l'autre.</p>
+<figure class="fig solo"><figcaption class="figtitle">Tant qu&#x27;elle n&#x27;est pas cristallisée, la réponse reste effaçable</figcaption><div class="stage"><svg viewBox="0 0 728 210" role="img" aria-label="Tant qu'elle n'est pas cristallisée, la réponse reste effaçable"><defs><marker id="ft-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker></defs><g class="ln" style="stroke:var(--ink-3)"><path d="M224 82H262" marker-end="url(#ft-a)"/><path d="M464 82H502" marker-end="url(#ft-a)"/><path d="M364 118V156H124V120" marker-end="url(#ft-a)"/></g><rect x="24" y="46" width="200" height="72" class="box"/><text x="124" y="70" text-anchor="middle" class="tb">Question</text><text x="124" y="88" text-anchor="middle" class="tq">potentiel de réponses</text><text x="124" y="104" text-anchor="middle" class="tq">valeur : H bits</text><rect x="264" y="46" width="200" height="72" class="box"/><text x="364" y="70" text-anchor="middle" class="tb">Inscription</text><text x="364" y="88" text-anchor="middle" class="tq">corrélation quantique</text><text x="364" y="104" text-anchor="middle" class="tq">2 bits, réversible</text><rect x="504" y="46" width="200" height="72" class="box on"/><text x="604" y="70" text-anchor="middle" class="tb">Cristallisation</text><text x="604" y="88" text-anchor="middle" class="tq">1 bit classique, recopié</text><text x="604" y="104" text-anchor="middle" class="tq">figé par l'environnement</text><text x="244" y="36" text-anchor="middle" class="tm">interaction locale</text><text x="484" y="36" text-anchor="middle" class="tm">décohérence</text><text x="244" y="176" text-anchor="middle" class="tq">gomme quantique : la réponse s'efface</text><text x="604" y="146" text-anchor="middle" class="tq">retour impossible en pratique</text></svg></div></figure>
+<p>La flèche de retour n'existe qu'entre l'inscription et la question : c'est la gomme quantique. Après la cristallisation, il n'y a plus de retour.</p>
+<h2>5.1 Question = potentiel</h2>
+<p><strong>Une question est un jeu de projecteurs.</strong> Poser une question à un système, c'est choisir une mesure, donc une famille de projecteurs comme au pilier 4. La question la plus simple, par oui ou par non, est un seul projecteur : il vaut 1 pour « oui » et 0 pour « non ».</p>
+<div class="tex">\hat{P}_k^{\,2} = \hat{P}_k, \qquad \sum_k \hat{P}_k = \hat{1}, \qquad p_k = \mathrm{Tr}\big(\hat{\rho}\,\hat{P}_k\big)</div>
+<p><strong>Le potentiel se compte en bits.</strong> Avant la réponse, la question a déjà un contenu mesurable : ce que la réponse apprendra en moyenne. C'est l'entropie de Shannon (1948) des probabilités de réponse :</p>
+<div class="tex">H = -\sum_k p_k \log_2 p_k \qquad \text{(en bits)}</div>
+<p>H vaut 0 quand la réponse est certaine : il n'y a rien à apprendre, donc aucun potentiel. H est maximal quand toutes les réponses sont également probables. Pour le photon du pilier 4 :</p>
+<div class="tablewrap"><table class="data">
+<thead>
+<tr>
+<th>Question posée</th>
+<th>Probabilités des deux réponses</th>
+<th>Potentiel H</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Route : gauche ou droite</td>
+<td>1/2 et 1/2</td>
+<td>1 bit</td>
+</tr>
+<tr>
+<td>Interférence, avec une phase φ de 90°</td>
+<td>1/2 et 1/2</td>
+<td>1 bit</td>
+</tr>
+<tr>
+<td>Interférence, avec une phase φ de 60°</td>
+<td>3/4 et 1/4</td>
+<td>0,81 bit</td>
+</tr>
+<tr>
+<td>Interférence, avec une phase φ nulle</td>
+<td>1 et 0</td>
+<td>0 bit</td>
+</tr>
+</tbody>
+</table></div>
+<p>Le même état porte donc un potentiel différent selon la question. Le potentiel n'est pas une propriété du photon seul : c'est une propriété du couple formé par l'état et la question.</p>
+<p><strong>Le stock est limité.</strong> Pour deux routes, il existe trois questions mutuellement complémentaires : la route, l'interférence, et l'interférence décalée d'un quart de période. Cette troisième question se calcule comme les deux autres :</p>
+<div class="tex">|\pm i\rangle = \frac{1}{\sqrt{2}}\big(|G\rangle \pm i\,|D\rangle\big), \qquad p_{\pm i} = \big|\langle\pm i|\Psi\rangle\big|^2 = \frac{1 \pm \sin\varphi}{2}</div>
+<p>Pour chaque question, l'écart entre les deux probabilités, élevé au carré, vaut 1 si la réponse est certaine et 0 si elle est tirée à pile ou face. La somme sur les trois questions est fixe :</p>
+<div class="tex">\underbrace{(p_G - p_D)^2}_{0} \;+\; \underbrace{(p_{+} - p_{-})^2}_{\cos^2\varphi} \;+\; \underbrace{(p_{+i} - p_{-i})^2}_{\sin^2\varphi} \;=\; 1</div>
+<p>C'est la mesure d'information de Brukner et Zeilinger (1999) : un bit en tout pour un état pur, moins pour un état mélangé. La borne de Holevo (1973) dit la même chose autrement : aucune mesure ne tire plus d'un bit d'un système à deux états.</p>
+<p><strong>Lecture mécanique.</strong> Une question ouverte est un stock de réponses possibles, et H en donne la valeur. Ce stock est borné : un bit pour deux routes. Poser la question complémentaire n'ajoute pas un second bit, elle redistribue le même.</p>
+<p>C'est la paire de postulats de Rovelli (1996) : l'information qu'on peut tirer d'un système est limitée, mais on peut toujours lui poser une question nouvelle. C'est aussi le « it from bit » de Wheeler : le réel connu est fait de réponses à des questions par oui ou par non.</p>
+<h2>5.2 Actualiser : l'interaction inscrit la réponse</h2>
+<p>L'actualisation est une interaction locale qui lie le système à une mémoire. À ce stade, la réponse est inscrite mais pas encore figée : l'inscription reste réversible.</p>
+<p><strong>Le schéma de von Neumann (1932).</strong> Le système S est dans une superposition de réponses k. La mémoire M, par exemple un atome du détecteur, attend dans un état « prêt ». L'interaction est construite pour recopier la réponse dans la mémoire :</p>
+<div class="tex">\hat{U}\,\big(|k\rangle|M_0\rangle\big) = |k\rangle|M_k\rangle, \qquad \langle M_j|M_k\rangle = \delta_{jk}</div>
+<p>L'évolution est linéaire. Appliquée à une superposition, elle donne donc la superposition des copies :</p>
+<div class="tex">\hat{U}\,\Big(\sum_k c_k\,|k\rangle\Big)|M_0\rangle = \sum_k c_k\,|k\rangle|M_k\rangle</div>
+<p>L'état de la mémoire dépend maintenant de celui du système : une corrélation est née. C'est une interaction locale, au point et à l'instant du détecteur, comme au pilier 2.</p>
+<p><strong>Combien d'information est inscrite ?</strong> On la mesure par l'information mutuelle, construite avec l'entropie de von Neumann S = −Tr(ρ log₂ ρ) :</p>
+<div class="tex">I(S\!:\!M) = S(\hat{\rho}_S) + S(\hat{\rho}_M) - S(\hat{\rho}_{SM})</div>
+<p>Pour le photon à deux routes de même poids, le système seul et la mémoire seule valent chacun 1 bit. L'état conjoint est pur et vaut 0 :</p>
+<div class="tex">I(S\!:\!M) = 1 + 1 - 0 = 2\ \text{bits}</div>
+<p>Deux bits, alors qu'un enregistrement ordinaire n'en porterait qu'un. Cet excès signale une corrélation quantique, l'intrication. La mémoire n'indique pas encore « gauche » ou « droite » : elle est elle-même en superposition des deux.</p>
+<p><strong>L'inscription est réversible.</strong> L'opération inverse défait la corrélation :</p>
+<div class="tex">\hat{U}^{\dagger}\sum_k c_k\,|k\rangle|M_k\rangle = \Big(\sum_k c_k\,|k\rangle\Big)|M_0\rangle</div>
+<p>La mémoire revient à son état « prêt » et l'interférence redevient possible. C'est le principe de la gomme quantique, proposée par Scully et Drühl (1982) et réalisée par Kim et ses collègues (2000).</p>
+<p><strong>Lecture mécanique.</strong> L'actualisation ressemble à une écriture au crayon. La réponse est notée, mais on peut encore l'effacer sans laisser de trace. Tant que rien d'autre n'a lu la mémoire, la question peut être retirée.</p>
+<p><strong>Précision sur « actualise = cristallise ».</strong> Le formalisme sépare deux temps que l'intuition réunit. L'inscription est une corrélation réversible. La cristallisation, décrite dans la section suivante, est ce qui la rend définitive.</p>
+<h2>5.3 Cristalliser : décohérence, copies, verrouillage</h2>
+<p>La réponse devient un fait quand l'environnement lit la mémoire. Trois effets se calculent : les interférences entre réponses s'éteignent, la réponse est recopiée en un très grand nombre d'exemplaires, et une barrière d'énergie la verrouille.</p>
+<p><strong>L'environnement lit la mémoire.</strong> Une mémoire n'est jamais isolée. Des particules de l'environnement, photons ou molécules d'air, la heurtent l'une après l'autre. Chacune repart dans un état qui dépend de ce que la mémoire indique. Après N particules :</p>
+<div class="tex">\sum_k c_k\,|k\rangle|M_k\rangle\,|e_0\rangle^{\otimes N} \;\longrightarrow\; |\Omega\rangle = \sum_k c_k\,|k\rangle|M_k\rangle\,|e_k\rangle^{\otimes N}</div>
+<p>L'exposant ⊗N désigne N particules, chacune dans le même état.</p>
+<p><strong>Premier effet : la décohérence.</strong> Personne ne contrôle l'environnement. On en prend donc la trace partielle, comme au pilier 4 :</p>
+<div class="tex">\hat{\rho}_{SM} = \mathrm{Tr}_E\,|\Omega\rangle\langle\Omega| = \sum_{j,k} c_j\,c_k^{*}\;\langle e_k|e_j\rangle^{N}\;|j, M_j\rangle\langle k, M_k|</div>
+<p>Pour j = k, le facteur vaut 1 : les probabilités ne changent pas. Pour j ≠ k, les cohérences sont multipliées par un recouvrement élevé à la puissance N. Pour deux réponses, on note ε le module de ce recouvrement, inférieur à 1, et ν le nombre de collisions par seconde :</p>
+<div class="tex">\big|\langle e_1|e_0\rangle\big|^{N} = \varepsilon^{N} = e^{-N\ln(1/\varepsilon)} = e^{-t/\tau_D}, \qquad \tau_D = \frac{1}{\nu\,\ln(1/\varepsilon)}</div>
+<p>Les cohérences s'éteignent de façon exponentielle. Il reste un mélange ordinaire de deux enregistrements, et l'information mutuelle tombe de 2 bits à 1 bit :</p>
+<div class="tex">\begin{aligned}
+\hat{\rho}_{SM} \;&amp;\longrightarrow\; \sum_k |c_k|^2\,|k, M_k\rangle\langle k, M_k| \\
+I(S\!:\!M) :\quad 2\ \text{bits} \;&amp;\longrightarrow\; 1\ \text{bit}
+\end{aligned}</div>
+<p>Exemple chiffré : une mémoire de 1 cm² en plein jour reçoit environ 2,5 × 10¹⁷ photons par seconde. Même si chaque photon distingue très mal les deux réponses (ε = 0,999999), les cohérences s'éteignent en 4 × 10⁻¹² s.</p>
+<p>Le calcul complet de Joos et Zeh (1985) suit la même loi exponentielle. Pour deux positions x et x' d'un objet, la cohérence décroît à un taux Λ qui dépend de l'environnement. La loi vaut tant que l'écart entre les deux positions reste petit devant la longueur d'onde du rayonnement :</p>
+<div class="tex">\rho(x, x&#x27;, t) = \rho(x, x&#x27;, 0)\,e^{-\Lambda\,t\,(x - x&#x27;)^2}
+\qquad\Longrightarrow\qquad
+\tau_D = \frac{1}{\Lambda\,(x - x&#x27;)^2}</div>
+<p>Pour un grain de poussière de 10 micromètres et deux positions distantes de 0,1 micromètre, les taux de leur tableau donnent 10⁻¹¹ s à la lumière du soleil et 10⁻⁹ s sous le seul rayonnement thermique ambiant. Dans le vide interstellaire, où ne reste que le rayonnement cosmologique, il faut encore moins de trois heures.</p>
+<p><strong>Deuxième effet : la redondance.</strong> Chaque particule emporte une copie partielle de la réponse. Pour deux réponses de même poids, un paquet de m particules en contient :</p>
+<div class="tex">I(m) = h\!\left(\frac{1 + \varepsilon^{m}}{2}\right), \qquad h(x) = -x\log_2 x - (1 - x)\log_2(1 - x)</div>
+<p>Cette quantité tend vers 1 bit quand m grandit. Dans l'exemple précédent, un million de photons portent 90 % du bit. La réponse est donc recopiée plus de cent milliards de fois par seconde.</p>
+<p>Chaque observateur peut lire un paquet différent, sans toucher au système, et tous lisent la même réponse. C'est ainsi qu'une réponse devient un fait partagé : Zurek (2009) appelle ce mécanisme le darwinisme quantique. C'est aussi le sens le plus littéral du mot cristal : un même motif répété un très grand nombre de fois.</p>
+<p>Ces copies voyagent au plus à la vitesse c. Un fait cristallisé n'est donc disponible que dans le cône de lumière futur de l'événement : la cristallisation reste locale et actuelle, au sens du pilier 2.</p>
+<p><strong>Troisième effet : le verrouillage.</strong> Pour défaire l'enregistrement, il faudrait rattraper toutes les particules et inverser leur trajet. Dans l'exemple, après un milliardième de seconde, il reste moins de 10⁻¹⁰⁰ de la cohérence initiale. L'effacement spontané par l'agitation thermique est bloqué, lui, par une barrière d'énergie ΔE :</p>
+<div class="tex">\tau = \tau_0\,e^{\Delta E / k_B T}, \qquad Q_{\text{effacement}} \;\ge\; k_B T\,\ln 2</div>
+<ul>
+<li>Durée de vie τ : pour conserver un bit dix ans à température ambiante, avec un temps d'essai de 1 ns, il faut une barrière d'environ 40 fois l'énergie thermique kT, soit 1 eV.</li>
+<li>Coût d'effacement : le principe de Landauer (1961) impose de dissiper au moins kT ln 2 par bit effacé, soit 2,9 × 10⁻²¹ J à 300 K. Bérut et ses collègues (2012) l'ont vérifié expérimentalement.</li>
+</ul>
+<p><strong>Le germe et l'avalanche.</strong> Les détecteurs réels amplifient avant de figer. Dans une émulsion photographique, un amas de trois à cinq atomes d'argent suffit pour que le développement transforme le grain entier : le gain est d'environ cent millions (Belloni, 2002). Le mot cristal est ici à prendre au pied de la lettre, puisque le grain est un cristal d'halogénure d'argent.</p>
+<p>Dans un photomultiplicateur, chaque électron arraché par un photon en libère un à dix millions.</p>
+<p><strong>Lecture mécanique.</strong> Cristalliser, c'est passer du crayon à la gravure. La réponse ne peut plus interférer, elle existe en d'innombrables copies, et une barrière d'énergie la protège.</p>
+<p>L'image de la solution sursaturée est juste. Le détecteur est un milieu prêt à basculer, et la réponse microscopique en est le germe.</p>
+<h2>5.4 Conditions de validité et nuances</h2>
+<ul>
+<li>Deux temps, pas un. « Actualise = cristallise » réunit l'inscription, qui est réversible, et la cristallisation, qui ne l'est plus en pratique. La gomme quantique le montre : une information de route encore non cristallisée peut être effacée, et les franges reviennent.</li>
+<li>La décohérence fige la réponse, elle ne la choisit pas. Les équations donnent un mélange « gauche ou droite » avec les bonnes probabilités. Elles ne disent pas pourquoi une seule réponse est constatée : c'est le « problème des résultats » (Schlosshauer, 2004), auquel les interprétations du pilier 4 répondent différemment.</li>
+<li>L'irréversibilité est pratique, pas de principe. L'évolution de l'ensemble reste unitaire : les cohérences ne sont pas détruites, elles sont diluées dans l'environnement.</li>
+<li>La redondance multiplie les copies, pas l'information. Il y a toujours un seul bit, écrit un très grand nombre de fois.</li>
+<li>« Cristallisation » est une image. Son contenu rigoureux porte trois noms : décohérence (Joos et Zeh, 1985 ; Zurek, 2003), darwinisme quantique (Zurek, 2009) et principe de Landauer (1961). L'image devient littérale dans les modèles où l'appareil subit une transition de phase déclenchée par le système mesuré (Allahverdyan, Balian et Nieuwenhuizen, 2013).</li>
+<li>Ces effets sont observés. Brune et ses collègues (1996) ont suivi la décohérence d'une superposition de quelques photons, d'autant plus rapide que ses composantes sont éloignées. Hornberger et ses collègues (2003) ont vu le contraste des franges de grosses molécules décroître exponentiellement avec la pression du gaz. Unden et ses collègues (2019) ont testé la redondance prévue par le darwinisme quantique.</li>
+<li>Hypothèses du modèle simplifié de la section 5.3 : particules d'environnement identiques et indépendantes, états purs, deux réponses de même poids, mémoire dont les états ne sont pas perturbés par l'environnement.</li>
+</ul>
+<h2>Références</h2>
+<ul>
+<li>Shannon, C. E. (1948). <a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">A Mathematical Theory of Communication</a>. Bell System Technical Journal 27, 379–423 et 623–656.</li>
+<li>Holevo, A. S. (1973). <a href="https://www.mathnet.ru/eng/ppi903">Bounds for the quantity of information transmitted by a quantum communication channel</a>. Problems of Information Transmission 9, 177–183.</li>
+<li>Brukner, Č., Zeilinger, A. (1999). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.83.3354">Operationally Invariant Information in Quantum Measurements</a>. Physical Review Letters 83, 3354–3357.</li>
+<li>von Neumann, J. (1932). Mathematische Grundlagen der Quantenmechanik. Springer, Berlin. <a href="https://ci.nii.ac.jp/ncid/BA04044067?l=en">Notice de catalogue</a>.</li>
+<li>Scully, M. O., Drühl, K. (1982). <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.25.2208">Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics</a>. Physical Review A 25, 2208–2213.</li>
+<li>Kim, Y.-H., Yu, R., Kulik, S. P., Shih, Y., Scully, M. O. (2000). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.84.1">Delayed “Choice” Quantum Eraser</a>. Physical Review Letters 84, 1–5.</li>
+<li>Joos, E., Zeh, H. D. (1985). <a href="https://link.springer.com/article/10.1007/BF01725541">The emergence of classical properties through interaction with the environment</a>. Zeitschrift für Physik B 59, 223–243. Tableau des taux lu dans <a href="https://ar5iv.labs.arxiv.org/html/quant-ph/9803052">Kiefer et Joos, « Decoherence: Concepts and Examples »</a>.</li>
+<li>Zurek, W. H. (2003). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.75.715">Decoherence, einselection, and the quantum origins of the classical</a>. Reviews of Modern Physics 75, 715–775.</li>
+<li>Schlosshauer, M. (2004). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.76.1267">Decoherence, the measurement problem, and interpretations of quantum mechanics</a>. Reviews of Modern Physics 76, 1267–1305.</li>
+<li>Zurek, W. H. (2009). <a href="https://www.nature.com/articles/nphys1202">Quantum Darwinism</a>. Nature Physics 5, 181–188.</li>
+<li>Unden, T. K., et al. (2019). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.140402">Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers</a>. Physical Review Letters 123, 140402.</li>
+<li>Brune, M., et al. (1996). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.4887">Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement</a>. Physical Review Letters 77, 4887–4890.</li>
+<li>Hornberger, K., et al. (2003). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.90.160401">Collisional Decoherence Observed in Matter Wave Interferometry</a>. Physical Review Letters 90, 160401.</li>
+<li>Landauer, R. (1961). « Irreversibility and Heat Generation in the Computing Process ». IBM Journal of Research and Development 5, 183–191. DOI 10.1147/rd.53.0183.</li>
+<li>Bérut, A., et al. (2012). <a href="https://www.nature.com/articles/nature10872">Experimental verification of Landauer's principle linking information and thermodynamics</a>. Nature 483, 187–189.</li>
+<li>Allahverdyan, A. E., Balian, R., Nieuwenhuizen, T. M. (2013). <a href="https://arxiv.org/abs/1107.2138">Understanding quantum measurement from the solution of dynamical models</a>. Physics Reports 525, 1–166.</li>
+<li>Belloni, J. (2002). <a href="https://comptes-rendus.academie-sciences.fr/physique/item/10.1016/S1631-0705(02)01321-X.pdf">The role of silver clusters in photography</a>. Comptes Rendus Physique 3, 381–390.</li>
+<li>Gain des photomultiplicateurs : <a href="https://evidentscientific.com/en/microscope-resource/knowledge-hub/digitalimaging/concepts/photomultipliers">page technique d'Evident Scientific</a>.</li>
+</ul>
+<p class="suite"><a href="index.html">Manipuler la planche interactive</a> · <a href="article.html">Lire l'article</a></p>
+</article>
+</main>
+<footer>
+  <span>Pilier 5 sur 5 · Cristallisation de l&#x27;information</span>
+  <a href="../documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">Article en PDF</a>
+  <a href="../documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="../index.html">Sommaire</a>
+</footer>
+</div>
+<script>
+'use strict';
+window.addEventListener('error', function (e) {
+  var b = document.createElement('div');
+  b.className = 'err';
+  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+  document.body.appendChild(b);
+});
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const NS = 'http://www.w3.org/2000/svg';
+const set = (e, attrs) => { for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+const el = (tag, attrs, txt) => { const e = document.createElementNS(NS, tag); set(e, attrs || {}); if (txt != null) e.textContent = txt; return e; };
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+// nombres à la française
+const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
+const sig = (x, n = 3) => {
+  if (!isFinite(x)) return '—';
+  if (x === 0) return '0';
+  const e = Math.floor(Math.log10(Math.abs(x)));
+  const d = clamp(n - 1 - e, 0, 12);
+  return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
+};
+const SUP = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+const sup = n => String(n).split('').map(ch => SUP[ch] || ch).join('');
+const sci = (x, n = 2) => {
+  if (x === 0) return '0';
+  let e = Math.floor(Math.log10(Math.abs(x)));
+  let m = x / Math.pow(10, e);
+  if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
+  return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
+};
+// durée en secondes -> texte lisible
+const duree = s => {
+  if (s < 1e-12) return sig(s * 1e15) + ' fs';
+  if (s < 1e-9) return sig(s * 1e12) + ' ps';
+  if (s < 1e-6) return sig(s * 1e9) + ' ns';
+  if (s < 1e-3) return sig(s * 1e6) + ' µs';
+  if (s < 1) return sig(s * 1e3) + ' ms';
+  if (s < 60) return sig(s) + ' s';
+  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
+  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) return sig(s / 86400) + ' jours';
+  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  return sig(s / 31557600e6) + ' millions d’années';
+};
+// générateur pseudo-aléatoire reproductible
+const mulberry = seed => () => {
+  let t = seed += 0x6D2B79F5;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+// espaces insécables dans les textes écrits par le script
+const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+new MutationObserver(ms => ms.forEach(m => {
+  const t = m.target;
+  if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
+})).observe(document.documentElement, { childList: true, subtree: true });
+// boutons à bascule exclusive
+const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+
+window.addEventListener('DOMContentLoaded', function () {
+  if (!window.katex) return;
+  $$('.tex').forEach(function (d) {
+    var t = d.textContent;
+    try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
+  });
+});
+
+</script>
+</body>
+</html>
