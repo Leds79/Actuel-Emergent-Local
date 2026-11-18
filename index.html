@@ -242,6 +242,47 @@ table.large.c6{min-width:46rem}
   .tex .katex{font-size:1.05em}
 }
 
+/* dossier complet sur une page */
+.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.dossier>h2{font-size:1.7rem;max-width:30ch;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--axis)}
+.dossier>h3{font-size:1.25rem;margin-top:1.3rem}
+
+/* impression et PDF : feuille blanche, texte pleine largeur, formules ajustées à la page */
+@media print{
+  @page{size:letter;margin:16mm 16mm 19mm;
+    @bottom-left{content:"Modèle « Actuel, Émergent, Local »";font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}
+    @bottom-right{content:counter(page) " / " counter(pages);font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}}
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{
+    --bg:#fff; --sheet:#fff; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+    --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
+    --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
+    --critical:#d03b3b; --good:#0ca30c; color-scheme:light;
+  }
+  *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
+  .sheet{max-width:none;border:0;box-shadow:none}
+  .cartouche{border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
+  .cartouche .cc{border-bottom:0;border-right:1px solid var(--rule)}
+  .cartouche .cc:nth-child(5){border-right:0}
+  .cartouche nav,.vues,footer,.suite,.err{display:none!important}
+  main{padding:0;gap:1.2rem}
+  p,.lead,.prose ul,.prose ol,h1,h2{max-width:none}
+  h1{font-size:23pt}
+  h2,h3,.figtitle,.eyebrow{break-after:avoid}
+  .fig,.tex,.pl,.toc,.lecture,.correction,.stats,.defs,table.data tr{break-inside:avoid}
+  .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
+  .tex{overflow:visible}
+  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .stage{overflow:visible}
+  .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .tablewrap{overflow:visible}
+  table.large,table.large.c6{min-width:0}
+  a{text-decoration:none}
+}
+
 </style>
 </head>
 <body>
@@ -268,6 +309,7 @@ table.large.c6{min-width:46rem}
     <div><dt>Article</dt><dd>Le récit sans équation, pour qui découvre le sujet.</dd></div>
     <div><dt>Démonstration</dt><dd>Toutes les étapes du calcul, les conditions de validité et les références.</dd></div>
   </dl>
+  <p class="fnote">Le <a href="dossier.html">dossier complet</a> réunit sur une seule page les cinq démonstrations, la synthèse et les références. Il existe aussi en <a href="dossier-complet.pdf">PDF</a>.</p>
 </section>
 
 <section aria-labelledby="h-liste">
@@ -346,14 +388,17 @@ table.large.c6{min-width:46rem}
   <span class="eyebrow">Documents</span>
   <h2 id="h-docs">Tout télécharger</h2>
   <div class="tablewrap"><table class="data">
-    <thead><tr><th>Document</th><th colspan="3">Formats</th></tr></thead>
-    <tbody><tr><td>Dossier mathématique complet</td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">PDF</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.docx">Word</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.md">Markdown</a></td></tr><tr><td>Article du pilier 1 — L&#x27;ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">PDF</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.docx">Word</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.md">Markdown</a></td></tr><tr><td>Article du pilier 2 — On ne voit jamais la lumière passer</td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">PDF</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.docx">Word</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.md">Markdown</a></td></tr><tr><td>Article du pilier 3 — Tomber, c&#x27;est suivre la pente du temps</td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">PDF</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.docx">Word</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.md">Markdown</a></td></tr><tr><td>Article du pilier 4 — Le choix d&#x27;aujourd&#x27;hui ne réécrit pas le passé</td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">PDF</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.docx">Word</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.md">Markdown</a></td></tr><tr><td>Article du pilier 5 — Comment une réponse devient un fait</td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">PDF</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.docx">Word</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.md">Markdown</a></td></tr></tbody>
+    <thead><tr><th>Document</th><th>En ligne</th><th colspan="3">À télécharger</th></tr></thead>
+    <tbody><tr><td>Dossier mathématique complet</td><td><a href="dossier.html">Lire</a></td><td><a href="dossier-complet.pdf">PDF</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.docx">Word</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.md">Markdown</a></td></tr><tr><td>Article du pilier 1 — L&#x27;ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</td><td><a href="pilier-1/article.html">Lire</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">PDF</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.docx">Word</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.md">Markdown</a></td></tr><tr><td>Article du pilier 2 — On ne voit jamais la lumière passer</td><td><a href="pilier-2/article.html">Lire</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">PDF</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.docx">Word</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.md">Markdown</a></td></tr><tr><td>Article du pilier 3 — Tomber, c&#x27;est suivre la pente du temps</td><td><a href="pilier-3/article.html">Lire</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">PDF</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.docx">Word</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.md">Markdown</a></td></tr><tr><td>Article du pilier 4 — Le choix d&#x27;aujourd&#x27;hui ne réécrit pas le passé</td><td><a href="pilier-4/article.html">Lire</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">PDF</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.docx">Word</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.md">Markdown</a></td></tr><tr><td>Article du pilier 5 — Comment une réponse devient un fait</td><td><a href="pilier-5/article.html">Lire</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">PDF</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.docx">Word</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.md">Markdown</a></td></tr></tbody>
   </table></div>
+  <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>
 </main>
 <footer>
   <span>Modèle « Actuel, Émergent, Local » · Sylvain Leduc</span>
-  <a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="dossier.html">Dossier complet</a>
+  <a href="dossier-complet.pdf">Dossier en PDF</a>
+  <a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a>
 </footer>
 </div>
 <script>

@@ -24,6 +24,8 @@ DOCS = os.path.join(RACINE, "documents")
 AUTEUR = "Sylvain Leduc"
 DOSSIER = "Formalisation du modèle « Actuel, Émergent, Local »"
 LIEN_DOSSIER_PRIVE = "https://claude.ai/artifact/4ZtY3d2RwEVQGYMST5XD2r"
+PDF_DOSSIER = "dossier-complet.pdf"
+DEPOT = "https://github.com/Leds79/Actuel-Emergent-Local"
 
 PILIERS = [
     dict(n=1, titre="L'ombre plus rapide que la lumière", objet="Géométrie de l'observateur", echelle="1 px = 400 000 km",
@@ -60,6 +62,19 @@ window.addEventListener('DOMContentLoaded', function () {
     var t = d.textContent;
     try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
   });
+  // À l'impression (et dans le PDF), une formule plus large que la page est réduite pour tenir sur la ligne.
+  var PAPIER = 650, CORPS = 16.94;
+  var ajuster = function () {
+    $$('.tex.ok').forEach(function (d) {
+      var k = d.querySelector('.katex'), h = d.querySelector('.katex-html');
+      if (!k || !h) return;
+      var r = document.createRange(); r.selectNodeContents(h);
+      var w = r.getBoundingClientRect().width * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
+      d.dataset.w = Math.round(w);
+      if (w > PAPIER) d.style.setProperty('--fit', (PAPIER / w).toFixed(3));
+    });
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajuster); else ajuster();
 });
 """
 
@@ -192,10 +207,10 @@ def md_html(md, vue):
     return h
 
 
-def page(relatif, titre, description, objet, cle3, val3, date, corps, pied, js, pilier=None, vue=None, tete=""):
+def page(relatif, titre, description, objet, cle3, val3, date, corps, pied, js, pilier=None, vue=None, tete="", accueil=False):
     racine = "../" if pilier else ""
     fichier = vue or "index.html"
-    nav = ['<a class="som" href="%sindex.html"%s>Sommaire</a>' % (racine, "" if pilier else ' aria-current="page"')]
+    nav = ['<a class="som" href="%sindex.html"%s>Sommaire</a>' % (racine, ' aria-current="page"' if accueil else "")]
     for p in PILIERS:
         nav.append('<a href="%spilier-%d/%s"%s title="%s">%d</a>' % (
             racine, p["n"], fichier, ' aria-current="page"' if pilier and p["n"] == pilier["n"] else "", e(p["titre"]), p["n"]))
@@ -215,8 +230,36 @@ def page(relatif, titre, description, objet, cle3, val3, date, corps, pied, js, 
 def pied_pilier(p):
     return ('  <span>Pilier %d sur 5 · %s</span>\n'
             '  <a href="../documents/%s.pdf">Article en PDF</a>\n'
-            '  <a href="../documents/%s.pdf">Dossier complet en PDF</a>\n'
-            '  <a href="../index.html">Sommaire</a>' % (p["n"], e(p["objet"]), url(p["article"]), url(DOSSIER)))
+            '  <a href="../dossier.html">Dossier complet</a>\n'
+            '  <a href="../%s">Dossier en PDF</a>\n'
+            '  <a href="../index.html">Sommaire</a>' % (p["n"], e(p["objet"]), url(p["article"]), PDF_DOSSIER))
+
+
+def pdf_dossier():
+    """Imprime dossier.html en PDF avec Edge ou Chrome, pour obtenir un dossier aux formules composées."""
+    import pathlib
+    import shutil
+    import subprocess
+    import tempfile
+    candidats = [shutil.which(n) for n in ("msedge", "chrome", "google-chrome", "chromium")] + [
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"]
+    navigateur = next((c for c in candidats if c and os.path.exists(c)), None)
+    if not navigateur:
+        print("  PDF non produit : ni Edge ni Chrome trouvés sur cette machine")
+        return
+    sortie = os.path.join(RACINE, PDF_DOSSIER)
+    avant = os.path.getmtime(sortie) if os.path.exists(sortie) else 0
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as profil:
+        subprocess.run([navigateur, "--headless=new", "--disable-gpu", "--no-first-run", "--user-data-dir=" + profil,
+                        "--no-pdf-header-footer", "--virtual-time-budget=25000", "--print-to-pdf=" + sortie,
+                        pathlib.Path(os.path.join(RACINE, "dossier.html")).as_uri()], capture_output=True, timeout=600)
+    if os.path.exists(sortie) and os.path.getmtime(sortie) > avant:
+        print("  écrit : %-34s %6d octets (les formules viennent d'Internet : connexion requise)" % (PDF_DOSSIER, os.path.getsize(sortie)))
+    else:
+        print("  PDF non produit : l'impression a échoué")
 
 
 # ---------------------------------------------------------------- construction
@@ -278,10 +321,12 @@ def main():
             '<div class="liens"><a href="pilier-%d/index.html">Planche interactive</a><a href="pilier-%d/article.html">Article</a>'
             '<a href="pilier-%d/demonstration.html">Démonstration</a></div></article>'
             % (VIGNETTES[p["n"]], p["n"], e(p["objet"]), p["n"], e(p["titre"]), e(p["resume"]), p["n"], p["n"], p["n"]))
-    docs = [("Dossier mathématique complet", DOSSIER)] + [("Article du pilier %d — %s" % (p["n"], p["article"]), p["article"]) for p in PILIERS]
+    docs = [("Dossier mathématique complet", "dossier.html", PDF_DOSSIER, DOSSIER)] + [
+        ("Article du pilier %d — %s" % (p["n"], p["article"]), "pilier-%d/article.html" % p["n"],
+         "documents/%s.pdf" % url(p["article"]), p["article"]) for p in PILIERS]
     rangs = "".join(
-        '<tr><td>%s</td><td><a href="documents/%s.pdf">PDF</a></td><td><a href="documents/%s.docx">Word</a></td>'
-        '<td><a href="documents/%s.md">Markdown</a></td></tr>' % (e(nom), url(f), url(f), url(f)) for nom, f in docs)
+        '<tr><td>%s</td><td><a href="%s">Lire</a></td><td><a href="%s">PDF</a></td><td><a href="documents/%s.docx">Word</a></td>'
+        '<td><a href="documents/%s.md">Markdown</a></td></tr>' % (e(nom), web, pdf, url(f), url(f)) for nom, web, pdf, f in docs)
     corps = typo("""<div class="head">
   <h1>Actuel, Émergent, Local</h1>
   <p class="lead">Cinq intuitions sur la lumière, la gravité et la mesure, nées du suivi de projet : flux, délais, goulots d'étranglement. Chacune est traduite en équations, confrontée à la physique établie, puis corrigée là où il le faut.</p>
@@ -295,6 +340,7 @@ def main():
     <div><dt>Article</dt><dd>Le récit sans équation, pour qui découvre le sujet.</dd></div>
     <div><dt>Démonstration</dt><dd>Toutes les étapes du calcul, les conditions de validité et les références.</dd></div>
   </dl>
+  <p class="fnote">Le <a href="dossier.html">dossier complet</a> réunit sur une seule page les cinq démonstrations, la synthèse et les références. Il existe aussi en <a href="dossier-complet.pdf">PDF</a>.</p>
 </section>
 
 <section aria-labelledby="h-liste">
@@ -325,14 +371,44 @@ def main():
   <span class="eyebrow">Documents</span>
   <h2 id="h-docs">Tout télécharger</h2>
   <div class="tablewrap"><table class="data">
-    <thead><tr><th>Document</th><th colspan="3">Formats</th></tr></thead>
+    <thead><tr><th>Document</th><th>En ligne</th><th colspan="3">À télécharger</th></tr></thead>
     <tbody>%s</tbody>
   </table></div>
+  <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>""") % ("\n".join(lignes), md_html(intro, "accueil"), md_html(sections.get("Synthèse", "").strip(), "accueil"), rangs)
-    pied = ('  <span>Modèle « Actuel, Émergent, Local » · %s</span>\n  <a href="documents/%s.pdf">Dossier complet en PDF</a>' % (AUTEUR, url(DOSSIER)))
+    pied = ('  <span>Modèle « Actuel, Émergent, Local » · %s</span>\n  <a href="dossier.html">Dossier complet</a>\n'
+            '  <a href="%s">Dossier en PDF</a>\n  <a href="%s">Code source</a>' % (AUTEUR, PDF_DOSSIER, DEPOT))
     page("index.html", "Actuel, Émergent, Local",
          "Cinq intuitions sur la lumière, la gravité et la mesure, traduites en équations et confrontées à la physique établie.",
-         "Page de garde", "Contenu", "5 planches · 5 articles · 5 démonstrations", date, corps, pied, base_js)
+         "Page de garde", "Contenu", "5 planches · 5 articles · 5 démonstrations", date, corps, pied, base_js, accueil=True)
+
+    # 5. dossier complet sur une seule page ; il sert aussi à produire le PDF aux formules composées
+    tout = re.sub(r"^# .*$", "", dossier, count=1, flags=re.M)
+    tout = re.sub(r"^[A-Z][a-z]{2} \d{1,2}, \d{4} ·.*$", "", tout, count=1, flags=re.M).strip()
+    h = md_html(tout, "demonstration")
+    sommaire = []
+
+    def ancre(m):
+        titre = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        mm = re.match(r"Pilier\s+(\d)", titre)
+        ident = "pilier-%s" % mm.group(1) if mm else {"Synthèse": "synthese", "Références": "references"}.get(
+            titre, "partie-%d" % (len(sommaire) + 1))
+        sommaire.append('<li><a href="#%s">%s</a></li>' % (ident, m.group(1)))
+        return '<h2 id="%s">%s</h2>' % (ident, m.group(1))
+    h = re.sub(r"<h2>(.*?)</h2>", ancre, h, flags=re.S)
+    table = '<nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol>%s</ol></nav>' % "".join(sommaire)
+    h = h.replace('<h2 id="pilier-1">', table + '\n<h2 id="pilier-1">', 1)
+    corps = ('<article class="prose dossier">\n<div class="head"><span class="eyebrow">Dossier complet · cinq démonstrations</span>'
+             '<h1>%s</h1></div>\n%s\n</article>' % (typo(">" + e(DOSSIER) + "<")[1:-1], h))
+    pied = ('  <span>%s · %s · %s</span>\n  <a href="%s">Dossier en PDF</a>\n  <a href="index.html">Sommaire</a>'
+            % (DOSSIER, AUTEUR, date, PDF_DOSSIER))
+    page("dossier.html", DOSSIER,
+         "Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.",
+         "Dossier complet", "Contenu", "5 démonstrations · synthèse · références", date, corps, pied,
+         base_js + KATEX_JS, tete=KATEX)
+
+    if "--pdf" in sys.argv:
+        pdf_dossier()
     verifier_liens()
 
 

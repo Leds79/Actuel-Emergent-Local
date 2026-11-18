@@ -244,6 +244,47 @@ table.large.c6{min-width:46rem}
   .tex .katex{font-size:1.05em}
 }
 
+/* dossier complet sur une page */
+.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.dossier>h2{font-size:1.7rem;max-width:30ch;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--axis)}
+.dossier>h3{font-size:1.25rem;margin-top:1.3rem}
+
+/* impression et PDF : feuille blanche, texte pleine largeur, formules ajustées à la page */
+@media print{
+  @page{size:letter;margin:16mm 16mm 19mm;
+    @bottom-left{content:"Modèle « Actuel, Émergent, Local »";font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}
+    @bottom-right{content:counter(page) " / " counter(pages);font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}}
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{
+    --bg:#fff; --sheet:#fff; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+    --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
+    --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
+    --critical:#d03b3b; --good:#0ca30c; color-scheme:light;
+  }
+  *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
+  .sheet{max-width:none;border:0;box-shadow:none}
+  .cartouche{border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
+  .cartouche .cc{border-bottom:0;border-right:1px solid var(--rule)}
+  .cartouche .cc:nth-child(5){border-right:0}
+  .cartouche nav,.vues,footer,.suite,.err{display:none!important}
+  main{padding:0;gap:1.2rem}
+  p,.lead,.prose ul,.prose ol,h1,h2{max-width:none}
+  h1{font-size:23pt}
+  h2,h3,.figtitle,.eyebrow{break-after:avoid}
+  .fig,.tex,.pl,.toc,.lecture,.correction,.stats,.defs,table.data tr{break-inside:avoid}
+  .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
+  .tex{overflow:visible}
+  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .stage{overflow:visible}
+  .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .tablewrap{overflow:visible}
+  table.large,table.large.c6{min-width:0}
+  a{text-decoration:none}
+}
+
 </style>
 </head>
 <body>
@@ -489,7 +530,8 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 <footer>
   <span>Pilier 1 sur 5 · Géométrie de l&#x27;observateur</span>
   <a href="../documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">Article en PDF</a>
-  <a href="../documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.pdf">Dossier complet en PDF</a>
+  <a href="../dossier.html">Dossier complet</a>
+  <a href="../dossier-complet.pdf">Dossier en PDF</a>
   <a href="../index.html">Sommaire</a>
 </footer>
 </div>
@@ -564,6 +606,19 @@ window.addEventListener('DOMContentLoaded', function () {
     var t = d.textContent;
     try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
   });
+  // À l'impression (et dans le PDF), une formule plus large que la page est réduite pour tenir sur la ligne.
+  var PAPIER = 650, CORPS = 16.94;
+  var ajuster = function () {
+    $$('.tex.ok').forEach(function (d) {
+      var k = d.querySelector('.katex'), h = d.querySelector('.katex-html');
+      if (!k || !h) return;
+      var r = document.createRange(); r.selectNodeContents(h);
+      var w = r.getBoundingClientRect().width * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
+      d.dataset.w = Math.round(w);
+      if (w > PAPIER) d.style.setProperty('--fit', (PAPIER / w).toFixed(3));
+    });
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajuster); else ajuster();
 });
 
 </script>

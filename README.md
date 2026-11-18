@@ -22,16 +22,24 @@ Chaque pilier se lit de trois façons : une **planche interactive** (figure à m
 
 - `index.html` : page d'accueil (sommaire, verdict, synthèse, téléchargements).
 - `pilier-1/` à `pilier-5/` : pour chaque pilier, `index.html` (planche interactive), `article.html` et `demonstration.html`.
-- `documents/` : le dossier mathématique complet et les cinq articles, en PDF, Word et Markdown.
+- `dossier.html` : le dossier complet sur une seule page (cinq démonstrations, synthèse, références).
+- `dossier-complet.pdf` : le même dossier en PDF, avec les formules composées.
+- `documents/` : les exports d'origine du dossier et des cinq articles, en PDF, Word et Markdown. Dans les exports du dossier, les formules sont écrites en code LaTeX ; pour le lire, préférer `dossier-complet.pdf`.
 - `outils/` : le générateur du site et ses gabarits.
 
 ## Reconstruire le site
 
-Les pages sont générées à partir des fichiers Markdown de `documents/` et des gabarits de `outils/gabarits/`.
+Les pages sont générées à partir des fichiers Markdown de `documents/` et des gabarits de `outils/gabarits/`. Il ne faut donc pas les modifier à la main.
 
 ```
 pip install markdown
 python outils/construire_site.py
+```
+
+Pour refaire aussi le PDF du dossier, ajouter l'option `--pdf`. Elle demande Microsoft Edge ou Google Chrome, et une connexion Internet.
+
+```
+python outils/construire_site.py --pdf
 ```
 
 Après la modification d'un document, remplacer son export `.md` dans `documents/`, relancer la commande, puis publier les fichiers générés.
