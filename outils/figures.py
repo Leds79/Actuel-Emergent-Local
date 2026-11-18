@@ -176,3 +176,12 @@ VIGNETTES = {
         '<path d="M66 48V66H23V48"/></g><rect x="6" y="24" width="34" height="24" class="box"/>'
         '<rect x="49" y="24" width="34" height="24" class="box"/><rect x="92" y="24" width="34" height="24" class="box on"/></svg>'),
 }
+
+# marque du site : une source, trois rayons, un écran plat (le point de départ du modèle)
+ICONE = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/>'
+         '<path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/>'
+         '<circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg>')
+FAVICON = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#0f2c56"/>'
+           '<path d="M5 8.5h22" fill="none" stroke="#f3f6fb" stroke-width="2.6"/>'
+           '<path d="M16 25L7.5 8.5M16 25V8.5M16 25L24.5 8.5" fill="none" stroke="#ffefc4" stroke-width="2" stroke-linecap="round"/>'
+           '<circle cx="16" cy="25" r="2.8" fill="#f3f6fb"/></svg>\n')

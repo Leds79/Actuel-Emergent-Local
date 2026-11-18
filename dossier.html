@@ -3,76 +3,183 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formalisation du modèle « Actuel, Émergent, Local »</title>
+<title>Formalisation du modèle « Actuel, Émergent, Local » · Actuel, Émergent, Local</title>
 <meta name="description" content="Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.">
+<link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/dossier.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Actuel, Émergent, Local">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:title" content="Formalisation du modèle « Actuel, Émergent, Local »">
+<meta property="og:description" content="Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.">
+<meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/dossier.html">
+<meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a2046">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <style>
-/* Planche technique : feuille bordée, cartouche en tête, une figure interactive par planche, texte sur 65 caractères */
+/* Un plan bleu exposé par la lumière en tête ; en dessous, la feuille de dessin, fermée par son cartouche */
 :root{
-  --bg:#e9edf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+  --bg:#e8ecf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
   --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
   --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
   --critical:#d03b3b; --good:#0ca30c;
+  --plan:#0f2c56; --plan-2:#0a2046; --plan-ink:#f3f6fb; --plan-ink-2:#b9cae0;
+  --plan-trait:rgba(205,225,255,.12); --plan-trait-2:rgba(205,225,255,.4); --photon:#ffefc4;
+  --display:"Barlow Condensed","Roboto Condensed","Arial Narrow",sans-serif;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
   --math:"IBM Plex Serif",Cambria,Georgia,serif;
+  --large:1120px;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+    --bg:#070b11; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
     --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
     --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
     --critical:#e66767; --good:#0ca30c; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+  --bg:#070b11; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
   --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
   --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
   --critical:#e66767; --good:#0ca30c; color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);
-  padding-block:clamp(14px,3vw,44px);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
+.barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
 p{margin:0;max-width:65ch}
 [hidden]{display:none!important}
+.dedans{max-width:calc(var(--large) + 32px);margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-/* feuille et cartouche */
-.sheet{max-width:1080px;margin:0 auto;background:var(--sheet);border:1px solid var(--axis);
-  box-shadow:0 0 0 5px var(--sheet),0 0 0 6px var(--rule)}
-.cartouche{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr 1.1fr 1.35fr auto;border-bottom:1px solid var(--axis)}
-.cc{padding:.6rem .9rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
+/* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
+.barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
+.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.marque svg{flex:none}
+.barre nav{display:flex;align-items:center;gap:.3rem}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
+.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+.barre nav a:hover{background:rgba(205,225,255,.16)}
+.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
+@media (max-width:640px){
+  .marque span,.barre .lib{display:none}
+  .barre nav{gap:.25rem}
+  .barre nav a{min-width:2.4rem;height:2.4rem}
+}
+
+/* en-tête : le plan bleu et son quadrillage */
+.plan{position:relative;background-color:var(--plan);color:var(--plan-ink);
+  background-image:linear-gradient(var(--plan-trait) 1px,transparent 1px),linear-gradient(90deg,var(--plan-trait) 1px,transparent 1px);
+  background-size:28px 28px;background-position:center top}
+.plan .dedans{padding-top:clamp(2rem,5vw,3.6rem);padding-bottom:clamp(2rem,4.4vw,3.2rem)}
+.plan .dedans.onglets{padding-bottom:0}
+.repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
+.repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+h1{margin:0;font-weight:600}
+.plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
+.chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem;max-width:none}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border:1px solid currentColor;background:transparent;color:inherit;
+  font:500 .76rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn span{transition:transform .18s ease}
+.btn:hover span{transform:translateX(4px)}
+.btn:hover{background:var(--geo-wash)}
+.plan .btn:hover{background:rgba(205,225,255,.14)}
+.btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.plan .btn.plein:hover{background:#fff;border-color:#fff}
+.btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+@media (prefers-reduced-motion:reduce){.btn span{transition:none}}
+
+/* accueil : le titre, et l'écran qui s'expose photon par photon */
+.hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
+.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1 span{display:block}
+.expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
+.plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
+.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.pl-t{top:.8rem}
+.pl-n{bottom:.8rem}
+.pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
+.expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
+.lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .plaque{aspect-ratio:16/10}
+}
+
+/* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
+.vues{display:flex;margin-top:clamp(1.7rem,3.6vw,2.7rem)}
+.vues a{padding:.98rem 1.25rem;border:1px solid var(--plan-trait-2);border-bottom:0;margin-right:-1px;background:var(--plan);color:var(--plan-ink-2);
+  font:500 .74rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
+.vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
+@media (max-width:640px){
+  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues .plus{display:none}
+}
+
+/* la feuille */
+.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
+main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
+@media (max-width:700px){
+  .pose{padding-left:0;padding-right:0}
+  .sheet{border-left:0;border-right:0}
+  main{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+}
+
+/* cartouche : au pied de la feuille, comme sur un plan */
+.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
 .ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
-.planches{display:flex;gap:4px}
-.planches a{display:grid;place-items:center;width:1.9rem;height:1.9rem;border:1px solid var(--axis);font:500 .85rem/1 var(--mono);text-decoration:none}
-.planches a:hover{border-color:var(--ink)}
-.planches a[aria-current="page"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
-@media (max-width:920px){
+@media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
   .cc{border-bottom:1px solid var(--rule)}
   .cc:nth-child(2n){border-right:0}
-  .cc:nth-last-child(-n+2){border-bottom:0}
+  .cc:nth-child(5){grid-column:1/-1;border-bottom:0}
 }
 
+/* pilier précédent, pilier suivant */
+.pagination{order:2;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--axis)}
+.pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
+.pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
+.pagination a:hover{background:var(--geo-wash)}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+
+/* pied de page */
+.pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
+.pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
+.sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
+.sig svg{flex:none}
+.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied a:hover{color:var(--plan-ink)}
+
 /* texte */
-main{padding:clamp(20px,4.2vw,52px);display:flex;flex-direction:column;gap:clamp(1.7rem,3.2vw,2.8rem)}
 .head{display:flex;flex-direction:column;gap:1rem}
-h1{font-size:clamp(1.85rem,1.1rem + 2.8vw,3rem);line-height:1.08;font-weight:600;letter-spacing:-.015em;margin:0;max-width:20ch;text-wrap:balance}
 .lead{font-size:1.14rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
@@ -81,17 +188,19 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:24px 24px}
+  background-size:24px 24px;overflow-x:auto}
 .stage.plain{background-image:none}
-.stage{overflow-x:auto}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+.stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
+  border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
 @media (max-width:820px){
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
+@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
@@ -124,7 +233,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules */
+/* formules des planches */
 .formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
 .formula .up,.m .up{font-style:normal}
 .m{font-family:var(--math);font-style:italic;white-space:nowrap}
@@ -138,15 +247,16 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
+.avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--rule);border-right:0;border-bottom:0}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
-.defs div{padding:.85rem 1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem}
+.defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
-.defs dt{font-weight:600}
-.defs dd{margin:0;font-size:.9rem;color:var(--ink-2)}
+.defs dt{font:600 1.35rem/1.1 var(--display);letter-spacing:.004em}
+.defs dd{margin:0;font-size:.92rem;color:var(--ink-2)}
 @media (max-width:700px){.defs{grid-template-columns:1fr}.defs div{border-right:0;border-bottom:1px solid var(--rule)}.defs div:last-child{border-bottom:0}}
 
 /* tableaux */
@@ -157,6 +267,17 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
 .data th:last-child,.data td:last-child{padding-right:0}
+/* sur téléphone, un tableau de quatre colonnes ou plus devient une suite de fiches */
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
 
 /* barres de probabilité */
 .bars{display:flex;flex-direction:column;gap:.7rem}
@@ -180,79 +301,74 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .box{fill:var(--sheet);stroke:var(--axis);stroke-width:1.25}
 .box.on{fill:var(--geo-wash);stroke:var(--geo);stroke-width:2}
 .hit{fill:transparent;cursor:ew-resize;touch-action:pan-y}
-
-footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
 .err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
 
-/* cartouche : liens */
-.cv a{text-decoration:none}
-.cv a:hover{text-decoration:underline}
-.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
-
-/* onglets : les trois vues d'un pilier */
-.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
-.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
-.vues a:hover{color:var(--ink)}
-.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
-
-/* texte long : articles et démonstrations */
-.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
-.prose>h2{margin-top:1.5rem;font-size:1.4rem}
-.prose>h3{margin-top:.5rem;font-size:1.05rem}
-.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+/* texte long : articles, démonstrations, dossier */
+.prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
+.prose p{max-width:none}
+.prose>h2{margin-top:1.8rem;font-size:1.5rem}
+.prose>h3{margin-top:.6rem;font-size:1.12rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
 .prose .fig{margin:0}
-.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
+.figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
-
-/* accueil : liste des planches */
-.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
-.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
-.pl:last-child{border-bottom:0}
-.pl>svg{width:132px;height:auto;display:block}
-.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
-.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
-.pl h3{font-size:1.18rem}
-.pl h3 a{text-decoration:none}
-.pl h3 a:hover{text-decoration:underline}
-.pl p{font-size:.94rem;color:var(--ink-2)}
-.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
-@media (max-width:760px){
-  .pl{grid-template-columns:1fr;gap:.8rem}
-  .pl>svg{width:110px}
-  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
-}
-
-/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
-table.large{min-width:34rem}
-table.large.c6{min-width:46rem}
-@media (max-width:640px){
-  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
-  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
-  table.empile tr:first-child{padding-top:0}
-  table.empile td{border:0;padding:.3rem 0}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-  table.empile td:first-child{font-weight:600}
-  table.empile td:first-child::before{display:none}
-}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.dossier>h2{margin-top:2.8rem;padding-top:1.7rem;border-top:1px solid var(--axis);font:600 clamp(1.9rem,3.6vw,2.5rem)/1.05 var(--display);letter-spacing:.004em;max-width:26ch}
+.dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
   .tex .katex{font-size:1.05em}
 }
 
-/* dossier complet sur une page */
-.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
-.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
-.toc a{text-decoration:none}
-.toc a:hover{text-decoration:underline}
-.dossier>h2{font-size:1.7rem;max-width:30ch;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--axis)}
-.dossier>h3{font-size:1.25rem;margin-top:1.3rem}
+/* accueil : les cinq planches */
+.p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
+.planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(220px,300px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk+.plk{border-top:1px solid var(--rule)}
+.no{display:flex;flex-direction:column;gap:.4rem}
+.no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
+.plt{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.plt h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.2}
+.plt h3 a{text-decoration:none}
+.plt h3 a:hover{text-decoration:underline}
+.plt>p{color:var(--ink-2)}
+.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
+.acces .btn{padding:.72rem .95rem}
+.vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
+.vis .cadre{border:1px solid var(--axis);padding:.7rem 1rem;background-color:var(--sheet);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px}
+.vis svg{display:block;width:100%;height:auto}
+.clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
+.clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
+.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:860px){
+  .plk{grid-template-columns:4.3rem minmax(0,1fr)}
+  .vis{grid-column:2;max-width:22rem}
+}
+@media (max-width:520px){
+  .plk{grid-template-columns:1fr}
+  .vis{grid-column:1;max-width:17rem}
+  .no{flex-direction:row;align-items:baseline;gap:.8rem}
+}
+/* accueil : verdict, synthèse */
+.large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
+.verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
+@media (max-width:820px){
+  .verdict{grid-template-columns:1fr}
+  .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
+}
 
-/* impression et PDF : feuille blanche, texte pleine largeur, formules ajustées à la page */
+/* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
   @page{size:letter;margin:16mm 16mm 19mm;
     @bottom-left{content:"Modèle « Actuel, Émergent, Local »";font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}
@@ -265,42 +381,51 @@ table.large.c6{min-width:46rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .sheet{max-width:none;border:0;box-shadow:none}
-  .cartouche{border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
-  .cartouche .cc{border-bottom:0;border-right:1px solid var(--rule)}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.suite,.err{display:none!important}
+  .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
+  .plan{background:none;color:var(--ink)}
+  .plan .dedans,.plan .dedans.onglets{padding-top:0;padding-bottom:5mm}
+  .repere{color:var(--ink-3)}
+  .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
+  .chapeau{font-size:11.5pt;max-width:none}
+  .sheet{max-width:none;margin:0;border:0}
+  .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
+  .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
-  .cartouche nav,.vues,footer,.suite,.err{display:none!important}
   main{padding:0;gap:1.2rem}
-  p,.lead,.prose ul,.prose ol,h1,h2{max-width:none}
-  h1{font-size:23pt}
+  .prose{max-width:none;font-size:10.5pt;line-height:1.5}
+  .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
+  p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.pl,.toc,.lecture,.correction,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
   .stage{overflow:visible}
+  .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
   .tablewrap{overflow:visible}
-  table.large,table.large.c6{min-width:0}
   a{text-decoration:none}
 }
 
 </style>
 </head>
-<body>
-<div class="sheet">
-<header class="cartouche">
-  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
-  <div class="cc"><span class="ck">Objet</span><span class="cv">Dossier complet</span></div>
-  <div class="cc"><span class="ck">Contenu</span><span class="cv">5 démonstrations · synthèse · références</span></div>
-  <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
-  <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
-  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Piliers</span><span class="cv planches"><a class="som" href="index.html">Sommaire</a><a href="pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait">5</a></span></nav>
-</header>
+<body class="p-dossier">
+<div class="barre"><div class="dedans">
+<a class="marque" href="index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html" aria-current="page">Dossier</a></nav>
+</div></div>
+<header class="plan"><div class="dedans">
+<p class="repere"><span>Dossier complet</span><span>Cinq démonstrations, synthèse, références</span></p>
+<h1>Formalisation du modèle « Actuel, Émergent, Local »</h1>
+<p class="chapeau">Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
+<p class="actions"><a class="btn plein" href="dossier-complet.pdf">Télécharger le PDF <span aria-hidden="true">→</span></a></p>
+</div></header>
+<div class="pose"><div class="sheet">
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Les cinq piliers</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Dossier complet</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
 <main>
 <article class="prose dossier">
-<div class="head"><span class="eyebrow">Dossier complet · cinq démonstrations</span><h1>Formalisation du modèle « Actuel, Émergent, Local »</h1></div>
-<p>Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
+<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules que l'auteur proposait à partir de ses intuitions. Quand le texte dit « la formule demandée », il s'agit de l'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p><p>Le dossier dit « tableau » là où les articles et les planches disent « écran ». C'est le même objet.</p></aside>
 <p>Le modèle est une relecture cohérente de résultats connus, retrouvés par un chemin indépendant. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.</p>
 <nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol><li><a href="#pilier-1">Pilier 1 — La géométrie de l'observateur et le tableau plat</a></li><li><a href="#pilier-2">Pilier 2 — La lumière « actuelle, émergente, locale »</a></li><li><a href="#pilier-3">Pilier 3 — L'univers à la cadence c et la masse comme frein local</a></li><li><a href="#pilier-4">Pilier 4 — Le choix retardé de Wheeler et le réel « graduellement donné »</a></li><li><a href="#pilier-5">Pilier 5 — La cristallisation de l'information</a></li><li><a href="#synthese">Synthèse</a></li><li><a href="#references">Références</a></li></ol></nav>
 <h2 id="pilier-1">Pilier 1 — La géométrie de l'observateur et le tableau plat</h2>
@@ -322,7 +447,7 @@ table.large.c6{min-width:46rem}
 \dot{x} \equiv \frac{dx}{d\tau} &amp;= \frac{D\,\omega}{\cos^2(\omega\tau)} = D\,\omega\left(1 + \frac{x^2}{D^2}\right) \\
 &amp;= \frac{\omega\,(D^2 + x^2)}{D} = \frac{\omega R^2}{D}
 \end{aligned}</div>
-<p><strong>Lecture mécanique.</strong> ẋ est la vitesse de visée : la vitesse à laquelle le point visé glisse sur le tableau. C'est une quantité purement géométrique, que rien ne limite à c. Au centre, elle vaut Dω = 1,571 × 10⁸ km/s, soit 524 fois c, et elle grandit sans borne quand la visée devient rasante.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>ẋ est la vitesse de visée : la vitesse à laquelle le point visé glisse sur le tableau. C'est une quantité purement géométrique, que rien ne limite à c. Au centre, elle vaut Dω = 1,571 × 10⁸ km/s, soit 524 fois c, et elle grandit sans borne quand la visée devient rasante.</p></div>
 <p>Deux repères chiffrés servent dans toute la suite : c = 299 792,458 km/s, et D/c = 333,6 s, soit 5 min 34 s de trajet jusqu'au centre du tableau.</p>
 <figure class="fig solo"><figcaption class="figtitle">Sur un tableau plat, la diagonale s&#x27;allonge quand on s&#x27;éloigne du centre</figcaption><div class="stage"><svg viewBox="0 0 760 404" role="img" aria-label="Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre"><defs><marker id="fg-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs><line x1="40" y1="100" x2="736" y2="100" class="lnk"/><text x="736" y="84" text-anchor="end" class="tb">tableau plat</text><path d="M140 100A240 240 0 0 1 380 340" class="ln dash"/><text x="392" y="318" class="tq">écran sphérique : R = D partout</text><line x1="140" y1="340" x2="140" y2="100" class="ln"/><text x="128" y="226" text-anchor="end" class="tb">D</text><text x="132" y="118" text-anchor="end" class="tq">centre du tableau</text><line x1="140" y1="340" x2="284" y2="148" class="ln" style="stroke:var(--ink-2)"/><line x1="284" y1="148" x2="320" y2="100" class="ray"/><circle cx="320" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="342.9" y2="211.8" class="ln" style="stroke:var(--ink-2)"/><line x1="342.9" y1="211.8" x2="520" y2="100" class="ray"/><circle cx="520" cy="100" r="4.5" class="f-ray"/><line x1="140" y1="340" x2="360.6" y2="245.5" class="ln" style="stroke:var(--ink-2)"/><line x1="360.6" y1="245.5" x2="700" y2="100" class="ray"/><circle cx="700" cy="100" r="4.5" class="f-ray"/><text x="234" y="196" text-anchor="end" class="tb">diagonale R</text><text x="538" y="150" text-anchor="middle" class="tb">R − D</text><line x1="140" y1="78" x2="320" y2="78" class="ln" marker-start="url(#fg-ar)" marker-end="url(#fg-ar)"/><text x="230" y="70" text-anchor="middle" class="tb">x</text><path d="M140 290A50 50 0 0 1 170 300" class="ln"/><text x="161" y="283" text-anchor="middle" class="t">θ</text><circle cx="140" cy="340" r="5" class="f-ink"/><text x="24" y="366" class="tb">O : source et observateur</text><text x="24" y="384" class="tq">La lumière part de O et y revient : trajet total 2R</text></svg></div></figure>
 <p>Les trois rayons partent du même point O. La partie en couleur, absente sur un écran sphérique, grandit avec x : c'est elle qui retarde la tache.</p>
@@ -341,7 +466,7 @@ table.large.c6{min-width:46rem}
 <div class="tex">\frac{1}{v_{\text{écran}}} = \frac{1}{\dot{x}} + \frac{\sin\theta}{c}
 \qquad\Longleftrightarrow\qquad
 v_{\text{écran}} = \frac{c}{\sin\theta + \dfrac{c}{\dot{x}}}</div>
-<p><strong>Lecture mécanique.</strong> Les délais s'additionnent comme deux tâches en série. Pour avancer d'un kilomètre sur le tableau, il faut le temps que la source vise ce kilomètre (1/ẋ), plus le supplément de trajet dû à l'allongement de la diagonale (sin θ / c).</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Les délais s'additionnent comme deux tâches en série. Pour avancer d'un kilomètre sur le tableau, il faut le temps que la source vise ce kilomètre (1/ẋ), plus le supplément de trajet dû à l'allongement de la diagonale (sin θ / c).</p></div>
 <p>Près du centre, la diagonale ne s'allonge presque pas : la source donne le rythme. Loin du centre, le trajet de la lumière devient le goulot d'étranglement.</p>
 <p><strong>Au centre</strong> (θ → 0, donc sin θ → 0), le second délai disparaît :</p>
 <div class="tex">v_{\text{écran}} \;\longrightarrow\; \dot{x}(0) = D\,\omega \approx 1{,}571 \times 10^{8}\ \text{km/s} \approx 524\,c</div>
@@ -357,7 +482,7 @@ v_{\text{écran}} &gt; c \;&amp;\iff\; \sin\theta + \frac{c}{D\omega}\cos^2\thet
 &amp;\iff\; 1 + \sin\theta &lt; \frac{D\omega}{c}
 \end{aligned}</div>
 <p>Comme 1 + sin θ ne dépasse jamais 2, la tache est supraluminique partout dès que Dω &gt; 2c. Ici Dω/c = 524 : la vitesse décroît de 524 c vers c sans jamais l'atteindre. Avec un balayage lent (Dω &lt; c), la tache resterait sous c et tendrait vers c par le bas : la limite est la même dans tous les cas.</p>
-<p><strong>Lecture mécanique.</strong> Loin du centre, la tache ne peut pas distancer la lumière qui la peint. Pour un éclair instantané (ω infini), il reste v = c / sin θ : c'est la vitesse à laquelle une sphère de lumière en expansion coupe un plan.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Loin du centre, la tache ne peut pas distancer la lumière qui la peint. Pour un éclair instantané (ω infini), il reste v = c / sin θ : c'est la vitesse à laquelle une sphère de lumière en expansion coupe un plan.</p></div>
 <p><strong>Contre-épreuve : l'écran sphérique.</strong> Sur un écran courbé autour de la source, R = D est constant, donc dR/dx = 0 et le second délai n'existe pas. La tache y court à Dω partout, sans frein. La vulgarisation qui annonce « Dω » suppose donc, sans le dire, un écran courbe ou de petits angles.</p>
 <h3>1.3 Vitesse perçue par l'observateur : l'aller-retour du photon</h3>
 <p>La vitesse perçue tend bien vers c/2 quand la tache s'éloigne à l'infini. Avec un balayage rapide, elle y tend par le haut : c/2 est alors un plancher, pas un plafond.</p>
@@ -383,7 +508,7 @@ v_{\text{obs}} &gt; \frac{c}{2} \;&amp;\iff\; 2\sin\theta + \frac{c}{D\omega}\co
 &amp;\iff\; \frac{1 + \sin\theta}{2} &lt; \frac{D\omega}{c}
 \end{aligned}</div>
 <p>Le membre de gauche est toujours compris entre 1/2 et 1. Trois régimes en découlent.</p>
-<div class="tablewrap"><table class="data">
+<div class="tablewrap"><table class="data empile">
 <thead>
 <tr>
 <th>Régime</th>
@@ -393,25 +518,25 @@ v_{\text{obs}} &gt; \frac{c}{2} \;&amp;\iff\; 2\sin\theta + \frac{c}{D\omega}\co
 </thead>
 <tbody>
 <tr>
-<td>Balayage rapide</td>
-<td>Dω ≥ c</td>
-<td>Plancher : la vitesse perçue décroît de Dω vers c/2 sans jamais passer dessous</td>
+<td data-th="Régime">Balayage rapide</td>
+<td data-th="Condition">Dω ≥ c</td>
+<td data-th="Rôle de c/2">Plancher : la vitesse perçue décroît de Dω vers c/2 sans jamais passer dessous</td>
 </tr>
 <tr>
-<td>Balayage intermédiaire</td>
-<td>c/2 &lt; Dω &lt; c</td>
-<td>La vitesse perçue passe sous c/2, puis y remonte</td>
+<td data-th="Régime">Balayage intermédiaire</td>
+<td data-th="Condition">c/2 &lt; Dω &lt; c</td>
+<td data-th="Rôle de c/2">La vitesse perçue passe sous c/2, puis y remonte</td>
 </tr>
 <tr>
-<td>Balayage lent</td>
-<td>Dω ≤ c/2</td>
-<td>Plafond : la vitesse perçue reste sous c/2 et y tend par le bas</td>
+<td data-th="Régime">Balayage lent</td>
+<td data-th="Condition">Dω ≤ c/2</td>
+<td data-th="Rôle de c/2">Plafond : la vitesse perçue reste sous c/2 et y tend par le bas</td>
 </tr>
 </tbody>
 </table></div>
 <p>Avec les chiffres du problème, Dω/c = 524 : le régime est rapide. L'observateur voit la tache démarrer à 524 c, ralentir, passer sous c vers x ≈ 57,6 millions de km (θ ≈ 30°), puis tendre vers c/2 par le haut.</p>
-<p><strong>Correction du mot « plafonne ».</strong> La limite c/2 est démontrée. Mais ici la vitesse perçue ne monte pas vers un plafond : elle descend vers un plancher. c/2 ne serait un plafond que pour un balayage lent, Dω ≤ c/2.</p>
-<p><strong>Lecture mécanique.</strong> Le retour du photon double le second délai : loin du centre, chaque kilomètre de tableau coûte presque deux kilomètres de trajet. À l'instant t, l'observateur voit ce qui se trouve sur une sphère centrée sur lui, dont le rayon grandit à c/2.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction du mot « plafonne ».</strong> La limite c/2 est démontrée. Mais ici la vitesse perçue ne monte pas vers un plafond : elle descend vers un plancher. c/2 ne serait un plafond que pour un balayage lent, Dω ≤ c/2.</p></div>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le retour du photon double le second délai : loin du centre, chaque kilomètre de tableau coûte presque deux kilomètres de trajet. À l'instant t, l'observateur voit ce qui se trouve sur une sphère centrée sur lui, dont le rayon grandit à c/2.</p></div>
 <div class="tex">R_{\text{vu}}(t) = \frac{c\,(t - \tau)}{2}
 \qquad\Longrightarrow\qquad
 v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \;\ge\; \frac{c}{2}</div>
@@ -419,7 +544,7 @@ v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \
 <h3>1.4 Application numérique</h3>
 <p>Les quatre cas confirment les deux limites : dès que x dépasse quelques fois D, la tache court à c et l'observateur la voit avancer à c/2. Pour x = 1 million d'années-lumière, il attend bien 2 millions d'années.</p>
 <p>Données : D = 10⁸ km, ω = π/2 rad/s, c = 299 792,458 km/s, 1 année-lumière = 9,4607 × 10¹² km. Les temps sont comptés depuis le début de la fermeture.</p>
-<div class="tablewrap"><table class="data large c6">
+<div class="tablewrap"><table class="data empile">
 <thead>
 <tr>
 <th>Position x</th>
@@ -432,44 +557,44 @@ v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \
 </thead>
 <tbody>
 <tr>
-<td>Centre, x = 0</td>
-<td>0</td>
-<td>5 min 34 s</td>
-<td>11 min 7 s</td>
-<td>524</td>
-<td>524</td>
+<td data-th="Position x">Centre, x = 0</td>
+<td data-th="Émission τ (s)">0</td>
+<td data-th="Arrivée sur le tableau">5 min 34 s</td>
+<td data-th="Vue par l&#x27;observateur">11 min 7 s</td>
+<td data-th="Vitesse sur le tableau (en c)">524</td>
+<td data-th="Vitesse perçue (en c)">524</td>
 </tr>
 <tr>
-<td>10 millions de km (θ = 5,7°)</td>
-<td>0,063</td>
-<td>5 min 35 s</td>
-<td>11 min 11 s</td>
-<td>9,86</td>
-<td>4,98</td>
+<td data-th="Position x">10 millions de km (θ = 5,7°)</td>
+<td data-th="Émission τ (s)">0,063</td>
+<td data-th="Arrivée sur le tableau">5 min 35 s</td>
+<td data-th="Vue par l&#x27;observateur">11 min 11 s</td>
+<td data-th="Vitesse sur le tableau (en c)">9,86</td>
+<td data-th="Vitesse perçue (en c)">4,98</td>
 </tr>
 <tr>
-<td>100 millions de km (θ = 45°)</td>
-<td>0,500</td>
-<td>7 min 52 s</td>
-<td>15 min 44 s</td>
-<td>1,412</td>
-<td>0,707</td>
+<td data-th="Position x">100 millions de km (θ = 45°)</td>
+<td data-th="Émission τ (s)">0,500</td>
+<td data-th="Arrivée sur le tableau">7 min 52 s</td>
+<td data-th="Vue par l&#x27;observateur">15 min 44 s</td>
+<td data-th="Vitesse sur le tableau (en c)">1,412</td>
+<td data-th="Vitesse perçue (en c)">0,707</td>
 </tr>
 <tr>
-<td>1 milliard de km (θ = 84,3°)</td>
-<td>0,937</td>
-<td>55 min 53 s</td>
-<td>1 h 51 min 45 s</td>
-<td>1,0050</td>
-<td>0,5025</td>
+<td data-th="Position x">1 milliard de km (θ = 84,3°)</td>
+<td data-th="Émission τ (s)">0,937</td>
+<td data-th="Arrivée sur le tableau">55 min 53 s</td>
+<td data-th="Vue par l&#x27;observateur">1 h 51 min 45 s</td>
+<td data-th="Vitesse sur le tableau (en c)">1,0050</td>
+<td data-th="Vitesse perçue (en c)">0,5025</td>
 </tr>
 <tr>
-<td>1 million d'années-lumière (θ ≈ 90°)</td>
-<td>1 − 7 × 10⁻¹²</td>
-<td>1 000 000 ans + 1 s</td>
-<td>2 000 000 ans + 1 s</td>
-<td>1 + 6 × 10⁻²³</td>
-<td>0,5 + 3 × 10⁻²³</td>
+<td data-th="Position x">1 million d'années-lumière (θ ≈ 90°)</td>
+<td data-th="Émission τ (s)">1 − 7 × 10⁻¹²</td>
+<td data-th="Arrivée sur le tableau">1 000 000 ans + 1 s</td>
+<td data-th="Vue par l&#x27;observateur">2 000 000 ans + 1 s</td>
+<td data-th="Vitesse sur le tableau (en c)">1 + 6 × 10⁻²³</td>
+<td data-th="Vitesse perçue (en c)">0,5 + 3 × 10⁻²³</td>
 </tr>
 </tbody>
 </table></div>
@@ -481,7 +606,7 @@ v_{\text{obs}} \;\xrightarrow[\;\omega \to \infty\;]{}\; \frac{c}{2\sin\theta} \
 t_{\text{obs}} &amp;= \tau + \frac{2R}{c} \approx 1\ \text{s} + 2 \times \frac{10^{6}\ \text{années-lumière}}{c} \\
 &amp;= 2\,000\,000\ \text{ans} + 1\ \text{s}
 \end{aligned}</div>
-<p><strong>Lecture mécanique.</strong> Tous les photons quittent la source en 1 seconde. Ceux qui peignent les pointes, à un million d'années-lumière, partent dans les 7 derniers milliardièmes de milliseconde de la fermeture. Le spectacle dure pourtant 2 millions d'années pour l'observateur : cette durée est du temps de trajet, pas du temps de fermeture.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Tous les photons quittent la source en 1 seconde. Ceux qui peignent les pointes, à un million d'années-lumière, partent dans les 7 derniers milliardièmes de milliseconde de la fermeture. Le spectacle dure pourtant 2 millions d'années pour l'observateur : cette durée est du temps de trajet, pas du temps de fermeture.</p></div>
 <h3>1.5 Inversion du signe : les jets de quasars</h3>
 <p>La même mécanique, avec un trajet qui raccourcit au lieu de s'allonger, donne la formule de Rees pour les jets de quasars.</p>
 <p>Les sections 1.2 et 1.3 obéissent à une règle unique. Soit L(τ) la longueur du trajet entre le point qui émet à l'instant τ et l'œil, et x⊥ sa position en travers de la ligne de visée :</p>
@@ -506,7 +631,7 @@ v_{\text{app}} = \frac{v\,\sin\theta}{1 - \dfrac{v}{c}\cos\theta}</div>
 <p>La dérivée s'annule pour cos θ = β, donc sin θ = √(1 − β²) :</p>
 <div class="tex">v_{\text{app}}^{\max} = \frac{\beta\sqrt{1 - \beta^2}}{1 - \beta^2}\;c = \gamma\,\beta\,c, \qquad \gamma = \frac{1}{\sqrt{1 - \beta^2}}</div>
 <p>La vitesse apparente dépasse c dès que γβ &gt; 1, c'est-à-dire v &gt; c/√2 ≈ 0,707 c. Exemple : pour v = 0,99 c et θ = 8,1°, on trouve γ = 7,09 et une vitesse apparente de 7,02 c. Rien ne dépasse pourtant c.</p>
-<p><strong>Lecture mécanique.</strong> Le nodule court presque aussi vite que sa propre lumière. Les photons émis plus tard ont moins de chemin à faire et arrivent presque en même temps que les premiers. L'observateur voit un long déplacement latéral comprimé dans un temps de réception très court.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le nodule court presque aussi vite que sa propre lumière. Les photons émis plus tard ont moins de chemin à faire et arrivent presque en même temps que les premiers. L'observateur voit un long déplacement latéral comprimé dans un temps de réception très court.</p></div>
 <p><strong>Une différence de nature.</strong> Pour un nodule matériel, v &lt; c : le dénominateur ne s'annule jamais et l'ordre des événements est préservé. Pour une tache qui revient vers le centre du tableau (ẋ négatif), rien ne borne la vitesse de visée :</p>
 <div class="tex">\frac{dt_{\text{obs}}}{d\tau} = 1 - \frac{2\,|\dot{x}|}{c}\,\sin\theta</div>
 <p>Dès que 2|ẋ| sin θ dépasse c, ce facteur devient négatif : l'observateur voit le film à l'envers. Nemiroff (2015) a décrit ces images de taches inversées ou dédoublées.</p>
@@ -550,7 +675,7 @@ u^{*} &amp;= \frac{c^2\,\Delta t}{\Delta x}, \qquad |u^{*}| = c \times \frac{c\,
 <p><strong>La vraie chaîne causale.</strong> Chaque impact est relié à sa propre émission par un trajet de lumière, donc par un intervalle nul :</p>
 <div class="tex">c^2\,(t_A - \tau_A)^2 - R_A^2 = 0, \qquad c^2\,(t_B - \tau_B)^2 - R_B^2 = 0</div>
 <p>La causalité dessine un éventail qui part de la source, pas une chaîne le long du tableau. A et B partagent une cause commune, les ciseaux, et rien d'autre.</p>
-<p><strong>Lecture mécanique.</strong> En langage de projet, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne. Le test est simple : posez la main sur le tableau en A. L'impact en B a lieu quand même, car la lumière qui va en B n'est jamais passée par A.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>En langage de projet, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne. Le test est simple : posez la main sur le tableau en A. L'impact en B a lieu quand même, car la lumière qui va en B n'est jamais passée par A.</p></div>
 <p><strong>Lien avec le pilier 1.</strong> Avec Dω = 524 c, la tache dépasse c partout sur le tableau. Deux impacts quelconques vérifient donc |Δx| &gt; c|Δt| : toutes les paires d'impacts sont de genre espace.</p>
 <p><strong>Portée exacte.</strong> Même pour un balayage lent, où la tache resterait sous c, aucun impact n'en causerait un autre : la tache n'est jamais un objet. La condition de genre espace ajoute que ce lien est impossible par principe. C'est la structure décrite par Minkowski (1908) : passé, futur et « ailleurs » sont séparés de façon absolue.</p>
 <h3>2.2 Transparence en transit et émergence locale</h3>
@@ -569,7 +694,7 @@ u^{*} &amp;= \frac{c^2\,\Delta t}{\Delta x}, \qquad |u^{*}| = c \times \frac{c\,
 |\psi(0)\rangle &amp;= \sum_k c_k\,\hat{a}_k^{\dagger}|0\rangle \\
 |\psi(t)\rangle &amp;= \sum_k c_k\,e^{-i\omega_k t}\,\hat{a}_k^{\dagger}|0\rangle
 \end{aligned}</div>
-<p><strong>Lecture mécanique.</strong> En transit, seules des phases tournent. Aucun photon n'est créé, absorbé ou dévié, car le vide ne contient aucun terme d'interaction. Il ne se produit donc aucun événement, et rien n'est envoyé vers un œil placé sur le côté.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>En transit, seules des phases tournent. Aucun photon n'est créé, absorbé ou dévié, car le vide ne contient aucun terme d'interaction. Il ne se produit donc aucun événement, et rien n'est envoyé vers un œil placé sur le côté.</p></div>
 <p><strong>Le champ en un point.</strong> Le champ électrique se décompose en deux parties. La partie notée (+) ne contient que des opérateurs qui détruisent un photon : c'est la partie « absorption ». La polarisation est omise pour alléger.</p>
 <div class="tex">\begin{aligned}
 \hat{E}(\vec{r},t) &amp;= \hat{E}^{(+)}(\vec{r},t) + \hat{E}^{(-)}(\vec{r},t), \qquad \hat{E}^{(-)} = \big(\hat{E}^{(+)}\big)^{\dagger} \\
@@ -586,8 +711,8 @@ u^{*} &amp;= \frac{c^2\,\Delta t}{\Delta x}, \qquad |u^{*}| = c \times \frac{c\,
 w(\vec{r},t) &amp;= \eta\,\langle\psi|\hat{E}^{(-)}(\vec{r},t)\,\hat{E}^{(+)}(\vec{r},t)|\psi\rangle \\
 &amp;= \eta\,\big\|\hat{E}^{(+)}(\vec{r},t)\,|\psi\rangle\big\|^2 \;\ge\; 0
 \end{aligned}</div>
-<p><strong>Correction de la formule demandée.</strong> La probabilité n'est pas le module d'un élément de matrice entre deux états différents i et f. C'est la valeur moyenne du produit E(−)E(+) dans l'état du champ, soit la somme des probabilités sur tous les états finals.</p>
-<p><strong>Lecture mécanique.</strong> Les trois mots du modèle se lisent dans la formule. Local : seul le champ au point r du détecteur intervient. Actuel : seul l'instant t de l'interaction intervient. Émergent : sans atome ni couplage, il n'y a pas de clic du tout.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de la formule demandée.</strong> La probabilité n'est pas le module d'un élément de matrice entre deux états différents i et f. C'est la valeur moyenne du produit E(−)E(+) dans l'état du champ, soit la somme des probabilités sur tous les états finals.</p></div>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Les trois mots du modèle se lisent dans la formule. Local : seul le champ au point r du détecteur intervient. Actuel : seul l'instant t de l'interaction intervient. Émergent : sans atome ni couplage, il n'y a pas de clic du tout.</p></div>
 <p><strong>Pourquoi le faisceau est invisible de côté.</strong> Pour un photon unique, le taux de clic en un point r' est le carré d'une amplitude :</p>
 <div class="tex">w(\vec{r}^{\,\prime},t) = \eta\,\big|\langle 0|\hat{E}^{(+)}(\vec{r}^{\,\prime},t)|\psi\rangle\big|^2</div>
 <p>Cette amplitude est nulle hors du faisceau : un œil placé sur le côté ne reçoit rien. Pour voir un faisceau de profil, il faut de la matière sur son trajet, poussière ou air, qui dévie des photons vers l'œil. On voit alors la matière éclairée, pas la lumière en transit.</p>
@@ -623,7 +748,7 @@ d\tau &amp;= \frac{dt}{\gamma}, \qquad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
 <div class="tex">c^2\,d\tau^2 = c^2\,dt^2 - v^2\,dt^2
 \qquad\Longrightarrow\qquad
 \left(c\,\frac{d\tau}{dt}\right)^2 + v^2 = c^2</div>
-<p><strong>Lecture mécanique.</strong> Le premier terme est la cadence de l'horloge embarquée, convertie en vitesse. Le second est la vitesse dans l'espace. La somme de leurs carrés est fixe : ce que l'objet dépense en déplacement, il le retire à son horloge.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le premier terme est la cadence de l'horloge embarquée, convertie en vitesse. Le second est la vitesse dans l'espace. La somme de leurs carrés est fixe : ce que l'objet dépense en déplacement, il le retire à son horloge.</p></div>
 <p>Au repos, tout le budget passe dans le temps et l'horloge bat à plein régime. À v = 0,6 c, elle ne bat plus qu'à 80 %. Quand v approche c, il ne reste rien pour le temps.</p>
 <p><strong>Portée exacte.</strong></p>
 <ul>
@@ -650,7 +775,7 @@ r_s &amp;= \frac{2GM}{c^2}
 \qquad\Longrightarrow\qquad
 d\tau = dt\,\sqrt{1 - \frac{r_s}{r}}</div>
 <p>C'est exactement la formule demandée. En termes de budget, la cadence d'une horloge immobile, comptée en temps lointain, n'est plus c mais c multiplié par cette racine.</p>
-<div class="tablewrap"><table class="data large c4">
+<div class="tablewrap"><table class="data empile">
 <thead>
 <tr>
 <th>Lieu</th>
@@ -661,28 +786,28 @@ d\tau = dt\,\sqrt{1 - \frac{r_s}{r}}</div>
 </thead>
 <tbody>
 <tr>
-<td>Surface de la Terre</td>
-<td>8,87 mm</td>
-<td>1,39 × 10⁻⁹</td>
-<td>0,022 s par an</td>
+<td data-th="Lieu">Surface de la Terre</td>
+<td data-th="Rayon de Schwarzschild">8,87 mm</td>
+<td data-th="Rapport rayon de Schwarzschild / r">1,39 × 10⁻⁹</td>
+<td data-th="Retard de l&#x27;horloge locale">0,022 s par an</td>
 </tr>
 <tr>
-<td>Surface du Soleil</td>
-<td>2,95 km</td>
-<td>4,25 × 10⁻⁶</td>
-<td>67 s par an</td>
+<td data-th="Lieu">Surface du Soleil</td>
+<td data-th="Rayon de Schwarzschild">2,95 km</td>
+<td data-th="Rapport rayon de Schwarzschild / r">4,25 × 10⁻⁶</td>
+<td data-th="Retard de l&#x27;horloge locale">67 s par an</td>
 </tr>
 <tr>
-<td>Étoile à neutrons (1,4 masse solaire, rayon 12 km)</td>
-<td>4,13 km</td>
-<td>0,345</td>
-<td>19 %</td>
+<td data-th="Lieu">Étoile à neutrons (1,4 masse solaire, rayon 12 km)</td>
+<td data-th="Rayon de Schwarzschild">4,13 km</td>
+<td data-th="Rapport rayon de Schwarzschild / r">0,345</td>
+<td data-th="Retard de l&#x27;horloge locale">19 %</td>
 </tr>
 <tr>
-<td>Horizon d'un trou noir</td>
-<td>égal à r</td>
-<td>1</td>
-<td>arrêt apparent</td>
+<td data-th="Lieu">Horizon d'un trou noir</td>
+<td data-th="Rayon de Schwarzschild">égal à r</td>
+<td data-th="Rapport rayon de Schwarzschild / r">1</td>
+<td data-th="Retard de l&#x27;horloge locale">arrêt apparent</td>
 </tr>
 </tbody>
 </table></div>
@@ -706,7 +831,7 @@ d\ell &amp;= \frac{dr}{\sqrt{1 - r_s/r}}, \qquad d\tau = dt\,\sqrt{1 - \frac{r_s
 \end{aligned}</div>
 <p>Le premier terme est le temps de trajet sans masse. Le second est le retard gravitationnel prédit par Shapiro (1964). Pour un écho radar Terre–Vénus qui frôle le Soleil, la formule de la section 3.3 donne 233 microsecondes de retard sur l'aller-retour. Shapiro annonçait près de 200 microsecondes, et la sonde Cassini (2003) a confirmé l'effet à 0,002 % près.</p>
 <p>Les satellites GPS en donnent une preuve quotidienne. Plus haut dans le champ terrestre, leurs horloges avancent de 45,7 microsecondes par jour. Leur vitesse les retarde de 7,2 microsecondes, et le système corrige l'écart net de 38,5.</p>
-<p><strong>Lecture mécanique.</strong> La masse agit comme un goulot d'étranglement sur les cadences : près d'elle, tout processus prend plus de temps lointain. Ce frein n'est pourtant pas un frottement. Aucune énergie n'est dissipée, et sur place tout paraît normal.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>La masse agit comme un goulot d'étranglement sur les cadences : près d'elle, tout processus prend plus de temps lointain. Ce frein n'est pourtant pas un frottement. Aucune énergie n'est dissipée, et sur place tout paraît normal.</p></div>
 <h3>3.3 La gravité comme réfraction vers la zone lente</h3>
 <p>Réécrite en coordonnées isotropes, la métrique donne au vide un indice n ≈ 1 + 2GM/(rc²), et le principe de Fermat courbe les rayons vers la masse. Deux corrections s'imposent : la déviation suit +∇n, et cet indice donne pour la lumière le double de la gravité de Newton.</p>
 <p><strong>Coordonnées isotropes.</strong> Dans la métrique de Schwarzschild, la vitesse coordonnée de la lumière diffère selon la direction. Pour définir un indice unique, on cherche une coordonnée radiale ρ qui traite toutes les directions de la même façon :</p>
@@ -764,7 +889,7 @@ v(r) &amp;= \frac{c}{n(r)} \approx c\left(1 - \frac{2GM}{r\,c^2}\right)
 \Delta t &amp;= \frac{1}{c}\int (n - 1)\,dz = \frac{2GM}{c^3}\int_{-z_1}^{z_2}\frac{dz}{\sqrt{b^2 + z^2}} \\
 &amp;\approx \frac{2GM}{c^3}\,\ln\frac{4\,r_1 r_2}{b^2}
 \end{aligned}</div>
-<p><strong>Corrections de la formule demandée.</strong> La formule proposée était une accélération proportionnelle à −c²∇n, égale à −GM/r². Deux points changent.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Corrections de la formule demandée.</strong> La formule proposée était une accélération proportionnelle à −c²∇n, égale à −GM/r². Deux points changent.</p></div>
 <ol>
 <li>Le signe. Le gradient de n pointe vers la masse, et la déviation suit +c²∇n. Avec un signe moins, la lumière serait repoussée. Le signe moins redevient correct si l'on dérive la vitesse : a = −c∇v.</li>
 <li>Le facteur 2. Avec n = 1 + 2GM/(rc²), on trouve 2GM/r², le double de Newton. Ce n'est pas une erreur de calcul : c'est le résultat propre à la relativité générale.</li>
@@ -790,7 +915,7 @@ N(r) &amp;\equiv \left.\frac{d\tau}{dt}\right|_{v=0} \approx 1 + \frac{\Phi}{c^2
 <p><strong>Formule unifiée.</strong> Les géodésiques de la métrique en champ faible donnent, pour un corps de vitesse v quelconque :</p>
 <div class="tex">\vec{a}_{\perp} = -\left(1 + \frac{v^2}{c^2}\right)\vec{\nabla}_{\!\perp}\Phi</div>
 <p>Pour v très petit devant c, on retrouve Newton. Pour v = c, on retrouve le double.</p>
-<p><strong>Lecture mécanique.</strong> Une masse crée autour d'elle une pente de cadence. Tout ce qui avance librement vire vers la zone lente, comme un essieu dont une roue tourne moins vite que l'autre.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Une masse crée autour d'elle une pente de cadence. Tout ce qui avance librement vire vers la zone lente, comme un essieu dont une roue tourne moins vite que l'autre.</p></div>
 <p>La matière lente ne ressent que la pente du temps. La lumière, qui parcourt beaucoup d'espace, ressent aussi la déformation des longueurs : d'où le facteur 2.</p>
 <h3>3.4 Conditions de validité</h3>
 <ul>
@@ -833,7 +958,7 @@ P(\pm) &amp;= \frac{(1 \pm e^{i\varphi})(1 \pm e^{-i\varphi})}{4} = \frac{1 \pm 
 <p><strong>Les deux questions sont incompatibles.</strong> Les projecteurs des deux mesures ne commutent pas :</p>
 <div class="tex">\hat{P}_G\,\hat{P}_{+} - \hat{P}_{+}\,\hat{P}_G = \frac{1}{2}\big(|G\rangle\langle D| - |D\rangle\langle G|\big) \neq 0</div>
 <p>Aucun appareil ne peut donc répondre aux deux questions à la fois. C'est la complémentarité de Bohr, dont les relations de Heisenberg sont la forme chiffrée.</p>
-<p><strong>Lecture mécanique.</strong> L'état en transit est un potentiel de réponses, pas une trajectoire. Chaque appareil pose une question différente au même état. Dans le formalisme, rien n'indique que la réponse « gauche » ou « droite » existait avant l'interaction avec le détecteur.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>L'état en transit est un potentiel de réponses, pas une trajectoire. Chaque appareil pose une question différente au même état. Dans le formalisme, rien n'indique que la réponse « gauche » ou « droite » existait avant l'interaction avec le détecteur.</p></div>
 <h3>4.2 Aucune action ne remonte le temps</h3>
 <p>Le choix de la mesure ne change ni l'état passé du photon, ni l'état de quoi que ce soit d'autre. Deux résultats l'établissent, et le second est le théorème de non-communication.</p>
 <p><strong>La matrice densité.</strong> Elle rassemble tout ce que l'état permet de prédire. Dans la base gauche-droite :</p>
@@ -865,9 +990,9 @@ P(\pm) &amp;= \frac{(1 \pm e^{i\varphi})(1 \pm e^{-i\varphi})}{4} = \frac{1 \pm 
 &amp;= \frac{1}{2}\,|m_G\rangle\langle m_G| + \frac{1}{2}\,|m_D\rangle\langle m_D|
 \end{aligned}</div>
 <p>Les deux matrices sont identiques. Le témoin ne peut déceler, ni aujourd'hui ni dans ses archives, ce que l'observateur terrestre a choisi.</p>
-<p><strong>Correction de portée.</strong> Le théorème de non-communication porte sur deux systèmes. Pour le photon seul, il n'y a personne à qui « communiquer » : c'est le résultat 1 qui s'applique. Les deux ensemble donnent l'énoncé exact : aucun fait enregistré, passé ou lointain, ne change avec le choix.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de portée.</strong> Le théorème de non-communication porte sur deux systèmes. Pour le photon seul, il n'y a personne à qui « communiquer » : c'est le résultat 1 qui s'applique. Les deux ensemble donnent l'énoncé exact : aucun fait enregistré, passé ou lointain, ne change avec le choix.</p></div>
 <p><strong>Rétrodiction n'est pas rétro-action.</strong> Quand le télescope de gauche détecte le photon, on conclut qu'il « est passé par la gauche ». C'est une déduction faite aujourd'hui sur le passé, comme dans une enquête. Aucune grandeur physique du passé n'a été modifiée.</p>
-<p><strong>Lecture mécanique.</strong> Le piège vient d'une hypothèse ajoutée au formalisme : que le photon ait dû « décider », près de la galaxie, d'être onde ou particule. Les équations ne contiennent aucune décision de ce genre. Elles ne disent pas non plus ce qui s'est « réellement » passé en chemin : sur ce point, les interprétations divergent.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le piège vient d'une hypothèse ajoutée au formalisme : que le photon ait dû « décider », près de la galaxie, d'être onde ou particule. Les équations ne contiennent aucune décision de ce genre. Elles ne disent pas non plus ce qui s'est « réellement » passé en chemin : sur ce point, les interprétations divergent.</p></div>
 <h3>4.3 Le réel « graduellement donné »</h3>
 <p>Le mot « graduellement » a deux traductions rigoureuses. Le caractère onde ou particule varie de façon continue, et la connaissance s'accumule clic par clic, à raison d'un bit au plus par photon.</p>
 <p><strong>Ni binaire, ni figé.</strong> Reprenons le témoin de la section 4.2. En ignorant le témoin, l'état du photon seul devient :</p>
@@ -894,7 +1019,7 @@ V^2 + \mathcal{D}^2 &amp;= 1
 p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|\,\varphi)
 \end{aligned}</div>
 <p>Ces mises à jour ont lieu à l'instant et à l'endroit de chaque interaction. Le réel connu se construit clic par clic : c'est le sens rigoureux de « graduellement donné », et l'idée que Wheeler a résumée par « it from bit ».</p>
-<p><strong>Lecture mécanique.</strong> Comme dans un suivi de projet, l'information arrive par constats successifs, locaux et datés. Chaque constat met à jour l'état du dossier. Aucun constat ne réécrit les constats précédents.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Comme dans un suivi de projet, l'information arrive par constats successifs, locaux et datés. Chaque constat met à jour l'état du dossier. Aucun constat ne réécrit les constats précédents.</p></div>
 <h3>4.4 Conditions de validité et nuances</h3>
 <ul>
 <li>« Choix » n'exige pas « intention ». Dans l'expérience de Jacques et ses collègues (2007), le choix est tiré par un générateur quantique de nombres aléatoires, sans lien causal possible avec l'entrée du photon dans un interféromètre de 48 m. Les statistiques sont celles de la section 4.1. Ce qui compte physiquement est la configuration de l'appareil au moment de l'interaction.</li>
@@ -952,7 +1077,7 @@ p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|
 <p>Pour chaque question, l'écart entre les deux probabilités, élevé au carré, vaut 1 si la réponse est certaine et 0 si elle est tirée à pile ou face. La somme sur les trois questions est fixe :</p>
 <div class="tex">\underbrace{(p_G - p_D)^2}_{0} \;+\; \underbrace{(p_{+} - p_{-})^2}_{\cos^2\varphi} \;+\; \underbrace{(p_{+i} - p_{-i})^2}_{\sin^2\varphi} \;=\; 1</div>
 <p>C'est la mesure d'information de Brukner et Zeilinger (1999) : un bit en tout pour un état pur, moins pour un état mélangé. La borne de Holevo (1973) dit la même chose autrement : aucune mesure ne tire plus d'un bit d'un système à deux états.</p>
-<p><strong>Lecture mécanique.</strong> Une question ouverte est un stock de réponses possibles, et H en donne la valeur. Ce stock est borné : un bit pour deux routes. Poser la question complémentaire n'ajoute pas un second bit, elle redistribue le même.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Une question ouverte est un stock de réponses possibles, et H en donne la valeur. Ce stock est borné : un bit pour deux routes. Poser la question complémentaire n'ajoute pas un second bit, elle redistribue le même.</p></div>
 <p>C'est la paire de postulats de Rovelli (1996) : l'information qu'on peut tirer d'un système est limitée, mais on peut toujours lui poser une question nouvelle. C'est aussi le « it from bit » de Wheeler : le réel connu est fait de réponses à des questions par oui ou par non.</p>
 <h3>5.2 Actualiser : l'interaction inscrit la réponse</h3>
 <p>L'actualisation est une interaction locale qui lie le système à une mémoire. À ce stade, la réponse est inscrite mais pas encore figée : l'inscription reste réversible.</p>
@@ -969,8 +1094,8 @@ p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|
 <p><strong>L'inscription est réversible.</strong> L'opération inverse défait la corrélation :</p>
 <div class="tex">\hat{U}^{\dagger}\sum_k c_k\,|k\rangle|M_k\rangle = \Big(\sum_k c_k\,|k\rangle\Big)|M_0\rangle</div>
 <p>La mémoire revient à son état « prêt » et l'interférence redevient possible. C'est le principe de la gomme quantique, proposée par Scully et Drühl (1982) et réalisée par Kim et ses collègues (2000).</p>
-<p><strong>Lecture mécanique.</strong> L'actualisation ressemble à une écriture au crayon. La réponse est notée, mais on peut encore l'effacer sans laisser de trace. Tant que rien d'autre n'a lu la mémoire, la question peut être retirée.</p>
-<p><strong>Précision sur « actualise = cristallise ».</strong> Le formalisme sépare deux temps que l'intuition réunit. L'inscription est une corrélation réversible. La cristallisation, décrite dans la section suivante, est ce qui la rend définitive.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>L'actualisation ressemble à une écriture au crayon. La réponse est notée, mais on peut encore l'effacer sans laisser de trace. Tant que rien d'autre n'a lu la mémoire, la question peut être retirée.</p></div>
+<div class="correction"><span class="eyebrow">Précision</span><p><strong>Précision sur « actualise = cristallise ».</strong> Le formalisme sépare deux temps que l'intuition réunit. L'inscription est une corrélation réversible. La cristallisation, décrite dans la section suivante, est ce qui la rend définitive.</p></div>
 <h3>5.3 Cristalliser : décohérence, copies, verrouillage</h3>
 <p>La réponse devient un fait quand l'environnement lit la mémoire. Trois effets se calculent : les interférences entre réponses s'éteignent, la réponse est recopiée en un très grand nombre d'exemplaires, et une barrière d'énergie la verrouille.</p>
 <p><strong>L'environnement lit la mémoire.</strong> Une mémoire n'est jamais isolée. Des particules de l'environnement, photons ou molécules d'air, la heurtent l'une après l'autre. Chacune repart dans un état qui dépend de ce que la mémoire indique. Après N particules :</p>
@@ -1004,7 +1129,7 @@ I(S\!:\!M) :\quad 2\ \text{bits} \;&amp;\longrightarrow\; 1\ \text{bit}
 </ul>
 <p><strong>Le germe et l'avalanche.</strong> Les détecteurs réels amplifient avant de figer. Dans une émulsion photographique, un amas de trois à cinq atomes d'argent suffit pour que le développement transforme le grain entier : le gain est d'environ cent millions (Belloni, 2002). Le mot cristal est ici à prendre au pied de la lettre, puisque le grain est un cristal d'halogénure d'argent.</p>
 <p>Dans un photomultiplicateur, chaque électron arraché par un photon en libère un à dix millions.</p>
-<p><strong>Lecture mécanique.</strong> Cristalliser, c'est passer du crayon à la gravure. La réponse ne peut plus interférer, elle existe en d'innombrables copies, et une barrière d'énergie la protège.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Cristalliser, c'est passer du crayon à la gravure. La réponse ne peut plus interférer, elle existe en d'innombrables copies, et une barrière d'énergie la protège.</p></div>
 <p>L'image de la solution sursaturée est juste. Le détecteur est un milieu prêt à basculer, et la réponse microscopique en est le germe.</p>
 <h3>5.4 Conditions de validité et nuances</h3>
 <ul>
@@ -1126,12 +1251,11 @@ I(S\!:\!M) :\quad 2\ \text{bits} \;&amp;\longrightarrow\; 1\ \text{bit}
 </ul>
 </article>
 </main>
-<footer>
-  <span>Formalisation du modèle « Actuel, Émergent, Local » · Sylvain Leduc · 17 novembre 2026</span>
-  <a href="dossier-complet.pdf">Dossier en PDF</a>
-  <a href="index.html">Sommaire</a>
-</footer>
-</div>
+</div></div>
+<footer class="pied"><div class="dedans">
+<p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
+<nav aria-label="Liens de bas de page"><a href="index.html">Accueil</a><a href="dossier.html">Dossier complet</a><a href="dossier-complet.pdf">Dossier en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
+</div></footer>
 <script>
 'use strict';
 window.addEventListener('error', function (e) {
@@ -1196,6 +1320,10 @@ new MutationObserver(ms => ms.forEach(m => {
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+// une figure plus large que l'écran défile : on le signale au lecteur
+const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+window.addEventListener('load', marquerDefilement);
+window.addEventListener('resize', marquerDefilement);
 
 window.addEventListener('DOMContentLoaded', function () {
   if (!window.katex) return;

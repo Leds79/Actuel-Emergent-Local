@@ -24,6 +24,7 @@ Chaque pilier se lit de trois façons : une **planche interactive** (figure à m
 - `pilier-1/` à `pilier-5/` : pour chaque pilier, `index.html` (planche interactive), `article.html` et `demonstration.html`.
 - `dossier.html` : le dossier complet sur une seule page (cinq démonstrations, synthèse, références).
 - `dossier-complet.pdf` : le même dossier en PDF, avec les formules composées.
+- `apercu.png`, `favicon.svg`, `404.html` : l'image affichée quand le lien est partagé, l'icône de l'onglet et la page d'erreur.
 - `documents/` : les exports d'origine du dossier et des cinq articles, en PDF, Word et Markdown. Dans les exports du dossier, les formules sont écrites en code LaTeX ; pour le lire, préférer `dossier-complet.pdf`.
 - `outils/` : le générateur du site et ses gabarits.
 
@@ -36,7 +37,7 @@ pip install markdown
 python outils/construire_site.py
 ```
 
-Pour refaire aussi le PDF du dossier, ajouter l'option `--pdf`. Elle demande Microsoft Edge ou Google Chrome, et une connexion Internet.
+Pour refaire aussi le PDF du dossier et l'image de partage, ajouter l'option `--pdf`. Elle demande Microsoft Edge ou Google Chrome, et une connexion Internet.
 
 ```
 python outils/construire_site.py --pdf

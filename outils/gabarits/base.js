@@ -61,3 +61,7 @@ new MutationObserver(ms => ms.forEach(m => {
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+// une figure plus large que l'écran défile : on le signale au lecteur
+const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+window.addEventListener('load', marquerDefilement);
+window.addEventListener('resize', marquerDefilement);

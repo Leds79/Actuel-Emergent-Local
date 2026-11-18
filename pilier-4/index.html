@@ -3,74 +3,181 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Le choix qui ne réécrit pas le passé</title>
+<title>Le choix qui ne réécrit pas le passé · Actuel, Émergent, Local</title>
 <meta name="description" content="Choisir aujourd&#x27;hui comment mesurer un photon ne change rien à ce qu&#x27;il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
+<link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-4/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Actuel, Émergent, Local">
+<meta property="og:locale" content="fr_CA">
+<meta property="og:title" content="Le choix qui ne réécrit pas le passé">
+<meta property="og:description" content="Choisir aujourd&#x27;hui comment mesurer un photon ne change rien à ce qu&#x27;il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
+<meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-4/">
+<meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a2046">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
 <style>
-/* Planche technique : feuille bordée, cartouche en tête, une figure interactive par planche, texte sur 65 caractères */
+/* Un plan bleu exposé par la lumière en tête ; en dessous, la feuille de dessin, fermée par son cartouche */
 :root{
-  --bg:#e9edf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
+  --bg:#e8ecf1; --sheet:#fbfcfd; --ink:#101c2b; --ink-2:#485668; --ink-3:#667382;
   --rule:#cfd6de; --grid:#e6ebf0; --axis:#aeb9c5;
   --geo:#2a78d6; --ray:#eb6834; --geo-wash:#e8f1fb; --ray-wash:#fdeee7;
   --critical:#d03b3b; --good:#0ca30c;
+  --plan:#0f2c56; --plan-2:#0a2046; --plan-ink:#f3f6fb; --plan-ink-2:#b9cae0;
+  --plan-trait:rgba(205,225,255,.12); --plan-trait-2:rgba(205,225,255,.4); --photon:#ffefc4;
+  --display:"Barlow Condensed","Roboto Condensed","Arial Narrow",sans-serif;
   --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
   --math:"IBM Plex Serif",Cambria,Georgia,serif;
+  --large:1120px;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+    --bg:#070b11; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
     --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
     --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
     --critical:#e66767; --good:#0ca30c; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#090e14; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
+  --bg:#070b11; --sheet:#121a24; --ink:#e9eef4; --ink-2:#b3bfcc; --ink-3:#8794a2;
   --rule:#27323f; --grid:#1a2430; --axis:#3d4b5b;
   --geo:#3987e5; --ray:#d95926; --geo-wash:#16263a; --ray-wash:#2c1c15;
   --critical:#e66767; --good:#0ca30c; color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans);
-  padding-block:clamp(14px,3vw,44px);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
+.barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
 p{margin:0;max-width:65ch}
 [hidden]{display:none!important}
+.dedans{max-width:calc(var(--large) + 32px);margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-/* feuille et cartouche */
-.sheet{max-width:1080px;margin:0 auto;background:var(--sheet);border:1px solid var(--axis);
-  box-shadow:0 0 0 5px var(--sheet),0 0 0 6px var(--rule)}
-.cartouche{display:grid;grid-template-columns:2.5fr 1.7fr 1.4fr 1.1fr 1.35fr auto;border-bottom:1px solid var(--axis)}
-.cc{padding:.6rem .9rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
+/* barre du haut : toujours à portée, pour passer d'un pilier à l'autre */
+.barre{position:sticky;top:0;z-index:20;background:var(--plan-2);color:var(--plan-ink);border-bottom:1px solid var(--plan-trait-2)}
+.barre .dedans{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:3.3rem}
+.marque{display:flex;align-items:center;gap:.6rem;text-decoration:none;font:600 1.22rem/1 var(--display);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.marque svg{flex:none}
+.barre nav{display:flex;align-items:center;gap:.3rem}
+.barre .lib{font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2);margin-right:.4rem}
+.barre nav a{display:grid;place-items:center;min-width:2.1rem;height:2.1rem;padding:0 .3rem;border:1px solid var(--plan-trait-2);font:500 .85rem/1 var(--mono);text-decoration:none}
+.barre nav a:hover{background:rgba(205,225,255,.16)}
+.barre nav a[aria-current="page"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
+@media (max-width:640px){
+  .marque span,.barre .lib{display:none}
+  .barre nav{gap:.25rem}
+  .barre nav a{min-width:2.4rem;height:2.4rem}
+}
+
+/* en-tête : le plan bleu et son quadrillage */
+.plan{position:relative;background-color:var(--plan);color:var(--plan-ink);
+  background-image:linear-gradient(var(--plan-trait) 1px,transparent 1px),linear-gradient(90deg,var(--plan-trait) 1px,transparent 1px);
+  background-size:28px 28px;background-position:center top}
+.plan .dedans{padding-top:clamp(2rem,5vw,3.6rem);padding-bottom:clamp(2rem,4.4vw,3.2rem)}
+.plan .dedans.onglets{padding-bottom:0}
+.repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
+.repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+h1{margin:0;font-weight:600}
+.plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
+.chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem;max-width:none}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border:1px solid currentColor;background:transparent;color:inherit;
+  font:500 .76rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+.btn span{transition:transform .18s ease}
+.btn:hover span{transform:translateX(4px)}
+.btn:hover{background:var(--geo-wash)}
+.plan .btn:hover{background:rgba(205,225,255,.14)}
+.btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.plan .btn.plein:hover{background:#fff;border-color:#fff}
+.btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+@media (prefers-reduced-motion:reduce){.btn span{transition:none}}
+
+/* accueil : le titre, et l'écran qui s'expose photon par photon */
+.hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
+.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1 span{display:block}
+.expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
+.plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
+.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.pl-t{top:.8rem}
+.pl-n{bottom:.8rem}
+.pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
+.expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
+.lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .plaque{aspect-ratio:16/10}
+}
+
+/* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
+.vues{display:flex;margin-top:clamp(1.7rem,3.6vw,2.7rem)}
+.vues a{padding:.98rem 1.25rem;border:1px solid var(--plan-trait-2);border-bottom:0;margin-right:-1px;background:var(--plan);color:var(--plan-ink-2);
+  font:500 .74rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
+.vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
+@media (max-width:640px){
+  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues .plus{display:none}
+}
+
+/* la feuille */
+.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
+main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
+@media (max-width:700px){
+  .pose{padding-left:0;padding-right:0}
+  .sheet{border-left:0;border-right:0}
+  main{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+}
+
+/* cartouche : au pied de la feuille, comme sur un plan */
+.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
 .ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
-.planches{display:flex;gap:4px}
-.planches a{display:grid;place-items:center;width:1.9rem;height:1.9rem;border:1px solid var(--axis);font:500 .85rem/1 var(--mono);text-decoration:none}
-.planches a:hover{border-color:var(--ink)}
-.planches a[aria-current="page"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
-@media (max-width:920px){
+@media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
   .cc{border-bottom:1px solid var(--rule)}
   .cc:nth-child(2n){border-right:0}
-  .cc:nth-last-child(-n+2){border-bottom:0}
+  .cc:nth-child(5){grid-column:1/-1;border-bottom:0}
 }
 
+/* pilier précédent, pilier suivant */
+.pagination{order:2;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--axis)}
+.pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
+.pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
+.pagination a:hover{background:var(--geo-wash)}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+
+/* pied de page */
+.pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
+.pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
+.sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
+.sig svg{flex:none}
+.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied a:hover{color:var(--plan-ink)}
+
 /* texte */
-main{padding:clamp(20px,4.2vw,52px);display:flex;flex-direction:column;gap:clamp(1.7rem,3.2vw,2.8rem)}
 .head{display:flex;flex-direction:column;gap:1rem}
-h1{font-size:clamp(1.85rem,1.1rem + 2.8vw,3rem);line-height:1.08;font-weight:600;letter-spacing:-.015em;margin:0;max-width:20ch;text-wrap:balance}
 .lead{font-size:1.14rem;line-height:1.55;color:var(--ink-2);max-width:62ch}
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
@@ -79,17 +186,19 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:24px 24px}
+  background-size:24px 24px;overflow-x:auto}
 .stage.plain{background-image:none}
-.stage{overflow-x:auto}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+.stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
+  border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
 @media (max-width:820px){
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
+@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
@@ -122,7 +231,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules */
+/* formules des planches */
 .formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
 .formula .up,.m .up{font-style:normal}
 .m{font-family:var(--math);font-style:italic;white-space:nowrap}
@@ -136,15 +245,16 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
+.avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));border:1px solid var(--rule);border-right:0;border-bottom:0}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
-.defs div{padding:.85rem 1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem}
+.defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
-.defs dt{font-weight:600}
-.defs dd{margin:0;font-size:.9rem;color:var(--ink-2)}
+.defs dt{font:600 1.35rem/1.1 var(--display);letter-spacing:.004em}
+.defs dd{margin:0;font-size:.92rem;color:var(--ink-2)}
 @media (max-width:700px){.defs{grid-template-columns:1fr}.defs div{border-right:0;border-bottom:1px solid var(--rule)}.defs div:last-child{border-bottom:0}}
 
 /* tableaux */
@@ -155,6 +265,17 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
 .data th:last-child,.data td:last-child{padding-right:0}
+/* sur téléphone, un tableau de quatre colonnes ou plus devient une suite de fiches */
+@media (max-width:640px){
+  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
+  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
+  table.empile tr:first-child{padding-top:0}
+  table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
+  table.empile td:first-child::before{display:none}
+}
 
 /* barres de probabilité */
 .bars{display:flex;flex-direction:column;gap:.7rem}
@@ -178,79 +299,74 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .box{fill:var(--sheet);stroke:var(--axis);stroke-width:1.25}
 .box.on{fill:var(--geo-wash);stroke:var(--geo);stroke-width:2}
 .hit{fill:transparent;cursor:ew-resize;touch-action:pan-y}
-
-footer{border-top:1px solid var(--axis);padding:1rem clamp(20px,4.2vw,52px);display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.86rem;color:var(--ink-2)}
 .err{position:fixed;left:8px;bottom:8px;right:8px;padding:.6rem .8rem;background:var(--critical);color:#fff;font:500 .82rem var(--mono);z-index:99}
 
-/* cartouche : liens */
-.cv a{text-decoration:none}
-.cv a:hover{text-decoration:underline}
-.planches a.som{width:auto;padding:0 .6rem;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
-
-/* onglets : les trois vues d'un pilier */
-.vues{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--axis)}
-.vues a{padding:.72rem 1rem;font:500 .72rem/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);border-right:1px solid var(--rule)}
-.vues a:hover{color:var(--ink)}
-.vues a[aria-current="page"]{background:var(--ink);color:var(--sheet)}
-
-/* texte long : articles et démonstrations */
-.prose{display:flex;flex-direction:column;gap:1rem;min-width:0}
-.prose>h2{margin-top:1.5rem;font-size:1.4rem}
-.prose>h3{margin-top:.5rem;font-size:1.05rem}
-.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem;max-width:68ch}
+/* texte long : articles, démonstrations, dossier */
+.prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
+.prose p{max-width:none}
+.prose>h2{margin-top:1.8rem;font-size:1.5rem}
+.prose>h3{margin-top:.6rem;font-size:1.12rem}
+.prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
 .prose .fig{margin:0}
-.figtitle{font-weight:600;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
+.prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
+.figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{font:500 .8rem var(--mono);padding-top:1rem;border-top:1px solid var(--rule);max-width:none}
-
-/* accueil : liste des planches */
-.liste{display:flex;flex-direction:column;border:1px solid var(--axis)}
-.pl{display:grid;grid-template-columns:132px minmax(0,1fr) auto;gap:1.3rem;align-items:center;padding:1.05rem 1.15rem;border-bottom:1px solid var(--rule)}
-.pl:last-child{border-bottom:0}
-.pl>svg{width:132px;height:auto;display:block}
-.plt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
-.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
-.pl h3{font-size:1.18rem}
-.pl h3 a{text-decoration:none}
-.pl h3 a:hover{text-decoration:underline}
-.pl p{font-size:.94rem;color:var(--ink-2)}
-.liens{display:flex;flex-direction:column;gap:.4rem;font:500 .76rem var(--mono);white-space:nowrap}
-@media (max-width:760px){
-  .pl{grid-template-columns:1fr;gap:.8rem}
-  .pl>svg{width:110px}
-  .liens{flex-direction:row;flex-wrap:wrap;gap:.3rem 1.1rem;white-space:normal}
-}
-
-/* tableaux sur petit écran : un tableau large défile, un tableau de texte long s'empile */
-table.large{min-width:34rem}
-table.large.c6{min-width:46rem}
-@media (max-width:640px){
-  table.empile,table.empile tbody,table.empile tr,table.empile td{display:block}
-  table.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-  table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
-  table.empile tr:first-child{padding-top:0}
-  table.empile td{border:0;padding:.3rem 0}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-  table.empile td:first-child{font-weight:600}
-  table.empile td:first-child::before{display:none}
-}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.dossier>h2{margin-top:2.8rem;padding-top:1.7rem;border-top:1px solid var(--axis);font:600 clamp(1.9rem,3.6vw,2.5rem)/1.05 var(--display);letter-spacing:.004em;max-width:26ch}
+.dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
   .tex .katex{font-size:1.05em}
 }
 
-/* dossier complet sur une page */
-.toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
-.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
-.toc a{text-decoration:none}
-.toc a:hover{text-decoration:underline}
-.dossier>h2{font-size:1.7rem;max-width:30ch;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--axis)}
-.dossier>h3{font-size:1.25rem;margin-top:1.3rem}
+/* accueil : les cinq planches */
+.p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
+.planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(220px,300px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk+.plk{border-top:1px solid var(--rule)}
+.no{display:flex;flex-direction:column;gap:.4rem}
+.no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
+.plt{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.plt h3{font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.2}
+.plt h3 a{text-decoration:none}
+.plt h3 a:hover{text-decoration:underline}
+.plt>p{color:var(--ink-2)}
+.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
+.acces .btn{padding:.72rem .95rem}
+.vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
+.vis .cadre{border:1px solid var(--axis);padding:.7rem 1rem;background-color:var(--sheet);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px}
+.vis svg{display:block;width:100%;height:auto}
+.clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
+.clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
+.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:860px){
+  .plk{grid-template-columns:4.3rem minmax(0,1fr)}
+  .vis{grid-column:2;max-width:22rem}
+}
+@media (max-width:520px){
+  .plk{grid-template-columns:1fr}
+  .vis{grid-column:1;max-width:17rem}
+  .no{flex-direction:row;align-items:baseline;gap:.8rem}
+}
+/* accueil : verdict, synthèse */
+.large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
+.verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
+@media (max-width:820px){
+  .verdict{grid-template-columns:1fr}
+  .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
+}
 
-/* impression et PDF : feuille blanche, texte pleine largeur, formules ajustées à la page */
+/* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
   @page{size:letter;margin:16mm 16mm 19mm;
     @bottom-left{content:"Modèle « Actuel, Émergent, Local »";font:8pt "IBM Plex Mono",Consolas,monospace;color:#667382}
@@ -263,45 +379,49 @@ table.large.c6{min-width:46rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .sheet{max-width:none;border:0;box-shadow:none}
-  .cartouche{border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
-  .cartouche .cc{border-bottom:0;border-right:1px solid var(--rule)}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.suite,.err{display:none!important}
+  .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
+  .plan{background:none;color:var(--ink)}
+  .plan .dedans,.plan .dedans.onglets{padding-top:0;padding-bottom:5mm}
+  .repere{color:var(--ink-3)}
+  .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
+  .chapeau{font-size:11.5pt;max-width:none}
+  .sheet{max-width:none;margin:0;border:0}
+  .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
+  .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
-  .cartouche nav,.vues,footer,.suite,.err{display:none!important}
   main{padding:0;gap:1.2rem}
-  p,.lead,.prose ul,.prose ol,h1,h2{max-width:none}
-  h1{font-size:23pt}
+  .prose{max-width:none;font-size:10.5pt;line-height:1.5}
+  .prose .lecture,.prose .correction,.avis{font-size:inherit;line-height:inherit}
+  p,.lead,h2{max-width:none}
   h2,h3,.figtitle,.eyebrow{break-after:avoid}
-  .fig,.tex,.pl,.toc,.lecture,.correction,.stats,.defs,table.data tr{break-inside:avoid}
+  .fig,.tex,.plk,.toc,.lecture,.correction,.avis,.stats,.defs,table.data tr{break-inside:avoid}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
   .tex .katex{font-size:calc(1.21em*var(--fit,1))}
   .stage{overflow:visible}
+  .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
   .tablewrap{overflow:visible}
-  table.large,table.large.c6{min-width:0}
   a{text-decoration:none}
 }
 
 </style>
 </head>
-<body>
-<div class="sheet">
-<header class="cartouche">
-  <div class="cc"><span class="ck">Projet</span><span class="cv"><a href="../index.html">Modèle «&nbsp;Actuel, Émergent, Local&nbsp;»</a></span></div>
-  <div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div>
-  <div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div>
-  <div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div>
-  <div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div>
-  <nav class="cc" aria-label="Sommaire et piliers"><span class="ck">Pilier 4 / 5</span><span class="cv planches"><a class="som" href="../index.html">Sommaire</a><a href="../pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/index.html" title="La pente du temps">3</a><a href="../pilier-4/index.html" aria-current="page" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/index.html" title="Comment une réponse devient un fait">5</a></span></nav>
-</header>
-<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html" aria-current="page">Planche interactive</a><a href="article.html">Article</a><a href="demonstration.html">Démonstration</a></nav>
+<body class="p-planche">
+<div class="barre"><div class="dedans">
+<a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/index.html" title="La pente du temps">3</a><a href="../pilier-4/index.html" aria-current="page" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/index.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+</div></div>
+<header class="plan"><div class="dedans onglets">
+<p class="repere"><span>Pilier 4 / 5</span><span>Choix retardé de Wheeler</span></p>
+<h1>Le choix qui ne réécrit pas le passé</h1>
+<p class="chapeau">Dans l'expérience du choix retardé, on décide au dernier moment comment mesurer un photon parti il y a des milliards d'années. Ce choix ne change rien au passé&nbsp;: il fixe seulement la question posée. Et entre «&nbsp;une route&nbsp;» et «&nbsp;deux routes&nbsp;», tous les intermédiaires existent.</p>
+<nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html" aria-current="page">Planche<span class="plus"> interactive</span></a><a href="article.html">Article</a><a href="demonstration.html">Démonstration</a></nav>
+</div></header>
+<div class="pose"><div class="sheet">
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div><div class="cc"><span class="ck">Échelle</span><span class="cv">Schémas de principe</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
 <main>
-<div class="head">
-  <h1>Le choix qui ne réécrit pas le passé</h1>
-  <p class="lead">Dans l'expérience du choix retardé, on décide au dernier moment comment mesurer un photon parti il y a des milliards d'années. Ce choix ne change rien au passé&nbsp;: il fixe seulement la question posée. Et entre «&nbsp;une route&nbsp;» et «&nbsp;deux routes&nbsp;», tous les intermédiaires existent.</p>
-</div>
-
 <section aria-labelledby="p4-h-build">
   <span class="eyebrow">Figure interactive</span>
   <h2 id="p4-h-build">Les franges se construisent clic après clic, et s'effacent quand la route est connue</h2>
@@ -399,14 +519,12 @@ table.large.c6{min-width:46rem}
   <p class="fnote">La version cosmique, avec un quasar et une galaxie, reste une expérience de pensée.</p>
 </section>
 </main>
-<footer>
-  <span>Pilier 4 sur 5 · Choix retardé de Wheeler</span>
-  <a href="../documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">Article en PDF</a>
-  <a href="../dossier.html">Dossier complet</a>
-  <a href="../dossier-complet.pdf">Dossier en PDF</a>
-  <a href="../index.html">Sommaire</a>
-</footer>
-</div>
+<nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-3/index.html"><span class="num">← Pilier 3</span><b>La pente du temps</b></a><a href="../pilier-5/index.html"><span class="num">Pilier 5 →</span><b>Comment une réponse devient un fait</b></a></nav>
+</div></div>
+<footer class="pied"><div class="dedans">
+<p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
+<nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
+</div></footer>
 <script>
 'use strict';
 window.addEventListener('error', function (e) {
@@ -471,6 +589,10 @@ new MutationObserver(ms => ms.forEach(m => {
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+// une figure plus large que l'écran défile : on le signale au lecteur
+const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+window.addEventListener('load', marquerDefilement);
+window.addEventListener('resize', marquerDefilement);
 
 (function () {
   // --- franges photon par photon
