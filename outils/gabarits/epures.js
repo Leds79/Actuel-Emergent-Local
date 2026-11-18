@@ -123,7 +123,7 @@
     disque(g, ex, ey, 3.2 * u, ENCRE);
     if (!petit) {
       mot(g, 'LE MOT, PLUS ANCIEN QUE LES DÉCOUVERTES', lx - 42 * u, y1 - 38 * u, u);
-      mot(g, 'CE QU’ON A DÉCOUVERT : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
+      mot(g, 'CE QU’ON OBSERVE : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
     }
   };
 
@@ -249,7 +249,7 @@
       mot(g, 'POTENTIEL', (0.5 - S.A - 0.04) * W, 0.2 * W, u, 'right');
       trait(g, 0.515 * W, S.YN * W, 0.555 * W, S.YN * W, TRAIT, u);
       mot(g, 'ICI, MAINTENANT', 0.565 * W, S.YN * W, u);
-      mot(g, 'CONSTATS : ' + poses, (0.5 + S.A + 0.04) * W, 0.59 * W, u, 'left', PHOTON);
+      mot(g, 'CONSTATS : ' + poses, 0.965 * W, 0.59 * W, u, 'right', PHOTON);
       mot(g, 'AUCUN GRAIN NE REMONTE', 0.5 * W, 0.712 * W, u, 'center');
     }
     g.restore();
@@ -258,7 +258,7 @@
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
   // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.305, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
       if (len < 0.011) return;

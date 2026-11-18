@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L&#x27;ombre plus rapide que la lumière · Actuel, Émergent, Local</title>
-<meta name="description" content="Sur un écran plat, l&#x27;ombre des ciseaux part de 524 fois la vitesse de la lumière et retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>L’ombre plus rapide que la lumière · Actuel, Émergent, Local</title>
+<meta name="description" content="Sur un écran plat, l’ombre des ciseaux part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-1/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Actuel, Émergent, Local">
 <meta property="og:locale" content="fr_CA">
-<meta property="og:title" content="L&#x27;ombre plus rapide que la lumière">
-<meta property="og:description" content="Sur un écran plat, l&#x27;ombre des ciseaux part de 524 fois la vitesse de la lumière et retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
+<meta property="og:title" content="L’ombre plus rapide que la lumière">
+<meta property="og:description" content="Sur un écran plat, l’ombre des ciseaux part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-1/">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
 <meta property="og:image:width" content="1200">
@@ -18,9 +18,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous"></script>
 <style>
 /* Un plan bleu exposé par la lumière en tête ; en dessous, la feuille de dessin, fermée par son cartouche */
 :root{
@@ -52,7 +56,11 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+sup,sub{font-size:.72em;line-height:0;vertical-align:baseline;position:relative}
+sup{top:-.42em}
+sub{top:.28em}
+.sym{text-transform:none}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
 .barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
@@ -74,8 +82,20 @@ p{margin:0;max-width:65ch}
 .barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 @media (max-width:640px){
   .marque span,.barre .lib{display:none}
+  .marque{min-width:2.75rem;min-height:2.75rem}
   .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.4rem;height:2.4rem}
+  .barre nav a{min-width:2.25rem;height:2.75rem}
+}
+
+@media (max-width:380px){
+  .barre .dedans{gap:.4rem}
+  .barre nav{gap:.2rem}
+  .barre nav a{min-width:2.05rem;padding:0 .1rem}
+  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+}
+@media (max-width:340px){
+  .marque{min-width:2rem}
+  .barre nav a{min-width:1.9rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -86,6 +106,10 @@ p{margin:0;max-width:65ch}
 .plan .dedans.onglets{padding-bottom:0}
 .repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
 .repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+@media (max-width:640px){
+  .repere{flex-direction:column;gap:.25rem}
+  .repere span+span::before{display:none}
+}
 h1{margin:0;font-weight:600}
 .plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
 .chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
@@ -101,25 +125,31 @@ h1{margin:0;font-weight:600}
 .btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
 .plan .btn.plein:hover{background:#fff;border-color:#fff}
 .btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}
 @media (prefers-reduced-motion:reduce){.btn span{transition:none}}
 
 /* accueil : le titre, et l'écran qui s'expose photon par photon */
 .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
-.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1{font-size:clamp(3.5rem,min(10vw,14.5vh),8.2rem);line-height:1;letter-spacing:.004em;text-transform:uppercase;max-width:none}
 .accueil h1 span{display:block}
 .expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
 .plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
-.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plaque canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;display:block}
+@supports not (aspect-ratio:1/1){
+  .plaque::before{content:"";display:block;padding-top:80%}
+  .epure .plaque::before,.plaque.mini::before{padding-top:75%}
+}
 .pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
 .pl-t{top:.8rem}
 .pl-n{bottom:.8rem}
 .pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
 .expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
 .lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
-@media (max-width:900px){
+@media (max-width:760px){
   .hero{grid-template-columns:1fr}
+  .accueil h1{font-size:clamp(3.5rem,17vw,6rem)}
   .plaque{aspect-ratio:16/10}
+  .actions .btn{flex:1 1 100%;justify-content:space-between}
 }
 
 /* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
@@ -129,12 +159,12 @@ h1{margin:0;font-weight:600}
 .vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
 .vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
 @media (max-width:640px){
-  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues a{flex:1 1 0;text-align:center;padding:1.05rem .3rem;letter-spacing:.05em}
   .vues .plus{display:none}
 }
 
 /* la feuille */
-.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pose{flex:1 0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
 main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
 @media (max-width:700px){
@@ -144,10 +174,10 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 }
 
 /* cartouche : au pied de la feuille, comme sur un plan */
-.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cartouche{order:3;display:grid;grid-template-columns:2.2fr 1.5fr 2.2fr 1.1fr 1.2fr;border-top:1px solid var(--axis)}
 .cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
-.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.ck{font:500 .69rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
 @media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
@@ -161,14 +191,16 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
 .pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
 .pagination a:hover{background:var(--geo-wash)}
-.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.12 var(--display);letter-spacing:.01em;text-wrap:balance}
+@media (max-width:640px){.pagination b{font-weight:500;font-size:1.3rem}.pagination a{padding:1.1rem 20px}}
 
 /* pied de page */
 .pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
 .pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
 .sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
 .sig svg{flex:none}
-.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
+.pied nav a{padding:.45rem 0}
 .pied a:hover{color:var(--plan-ink)}
 
 /* texte */
@@ -177,12 +209,12 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .7rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
 /* figure interactive */
-.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig{margin:0;border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -191,6 +223,10 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+/* un dessin « adapte » tient dans la largeur d'un téléphone ; « bureau » et « mobile » sont deux mises en page du même dessin */
+.stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
+.stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
+.halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -198,11 +234,22 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
-@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
+@media (max-width:640px){
+  .prose .stage>svg:not(.fit):not(.mobile){min-width:560px}
+  .stage>svg.bureau{display:none}
+  .stage>svg.mobile{display:block}
+  /* sur téléphone, la figure va d'un bord à l'autre et ses textes sont grossis pour rester lisibles */
+  .p-planche main>section>.fig,.p-planche main>.cols .fig{margin-inline:-20px;border-left:0;border-right:0}
+  .p-planche .stage{padding:.6rem .5rem}
+  .adapte .t,.adapte .tb{font-size:15.5px}
+  .adapte .tq{font-size:14.5px}
+  .adapte .tm{font-size:13px}
+}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
 .ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.bouts{display:flex;justify-content:space-between;gap:1rem;margin-top:-.2rem;font:400 .66rem/1.2 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
 input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
 .check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
@@ -212,16 +259,23 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
 .ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro.fixe{grid-template-columns:minmax(0,1fr) 10.6rem}
 .ro dt{font-size:.88rem;color:var(--ink-2)}
 .ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
-.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash);min-height:calc(4.35em + 1.4rem)}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
 .legend span{display:inline-flex;align-items:center;gap:.5em}
 .legend i{display:inline-block;width:16px;height:3px}
 .k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
 .legend i.dot{width:10px;height:10px;border-radius:50%}
 .legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+@media (max-width:640px),(pointer:coarse){
+  .chip{min-height:2.75rem;padding:.7rem .8rem}
+  input[type=range]{height:2.5rem}
+  .jeton{min-height:2.75rem}
+}
 
 /* jauges */
 .meter{display:flex;flex-direction:column;gap:.3rem}
@@ -231,18 +285,13 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules des planches */
-.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
-.formula .up,.m .up{font-style:normal}
-.m{font-family:var(--math);font-style:italic;white-space:nowrap}
-.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
-.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
-.frac>span:last-child{padding:.12em .3em 0}
+/* formules des planches : composées par KaTeX, comme celles des démonstrations (.tex) */
 .formulas{display:flex;flex-direction:column;gap:.6rem}
 .fnote{font-size:.88rem;color:var(--ink-2)}
 
 /* encadrés */
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.lecture .eyebrow{color:var(--ink-2)}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
 .avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
@@ -250,6 +299,10 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:last-child:nth-child(odd){grid-column:1/-1}
+}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
 .defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
@@ -260,7 +313,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 /* tableaux */
 .tablewrap{overflow-x:auto}
 table.data{border-collapse:collapse;width:100%;font-size:.94rem}
-.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data th{font:500 .7rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
 .data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
@@ -272,7 +325,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
   table.empile tr:first-child{padding-top:0}
   table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
   table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
   table.empile td:first-child::before{display:none}
 }
@@ -304,17 +357,25 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* texte long : articles, démonstrations, dossier */
 .prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
 .prose p{max-width:none}
+.p-article .prose{max-width:42rem}
 .prose>h2{margin-top:1.8rem;font-size:1.5rem}
 .prose>h3{margin-top:.6rem;font-size:1.12rem}
 .prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
-.prose .fig{margin:0}
 .prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
 .figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+/* une formule plus large que l'écran est d'abord réduite, puis défile si elle déborde encore */
+.tex.ok .katex{font-size:calc(1.21em*var(--zoom,1))}
+.tex.defile{background:
+  linear-gradient(90deg,var(--sheet) 35%,transparent) left/2.2rem 100% no-repeat local,
+  linear-gradient(270deg,var(--sheet) 35%,transparent) right/2.2rem 100% no-repeat local,
+  linear-gradient(90deg,var(--axis),transparent) left/.9rem 100% no-repeat scroll,
+  linear-gradient(270deg,var(--axis),transparent) right/.9rem 100% no-repeat scroll}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule);max-width:none}
+@media (max-width:520px){.suite .btn{flex:1 1 100%;justify-content:space-between}}
 .toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .toc a{text-decoration:none}
@@ -323,13 +384,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
-  .tex .katex{font-size:1.05em}
+  .tex.ok .katex{font-size:calc(1.1em*var(--zoom,1))}
 }
 
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(240px,340px);gap:clamp(1rem,3vw,2.4rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -338,25 +399,36 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .plt h3 a{text-decoration:none}
 .plt h3 a:hover{text-decoration:underline}
 .plt>p{color:var(--ink-2)}
-.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
-.acces .btn{padding:.72rem .95rem}
+.acces{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:.55rem;max-width:none}
+.acces .btn{padding:.78rem .95rem}
+.acces .btn.fin{border-color:var(--axis);color:var(--ink)}
+.acces .btn.fin:hover{border-color:var(--ink);background:transparent}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis svg{display:block;width:100%;height:auto}
+.vis>a{display:block}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
-.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
 .clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
 @media (max-width:860px){
   .plk{grid-template-columns:4.3rem minmax(0,1fr)}
-  .vis{grid-column:2;max-width:22rem}
+  .vis{grid-column:2;display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:.8rem 1.2rem;align-items:end}
+  .clef{flex-direction:column;gap:.3rem}
+}
+@media (max-width:640px){
+  .vis{grid-template-columns:1fr}
+  .clef{flex-direction:row;gap:.7rem}
 }
 @media (max-width:520px){
   .plk{grid-template-columns:1fr}
-  .vis{grid-column:1;max-width:17rem}
+  .vis{grid-column:1}
   .no{flex-direction:row;align-items:baseline;gap:.8rem}
+  .acces .btn{flex:1 1 auto;justify-content:space-between}
+  .acces .btn.encre{flex-basis:100%}
 }
 /* accueil : verdict, synthèse */
 .large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.prose.large>p{max-width:72ch}
+.prose.large td:first-child{font-weight:600}
 .verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
 .verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
 @media (max-width:820px){
@@ -369,6 +441,23 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
 .intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .prose .intuition p{max-width:none}
+.plan .intuition{margin-top:1.3rem;padding:.1rem 0 .1rem 1.1rem;border:0;border-left:2px solid var(--photon);max-width:38rem;gap:.55rem}
+.plan .intuition .eyebrow,.plan .intuition footer{color:var(--plan-ink-2)}
+.plan .intuition p{max-width:none;font-size:clamp(1.06rem,1.5vw,1.26rem);line-height:1.46;color:var(--plan-ink)}
+/* ouverture de la feuille : le nom de la vue, le titre du document, son chapeau */
+.amorce{display:flex;flex-direction:column;gap:.75rem}
+.doc-titre{font:600 clamp(1.75rem,3.3vw,2.35rem)/1.08 var(--display);letter-spacing:.004em;max-width:26ch;text-wrap:balance}
+.prose .amorce .lead{max-width:none;font-size:1.16rem;line-height:1.6}
+/* sommaire repliable des pages longues, quand le rail n'a pas la place */
+.sommaire{border:1px solid var(--rule)}
+.sommaire summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:.85rem 1rem;list-style:none;font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.sommaire summary::-webkit-details-marker{display:none}
+.sommaire summary::after{content:"+";font-size:1.05rem;line-height:1}
+.sommaire[open] summary::after{content:"−"}
+.prose .sommaire ol{list-style:none;margin:0;padding:0 1rem .5rem;gap:0}
+.prose .sommaire li{padding:0}
+.sommaire a{display:block;padding:.6rem 0;border-top:1px solid var(--rule);text-decoration:none;font-size:.95rem;line-height:1.35}
+.remonter{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:15;padding:.75rem .9rem;background:var(--ink);color:var(--sheet);font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.28)}
 .plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
 
 /* lien d'évitement pour le clavier */
@@ -378,7 +467,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* avancement de la lecture, sous la barre du haut */
 @supports (animation-timeline:scroll()){
   .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
-    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+    transform-origin:0 50%;transform:scaleX(0);animation:avance 1ms linear both;animation-timeline:scroll(root block)}
   @keyframes avance{to{transform:scaleX(1)}}
 }
 /* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
@@ -390,25 +479,33 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
 .tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
 .epure{margin:0;min-width:0}
+.epure figcaption{margin-top:.55rem;font-size:.8rem;line-height:1.4;color:var(--plan-ink-2)}
 .epure .plaque,.plaque.mini{aspect-ratio:4/3}
-@media (max-width:980px){
-  .tete{grid-template-columns:1fr}
-  .tete .epure{display:none}
+@media (max-width:980px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,21rem)}}
+@media (max-width:760px){
+  .tete{grid-template-columns:1fr;gap:1.4rem}
+  .tete .epure{max-width:23rem}
 }
 /* accueil : choisir ce que l'on sait de chaque photon */
-.expo figcaption p{max-width:54ch}
-.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
-.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+.expo figcaption p{max-width:54ch;min-height:4.5em}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.1rem;margin-top:.75rem}
+.duo{display:flex}
+.choix .lib{flex:1 1 100%;font:500 .66rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.jeton{min-height:2.5rem;padding:.6rem .85rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
   font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton+.jeton{margin-left:-1px}
 .jeton:hover{background:rgba(205,225,255,.14)}
-.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.choix .lien{margin-left:.5rem;font-size:.86rem}
+.jeton[aria-pressed="true"]{background:var(--plan-ink);border-color:var(--plan-ink);color:var(--plan-2)}
+.choix .lien{font-size:.86rem;min-height:2.5rem}
 
 /* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
 .rail{display:none}
 @media (min-width:1200px){
   .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .p-article .avec-rail{grid-template-columns:13rem minmax(0,42rem)}
+  .sommaire,.remonter{display:none}
   .avec-rail>.prose{margin:0}
+  .avec-rail>.prose:only-child{grid-column:1/-1;margin-inline:auto}
   .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
   .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
   .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
@@ -422,9 +519,50 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .frise .ref{cursor:pointer;outline:none}
 .frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
 .frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .ref:focus-visible .touche{stroke:var(--ink);stroke-width:1.5}
 .frise .touche{fill:transparent}
 .bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
 .bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* planche 4 : la question que pose la mesure choisie */
+.stage.question{padding:1.5rem 1.3rem;gap:.6rem}
+.demande{font:600 clamp(1.35rem,2.4vw,1.7rem)/1.12 var(--display);letter-spacing:.004em;margin-bottom:.9rem;max-width:none;min-height:2.3em}
+/* planche 5 : les trois temps de la mesure, en cases que le texte remplit à sa taille réelle */
+.stage.temps{padding:1.4rem .8rem 1.2rem}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);align-items:stretch}
+.etape{border:1.25px solid var(--axis);background:var(--sheet);padding:.8rem .45rem;display:flex;flex-direction:column;justify-content:center;gap:.2rem;text-align:center;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.etape b{font-size:.96rem;color:var(--ink)}
+.etape.on{background:var(--geo-wash);border-color:var(--geo);box-shadow:inset 0 0 0 1px var(--geo)}
+.passage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:0 .6rem;font:400 .66rem/1.2 var(--mono);color:var(--ink-3)}
+.passage i{font-style:normal}
+.passage svg{display:block;width:100%;height:10px;min-width:0;flex:none}
+.retours{display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);padding-bottom:1.7rem;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.retours p{max-width:none}
+.gomme{grid-column:1/4;position:relative;height:1.5rem;margin:0 calc((100% - 6.4rem)/4);border:1.25px solid var(--ink-3);border-top:0}
+.gomme::before{content:"";position:absolute;left:-5.6px;top:-1px;border:5px solid transparent;border-top:0;border-bottom:8px solid var(--ink-3)}
+.gomme .court{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:.4rem;white-space:nowrap}
+.retours .long{display:none}
+.gomme.pale{opacity:.3}
+.jamais{grid-column:5;padding-top:.5rem;text-align:center}
+@media (max-width:640px){
+  .stage.temps{padding:1rem .9rem}
+  .etapes{grid-template-columns:1fr}
+  .passage{flex-direction:row;gap:.6rem;padding:.4rem 0}
+  .passage svg{width:2.2rem;transform:rotate(90deg)}
+  .retours{display:flex;flex-direction:column;gap:.35rem;padding:.9rem 0 0}
+  .gomme{height:auto;margin:0;border:0}
+  .gomme::before{display:none}
+  .retours .court{display:none}
+  .retours .long{display:inline}
+  .jamais{text-align:left;padding:0}
+}
+/* liste de documents et de pages : un nom, puis ses liens */
+.docs{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.docs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem 1.5rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.docs .liens{display:flex;flex-wrap:wrap;gap:.4rem}
+.docs .liens a{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .75rem;border:1px solid var(--axis);font:500 .74rem/1 var(--mono);letter-spacing:.04em;text-decoration:none}
+.docs .liens a:hover{border-color:var(--ink)}
+@media (max-width:640px){.docs li{grid-template-columns:1fr}.docs li>span:first-child{font-weight:600}}
 
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
@@ -439,7 +577,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  body{display:block;min-height:0}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err,.sommaire,.remonter{display:none!important}
   .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
@@ -448,6 +587,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
   .chapeau{font-size:11.5pt;max-width:none}
   .sheet{max-width:none;margin:0;border:0}
+  .plan .intuition{border-left:2px solid var(--axis)}
+  .plan .intuition p,.plan .intuition .eyebrow,.plan .intuition footer{color:inherit}
   .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
   .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
@@ -460,10 +601,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
-  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.ok .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.defile{background:none}
   .stage{overflow:visible}
   .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .stage>svg.mobile{display:none}
+  .stage>svg.bureau{display:block}
   .tablewrap{overflow:visible}
   a{text-decoration:none}
 }
@@ -474,125 +618,126 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/index.html" aria-current="page" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/index.html" title="La pente du temps">3</a><a href="../pilier-4/index.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/index.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/index.html" aria-current="page" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/index.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/index.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/index.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/index.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
-<p class="repere"><span>Pilier 1 / 5</span><span>Géométrie de l&#x27;observateur</span></p>
-<h1>L'ombre plus rapide que la lumière</h1>
-<p class="chapeau">Sur un écran plat à 100 millions de kilomètres, l'ombre des ciseaux démarre à 524 fois la vitesse de la lumière. Elle retombe ensuite vers c, et celui qui tient les ciseaux la voit ralentir jusqu'à c/2. Déplacez le point visé pour le vérifier.</p>
+<p class="repere"><span>Pilier 1 / 5</span><span>Géométrie de l’observateur</span></p>
+<h1>L’ombre plus rapide que la lumière</h1>
+<blockquote class="intuition"><span class="eyebrow">L’intuition de départ</span><p>« L’observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage. »</p><footer>Sylvain Leduc</footer></blockquote>
 </div>
-<figure class="epure"><div class="plaque"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme de proche en proche, du centre vers la pointe ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div></figure></div>
+<figure class="epure"><div class="plaque"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme peu à peu, du centre vers la pointe, chaque point avec son propre retard ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div></figure></div>
 <nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html" aria-current="page">Planche<span class="plus"> interactive</span></a><a href="article.html">Article</a><a href="demonstration.html">Démonstration</a></nav>
 </div></header>
 <div class="pose"><div class="sheet">
-<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Géométrie de l&#x27;observateur</span></div><div class="cc"><span class="ck">Échelle</span><span class="cv">1 px = 400 000 km</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main id="contenu">
-<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« L&#x27;observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, je vois cela un peu comme un miroir face à un miroir : il y a un décalage. »</p><footer>Sylvain Leduc</footer></blockquote>
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Géométrie de l’observateur</span></div><div class="cc"><span class="ck">Échelle</span><span class="cv">Variable : le dessin se resserre</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
+<main id="contenu" tabindex="-1">
+<div class="amorce"><span class="eyebrow">Planche interactive</span><p class="lead">Sur un écran plat à 100 millions de kilomètres, l’ombre des ciseaux démarre à 524 fois la vitesse de la lumière, notée c. Elle retombe ensuite vers c, et celui qui tient les ciseaux la voit ralentir vers c/2. Déplacez le point visé pour le vérifier.</p></div>
 <section aria-labelledby="p1-h-geo">
   <span class="eyebrow">Figure interactive</span>
-  <h2 id="p1-h-geo">Plus le point visé s'éloigne du centre, plus la diagonale s'allonge</h2>
+  <h2 id="p1-h-geo">Plus le point visé s’éloigne du centre, plus la diagonale s’allonge</h2>
   <div class="fig">
     <div class="stage">
-      <svg viewBox="0 0 660 432" role="img" aria-label="La source au pivot, l'écran plat, et les deux diagonales qui s'ouvrent comme les lames d'une paire de ciseaux">
+      <svg class="adapte" viewBox="0 0 480 424" role="img" aria-label="La source au pivot, l'écran plat, et les deux diagonales qui s'ouvrent comme les lames d'une paire de ciseaux">
         <defs>
           <marker id="ar-ax" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-axis"/></marker>
         </defs>
         <g id="g-tout">
-        <line id="g-screen" x1="24" y1="64" x2="636" y2="64" class="lnk"/>
-        <text id="g-ecr" x="24" y="55" class="tb">écran plat</text>
-        <text id="g-ctr" x="338" y="80" class="tm">centre</text>
-        <path id="g-courbe" class="ln dash" d="M330 64"/>
-        <line id="g-axis" class="ln" x1="330" y1="300" x2="330" y2="64"/>
-        <text id="g-dlab" x="320" y="190" text-anchor="end" class="tq">100 M km</text>
-        <path id="g-arc" class="ln" d="M330 250"/>
-        <text id="g-theta" class="tq" text-anchor="middle" x="345" y="236">θ</text>
+        <line id="g-screen" x1="16" y1="90" x2="464" y2="90" class="lnk"/>
+        <text id="g-ecr" x="16" y="81" class="tb">écran plat</text>
+        <text id="g-ctr" x="240" y="80" text-anchor="middle" class="tm">centre</text>
+        <path id="g-courbe" class="ln dash" d="M240 90"/>
+        <line id="g-axis" class="ln" x1="240" y1="286" x2="240" y2="90"/>
+        <path id="g-arc" class="ln" d="M240 240"/>
+        <text id="g-theta" class="tq" text-anchor="middle" x="252" y="226">θ</text>
         <g class="ln" style="stroke:var(--ink-2)">
-          <line id="g-mancheL" x1="330" y1="300" x2="312" y2="344"/><line id="g-mancheR" x1="330" y1="300" x2="348" y2="344"/>
-          <ellipse id="g-anneauL" cx="306" cy="356" rx="16" ry="10"/><ellipse id="g-anneauR" cx="354" cy="356" rx="16" ry="10"/>
+          <line id="g-mancheL" x1="240" y1="286" x2="226" y2="324"/><line id="g-mancheR" x1="240" y1="286" x2="254" y2="324"/>
+          <ellipse id="g-anneauL" cx="222" cy="336" rx="15" ry="9.5"/><ellipse id="g-anneauR" cx="258" cy="336" rx="15" ry="9.5"/>
         </g>
-        <line id="g-baseL" class="ln" style="stroke:var(--ink-2)" x1="330" y1="300" x2="330" y2="64"/>
-        <line id="g-baseR" class="ln" style="stroke:var(--ink-2)" x1="330" y1="300" x2="330" y2="64"/>
-        <line id="g-extraL" class="ray" x1="330" y1="64" x2="330" y2="64"/>
-        <line id="g-extraR" class="ray" x1="330" y1="64" x2="330" y2="64"/>
-        <circle id="g-dotL" r="5.5" class="f-ray" cx="330" cy="64"/>
-        <circle id="g-dotR" r="5.5" class="f-ray" cx="330" cy="64"/>
+        <line id="g-baseL" class="ln" style="stroke:var(--ink-2)" x1="240" y1="286" x2="240" y2="90"/>
+        <line id="g-baseR" class="ln" style="stroke:var(--ink-2)" x1="240" y1="286" x2="240" y2="90"/>
+        <line id="g-extraL" class="ray" x1="240" y1="90" x2="240" y2="90"/>
+        <line id="g-extraR" class="ray" x1="240" y1="90" x2="240" y2="90"/>
+        <circle id="g-dotL" r="5.5" class="f-ray" cx="240" cy="90"/>
+        <circle id="g-dotR" r="5.5" class="f-ray" cx="240" cy="90"/>
         <g id="g-dim">
-          <line id="g-dimline" class="ln" x1="330" y1="36" x2="500" y2="36" marker-start="url(#ar-ax)" marker-end="url(#ar-ax)"/>
-          <text id="g-dimtxt" class="tm" text-anchor="middle" x="415" y="27">x</text>
+          <line id="g-dimline" class="ln" x1="240" y1="62" x2="380" y2="62" marker-start="url(#ar-ax)" marker-end="url(#ar-ax)"/>
+          <text id="g-dimtxt" class="tm" text-anchor="middle" x="310" y="53">x</text>
         </g>
-        <circle cx="330" cy="300" r="6" class="f-ink"/>
-        <text x="330" y="398" text-anchor="middle" class="tb">source et opérateur, au pivot</text>
+        <circle cx="240" cy="286" r="6" class="f-ink"/>
+        <text x="240" y="378" text-anchor="middle" class="tb">source et opérateur, au pivot</text>
+        <text x="240" y="396" text-anchor="middle" class="tq">à 100 millions de km de l’écran</text>
         </g>
-        <text id="g-out" class="tq" text-anchor="end" x="636" y="20" visibility="hidden">au-delà de 84°, l'ouverture n'est plus dessinée à l'échelle</text>
-        <line x1="24" y1="420" x2="52" y2="420" class="ln dash"/>
-        <text x="60" y="424" class="tq">écran courbe&nbsp;: même distance partout</text>
+        <text id="g-out" class="tq" text-anchor="end" x="464" y="18" visibility="hidden">au-delà de 84°, le dessin n’est plus à l’échelle</text>
+        <line x1="16" y1="414" x2="44" y2="414" class="ln dash"/>
+        <text x="52" y="418" class="tq">écran courbe : même distance partout</text>
       </svg>
     </div>
     <div class="panel">
       <div class="ctl">
-        <label for="p1-x">Point visé sur l'écran <output id="p1-xo" for="p1-x"></output></label>
+        <label for="p1-x">Point visé sur l’écran <output id="p1-xo" for="p1-x"></output></label>
         <input type="range" id="p1-x" min="-4" max="2.3" step="0.01" value="0">
+        <div class="bouts" aria-hidden="true"><span>près du centre</span><span>très loin</span></div>
       </div>
       <div class="chips" id="p1-chips" role="group" aria-label="Positions repères">
         <button class="chip" type="button" data-x="0" aria-pressed="false">Centre</button>
-        <button class="chip" type="button" data-x="1e7" aria-pressed="false">10 M km</button>
-        <button class="chip" type="button" data-x="1e8" aria-pressed="true">100 M km</button>
-        <button class="chip" type="button" data-x="1e9" aria-pressed="false">1 G km</button>
-        <button class="chip" type="button" data-x="ly" aria-pressed="false">1 M d'années-lumière</button>
+        <button class="chip" type="button" data-x="1e7" aria-pressed="false">10 M km</button>
+        <button class="chip" type="button" data-x="1e8" aria-pressed="true">100 M km</button>
+        <button class="chip" type="button" data-x="1e9" aria-pressed="false">1 Md km</button>
+        <button class="chip" type="button" data-x="ly" aria-pressed="false">1 M d’années-lumière</button>
       </div>
       <dl class="ro">
-        <dt>Vitesse réelle de l'ombre</dt><dd id="p1-ve"></dd>
-        <dt>Vitesse vue par l'opérateur</dt><dd id="p1-vo"></dd>
-        <dt>L'opérateur la voit après</dt><dd id="p1-to"></dd>
+        <dt>Vitesse réelle de l’ombre</dt><dd id="p1-ve"></dd>
+        <dt>Vitesse vue par l’opérateur</dt><dd id="p1-vo"></dd>
+        <dt>L’opérateur la voit après</dt><dd id="p1-to"></dd>
         <dt>Trajet en plus, aller simple</dt><dd id="p1-ex"></dd>
       </dl>
-      <p class="state" id="p1-state"></p>
+      <p class="state" id="p1-state" role="status"></p>
     </div>
   </div>
-  <p class="figcap">Les deux diagonales s'ouvrent comme les lames d'une paire de ciseaux, dont la source est le pivot. Le dessin se resserre à mesure, pour que les deux pointes restent visibles. La partie orange est le trajet en plus par rapport à un écran courbe, où toutes les diagonales auraient la même longueur. C'est elle qui retarde l'ombre, et elle compte double pour l'opérateur.</p>
+  <p class="figcap">Les deux diagonales s’ouvrent comme les lames d’une paire de ciseaux, dont la source est le pivot. Le dessin se resserre à mesure, pour que les deux pointes restent visibles. La partie orange est le trajet en plus par rapport à un écran courbe, où toutes les diagonales auraient la même longueur. C’est elle qui retarde l’ombre, et elle compte double pour l’opérateur. M veut dire million, Md milliard.</p>
 </section>
 
 <section aria-labelledby="p1-h-chart">
   <span class="eyebrow">Graphique</span>
-  <h2 id="p1-h-chart">L'ombre retombe vers c, et l'opérateur la voit tendre vers c/2</h2>
-  <div class="legend"><span><i class="k-geo"></i>Vitesse réelle de l'ombre sur l'écran</span><span><i class="k-ray"></i>Vitesse vue par l'opérateur</span></div>
+  <h2 id="p1-h-chart">L’ombre retombe vers c, et l’opérateur la voit tendre vers c/2</h2>
+  <div class="legend"><span><i class="k-geo"></i>Vitesse réelle de l’ombre sur l’écran</span><span><i class="k-ray"></i>Vitesse vue par l’opérateur</span></div>
   <div class="fig solo"><div class="stage plain">
-    <svg id="p1-chart" class="wide" viewBox="0 0 1000 400" role="img" aria-label="Les deux vitesses en fonction de la distance au centre&nbsp;: elles partent de 524 c et tendent vers c et c/2"></svg>
+    <svg id="p1-chart" class="wide" viewBox="0 0 1000 400" role="img" aria-label="Les deux vitesses en fonction de la distance au centre : elles partent de 524 c et tendent vers c et c/2"></svg>
   </div></div>
-  <p class="figcap">Échelles logarithmiques. Cliquez ou glissez sur le graphique pour déplacer le point visé.</p>
+  <p class="figcap">Échelles logarithmiques. Touchez le graphique, ou faites-y glisser le doigt ou la souris, pour déplacer le point visé.</p>
 </section>
 
 <section aria-label="Chiffres clés">
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
-    <div class="stat"><b>524 c</b><span>vitesse de l'ombre au centre de l'écran</span></div>
+    <div class="stat"><b>524 c</b><span>vitesse de l’ombre au centre de l’écran</span></div>
     <div class="stat"><b>c</b><span>limite de la vitesse réelle, très loin du centre</span></div>
-    <div class="stat"><b>c/2</b><span>limite de la vitesse vue par l'opérateur</span></div>
-    <div class="stat"><b>2 millions d'années</b><span>attente pour voir une pointe située à 1 million d'années-lumière</span></div>
+    <div class="stat"><b>c/2</b><span>limite de la vitesse vue par l’opérateur</span></div>
+    <div class="stat"><b>2 millions d’années</b><span>attente pour voir une pointe située à 1 million d’années-lumière</span></div>
   </div>
 </section>
 
 <div class="cols">
   <section aria-labelledby="p1-h-f">
     <span class="eyebrow">Formules</span>
-    <h2 id="p1-h-f">Deux délais qui s'additionnent</h2>
+    <h2 id="p1-h-f">Deux délais qui s’additionnent</h2>
     <div class="formulas">
-      <div class="formula"><span class="frac"><span>1</span><span>v<sub class="up">écran</sub></span></span><span class="up">=</span><span class="frac"><span>1</span><span>v<sub class="up">visée</sub></span></span><span class="up">+</span><span class="frac"><span><span class="up">sin</span> θ</span><span>c</span></span></div>
-      <div class="formula"><span class="frac"><span>1</span><span>v<sub class="up">vue</sub></span></span><span class="up">=</span><span class="frac"><span>1</span><span>v<sub class="up">visée</sub></span></span><span class="up">+</span><span class="frac"><span>2 <span class="up">sin</span> θ</span><span>c</span></span></div>
+      <div class="tex">\frac{1}{v_{\text{écran}}} = \frac{1}{v_{\text{visée}}} + \frac{\sin\theta}{c}</div>
+      <div class="tex">\frac{1}{v_{\text{vue}}} = \frac{1}{v_{\text{visée}}} + \frac{2\sin\theta}{c}</div>
     </div>
-    <p class="fnote">La vitesse de visée est celle à laquelle la source déplace le point visé. L'angle θ sépare l'axe de la diagonale. Quand le point s'éloigne, sin θ tend vers 1 et la vitesse de visée devient énorme&nbsp;: il reste c pour l'ombre, et c/2 pour l'opérateur.</p>
+    <p class="fnote">La vitesse de visée est celle à laquelle la source déplace le point visé. L’angle θ sépare l’axe de la diagonale. Quand le point s’éloigne, sin θ tend vers 1 et la vitesse de visée devient énorme : il reste c pour l’ombre, et c/2 pour l’opérateur.</p>
   </section>
   <section aria-label="Lecture et correction">
     <div class="lecture">
       <span class="eyebrow">Lecture mécanique</span>
-      <p>Ce sont deux tâches en série. Pour avancer d'un kilomètre sur l'écran, la source doit viser ce kilomètre, puis la lumière doit parcourir le supplément de diagonale.</p>
-      <p>Près du centre, la source donne le rythme. Loin du centre, le trajet de la lumière devient le goulot d'étranglement.</p>
+      <p>Ce sont deux tâches en série. Pour avancer d’un kilomètre sur l’écran, la source doit viser ce kilomètre, puis la lumière doit parcourir le supplément de diagonale.</p>
+      <p>Près du centre, la source donne le rythme. Loin du centre, le trajet de la lumière devient le goulot d’étranglement.</p>
     </div>
     <div class="correction">
       <span class="eyebrow">Correction apportée</span>
-      <p>La vitesse vue ne «&nbsp;plafonne&nbsp;» pas à c/2&nbsp;: elle y descend. Avec une fermeture d'une seconde, elle part de 524 c et tend vers c/2 sans jamais passer dessous.</p>
-      <p>c/2 ne serait un plafond que pour un balayage lent.</p>
+      <p>La vitesse vue ne « plafonne » pas à c/2 : elle y descend. Avec une fermeture d’une seconde, elle part de 524 c et tend vers c/2 sans jamais passer dessous.</p>
+      <p>c/2 ne serait un plafond que pour un balayage lent.</p>
     </div>
   </section>
 </div>
@@ -602,18 +747,19 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   <h2 id="p1-h-t">Les distances du problème</h2>
   <div class="tablewrap">
     <table class="data empile">
-      <thead><tr><th>Distance au centre</th><th class="n">Vitesse réelle (en c)</th><th class="n">Vitesse vue (en c)</th><th class="n">Vue par l'opérateur après</th></tr></thead>
+      <thead><tr><th>Distance au centre</th><th class="n">Vitesse réelle <span class="sym">(en c)</span></th><th class="n">Vitesse vue <span class="sym">(en c)</span></th><th class="n">Vue par l’opérateur après</th></tr></thead>
       <tbody>
-        <tr><td data-th="Distance au centre">Au centre</td><td data-th="Vitesse réelle (en c)" class="n">524</td><td data-th="Vitesse vue (en c)" class="n">524</td><td data-th="Vue par l&#x27;opérateur après" class="n">11 min 7 s</td></tr>
-        <tr><td data-th="Distance au centre">10 millions de km</td><td data-th="Vitesse réelle (en c)" class="n">9,86</td><td data-th="Vitesse vue (en c)" class="n">4,98</td><td data-th="Vue par l&#x27;opérateur après" class="n">11 min 11 s</td></tr>
-        <tr><td data-th="Distance au centre">100 millions de km</td><td data-th="Vitesse réelle (en c)" class="n">1,412</td><td data-th="Vitesse vue (en c)" class="n">0,707</td><td data-th="Vue par l&#x27;opérateur après" class="n">15 min 44 s</td></tr>
-        <tr><td data-th="Distance au centre">1 milliard de km</td><td data-th="Vitesse réelle (en c)" class="n">1,0050</td><td data-th="Vitesse vue (en c)" class="n">0,5025</td><td data-th="Vue par l&#x27;opérateur après" class="n">1 h 52 min</td></tr>
-        <tr><td data-th="Distance au centre">1 million d'années-lumière</td><td data-th="Vitesse réelle (en c)" class="n">1</td><td data-th="Vitesse vue (en c)" class="n">0,5</td><td data-th="Vue par l&#x27;opérateur après" class="n">2 millions d'années</td></tr>
+        <tr><td data-th="Distance au centre">Au centre</td><td data-th="Vitesse réelle (en c)" class="n">524</td><td data-th="Vitesse vue (en c)" class="n">524</td><td data-th="Vue par l’opérateur après" class="n">11 min 7 s</td></tr>
+        <tr><td data-th="Distance au centre">10 millions de km</td><td data-th="Vitesse réelle (en c)" class="n">9,86</td><td data-th="Vitesse vue (en c)" class="n">4,98</td><td data-th="Vue par l’opérateur après" class="n">11 min 11 s</td></tr>
+        <tr><td data-th="Distance au centre">100 millions de km</td><td data-th="Vitesse réelle (en c)" class="n">1,412</td><td data-th="Vitesse vue (en c)" class="n">0,707</td><td data-th="Vue par l’opérateur après" class="n">15 min 44 s</td></tr>
+        <tr><td data-th="Distance au centre">1 milliard de km</td><td data-th="Vitesse réelle (en c)" class="n">1,0050</td><td data-th="Vitesse vue (en c)" class="n">0,5025</td><td data-th="Vue par l’opérateur après" class="n">1 h 52 min</td></tr>
+        <tr><td data-th="Distance au centre">1 million d’années-lumière</td><td data-th="Vitesse réelle (en c)" class="n">1</td><td data-th="Vitesse vue (en c)" class="n">0,5</td><td data-th="Vue par l’opérateur après" class="n">2 millions d’années</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="fnote">Hypothèses&nbsp;: écran à 100 millions de kilomètres, direction de l'ombre balayant 90° en une seconde, opérateur placé à la source. À cette distance la diffraction noierait l'ombre de vrais ciseaux&nbsp;: c'est une expérience de pensée.</p>
+  <p class="fnote">Hypothèses : écran à 100 millions de kilomètres, direction de l’ombre balayant 90° en une seconde, opérateur placé à la source. À cette distance la diffraction noierait l’ombre de vrais ciseaux : c’est une expérience de pensée.</p>
 </section>
+<p class="suite"><a class="btn encre" href="article.html">Lire l'article <span aria-hidden="true">→</span></a><a class="btn" href="demonstration.html">Lire la démonstration <span aria-hidden="true">→</span></a></p>
 </main>
 <nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../index.html"><span class="num">← Accueil</span><b>Les cinq piliers</b></a><a href="../pilier-2/index.html"><span class="num">Pilier 2 →</span><b>On ne voit jamais la lumière passer</b></a></nav>
 </div></div>
@@ -623,12 +769,15 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </div></footer>
 <script>
 'use strict';
-window.addEventListener('error', function (e) {
-  var b = document.createElement('div');
-  b.className = 'err';
-  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
-  document.body.appendChild(b);
-});
+// en développement seulement : une erreur de script s'affiche à l'écran au lieu de passer inaperçue
+if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+  window.addEventListener('error', function (e) {
+    var b = document.createElement('div');
+    b.className = 'err';
+    b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+    document.body.appendChild(b);
+  });
+}
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const NS = 'http://www.w3.org/2000/svg';
@@ -643,6 +792,7 @@ const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d
 const sig = (x, n = 3) => {
   if (!isFinite(x)) return '—';
   if (x === 0) return '0';
+  x = Number(x.toPrecision(n));                           // on arrondit d'abord : 99,96 s'écrit 100, pas 100,0
   const e = Math.floor(Math.log10(Math.abs(x)));
   const d = clamp(n - 1 - e, 0, 12);
   return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -656,6 +806,10 @@ const sci = (x, n = 2) => {
   if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
   return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
 };
+// grand nombre en toutes lettres : 236 000, 720 millions, 250 milliards
+const grand = x => x < 1e6 ? frNum(Number(x.toPrecision(3)))
+  : x < 1e9 ? sig(x / 1e6) + (x < 1.995e6 ? ' million' : ' millions')
+    : sig(x / 1e9) + (x < 1.995e9 ? ' milliard' : ' milliards');
 // durée en secondes -> texte lisible
 const duree = s => {
   if (s < 1e-12) return sig(s * 1e15) + ' fs';
@@ -663,11 +817,11 @@ const duree = s => {
   if (s < 1e-6) return sig(s * 1e9) + ' ns';
   if (s < 1e-3) return sig(s * 1e6) + ' µs';
   if (s < 1) return sig(s * 1e3) + ' ms';
-  if (s < 60) return sig(s) + ' s';
-  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
-  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
-  if (s < 31557600) return sig(s / 86400) + ' jours';
-  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  if (s < 59.95) return sig(s) + ' s';
+  if (s < 3599.5) { const t = Math.round(s), m = Math.floor(t / 60); return m + ' min ' + (t - 60 * m) + ' s'; }
+  if (s < 86370) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) { const j = s / 86400; return sig(j) + (j < 1.995 ? ' jour' : ' jours'); }
+  if (s < 31557600e6) { const a = s / 31557600; return sig(a) + (a < 1.995 ? ' an' : ' ans'); }
   return sig(s / 31557600e6) + ' millions d’années';
 };
 // générateur pseudo-aléatoire reproductible
@@ -678,15 +832,19 @@ const mulberry = seed => () => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 // espaces insécables dans les textes écrits par le script
-const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+const typo = s => s.replace(/ ([:;?!»%])/g, ' $1').replace(/« /g, '« ').replace(/(\d) (?=[a-zA-Zµé])/g, '$1 ');
 new MutationObserver(ms => ms.forEach(m => {
   const t = m.target;
   if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-// une figure plus large que l'écran défile : on le signale au lecteur
-const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+// une figure plus large que l'écran défile : on le signale au lecteur, et le clavier peut y entrer
+const marquerDefilement = () => $$('.stage').forEach(s => {
+  const oui = s.scrollWidth > s.clientWidth + 4;
+  s.classList.toggle('defile', oui);
+  if (oui) s.setAttribute('tabindex', '0'); else s.removeAttribute('tabindex');
+});
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
 // rail de lecture : la section en cours est marquée pendant le défilement
@@ -703,6 +861,17 @@ window.addEventListener('resize', marquerDefilement);
   let attente = 0;
   window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
   marquer();
+})();
+// pages longues sur petit écran : un bouton ramène au sommaire, qui se replie quand on y choisit une section
+(() => {
+  const bouton = $('.remonter'), plie = $('details.sommaire');
+  if (!bouton) return;
+  const voir = () => { bouton.hidden = window.scrollY < 1200; };
+  window.addEventListener('scroll', voir, { passive: true });
+  voir();
+  if (!plie) return;
+  bouton.addEventListener('click', () => { plie.open = true; });
+  $$('a', plie).forEach(a => a.addEventListener('click', () => { plie.open = false; }));
 })();
 
 // Épures : un dessin animé par pilier, tracé au trait sur le plan bleu.
@@ -830,7 +999,7 @@ window.addEventListener('resize', marquerDefilement);
     disque(g, ex, ey, 3.2 * u, ENCRE);
     if (!petit) {
       mot(g, 'LE MOT, PLUS ANCIEN QUE LES DÉCOUVERTES', lx - 42 * u, y1 - 38 * u, u);
-      mot(g, 'CE QU’ON A DÉCOUVERT : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
+      mot(g, 'CE QU’ON OBSERVE : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
     }
   };
 
@@ -956,7 +1125,7 @@ window.addEventListener('resize', marquerDefilement);
       mot(g, 'POTENTIEL', (0.5 - S.A - 0.04) * W, 0.2 * W, u, 'right');
       trait(g, 0.515 * W, S.YN * W, 0.555 * W, S.YN * W, TRAIT, u);
       mot(g, 'ICI, MAINTENANT', 0.565 * W, S.YN * W, u);
-      mot(g, 'CONSTATS : ' + poses, (0.5 + S.A + 0.04) * W, 0.59 * W, u, 'left', PHOTON);
+      mot(g, 'CONSTATS : ' + poses, 0.965 * W, 0.59 * W, u, 'right', PHOTON);
       mot(g, 'AUCUN GRAIN NE REMONTE', 0.5 * W, 0.712 * W, u, 'center');
     }
     g.restore();
@@ -965,7 +1134,7 @@ window.addEventListener('resize', marquerDefilement);
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
   // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.305, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
       if (len < 0.011) return;
@@ -1069,7 +1238,7 @@ window.addEventListener('resize', marquerDefilement);
 
 (function () {
   const C = 299792.458, D = 1e8, OM = Math.PI / 2, A = D * OM / C, YEAR = 31557600, LY = C * YEAR;
-  const O = { x: 330, y: 300 }, LAME = 236, TMAX = 1.466;      // pivot, longueur dessinée d'une lame, ouverture maximale dessinée (84°)
+  const O = { x: 240, y: 286 }, LAME = 196, TMAX = 1.466;      // pivot, longueur dessinée d'une lame, ouverture maximale dessinée (84°)
   const U0 = -4, U1 = 2.3;
   const calc = x => {
     const R = Math.hypot(D, x), s = x / R, c2 = (D / R) * (D / R), th = Math.atan2(x, D), tau = th / OM;
@@ -1082,53 +1251,76 @@ window.addEventListener('resize', marquerDefilement);
     if (x >= 1e6) return sig(x / 1e6) + (x < 2e6 ? ' million de km' : ' millions de km');
     return frNum(Math.round(x / 1000) * 1000) + ' km';
   };
-  const km = v => v >= 1e15 ? sci(v) + ' km' : v >= 1e9 ? sig(v / 1e9) + ' G km' : v >= 1e6 ? sig(v / 1e6) + ' M km' : frNum(Math.round(v)) + ' km';
+  // une valeur longue passe sur deux lignes : le nombre, puis son unité
+  const km = v => {
+    if (v >= 1e13) { const al = v / LY; return al >= 9.995e5 ? sig(al / 1e6, 2) + (al < 1.995e6 ? ' million' : ' millions') + '<small>d’années-lumière</small>' : sig(al) + '<small>années-lumière</small>'; }
+    return v >= 1e9 ? sig(v / 1e9) + ' Md km' : v >= 1e6 ? sig(v / 1e6) + ' M km' : frNum(Math.round(v)) + ' km';
+  };
+  const attente = s => s >= YEAR * 1e6 ? sig(s / YEAR / 1e6) + ' millions<small>d’années</small>' : duree(s);
   const slider = $('#p1-x');
   let x = D;
 
-  // --- graphique des deux vitesses
-  const ch = $('#p1-chart'), L = 92, R = 968, T = 26, B = 330, Y0 = Math.log10(0.25), Y1 = 3;
-  const px = u => L + (u - U0) / (U1 - U0) * (R - L);
-  const py = v => B - (Math.log10(v) - Y0) / (Y1 - Y0) * (B - T);
-  [[0.5, 'c/2'], [1, 'c'], [10, '10 c'], [100, '100 c'], [1000, '1 000 c']].forEach(([v, lab]) => {
-    const lim = v <= 1;
-    ch.appendChild(el('line', { x1: L, x2: R, y1: py(v), y2: py(v), class: lim ? 'ln dash' : 'gr' }));
-    ch.appendChild(el('text', { x: L - 10, y: py(v) + 4, 'text-anchor': 'end', class: lim ? 'tb' : 'tm' }, lab));
-  });
-  [[-4, '10 000 km'], [-3, '100 000 km'], [-2, '1 M km'], [-1, '10 M km'], [0, '100 M km'], [1, '1 G km'], [2, '10 G km']].forEach(([u, lab]) => {
-    ch.appendChild(el('line', { x1: px(u), x2: px(u), y1: B, y2: B + 6, class: 'ln' }));
-    ch.appendChild(el('text', { x: px(u), y: B + 22, 'text-anchor': 'middle', class: 'tm' }, lab));
-  });
-  ch.appendChild(el('line', { x1: L, x2: R, y1: B, y2: B, class: 'ln' }));
-  ch.appendChild(el('text', { x: (L + R) / 2, y: B + 50, 'text-anchor': 'middle', class: 'tq' }, 'distance du point visé au centre de l’écran'));
-  const curve = key => {
-    let d = '';
-    for (let i = 0; i <= 252; i++) {
-      const u = U0 + (U1 - U0) * i / 252, k = calc(D * Math.pow(10, u));
-      d += (i ? 'L' : 'M') + px(u).toFixed(1) + ' ' + py(k[key]).toFixed(1);
+  // --- graphique des deux vitesses : une mise en page large, une autre pour l'écran d'un téléphone
+  const ch = $('#p1-chart'), Y0 = Math.log10(0.25), Y1 = 3;
+  let px, py, cross, m1, m2, hors, LG, RD, LARG;
+  function chart(etroit) {
+    while (ch.firstChild) ch.removeChild(ch.firstChild);
+    LARG = etroit ? 480 : 1000;
+    const L = etroit ? 66 : 92, R = etroit ? 466 : 968, T = etroit ? 16 : 26, B = etroit ? 296 : 330;
+    LG = L; RD = R;
+    set(ch, { viewBox: '0 0 ' + LARG + ' ' + (etroit ? 366 : 400), class: etroit ? 'adapte' : 'wide' });
+    px = u => L + (u - U0) / (U1 - U0) * (R - L);
+    py = v => B - (Math.log10(v) - Y0) / (Y1 - Y0) * (B - T);
+    [[0.5, 'c/2'], [1, 'c'], [10, '10 c'], [100, '100 c'], [1000, '1 000 c']].forEach(([v, lab]) => {
+      const lim = v <= 1;
+      ch.appendChild(el('line', { x1: L, x2: R, y1: py(v), y2: py(v), class: lim ? 'ln dash' : 'gr' }));
+      ch.appendChild(el('text', { x: L - 10, y: py(v) + 4, 'text-anchor': 'end', class: lim ? 'tb' : 'tm' }, lab));
+    });
+    [[-4, '10 000 km'], [-3, '100 000 km'], [-2, '1 M km'], [-1, '10 M km'], [0, '100 M km'], [1, '1 Md km'], [2, '10 Md km']].forEach(([u, lab]) => {
+      ch.appendChild(el('line', { x1: px(u), x2: px(u), y1: B, y2: B + 6, class: 'ln' }));
+      if (!etroit || u % 2 === 0) ch.appendChild(el('text', { x: px(u), y: B + 22, 'text-anchor': 'middle', class: 'tm' }, lab));
+    });
+    ch.appendChild(el('line', { x1: L, x2: R, y1: B, y2: B, class: 'ln' }));
+    ch.appendChild(el('text', { x: (L + R) / 2, y: B + (etroit ? 52 : 50), 'text-anchor': 'middle', class: 'tq' }, 'distance du point visé au centre de l’écran'));
+    const curve = key => {
+      let d = '';
+      for (let i = 0; i <= 252; i++) {
+        const u = U0 + (U1 - U0) * i / 252, k = calc(D * Math.pow(10, u));
+        d += (i ? 'L' : 'M') + px(u).toFixed(1) + ' ' + py(k[key]).toFixed(1);
+      }
+      return d;
+    };
+    ch.appendChild(el('path', { d: curve('ve'), class: 'geo' }));
+    ch.appendChild(el('path', { d: curve('vo'), class: 'ray' }));
+    if (!etroit) {
+      // sur un petit écran, la légende placée au-dessus du graphique suffit
+      const kl = calc(D * Math.pow(10, -1.5));
+      ch.appendChild(el('text', { x: px(-1.5) + 14, y: py(kl.ve) - 12, class: 't' }, 'vitesse réelle de l’ombre'));
+      ch.appendChild(el('text', { x: px(-1.5) - 14, y: py(kl.vo) + 24, 'text-anchor': 'end', class: 't' }, 'vitesse vue par l’opérateur'));
     }
-    return d;
-  };
-  ch.appendChild(el('path', { d: curve('ve'), class: 'geo' }));
-  ch.appendChild(el('path', { d: curve('vo'), class: 'ray' }));
-  const kl = calc(D * Math.pow(10, -1.5));
-  ch.appendChild(el('text', { x: px(-1.5) + 14, y: py(kl.ve) - 12, class: 't' }, 'vitesse réelle de l’ombre'));
-  ch.appendChild(el('text', { x: px(-1.5) - 14, y: py(kl.vo) + 24, 'text-anchor': 'end', class: 't' }, 'vitesse vue par l’opérateur'));
-  const cross = ch.appendChild(el('line', { y1: T, y2: B, class: 'ln', style: 'stroke:var(--ink-2)' }));
-  const m1 = ch.appendChild(el('circle', { r: 6.5, class: 'f-geo ring' }));
-  const m2 = ch.appendChild(el('circle', { r: 6.5, class: 'f-ray ring' }));
-  const hit = ch.appendChild(el('rect', { x: L, y: T, width: R - L, height: B - T, class: 'hit' }));
+    cross = ch.appendChild(el('line', { y1: T, y2: B, class: 'ln', style: 'stroke:var(--ink-2)' }));
+    m1 = ch.appendChild(el('circle', { r: 6.5, class: 'f-geo ring' }));
+    m2 = ch.appendChild(el('circle', { r: 6.5, class: 'f-ray ring' }));
+    hors = ch.appendChild(el('text', { x: R - 4, y: T + 14, 'text-anchor': 'end', class: 'tq', visibility: 'hidden' }, 'point visé hors du graphique →'));
+    const hit = ch.appendChild(el('rect', { x: L, y: T, width: R - L, height: B - T, class: 'hit' }));
+    let drag = false;
+    hit.addEventListener('pointerdown', e => { drag = true; if (hit.setPointerCapture) hit.setPointerCapture(e.pointerId); fromPointer(e); });
+    hit.addEventListener('pointermove', e => { if (drag) fromPointer(e); });
+    hit.addEventListener('pointerup', () => { drag = false; });
+    hit.addEventListener('pointercancel', () => { drag = false; });
+  }
 
   // --- géométrie : une paire de ciseaux dont les lames sont les deux diagonales
   // La lame garde la même longueur à l'écran : c'est l'échelle du dessin qui change quand le point visé s'éloigne.
-  const gScreen = $('#g-screen'), gEcr = $('#g-ecr'), gCtr = $('#g-ctr'), gCourbe = $('#g-courbe'), gAxis = $('#g-axis'), gDlab = $('#g-dlab'),
+  const gScreen = $('#g-screen'), gEcr = $('#g-ecr'), gCtr = $('#g-ctr'), gCourbe = $('#g-courbe'), gAxis = $('#g-axis'),
     gDim = $('#g-dim'), gDimLine = $('#g-dimline'), gDimTxt = $('#g-dimtxt'), gOut = $('#g-out'), gArc = $('#g-arc'), gTheta = $('#g-theta');
   const cotes = [[-1, $('#g-baseL'), $('#g-extraL'), $('#g-dotL'), $('#g-mancheR'), $('#g-anneauR')],
     [1, $('#g-baseR'), $('#g-extraR'), $('#g-dotR'), $('#g-mancheL'), $('#g-anneauL')]];
   const f1 = v => v.toFixed(1);
+  const voir = (e, oui) => e.setAttribute('visibility', oui ? 'visible' : 'hidden');
   function drawGeo(k) {
     const th = Math.min(k.th, TMAX), sn = Math.sin(th), cs = Math.cos(th), dp = LAME * cs, ys = O.y - dp;
-    set(gScreen, { y1: f1(ys), y2: f1(ys) }); set(gEcr, { y: f1(ys - 9) }); set(gCtr, { y: f1(ys + 16) });
+    set(gScreen, { y1: f1(ys), y2: f1(ys) }); set(gEcr, { y: f1(ys - 9) }); set(gCtr, { y: f1(ys - 10) });
     gAxis.setAttribute('y2', f1(ys));
     // l'écran courbe : tous ses points sont à la distance du centre
     const a = Math.min(th + 0.3, 1.5), ax = dp * Math.sin(a), ay = dp * Math.cos(a);
@@ -1140,26 +1332,27 @@ window.addEventListener('resize', marquerDefilement);
       set(base, { x2: f1(bx), y2: f1(by) });
       set(extra, { x1: f1(bx), y1: f1(by), x2: f1(tx), y2: f1(ys) });
       set(dot, { cx: f1(tx), cy: f1(ys) });
-      const mx = O.x - d * 44 * Math.sin(ouv), my = O.y + 44 * Math.cos(ouv), cx = O.x - d * 58 * Math.sin(ouv), cy = O.y + 58 * Math.cos(ouv);
+      const mx = O.x - d * 40 * Math.sin(ouv), my = O.y + 40 * Math.cos(ouv), cx = O.x - d * 53 * Math.sin(ouv), cy = O.y + 53 * Math.cos(ouv);
       set(manche, { x2: f1(mx), y2: f1(my) });
       set(anneau, { cx: f1(cx), cy: f1(cy), transform: 'rotate(' + f1(d * (ouv * 180 / Math.PI) + 90) + ' ' + f1(cx) + ' ' + f1(cy) + ')' });
     });
-    const tip = O.x + LAME * sn;
-    if (tip - O.x > 74) {
-      gDim.setAttribute('visibility', 'visible');
+    // la cote x, du centre à la pointe droite
+    const tip = O.x + LAME * sn, cote = tip - O.x > 66;
+    voir(gDim, cote);
+    if (cote) {
       set(gDimLine, { y1: f1(ys - 28), y2: f1(ys - 28), x2: f1(tip) });
       set(gDimTxt, { x: f1((O.x + tip) / 2), y: f1(ys - 37) });
       gDimTxt.textContent = 'x = ' + dist(x);
-    } else gDim.setAttribute('visibility', 'hidden');
-    if (th > 0.4 && dp > 70) set(gDlab, { visibility: 'visible', y: f1(O.y - dp / 2 + 4) }); else gDlab.setAttribute('visibility', 'hidden');
-    if (th > 0.14) {
-      const r = 46, h = th / 2;
-      gArc.setAttribute('d', 'M' + O.x + ' ' + (O.y - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + f1(O.x + r * sn) + ' ' + f1(O.y - r * cs));
-      set(gTheta, { x: f1(O.x + 62 * Math.sin(h)), y: f1(O.y - 62 * Math.cos(h) + 4), visibility: 'visible' });
-      gArc.setAttribute('visibility', 'visible');
-    } else { gArc.setAttribute('visibility', 'hidden'); gTheta.setAttribute('visibility', 'hidden'); }
-    gOut.setAttribute('visibility', k.th > TMAX ? 'visible' : 'hidden');
-    gCtr.setAttribute('visibility', dp > 60 ? 'visible' : 'hidden');
+    }
+    // l'angle θ : son arc ne dépasse jamais l'écran
+    const r = Math.min(46, dp - 16), arc = th > 0.14 && r > 14;
+    voir(gArc, arc);
+    if (arc) gArc.setAttribute('d', 'M' + O.x + ' ' + f1(O.y - r) + 'A' + f1(r) + ' ' + f1(r) + ' 0 0 1 ' + f1(O.x + r * sn) + ' ' + f1(O.y - r * cs));
+    const h = th / 2, lettre = arc && k.th <= TMAX && (r + 15) * Math.cos(h) < dp - 14;
+    voir(gTheta, lettre);
+    if (lettre) set(gTheta, { x: f1(O.x + (r + 15) * Math.sin(h)), y: f1(O.y - (r + 15) * Math.cos(h) + 4) });
+    voir(gOut, k.th > TMAX);
+    voir(gCtr, dp > 60);
     // le dessin reste centré en hauteur quand les lames s'ouvrent
     $('#g-tout').setAttribute('transform', 'translate(0 ' + f1((dp - LAME) / 2 * 0.92) + ')');
   }
@@ -1167,21 +1360,21 @@ window.addEventListener('resize', marquerDefilement);
   function render() {
     const k = calc(x);
     $('#p1-xo').textContent = dist(x);
+    slider.setAttribute('aria-valuetext', dist(x));
     $('#p1-ve').innerHTML = sig(k.ve, 4) + ' c<small>' + frNum(Math.round(k.ve * C)) + ' km/s</small>';
     $('#p1-vo').innerHTML = sig(k.vo, 4) + ' c<small>' + frNum(Math.round(k.vo * C)) + ' km/s</small>';
-    $('#p1-to').textContent = duree(k.tO);
-    $('#p1-ex').textContent = x === 0 ? '0 km' : km(k.R - D);
+    $('#p1-to').innerHTML = attente(k.tO);
+    $('#p1-ex').innerHTML = x === 0 ? '0 km' : km(k.R - D);
     $('#p1-state').textContent =
       x === 0 ? 'Au centre, la diagonale ne s’allonge pas : seule la source donne le rythme.'
         : k.vo > 1 ? 'Ici l’ombre dépasse c, et l’opérateur la voit lui aussi plus rapide que c.'
           : k.vo > 0.52 ? 'L’ombre dépasse toujours c, mais l’opérateur la voit maintenant plus lente que c.'
             : 'Très loin du centre, l’ombre court presque à c et l’opérateur la voit avancer presque à c/2.';
     drawGeo(k);
-    const u = x > 0 ? Math.log10(x / D) : U0;
-    const vis = u <= U1 ? 'visible' : 'hidden', uc = clamp(u, U0, U1);
-    set(cross, { x1: px(uc), x2: px(uc), visibility: vis });
-    set(m1, { cx: px(uc), cy: py(k.ve), visibility: vis });
-    set(m2, { cx: px(uc), cy: py(k.vo), visibility: vis });
+    const u = x > 0 ? Math.log10(x / D) : U0, dedans = u <= U1, uc = clamp(u, U0, U1);
+    set(cross, { x1: px(uc), x2: px(uc) }); set(m1, { cx: px(uc), cy: py(k.ve) }); set(m2, { cx: px(uc), cy: py(k.vo) });
+    [cross, m1, m2].forEach(e => voir(e, dedans));
+    voir(hors, !dedans);
   }
 
   slider.addEventListener('input', () => { x = D * Math.pow(10, Number(slider.value)); pressOnly('#p1-chips .chip', null); render(); });
@@ -1190,18 +1383,56 @@ window.addEventListener('resize', marquerDefilement);
     slider.value = x > 0 ? clamp(Math.log10(x / D), U0, U1) : U0;
     pressOnly('#p1-chips .chip', b); render();
   }));
-  const fromPointer = e => {
-    const r = ch.getBoundingClientRect(), sx = (e.clientX - r.left) / r.width * 1000;
-    const u = clamp(U0 + (sx - L) / (R - L) * (U1 - U0), U0, U1);
+  function fromPointer(e) {
+    const r = ch.getBoundingClientRect(), sx = (e.clientX - r.left) / r.width * LARG;
+    const u = clamp(U0 + (sx - LG) / (RD - LG) * (U1 - U0), U0, U1);
     x = D * Math.pow(10, u); slider.value = u.toFixed(2); pressOnly('#p1-chips .chip', null); render();
-  };
-  let drag = false;
-  hit.addEventListener('pointerdown', e => { drag = true; hit.setPointerCapture(e.pointerId); fromPointer(e); });
-  hit.addEventListener('pointermove', e => { if (drag) fromPointer(e); });
-  hit.addEventListener('pointerup', () => { drag = false; });
-  hit.addEventListener('pointercancel', () => { drag = false; });
-  render();
+  }
+  const etroit = window.matchMedia('(max-width: 640px)');
+  const poser = () => { chart(etroit.matches); render(); };
+  if (etroit.addEventListener) etroit.addEventListener('change', poser);
+  poser();
 })();
+window.addEventListener('DOMContentLoaded', function () {
+  if (!window.katex) return;
+  $$('.tex').forEach(function (d) {
+    var t = d.textContent;
+    try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
+  });
+  // À l'écran, une formule plus large que sa colonne est réduite, jusqu'à 62 % ; au-delà elle défile, et une ombre le signale.
+  // À l'impression (et dans le PDF), elle est réduite pour tenir sur la ligne.
+  var PAPIER = 650, CORPS = 16.94, MINI = 0.62;
+  var ajuster = function () {
+    $$('.tex.ok').forEach(function (d) {
+      var k = d.querySelector('.katex'), h = d.querySelector('.katex-html');
+      if (!k || !h) return;
+      d.style.removeProperty('--zoom');
+      var r = document.createRange(); r.selectNodeContents(h);
+      var large = r.getBoundingClientRect().width, w = large * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
+      d.dataset.w = Math.round(w);
+      if (w > PAPIER) d.style.setProperty('--fit', (PAPIER / w).toFixed(3));
+      var c = getComputedStyle(d), place = d.clientWidth - parseFloat(c.paddingLeft) - parseFloat(c.paddingRight) - 2;
+      if (!(place > 0) || !(large > 0)) return;
+      var zoom = large > place ? Math.max(MINI, place / large) : 1;
+      if (zoom < 1) d.style.setProperty('--zoom', zoom.toFixed(3));
+      d.classList.toggle('defile', large * zoom > place + 2);
+      if (large * zoom > place + 2) d.setAttribute('tabindex', '0'); else d.removeAttribute('tabindex');
+    });
+  };
+  var attente = 0, largeur = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === largeur) return;
+    largeur = window.innerWidth; clearTimeout(attente); attente = setTimeout(ajuster, 160);
+  });
+  var pret = function () {
+    ajuster();
+    // le rendu des formules a déplacé le texte : on revient sur l'ancre demandée
+    var cible = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (cible) cible.scrollIntoView();
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pret); else pret();
+});
+
 </script>
 </body>
 </html>

@@ -1,14 +1,23 @@
 # -*- coding: utf-8 -*-
-"""Figures statiques (SVG) des articles et des démonstrations, et vignettes de la page d'accueil.
+"""Figures statiques (SVG) des articles et des démonstrations, et marque du site.
 
 Chaque figure remplace, dans les exports Markdown, la ligne « embedded content : <légende> ».
-Les classes (ln, lnk, ray, geo, tb, tq, tm, f-ray…) sont définies dans gabarits/base.css.
+Chacune existe en deux mises en page : large pour l'ordinateur, étroite pour le téléphone (suffixe _M).
+La feuille de style n'en affiche qu'une à la fois (classes « bureau » et « mobile »).
+Les classes de dessin (ln, lnk, ray, geo, tb, tq, tm, f-ray…) sont définies dans gabarits/base.css.
 """
 
 _RAY3 = (
     '<line x1="{ox}" y1="340" x2="{ax}" y2="{ay}" class="ln" style="stroke:var(--ink-2)"/>'
     '<line x1="{ax}" y1="{ay}" x2="{ex}" y2="100" class="ray"/><circle cx="{ex}" cy="100" r="4.5" class="f-ray"/>'
 )
+# version étroite : source en (46, 300), écran à y = 70, écran courbe de rayon 230
+_RAY3_M = (
+    '<line x1="46" y1="300" x2="{ax}" y2="{ay}" class="ln" style="stroke:var(--ink-2)"/>'
+    '<line x1="{ax}" y1="{ay}" x2="{ex}" y2="70" class="ray"/><circle cx="{ex}" cy="70" r="4.5" class="f-ray"/>'
+)
+_RAYONS_M = (_RAY3_M.format(ax=107.7, ay=78.4, ex=110) + _RAY3_M.format(ax=174.0, ay=108.9, ex=200)
+             + _RAY3_M.format(ax=221.1, ay=150.9, ex=316))
 
 GEO_DOSSIER = (
     '<svg viewBox="0 0 760 404" role="img" aria-label="Sur un tableau plat, la diagonale s\'allonge quand on s\'éloigne du centre">'
@@ -34,6 +43,28 @@ GEO_DOSSIER = (
     '<text x="24" y="384" class="tq">La lumière part de O et y revient : trajet total 2R</text>'
     '</svg>'
 )
+GEO_DOSSIER_M = (
+    '<svg viewBox="0 0 350 384" role="img" aria-label="Sur un tableau plat, la diagonale s\'allonge quand on s\'éloigne du centre">'
+    '<defs><marker id="fg-arm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
+    '<path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs>'
+    '<line x1="16" y1="70" x2="340" y2="70" class="lnk"/>'
+    '<text x="340" y="56" text-anchor="end" class="tb">tableau plat</text>'
+    '<path d="M46 70A230 230 0 0 1 276 300" class="ln dash"/>'
+    '<line x1="46" y1="300" x2="46" y2="70" class="ln"/>'
+    '<text x="36" y="192" text-anchor="end" class="tb">D</text>'
+    + _RAYONS_M
+    + '<text x="120" y="262" class="tb">diagonale R</text>'
+    '<text x="282" y="126" class="tb">R − D</text>'
+    '<line x1="46" y1="48" x2="110" y2="48" class="ln" marker-start="url(#fg-arm)" marker-end="url(#fg-arm)"/>'
+    '<text x="78" y="40" text-anchor="middle" class="tb">x</text>'
+    '<path d="M46 252A48 48 0 0 1 58.4 253.6" class="ln"/><text x="58" y="240" text-anchor="middle" class="t">θ</text>'
+    '<circle cx="46" cy="300" r="5" class="f-ink"/>'
+    '<text x="340" y="320" text-anchor="end" class="tq">écran sphérique : R = D partout</text>'
+    '<text x="16" y="344" class="tb">O : source et observateur</text>'
+    '<text x="16" y="362" class="tq">La lumière part de O et y revient :</text>'
+    '<text x="16" y="378" class="tq">trajet total 2R</text>'
+    '</svg>'
+)
 
 GEO_ARTICLE = (
     '<svg viewBox="0 0 760 404" role="img" aria-label="Sur un écran plat, la diagonale s\'allonge quand on s\'éloigne du centre">'
@@ -51,6 +82,23 @@ GEO_ARTICLE = (
     '<circle cx="180" cy="340" r="5" class="f-ink"/>'
     '<text x="24" y="366" class="tb">Source et opérateur</text>'
     '<text x="24" y="384" class="tq">La lumière part d\'ici et y revient : le trajet est doublé</text>'
+    '</svg>'
+)
+GEO_ARTICLE_M = (
+    '<svg viewBox="0 0 350 384" role="img" aria-label="Sur un écran plat, la diagonale s\'allonge quand on s\'éloigne du centre">'
+    '<line x1="16" y1="70" x2="340" y2="70" class="lnk"/>'
+    '<text x="340" y="56" text-anchor="end" class="tb">écran plat</text>'
+    '<text x="16" y="56" class="tq">centre</text>'
+    '<path d="M46 70A230 230 0 0 1 276 300" class="ln dash"/>'
+    '<line x1="46" y1="300" x2="46" y2="70" class="ln"/>'
+    '<text x="36" y="188" text-anchor="middle" class="tb" transform="rotate(-90 36 188)">100 millions de km</text>'
+    + _RAYONS_M
+    + '<text x="120" y="262" class="tb">diagonale</text>'
+    '<circle cx="46" cy="300" r="5" class="f-ink"/>'
+    '<text x="340" y="320" text-anchor="end" class="tq">écran courbe : même distance partout</text>'
+    '<text x="16" y="344" class="tb">Source et opérateur</text>'
+    '<text x="16" y="362" class="tq">La lumière part d\'ici et y revient :</text>'
+    '<text x="16" y="378" class="tq">le trajet est doublé</text>'
     '</svg>'
 )
 
@@ -82,6 +130,35 @@ EVENTAIL = (
     '<text x="566" y="188" text-anchor="middle" class="tb">ce lien n\'existe pas</text>'
     '</svg>'
 )
+# version étroite : les deux schémas l'un sous l'autre
+EVENTAIL_M = (
+    '<svg viewBox="0 0 350 470" role="img" aria-label="Chaque impact vient de la source, aucun ne vient de son voisin">'
+    '<defs><marker id="fe-am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
+    '<path d="M0 0L10 5L0 10z" class="f-ink3"/></marker>'
+    '<marker id="fe-bm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
+    '<path d="M0 0L10 5L0 10z" style="fill:var(--critical)"/></marker></defs>'
+    '<text x="16" y="24" class="tb">1. Ce qui se passe</text>'
+    '<line x1="24" y1="78" x2="326" y2="78" class="lnk"/><text x="326" y="64" text-anchor="end" class="tq">écran</text>'
+    '<g class="ln" style="stroke:var(--ink-3)">'
+    '<path d="M171.3 222.9L87.4 84.2" marker-end="url(#fe-am)"/><path d="M175 222V85" marker-end="url(#fe-am)"/>'
+    '<path d="M178.7 222.9L262.6 84.2" marker-end="url(#fe-am)"/></g>'
+    '<circle cx="84" cy="78" r="5" class="f-ray"/><circle cx="175" cy="78" r="5" class="f-ray"/><circle cx="266" cy="78" r="5" class="f-ray"/>'
+    '<text x="84" y="64" text-anchor="middle" class="tb">A</text><text x="175" y="64" text-anchor="middle" class="tb">B</text>'
+    '<text x="266" y="64" text-anchor="middle" class="tb">C</text>'
+    '<circle cx="175" cy="230" r="5" class="f-ink"/><text x="175" y="252" text-anchor="middle" class="tq">source</text>'
+    '<text x="175" y="276" text-anchor="middle" class="tq">trois envois séparés depuis la source</text>'
+    '<line x1="16" y1="298" x2="334" y2="298" class="gr"/>'
+    '<text x="16" y="328" class="tb">2. Ce qu\'on croit voir</text>'
+    '<line x1="24" y1="382" x2="326" y2="382" class="lnk"/><text x="326" y="368" text-anchor="end" class="tq">écran</text>'
+    '<g style="fill:none;stroke:var(--critical);stroke-width:1.5;stroke-dasharray:5 4">'
+    '<path d="M86 394Q129 432 169 396" marker-end="url(#fe-bm)"/><path d="M177 394Q220 432 260 396" marker-end="url(#fe-bm)"/></g>'
+    '<circle cx="84" cy="382" r="5" class="f-ray"/><circle cx="175" cy="382" r="5" class="f-ray"/><circle cx="266" cy="382" r="5" class="f-ray"/>'
+    '<text x="84" y="368" text-anchor="middle" class="tb">A</text><text x="175" y="368" text-anchor="middle" class="tb">B</text>'
+    '<text x="266" y="368" text-anchor="middle" class="tb">C</text>'
+    '<text x="175" y="444" text-anchor="middle" class="tq">une tache qui glisserait de A vers B puis C</text>'
+    '<text x="175" y="462" text-anchor="middle" class="tb">ce lien n\'existe pas</text>'
+    '</svg>'
+)
 
 PENTE = (
     '<svg viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse">'
@@ -100,20 +177,37 @@ PENTE = (
     '<text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text>'
     '</svg>'
 )
+PENTE_M = (
+    '<svg viewBox="0 0 350 292" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse">'
+    '<defs><marker id="fp-am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
+    '<path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs>'
+    '<line x1="22" y1="34" x2="22" y2="214" class="ln"/>'
+    '<text x="14" y="22" class="tq">temps plus rapide</text><text x="14" y="232" class="tq">temps plus lent</text>'
+    '<rect x="14" y="246" width="322" height="28" class="box" style="fill:var(--grid)"/>'
+    '<text x="175" y="265" text-anchor="middle" class="tb">masse : planète ou étoile</text>'
+    '<path d="M92 76Q220 76 322 182" class="ray" marker-end="url(#fp-am)"/>'
+    '<g class="lnk" style="stroke:var(--ink-2)"><line x1="92" y1="42" x2="92" y2="110"/>'
+    '<line x1="228.7" y1="72.5" x2="199.3" y2="133.7"/><line x1="314.6" y1="126.2" x2="269.7" y2="177.3"/></g>'
+    '<text x="100" y="56" class="tq">front d\'onde</text>'
+    '<text x="340" y="52" text-anchor="end" class="tq">le haut avance plus vite</text>'
+    '<text x="258" y="206" text-anchor="end" class="tq">le bas avance moins vite</text>'
+    '<text x="340" y="222" text-anchor="end" class="tq">trajectoire</text>'
+    '</svg>'
+)
 
 COMPROMIS = (
-    '<svg class="fit" viewBox="150 40 460 310" role="img" aria-label="Plus on peut connaître la route, moins les franges sont nettes" style="max-width:560px;margin:0 auto">'
+    '<svg class="fit adapte" viewBox="150 40 460 310" role="img" aria-label="Plus on peut connaître la route, moins les franges sont nettes" style="max-width:560px;margin:0 auto">'
     '<defs><marker id="fc-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
     '<path d="M0 0L10 5L0 10z" class="f-axis"/></marker></defs>'
-    '<path d="M250 300H482" class="ln" marker-end="url(#fc-a)"/><path d="M250 300V68" class="ln" marker-end="url(#fc-a)"/>'
+    '<path d="M250 300H494" class="ln" marker-end="url(#fc-a)"/><path d="M250 300V56" class="ln" marker-end="url(#fc-a)"/>'
     '<path d="M250 80A220 220 0 0 1 470 300" class="geo"/>'
     '<circle cx="250" cy="80" r="5.5" class="f-ray ring"/><circle cx="405.6" cy="144.4" r="5.5" class="f-ray ring"/>'
     '<circle cx="470" cy="300" r="5.5" class="f-ray ring"/>'
-    '<text x="264" y="66" class="tb">tout onde</text><text x="420" y="138" class="tb">un peu des deux</text>'
+    '<text x="264" y="72" class="tb">tout onde</text><text x="420" y="138" class="tb">un peu des deux</text>'
     '<text x="486" y="286" class="tb">tout particule</text>'
     '<text x="238" y="180" text-anchor="end" class="tq">contraste</text><text x="238" y="196" text-anchor="end" class="tq">des franges</text>'
-    '<text x="238" y="84" text-anchor="end" class="tm">maximal</text><text x="238" y="304" text-anchor="end" class="tm">nul</text>'
-    '<text x="250" y="318" text-anchor="middle" class="tm">aucune</text><text x="470" y="318" text-anchor="middle" class="tm">totale</text>'
+    '<text x="238" y="84" text-anchor="end" class="tm">maximal</text><text x="238" y="296" text-anchor="end" class="tm">nul</text>'
+    '<text x="262" y="318" class="tm">aucune</text><text x="470" y="318" text-anchor="middle" class="tm">totale</text>'
     '<text x="360" y="340" text-anchor="middle" class="tq">information disponible sur la route</text>'
     '</svg>'
 )
@@ -139,43 +233,46 @@ def _trois_temps(q, i, c, f1, f2):
     ) % (q[0], q[1], i[0], i[1], c[0], c[1], f1, f2)
 
 
-TROIS_TEMPS_ARTICLE = _trois_temps(("des réponses possibles", "valeur : 1 bit au plus"), ("au crayon", "encore effaçable"),
-                                   ("gravée en copies multiples", "définitive en pratique"), "détecteur", "environnement")
-TROIS_TEMPS_DOSSIER = _trois_temps(("potentiel de réponses", "valeur : H bits"), ("corrélation quantique", "2 bits, réversible"),
-                                   ("1 bit classique, recopié", "figé par l'environnement"), "interaction locale", "décohérence")
+def _trois_temps_m(q, i, c, f1, f2):
+    """Version étroite : les trois temps se lisent de haut en bas, la flèche de retour remonte sur le côté."""
+    return (
+        '<svg viewBox="0 0 350 372" role="img" aria-label="Tant qu\'elle n\'est pas cristallisée, la réponse reste effaçable">'
+        '<defs><marker id="ft-am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
+        '<path d="M0 0L10 5L0 10z" class="f-ink3"/></marker></defs>'
+        '<g class="ln" style="stroke:var(--ink-3)"><path d="M131 84V128" marker-end="url(#ft-am)"/><path d="M131 202V246" marker-end="url(#ft-am)"/>'
+        '<path d="M246 166H300V48H250" marker-end="url(#ft-am)"/></g>'
+        '<rect x="16" y="14" width="230" height="70" class="box"/><text x="131" y="38" text-anchor="middle" class="tb">Question</text>'
+        '<text x="131" y="56" text-anchor="middle" class="tq">%s</text><text x="131" y="72" text-anchor="middle" class="tq">%s</text>'
+        '<rect x="16" y="132" width="230" height="70" class="box"/><text x="131" y="156" text-anchor="middle" class="tb">Inscription</text>'
+        '<text x="131" y="174" text-anchor="middle" class="tq">%s</text><text x="131" y="190" text-anchor="middle" class="tq">%s</text>'
+        '<rect x="16" y="250" width="230" height="70" class="box on"/><text x="131" y="274" text-anchor="middle" class="tb">Cristallisation</text>'
+        '<text x="131" y="292" text-anchor="middle" class="tq">%s</text><text x="131" y="308" text-anchor="middle" class="tq">%s</text>'
+        '<text x="140" y="111" class="tm">%s</text><text x="140" y="229" class="tm">%s</text>'
+        '<text x="318" y="107" text-anchor="middle" class="tq" transform="rotate(-90 318 107)">gomme quantique</text>'
+        '<text x="131" y="346" text-anchor="middle" class="tq">retour impossible en pratique</text>'
+        '</svg>'
+    ) % (q[0], q[1], i[0], i[1], c[0], c[1], f1, f2)
 
-# (début de la légende exportée, vue ou None, titre affiché, svg)
+
+_ARTICLE5 = (("des réponses possibles", "valeur : 1 bit au plus"), ("au crayon", "encore effaçable"),
+             ("gravée en copies multiples", "définitive en pratique"), "détecteur", "environnement")
+_DOSSIER5 = (("potentiel de réponses", "valeur : H bits"), ("corrélation quantique", "2 bits, réversible"),
+             ("1 bit classique, recopié", "figé par l'environnement"), "interaction locale", "décohérence")
+TROIS_TEMPS_ARTICLE, TROIS_TEMPS_ARTICLE_M = _trois_temps(*_ARTICLE5), _trois_temps_m(*_ARTICLE5)
+TROIS_TEMPS_DOSSIER, TROIS_TEMPS_DOSSIER_M = _trois_temps(*_DOSSIER5), _trois_temps_m(*_DOSSIER5)
+
+# (début de la légende exportée, vue ou None, titre affiché, dessin large, dessin étroit ou None)
 FIGURES = [
-    ("géométrie du tableau plat", None, "Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre", GEO_DOSSIER),
-    ("géométrie de l'écran plat", None, "Sur un écran plat, la diagonale s'allonge quand on s'éloigne du centre", GEO_ARTICLE),
-    ("éventail depuis la source", None, "Chaque impact vient de la source, aucun ne vient de son voisin", EVENTAIL),
-    ("trajectoire courbée par la pente du temps", None, "Le côté lent avance moins : la trajectoire vire vers la masse", PENTE),
-    ("compromis entre information de route", None, "Plus on peut connaître la route, moins les franges sont nettes", COMPROMIS),
-    ("trois temps de la mesure", "article", "Tant qu'elle n'est pas cristallisée, la réponse reste effaçable", TROIS_TEMPS_ARTICLE),
-    ("trois temps de la mesure", "demonstration", "Tant qu'elle n'est pas cristallisée, la réponse reste effaçable", TROIS_TEMPS_DOSSIER),
+    ("géométrie du tableau plat", None, "Sur un tableau plat, la diagonale s'allonge quand on s'éloigne du centre", GEO_DOSSIER, GEO_DOSSIER_M),
+    ("géométrie de l'écran plat", None, "Sur un écran plat, la diagonale s'allonge quand on s'éloigne du centre", GEO_ARTICLE, GEO_ARTICLE_M),
+    ("éventail depuis la source", None, "Chaque impact vient de la source, aucun ne vient de son voisin", EVENTAIL, EVENTAIL_M),
+    ("trajectoire courbée par la pente du temps", None, "Le côté lent avance moins : la trajectoire vire vers la masse", PENTE, PENTE_M),
+    ("compromis entre information de route", None, "Plus on peut connaître la route, moins les franges sont nettes", COMPROMIS, None),
+    ("trois temps de la mesure", "article", "Tant qu'elle n'est pas cristallisée, la réponse reste effaçable",
+     TROIS_TEMPS_ARTICLE, TROIS_TEMPS_ARTICLE_M),
+    ("trois temps de la mesure", "demonstration", "Tant qu'elle n'est pas cristallisée, la réponse reste effaçable",
+     TROIS_TEMPS_DOSSIER, TROIS_TEMPS_DOSSIER_M),
 ]
-
-# vignettes de la page d'accueil, une par pilier
-VIGNETTES = {
-    1: ('<svg viewBox="0 0 132 88" aria-hidden="true"><line x1="10" y1="16" x2="122" y2="16" class="lnk"/>'
-        '<path d="M22 16A56 56 0 0 1 78 72" class="ln dash"/><line x1="22" y1="72" x2="22" y2="16" class="ln"/>'
-        '<line x1="22" y1="72" x2="62" y2="16" class="ray"/><line x1="22" y1="72" x2="112" y2="16" class="ray"/>'
-        '<circle cx="22" cy="72" r="4" class="f-ink"/><circle cx="62" cy="16" r="3.5" class="f-ray"/><circle cx="112" cy="16" r="3.5" class="f-ray"/></svg>'),
-    2: ('<svg viewBox="0 0 132 88" aria-hidden="true"><line x1="12" y1="18" x2="120" y2="18" class="lnk"/>'
-        '<line x1="66" y1="74" x2="26" y2="18" class="ray"/><line x1="66" y1="74" x2="66" y2="18" class="ray"/>'
-        '<line x1="66" y1="74" x2="106" y2="18" class="ray"/><circle cx="66" cy="74" r="4" class="f-ink"/>'
-        '<circle cx="26" cy="18" r="3.5" class="f-ray"/><circle cx="66" cy="18" r="3.5" class="f-ray"/><circle cx="106" cy="18" r="3.5" class="f-ray"/></svg>'),
-    3: ('<svg viewBox="0 0 132 88" aria-hidden="true"><circle cx="38" cy="44" r="26" class="box"/><circle cx="94" cy="44" r="26" class="box"/>'
-        '<line x1="38" y1="44" x2="38" y2="22" class="lnk"/><line x1="94" y1="44" x2="109" y2="28" class="ray"/>'
-        '<circle cx="38" cy="44" r="3" class="f-ink"/><circle cx="94" cy="44" r="3" class="f-ray"/></svg>'),
-    4: ('<svg viewBox="0 0 132 88" aria-hidden="true"><line x1="10" y1="74" x2="122" y2="74" class="ln"/><g class="f-geo">'
-        + "".join('<rect x="%d" y="%d" width="5" height="%d"/>' % (13 + 7 * k, 74 - h, h)
-                  for k, h in enumerate([10, 28, 46, 28, 10] * 3))
-        + '</g></svg>'),
-    5: ('<svg viewBox="0 0 132 88" aria-hidden="true"><g class="ln" style="stroke:var(--ink-3)"><path d="M40 36H49"/><path d="M83 36H92"/>'
-        '<path d="M66 48V66H23V48"/></g><rect x="6" y="24" width="34" height="24" class="box"/>'
-        '<rect x="49" y="24" width="34" height="24" class="box"/><rect x="92" y="24" width="34" height="24" class="box on"/></svg>'),
-}
 
 # marque du site : une source, trois rayons, un écran plat (le point de départ du modèle)
 ICONE = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/>'

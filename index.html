@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Actuel, Émergent, Local</title>
 <meta name="description" content="Cinq intuitions sur la lumière, la gravité et la mesure, traduites en équations et confrontées à la physique établie.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/">
@@ -18,6 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
@@ -52,7 +54,11 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+sup,sub{font-size:.72em;line-height:0;vertical-align:baseline;position:relative}
+sup{top:-.42em}
+sub{top:.28em}
+.sym{text-transform:none}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
 .barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
@@ -74,8 +80,20 @@ p{margin:0;max-width:65ch}
 .barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 @media (max-width:640px){
   .marque span,.barre .lib{display:none}
+  .marque{min-width:2.75rem;min-height:2.75rem}
   .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.4rem;height:2.4rem}
+  .barre nav a{min-width:2.25rem;height:2.75rem}
+}
+
+@media (max-width:380px){
+  .barre .dedans{gap:.4rem}
+  .barre nav{gap:.2rem}
+  .barre nav a{min-width:2.05rem;padding:0 .1rem}
+  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+}
+@media (max-width:340px){
+  .marque{min-width:2rem}
+  .barre nav a{min-width:1.9rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -86,6 +104,10 @@ p{margin:0;max-width:65ch}
 .plan .dedans.onglets{padding-bottom:0}
 .repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
 .repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+@media (max-width:640px){
+  .repere{flex-direction:column;gap:.25rem}
+  .repere span+span::before{display:none}
+}
 h1{margin:0;font-weight:600}
 .plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
 .chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
@@ -101,25 +123,31 @@ h1{margin:0;font-weight:600}
 .btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
 .plan .btn.plein:hover{background:#fff;border-color:#fff}
 .btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}
 @media (prefers-reduced-motion:reduce){.btn span{transition:none}}
 
 /* accueil : le titre, et l'écran qui s'expose photon par photon */
 .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
-.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1{font-size:clamp(3.5rem,min(10vw,14.5vh),8.2rem);line-height:1;letter-spacing:.004em;text-transform:uppercase;max-width:none}
 .accueil h1 span{display:block}
 .expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
 .plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
-.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plaque canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;display:block}
+@supports not (aspect-ratio:1/1){
+  .plaque::before{content:"";display:block;padding-top:80%}
+  .epure .plaque::before,.plaque.mini::before{padding-top:75%}
+}
 .pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
 .pl-t{top:.8rem}
 .pl-n{bottom:.8rem}
 .pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
 .expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
 .lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
-@media (max-width:900px){
+@media (max-width:760px){
   .hero{grid-template-columns:1fr}
+  .accueil h1{font-size:clamp(3.5rem,17vw,6rem)}
   .plaque{aspect-ratio:16/10}
+  .actions .btn{flex:1 1 100%;justify-content:space-between}
 }
 
 /* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
@@ -129,12 +157,12 @@ h1{margin:0;font-weight:600}
 .vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
 .vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
 @media (max-width:640px){
-  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues a{flex:1 1 0;text-align:center;padding:1.05rem .3rem;letter-spacing:.05em}
   .vues .plus{display:none}
 }
 
 /* la feuille */
-.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pose{flex:1 0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
 main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
 @media (max-width:700px){
@@ -144,10 +172,10 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 }
 
 /* cartouche : au pied de la feuille, comme sur un plan */
-.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cartouche{order:3;display:grid;grid-template-columns:2.2fr 1.5fr 2.2fr 1.1fr 1.2fr;border-top:1px solid var(--axis)}
 .cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
-.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.ck{font:500 .69rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
 @media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
@@ -161,14 +189,16 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
 .pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
 .pagination a:hover{background:var(--geo-wash)}
-.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.12 var(--display);letter-spacing:.01em;text-wrap:balance}
+@media (max-width:640px){.pagination b{font-weight:500;font-size:1.3rem}.pagination a{padding:1.1rem 20px}}
 
 /* pied de page */
 .pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
 .pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
 .sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
 .sig svg{flex:none}
-.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
+.pied nav a{padding:.45rem 0}
 .pied a:hover{color:var(--plan-ink)}
 
 /* texte */
@@ -177,12 +207,12 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .7rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
 /* figure interactive */
-.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig{margin:0;border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -191,6 +221,10 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+/* un dessin « adapte » tient dans la largeur d'un téléphone ; « bureau » et « mobile » sont deux mises en page du même dessin */
+.stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
+.stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
+.halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -198,11 +232,22 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
-@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
+@media (max-width:640px){
+  .prose .stage>svg:not(.fit):not(.mobile){min-width:560px}
+  .stage>svg.bureau{display:none}
+  .stage>svg.mobile{display:block}
+  /* sur téléphone, la figure va d'un bord à l'autre et ses textes sont grossis pour rester lisibles */
+  .p-planche main>section>.fig,.p-planche main>.cols .fig{margin-inline:-20px;border-left:0;border-right:0}
+  .p-planche .stage{padding:.6rem .5rem}
+  .adapte .t,.adapte .tb{font-size:15.5px}
+  .adapte .tq{font-size:14.5px}
+  .adapte .tm{font-size:13px}
+}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
 .ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.bouts{display:flex;justify-content:space-between;gap:1rem;margin-top:-.2rem;font:400 .66rem/1.2 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
 input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
 .check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
@@ -212,16 +257,23 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
 .ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro.fixe{grid-template-columns:minmax(0,1fr) 10.6rem}
 .ro dt{font-size:.88rem;color:var(--ink-2)}
 .ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
-.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash);min-height:calc(4.35em + 1.4rem)}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
 .legend span{display:inline-flex;align-items:center;gap:.5em}
 .legend i{display:inline-block;width:16px;height:3px}
 .k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
 .legend i.dot{width:10px;height:10px;border-radius:50%}
 .legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+@media (max-width:640px),(pointer:coarse){
+  .chip{min-height:2.75rem;padding:.7rem .8rem}
+  input[type=range]{height:2.5rem}
+  .jeton{min-height:2.75rem}
+}
 
 /* jauges */
 .meter{display:flex;flex-direction:column;gap:.3rem}
@@ -231,18 +283,13 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules des planches */
-.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
-.formula .up,.m .up{font-style:normal}
-.m{font-family:var(--math);font-style:italic;white-space:nowrap}
-.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
-.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
-.frac>span:last-child{padding:.12em .3em 0}
+/* formules des planches : composées par KaTeX, comme celles des démonstrations (.tex) */
 .formulas{display:flex;flex-direction:column;gap:.6rem}
 .fnote{font-size:.88rem;color:var(--ink-2)}
 
 /* encadrés */
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.lecture .eyebrow{color:var(--ink-2)}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
 .avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
@@ -250,6 +297,10 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:last-child:nth-child(odd){grid-column:1/-1}
+}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
 .defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
@@ -260,7 +311,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 /* tableaux */
 .tablewrap{overflow-x:auto}
 table.data{border-collapse:collapse;width:100%;font-size:.94rem}
-.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data th{font:500 .7rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
 .data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
@@ -272,7 +323,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
   table.empile tr:first-child{padding-top:0}
   table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
   table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
   table.empile td:first-child::before{display:none}
 }
@@ -304,17 +355,25 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* texte long : articles, démonstrations, dossier */
 .prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
 .prose p{max-width:none}
+.p-article .prose{max-width:42rem}
 .prose>h2{margin-top:1.8rem;font-size:1.5rem}
 .prose>h3{margin-top:.6rem;font-size:1.12rem}
 .prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
-.prose .fig{margin:0}
 .prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
 .figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+/* une formule plus large que l'écran est d'abord réduite, puis défile si elle déborde encore */
+.tex.ok .katex{font-size:calc(1.21em*var(--zoom,1))}
+.tex.defile{background:
+  linear-gradient(90deg,var(--sheet) 35%,transparent) left/2.2rem 100% no-repeat local,
+  linear-gradient(270deg,var(--sheet) 35%,transparent) right/2.2rem 100% no-repeat local,
+  linear-gradient(90deg,var(--axis),transparent) left/.9rem 100% no-repeat scroll,
+  linear-gradient(270deg,var(--axis),transparent) right/.9rem 100% no-repeat scroll}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule);max-width:none}
+@media (max-width:520px){.suite .btn{flex:1 1 100%;justify-content:space-between}}
 .toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .toc a{text-decoration:none}
@@ -323,13 +382,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
-  .tex .katex{font-size:1.05em}
+  .tex.ok .katex{font-size:calc(1.1em*var(--zoom,1))}
 }
 
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(240px,340px);gap:clamp(1rem,3vw,2.4rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -338,25 +397,36 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .plt h3 a{text-decoration:none}
 .plt h3 a:hover{text-decoration:underline}
 .plt>p{color:var(--ink-2)}
-.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
-.acces .btn{padding:.72rem .95rem}
+.acces{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:.55rem;max-width:none}
+.acces .btn{padding:.78rem .95rem}
+.acces .btn.fin{border-color:var(--axis);color:var(--ink)}
+.acces .btn.fin:hover{border-color:var(--ink);background:transparent}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis svg{display:block;width:100%;height:auto}
+.vis>a{display:block}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
-.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
 .clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
 @media (max-width:860px){
   .plk{grid-template-columns:4.3rem minmax(0,1fr)}
-  .vis{grid-column:2;max-width:22rem}
+  .vis{grid-column:2;display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:.8rem 1.2rem;align-items:end}
+  .clef{flex-direction:column;gap:.3rem}
+}
+@media (max-width:640px){
+  .vis{grid-template-columns:1fr}
+  .clef{flex-direction:row;gap:.7rem}
 }
 @media (max-width:520px){
   .plk{grid-template-columns:1fr}
-  .vis{grid-column:1;max-width:17rem}
+  .vis{grid-column:1}
   .no{flex-direction:row;align-items:baseline;gap:.8rem}
+  .acces .btn{flex:1 1 auto;justify-content:space-between}
+  .acces .btn.encre{flex-basis:100%}
 }
 /* accueil : verdict, synthèse */
 .large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.prose.large>p{max-width:72ch}
+.prose.large td:first-child{font-weight:600}
 .verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
 .verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
 @media (max-width:820px){
@@ -369,6 +439,23 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
 .intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .prose .intuition p{max-width:none}
+.plan .intuition{margin-top:1.3rem;padding:.1rem 0 .1rem 1.1rem;border:0;border-left:2px solid var(--photon);max-width:38rem;gap:.55rem}
+.plan .intuition .eyebrow,.plan .intuition footer{color:var(--plan-ink-2)}
+.plan .intuition p{max-width:none;font-size:clamp(1.06rem,1.5vw,1.26rem);line-height:1.46;color:var(--plan-ink)}
+/* ouverture de la feuille : le nom de la vue, le titre du document, son chapeau */
+.amorce{display:flex;flex-direction:column;gap:.75rem}
+.doc-titre{font:600 clamp(1.75rem,3.3vw,2.35rem)/1.08 var(--display);letter-spacing:.004em;max-width:26ch;text-wrap:balance}
+.prose .amorce .lead{max-width:none;font-size:1.16rem;line-height:1.6}
+/* sommaire repliable des pages longues, quand le rail n'a pas la place */
+.sommaire{border:1px solid var(--rule)}
+.sommaire summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:.85rem 1rem;list-style:none;font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.sommaire summary::-webkit-details-marker{display:none}
+.sommaire summary::after{content:"+";font-size:1.05rem;line-height:1}
+.sommaire[open] summary::after{content:"−"}
+.prose .sommaire ol{list-style:none;margin:0;padding:0 1rem .5rem;gap:0}
+.prose .sommaire li{padding:0}
+.sommaire a{display:block;padding:.6rem 0;border-top:1px solid var(--rule);text-decoration:none;font-size:.95rem;line-height:1.35}
+.remonter{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:15;padding:.75rem .9rem;background:var(--ink);color:var(--sheet);font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.28)}
 .plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
 
 /* lien d'évitement pour le clavier */
@@ -378,7 +465,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* avancement de la lecture, sous la barre du haut */
 @supports (animation-timeline:scroll()){
   .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
-    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+    transform-origin:0 50%;transform:scaleX(0);animation:avance 1ms linear both;animation-timeline:scroll(root block)}
   @keyframes avance{to{transform:scaleX(1)}}
 }
 /* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
@@ -390,25 +477,33 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
 .tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
 .epure{margin:0;min-width:0}
+.epure figcaption{margin-top:.55rem;font-size:.8rem;line-height:1.4;color:var(--plan-ink-2)}
 .epure .plaque,.plaque.mini{aspect-ratio:4/3}
-@media (max-width:980px){
-  .tete{grid-template-columns:1fr}
-  .tete .epure{display:none}
+@media (max-width:980px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,21rem)}}
+@media (max-width:760px){
+  .tete{grid-template-columns:1fr;gap:1.4rem}
+  .tete .epure{max-width:23rem}
 }
 /* accueil : choisir ce que l'on sait de chaque photon */
-.expo figcaption p{max-width:54ch}
-.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
-.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+.expo figcaption p{max-width:54ch;min-height:4.5em}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.1rem;margin-top:.75rem}
+.duo{display:flex}
+.choix .lib{flex:1 1 100%;font:500 .66rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.jeton{min-height:2.5rem;padding:.6rem .85rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
   font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton+.jeton{margin-left:-1px}
 .jeton:hover{background:rgba(205,225,255,.14)}
-.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.choix .lien{margin-left:.5rem;font-size:.86rem}
+.jeton[aria-pressed="true"]{background:var(--plan-ink);border-color:var(--plan-ink);color:var(--plan-2)}
+.choix .lien{font-size:.86rem;min-height:2.5rem}
 
 /* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
 .rail{display:none}
 @media (min-width:1200px){
   .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .p-article .avec-rail{grid-template-columns:13rem minmax(0,42rem)}
+  .sommaire,.remonter{display:none}
   .avec-rail>.prose{margin:0}
+  .avec-rail>.prose:only-child{grid-column:1/-1;margin-inline:auto}
   .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
   .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
   .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
@@ -422,9 +517,50 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .frise .ref{cursor:pointer;outline:none}
 .frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
 .frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .ref:focus-visible .touche{stroke:var(--ink);stroke-width:1.5}
 .frise .touche{fill:transparent}
 .bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
 .bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* planche 4 : la question que pose la mesure choisie */
+.stage.question{padding:1.5rem 1.3rem;gap:.6rem}
+.demande{font:600 clamp(1.35rem,2.4vw,1.7rem)/1.12 var(--display);letter-spacing:.004em;margin-bottom:.9rem;max-width:none;min-height:2.3em}
+/* planche 5 : les trois temps de la mesure, en cases que le texte remplit à sa taille réelle */
+.stage.temps{padding:1.4rem .8rem 1.2rem}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);align-items:stretch}
+.etape{border:1.25px solid var(--axis);background:var(--sheet);padding:.8rem .45rem;display:flex;flex-direction:column;justify-content:center;gap:.2rem;text-align:center;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.etape b{font-size:.96rem;color:var(--ink)}
+.etape.on{background:var(--geo-wash);border-color:var(--geo);box-shadow:inset 0 0 0 1px var(--geo)}
+.passage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:0 .6rem;font:400 .66rem/1.2 var(--mono);color:var(--ink-3)}
+.passage i{font-style:normal}
+.passage svg{display:block;width:100%;height:10px;min-width:0;flex:none}
+.retours{display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);padding-bottom:1.7rem;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.retours p{max-width:none}
+.gomme{grid-column:1/4;position:relative;height:1.5rem;margin:0 calc((100% - 6.4rem)/4);border:1.25px solid var(--ink-3);border-top:0}
+.gomme::before{content:"";position:absolute;left:-5.6px;top:-1px;border:5px solid transparent;border-top:0;border-bottom:8px solid var(--ink-3)}
+.gomme .court{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:.4rem;white-space:nowrap}
+.retours .long{display:none}
+.gomme.pale{opacity:.3}
+.jamais{grid-column:5;padding-top:.5rem;text-align:center}
+@media (max-width:640px){
+  .stage.temps{padding:1rem .9rem}
+  .etapes{grid-template-columns:1fr}
+  .passage{flex-direction:row;gap:.6rem;padding:.4rem 0}
+  .passage svg{width:2.2rem;transform:rotate(90deg)}
+  .retours{display:flex;flex-direction:column;gap:.35rem;padding:.9rem 0 0}
+  .gomme{height:auto;margin:0;border:0}
+  .gomme::before{display:none}
+  .retours .court{display:none}
+  .retours .long{display:inline}
+  .jamais{text-align:left;padding:0}
+}
+/* liste de documents et de pages : un nom, puis ses liens */
+.docs{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.docs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem 1.5rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.docs .liens{display:flex;flex-wrap:wrap;gap:.4rem}
+.docs .liens a{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .75rem;border:1px solid var(--axis);font:500 .74rem/1 var(--mono);letter-spacing:.04em;text-decoration:none}
+.docs .liens a:hover{border-color:var(--ink)}
+@media (max-width:640px){.docs li{grid-template-columns:1fr}.docs li>span:first-child{font-weight:600}}
 
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
@@ -439,7 +575,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  body{display:block;min-height:0}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err,.sommaire,.remonter{display:none!important}
   .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
@@ -448,6 +585,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
   .chapeau{font-size:11.5pt;max-width:none}
   .sheet{max-width:none;margin:0;border:0}
+  .plan .intuition{border-left:2px solid var(--axis)}
+  .plan .intuition p,.plan .intuition .eyebrow,.plan .intuition footer{color:inherit}
   .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
   .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
@@ -460,10 +599,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
-  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.ok .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.defile{background:none}
   .stage{overflow:visible}
   .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .stage>svg.mobile{display:none}
+  .stage>svg.bureau{display:block}
   .tablewrap{overflow:visible}
   a{text-decoration:none}
 }
@@ -474,64 +616,64 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="index.html" aria-label="Accueil : Actuel, Émergent, Local" aria-current="page"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan accueil"><div class="dedans hero">
 <div>
 <p class="repere"><span>Modèle de Sylvain Leduc</span><span>Cinq piliers</span></p>
 <h1><span>Actuel,</span> <span>Émergent,</span> <span>Local</span></h1>
-<p class="chapeau">Cinq intuitions sur la lumière, la gravité et la mesure, nées du suivi de projet : flux, délais, goulots d&#x27;étranglement. Chacune est traduite en équations, confrontée à la physique établie, puis corrigée là où il le faut.</p>
+<p class="chapeau">Cinq intuitions sur la lumière, la gravité et la mesure, nées du suivi de projet : flux, délais, goulots d’étranglement. Chacune est traduite en équations, confrontée à la physique établie, puis corrigée là où il le faut.</p>
 <p class="actions"><a class="btn plein" href="pilier-1/index.html">Commencer par le pilier 1 <span aria-hidden="true">→</span></a><a class="btn" href="dossier.html">Lire le dossier complet <span aria-hidden="true">→</span></a></p>
 </div>
 <figure class="expo">
-<div class="plaque expo-ecran" role="img" aria-label="Des impacts de photons s'accumulent sur un écran et dessinent peu à peu des bandes"><canvas id="expo-a"></canvas><canvas id="expo-b"></canvas><span class="pl-t">Écran de détection</span><span class="pl-n">Photons détectés<b id="expo-n">0</b></span></div>
-<figcaption><p id="expo-txt">Chaque point est l'arrivée d'un photon : un lieu, un instant. Aucun ne dessine les bandes. Elles n'apparaissent qu'avec le nombre.</p>
-<div class="choix" role="group" aria-label="Ce que l'on sait du trajet de chaque photon"><button class="jeton" id="expo-libre" type="button" aria-pressed="true">Route inconnue</button><button class="jeton" id="expo-route" type="button" aria-pressed="false">Route connue</button><button class="lien" id="expo-re" type="button">Recommencer</button></div></figcaption>
+<div class="plaque expo-ecran" role="img" aria-label="Des impacts de photons s'accumulent sur un écran et dessinent peu à peu des franges"><canvas id="expo-a"></canvas><canvas id="expo-b"></canvas><span class="pl-t">Écran de détection</span><span class="pl-n">Photons détectés<b id="expo-n">0</b></span></div>
+<figcaption><p id="expo-txt">Chaque point est l’arrivée d’un photon : un lieu, un instant. Aucun ne dessine les franges, ces bandes qui n’apparaissent qu’avec le nombre.</p>
+<div class="choix" role="group" aria-labelledby="expo-lib"><span class="lib" id="expo-lib">Ce que l’on sait du trajet de chaque photon</span><span class="duo"><button class="jeton" id="expo-libre" type="button" aria-pressed="true">Route inconnue</button><button class="jeton" id="expo-route" type="button" aria-pressed="false">Route connue</button></span><button class="lien" id="expo-re" type="button">Recommencer</button></div></figcaption>
 </figure>
 </div></header>
 <div class="pose"><div class="sheet">
-<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Page de garde</span></div><div class="cc"><span class="ck">Contenu</span><span class="cv">5 planches · 5 articles · 5 démonstrations</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main id="contenu">
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Page de garde</span></div><div class="cc"><span class="ck">Contenu</span><span class="cv">5 planches · 5 articles · 5 démonstrations</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
+<main id="contenu" tabindex="-1">
 <section aria-labelledby="h-liste">
   <span class="eyebrow">Liste des planches</span>
   <h2 id="h-liste">Les cinq piliers</h2>
   <p>Chaque pilier se lit de trois façons : une planche interactive à manipuler, un article sans équation, et une démonstration complète avec ses références.</p>
   <div class="planches">
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>01</b></div><div class="plt"><span class="eyebrow">Géométrie de l&#x27;observateur</span><h3><a href="pilier-1/index.html">L&#x27;ombre plus rapide que la lumière</a></h3><p class="mot">« L&#x27;observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, je vois cela un peu comme un miroir face à un miroir : il y a un décalage. »</p><p>Sur un écran plat, l&#x27;ombre des ciseaux part de 524 fois la vitesse de la lumière et retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.</p><p class="acces"><a class="btn encre" href="pilier-1/index.html">Planche interactive <span aria-hidden="true">→</span></a><a href="pilier-1/article.html">Article</a><a href="pilier-1/demonstration.html">Démonstration</a></p></div><div class="vis"><div class="plaque mini"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme de proche en proche, du centre vers la pointe ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div><p class="clef"><b>524 c</b><span>vitesse de l&#x27;ombre au centre de l&#x27;écran, dans l&#x27;exemple chiffré</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>02</b></div><div class="plt"><span class="eyebrow">Lumière actuelle, émergente, locale</span><h3><a href="pilier-2/index.html">On ne voit jamais la lumière passer</a></h3><p class="mot">« La lumière est comme l&#x27;eau : transparente. C&#x27;est sa définition par le langage qui est obsolète. Elle n&#x27;est pas absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local. »</p><p>Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu&#x27;à l&#x27;endroit et à l&#x27;instant où elle rencontre de la matière.</p><p class="acces"><a class="btn encre" href="pilier-2/index.html">Planche interactive <span aria-hidden="true">→</span></a><a href="pilier-2/article.html">Article</a><a href="pilier-2/demonstration.html">Démonstration</a></p></div><div class="vis"><div class="plaque mini"><canvas data-epure="2" data-fige="4.0" role="img" aria-label="En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"></canvas></div><p class="clef"><b>1 clic</b><span>par photon : deux détecteurs ne se déclenchent pratiquement jamais ensemble (1986)</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>03</b></div><div class="plt"><span class="eyebrow">Cadence c et masse comme frein</span><h3><a href="pilier-3/index.html">La pente du temps</a></h3><p class="mot">« Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l&#x27;espace localement est plus lente que l&#x27;ensemble. »</p><p>La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.</p><p class="acces"><a class="btn encre" href="pilier-3/index.html">Planche interactive <span aria-hidden="true">→</span></a><a href="pilier-3/article.html">Article</a><a href="pilier-3/demonstration.html">Démonstration</a></p></div><div class="vis"><div class="plaque mini"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div><p class="clef"><b>9,81 m/s<sup>2</sup></b><span>la pesanteur, retrouvée en multipliant la pente du temps par c²</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>04</b></div><div class="plt"><span class="eyebrow">Choix retardé de Wheeler</span><h3><a href="pilier-4/index.html">Le choix qui ne réécrit pas le passé</a></h3><p class="mot">« C&#x27;est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire qu&#x27;il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné. »</p><p>Choisir aujourd&#x27;hui comment mesurer un photon ne change rien à ce qu&#x27;il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.</p><p class="acces"><a class="btn encre" href="pilier-4/index.html">Planche interactive <span aria-hidden="true">→</span></a><a href="pilier-4/article.html">Article</a><a href="pilier-4/demonstration.html">Démonstration</a></p></div><div class="vis"><div class="plaque mini"><canvas data-epure="4" data-fige="24.0" role="img" aria-label="Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"></canvas></div><p class="clef"><b>3 500 km</b><span>parcourus par les photons quand l&#x27;expérience de Wheeler a été refaite avec un satellite, en 2017</span></p></div></article>
-<article class="plk"><div class="no"><span class="num">Pilier</span><b>05</b></div><div class="plt"><span class="eyebrow">Cristallisation de l&#x27;information</span><h3><a href="pilier-5/index.html">Comment une réponse devient un fait</a></h3><p class="mot">« La question est un potentiel. Actualiser, c&#x27;est cristalliser l&#x27;information. »</p><p>La réponse est d&#x27;abord inscrite au crayon, encore effaçable. L&#x27;environnement la recopie ensuite des milliards de fois et la grave.</p><p class="acces"><a class="btn encre" href="pilier-5/index.html">Planche interactive <span aria-hidden="true">→</span></a><a href="pilier-5/article.html">Article</a><a href="pilier-5/demonstration.html">Démonstration</a></p></div><div class="vis"><div class="plaque mini"><canvas data-epure="5" data-fige="7.0" role="img" aria-label="Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"></canvas></div><p class="clef"><b>10 ps</b><span>dix picosecondes pour éteindre l&#x27;interférence d&#x27;un grain de poussière au soleil (calcul de 1985)</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>01</b></div><div class="plt"><span class="eyebrow">Géométrie de l’observateur</span><h3><a href="pilier-1/index.html">L’ombre plus rapide que la lumière</a></h3><p class="mot">« L’observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage. »</p><p>Sur un écran plat, l’ombre des ciseaux part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. Celui qui tient les ciseaux la voit tendre vers c/2.</p><p class="acces"><a class="btn encre" href="pilier-1/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-1/article.html">Article</a><a class="btn fin" href="pilier-1/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-1/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="1" data-fige="3.6" role="img" aria-label="L&#x27;ombre d&#x27;une paire de ciseaux sur un tableau plat, vue de face. Elle se referme peu à peu, du centre vers la pointe, chaque point avec son propre retard ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"></canvas></div></a><p class="clef"><b>524 c</b><span>vitesse de l’ombre au centre de l’écran, dans l’exemple chiffré</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>02</b></div><div class="plt"><span class="eyebrow">Lumière actuelle, émergente, locale</span><h3><a href="pilier-2/index.html">On ne voit jamais la lumière passer</a></h3><p class="mot">« La lumière est comme l’eau : transparente. Je pense que c’est sa définition par le langage qui est obsolète. Elle n’est pas absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local. »</p><p>Un faisceau qui traverse le vide est invisible de côté. La lumière ne se manifeste qu’à l’endroit et à l’instant où elle rencontre de la matière.</p><p class="acces"><a class="btn encre" href="pilier-2/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-2/article.html">Article</a><a class="btn fin" href="pilier-2/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-2/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="2" data-fige="4.0" role="img" aria-label="En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"></canvas></div></a><p class="clef"><b>1 clic</b><span>par photon : deux détecteurs ne se déclenchent pratiquement jamais ensemble (1986)</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>03</b></div><div class="plt"><span class="eyebrow">Cadence <span class="sym">c</span> et masse comme frein</span><h3><a href="pilier-3/index.html">La pente du temps</a></h3><p class="mot">« Je risque de me tromper, mais selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l’espace localement est plus lente que l’ensemble. »</p><p>La relativité donne un sens précis à cette intuition : tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.</p><p class="acces"><a class="btn encre" href="pilier-3/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-3/article.html">Article</a><a class="btn fin" href="pilier-3/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-3/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div></a><p class="clef"><b>9,81 m/s<sup>2</sup></b><span>la pesanteur, retrouvée en multipliant la pente du temps par c<sup>2</sup></span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>04</b></div><div class="plt"><span class="eyebrow">Choix retardé de Wheeler</span><h3><a href="pilier-4/index.html">Le choix d’aujourd’hui ne réécrit pas le passé</a></h3><p class="mot">« C’est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire qu’il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné. »</p><p>Choisir aujourd’hui comment mesurer un photon ne change rien à ce qu’il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.</p><p class="acces"><a class="btn encre" href="pilier-4/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-4/article.html">Article</a><a class="btn fin" href="pilier-4/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-4/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="4" data-fige="24.0" role="img" aria-label="Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"></canvas></div></a><p class="clef"><b>3 500 km</b><span>parcourus par les photons quand l’expérience a été refaite avec un satellite, en 2017</span></p></div></article>
+<article class="plk"><div class="no"><span class="num">Pilier</span><b>05</b></div><div class="plt"><span class="eyebrow">Cristallisation de l’information</span><h3><a href="pilier-5/index.html">Comment une réponse devient un fait</a></h3><p class="mot">« La cristallisation de l’information fait suite à la quatrième hypothèse : la question est un potentiel ; actualiser, c’est cristalliser l’information. »</p><p>La réponse est d’abord inscrite au crayon, encore effaçable. L’environnement la recopie ensuite des milliards de fois et la grave.</p><p class="acces"><a class="btn encre" href="pilier-5/index.html">Planche interactive <span aria-hidden="true">→</span></a><a class="btn fin" href="pilier-5/article.html">Article</a><a class="btn fin" href="pilier-5/demonstration.html">Démonstration</a></p></div><div class="vis"><a href="pilier-5/index.html" tabindex="-1" aria-hidden="true"><div class="plaque mini"><canvas data-epure="5" data-fige="7.0" role="img" aria-label="Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"></canvas></div></a><p class="clef"><b>10 ps</b><span>dix picosecondes : le temps que met le soleil à brouiller l’interférence d’un grain de poussière</span></p></div></article>
   </div>
 </section>
 
 <section aria-labelledby="h-fil">
   <span class="eyebrow">Le fil commun</span>
   <h2 id="h-fil">Une même grille de lecture, venue du suivi de projet</h2>
-  <p>Tout est parti d'une objection à une phrase qu'on répète souvent : « l'ombre va plus vite que la lumière ». Pour la mettre à l'épreuve, l'auteur a appliqué ses réflexes de suivi de projet. Les cinq piliers posent les trois mêmes questions.</p>
+  <p>Tout est parti d’une objection à une phrase qu’on répète souvent : « l’ombre va plus vite que la lumière ». Pour la mettre à l’épreuve, l’auteur a appliqué ses réflexes de suivi de projet. Les cinq piliers posent les trois mêmes questions.</p>
   <dl class="defs">
-    <div><dt>Où est l'observateur ?</dt><dd>Celui qui déclenche l'action doit attendre que l'information lui revienne. La boucle de retour fait partie du phénomène.</dd></div>
-    <div><dt>Quel chemin, réellement ?</dt><dd>Chaque signal parcourt une vraie distance, à une cadence limitée. Les délais s'additionnent, et le plus long fixe le rythme.</dd></div>
-    <div><dt>En transit, ou arrivé ?</dt><dd>Tant qu'un signal voyage, rien n'est encore constaté. Un fait naît à l'endroit et à l'instant où il rencontre la matière.</dd></div>
+    <div><dt>Où est l’observateur ?</dt><dd>Celui qui déclenche l’action doit attendre que l’information lui revienne. La boucle de retour fait partie du phénomène.</dd></div>
+    <div><dt>Quel chemin, réellement ?</dt><dd>Chaque signal parcourt une vraie distance, à une cadence limitée. Les délais s’additionnent, et le plus long fixe le rythme.</dd></div>
+    <div><dt>En transit, ou arrivé ?</dt><dd>Tant qu’un signal voyage, rien n’est encore constaté. Un fait naît à l’endroit et à l’instant où il rencontre la matière.</dd></div>
   </dl>
-  <p>De là viennent les trois mots du modèle : actuel, émergent, local. Rien n'y agit à distance ; chaque événement se produit quelque part, à un moment donné.</p>
+  <p>De là viennent les trois mots du modèle : actuel, émergent, local. Rien n’y agit à distance ; chaque événement se produit quelque part, à un moment donné.</p>
 </section>
 
 <section aria-labelledby="h-verdict">
   <span class="eyebrow">Verdict</span>
-  <h2 id="h-verdict">Ce que les équations confirment, et ce qu'elles corrigent</h2>
+  <h2 id="h-verdict">Ce que les équations confirment, et ce qu’elles corrigent</h2>
   <div class="verdict">
-    <p>Le dossier part des formules que l'auteur proposait à partir de ses intuitions. Il les démontre ou les corrige une à une.</p>
-<p>Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
-<p>Le modèle est une relecture cohérente de résultats connus, retrouvés par un chemin indépendant. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.</p>
+    <p>Le dossier part des formules de départ, écrites à partir des intuitions de l’auteur. Il les démontre ou les corrige une à une.</p>
+<p>Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.</p>
+<p>Le modèle est une relecture cohérente de résultats connus, abordés par un autre chemin : celui du suivi de projet. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.</p>
   </div>
 </section>
 
 <section aria-labelledby="h-frise">
   <span class="eyebrow">Sources</span>
   <h2 id="h-frise">Un siècle de travaux derrière les cinq piliers</h2>
-  <p>Le dossier s'appuie sur 45 travaux publiés entre 1909 et 2019. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel. Le nom écrit sur chaque rang est celui du plus ancien.</p>
-  <figure class="fig solo"><div class="stage"><svg class="wide frise" viewBox="0 0 1000 330" role="img" aria-label="Frise de 45 travaux cités, de 1909 à 2019, répartis par pilier"><line x1="250.0" y1="20" x2="250.0" y2="300" class="gr"/><text x="250.0" y="319" text-anchor="middle" class="tm">1900</text><line x1="367.1" y1="20" x2="367.1" y2="300" class="gr"/><text x="367.1" y="319" text-anchor="middle" class="tm">1920</text><line x1="484.2" y1="20" x2="484.2" y2="300" class="gr"/><text x="484.2" y="319" text-anchor="middle" class="tm">1940</text><line x1="601.4" y1="20" x2="601.4" y2="300" class="gr"/><text x="601.4" y="319" text-anchor="middle" class="tm">1960</text><line x1="718.5" y1="20" x2="718.5" y2="300" class="gr"/><text x="718.5" y="319" text-anchor="middle" class="tm">1980</text><line x1="835.6" y1="20" x2="835.6" y2="300" class="gr"/><text x="835.6" y="319" text-anchor="middle" class="tm">2000</text><line x1="952.7" y1="20" x2="952.7" y2="300" class="gr"/><text x="952.7" y="319" text-anchor="middle" class="tm">2020</text><line x1="16" y1="76" x2="984" y2="76" class="ln"/><text x="16" y="48" class="tb">Pilier 1</text><text x="16" y="65" class="tq">Géométrie de l&#x27;observateur</text><g class="ref" tabindex="0" role="img" aria-label="Couderc (1939). Les auréoles lumineuses des novae" data-t="Couderc (1939)" data-s="Les auréoles lumineuses des novae"><circle class="touche" cx="478.4" cy="61.0" r="11"/><circle class="pt" cx="478.4" cy="61.0" r="5"/></g><text x="468.4" y="65.0" text-anchor="end" class="tq">Couderc, 1939</text><g class="ref" tabindex="0" role="img" aria-label="Rees (1966). Appearance of Relativistically Expanding Radio Sources" data-t="Rees (1966)" data-s="Appearance of Relativistically Expanding Radio Sources"><circle class="touche" cx="636.5" cy="61.0" r="11"/><circle class="pt" cx="636.5" cy="61.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Nemiroff (2015). Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams" data-t="Nemiroff (2015)" data-s="Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams"><circle class="touche" cx="923.4" cy="61.0" r="11"/><circle class="pt" cx="923.4" cy="61.0" r="5"/></g><line x1="16" y1="132" x2="984" y2="132" class="ln"/><text x="16" y="104" class="tb">Pilier 2</text><text x="16" y="121" class="tq">Lumière actuelle, émergente, locale</text><g class="ref" tabindex="0" role="img" aria-label="Minkowski (1909). Raum und Zeit" data-t="Minkowski (1909)" data-s="Raum und Zeit"><circle class="touche" cx="302.7" cy="117.0" r="11"/><circle class="pt" cx="302.7" cy="117.0" r="5"/></g><text x="298.7" y="104.0" class="tq">Minkowski, 1909</text><g class="ref" tabindex="0" role="img" aria-label="Newton et Wigner (1949). Localized States for Elementary Systems" data-t="Newton et Wigner (1949)" data-s="Localized States for Elementary Systems"><circle class="touche" cx="536.9" cy="117.0" r="11"/><circle class="pt" cx="536.9" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Heisenberg (1958). Physics and Philosophy: The Revolution in Modern Science" data-t="Heisenberg (1958)" data-s="Physics and Philosophy: The Revolution in Modern Science"><circle class="touche" cx="589.6" cy="117.0" r="11"/><circle class="pt" cx="589.6" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Glauber (1963). The Quantum Theory of Optical Coherence" data-t="Glauber (1963)" data-s="The Quantum Theory of Optical Coherence"><circle class="touche" cx="618.9" cy="117.0" r="11"/><circle class="pt" cx="618.9" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Grangier et al. (1986). Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter" data-t="Grangier et al. (1986)" data-s="Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter"><circle class="touche" cx="753.6" cy="117.0" r="11"/><circle class="pt" cx="753.6" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="ATLAS Collaboration (2017). Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC" data-t="ATLAS Collaboration (2017)" data-s="Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC"><circle class="touche" cx="935.2" cy="117.0" r="11"/><circle class="pt" cx="935.2" cy="117.0" r="5"/></g><line x1="16" y1="188" x2="984" y2="188" class="ln"/><text x="16" y="160" class="tb">Pilier 3</text><text x="16" y="177" class="tq">Cadence c et masse comme frein</text><g class="ref" tabindex="0" role="img" aria-label="Einstein (1911). Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes" data-t="Einstein (1911)" data-s="Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes"><circle class="touche" cx="314.4" cy="173.0" r="11"/><circle class="pt" cx="314.4" cy="173.0" r="5"/></g><text x="310.4" y="160.0" class="tq">Einstein, 1911</text><g class="ref" tabindex="0" role="img" aria-label="Einstein (1916). Die Grundlage der allgemeinen Relativitätstheorie" data-t="Einstein (1916)" data-s="Die Grundlage der allgemeinen Relativitätstheorie"><circle class="touche" cx="343.7" cy="173.0" r="11"/><circle class="pt" cx="343.7" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dyson et al. (1920). A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field" data-t="Dyson et al. (1920)" data-s="A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field"><circle class="touche" cx="367.1" cy="173.0" r="11"/><circle class="pt" cx="367.1" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dicke (1957). Gravitation without a Principle of Equivalence" data-t="Dicke (1957)" data-s="Gravitation without a Principle of Equivalence"><circle class="touche" cx="583.8" cy="173.0" r="11"/><circle class="pt" cx="583.8" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Shapiro (1964). Fourth Test of General Relativity" data-t="Shapiro (1964)" data-s="Fourth Test of General Relativity"><circle class="touche" cx="624.8" cy="173.0" r="11"/><circle class="pt" cx="624.8" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Evans et al. (1996). The optical-mechanical analogy in general relativity" data-t="Evans et al. (1996)" data-s="The optical-mechanical analogy in general relativity"><circle class="touche" cx="812.2" cy="173.0" r="11"/><circle class="pt" cx="812.2" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bertotti et al. (2003). A test of general relativity using radio links with the Cassini spacecraft" data-t="Bertotti et al. (2003)" data-s="A test of general relativity using radio links with the Cassini spacecraft"><circle class="touche" cx="853.2" cy="173.0" r="11"/><circle class="pt" cx="853.2" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chou et al. (2010). Optical Clocks and Relativity" data-t="Chou et al. (2010)" data-s="Optical Clocks and Relativity"><circle class="touche" cx="894.2" cy="173.0" r="11"/><circle class="pt" cx="894.2" cy="173.0" r="5"/></g><line x1="16" y1="244" x2="984" y2="244" class="ln"/><text x="16" y="216" class="tb">Pilier 4</text><text x="16" y="233" class="tq">Choix retardé de Wheeler</text><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1978). The “Past” and the “Delayed-Choice” Double-Slit Experiment" data-t="Wheeler (1978)" data-s="The “Past” and the “Delayed-Choice” Double-Slit Experiment"><circle class="touche" cx="706.8" cy="229.0" r="11"/><circle class="pt" cx="706.8" cy="229.0" r="5"/></g><text x="696.8" y="233.0" text-anchor="end" class="tq">Wheeler, 1978</text><g class="ref" tabindex="0" role="img" aria-label="Ghirardi et al. (1980). A general argument against superluminal transmission through the quantum mechanical measurement process" data-t="Ghirardi et al. (1980)" data-s="A general argument against superluminal transmission through the quantum mechanical measurement process"><circle class="touche" cx="718.5" cy="217.0" r="11"/><circle class="pt" cx="718.5" cy="217.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1983). Law without Law" data-t="Wheeler (1983)" data-s="Law without Law"><circle class="touche" cx="736.0" cy="229.0" r="11"/><circle class="pt" cx="736.0" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1990). Information, Physics, Quantum: The Search for Links" data-t="Wheeler (1990)" data-s="Information, Physics, Quantum: The Search for Links"><circle class="touche" cx="777.0" cy="229.0" r="11"/><circle class="pt" cx="777.0" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Englert (1996). Fringe Visibility and Which-Way Information: An Inequality" data-t="Englert (1996)" data-s="Fringe Visibility and Which-Way Information: An Inequality"><circle class="touche" cx="812.2" cy="229.0" r="11"/><circle class="pt" cx="812.2" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Rovelli (1996). Relational quantum mechanics" data-t="Rovelli (1996)" data-s="Relational quantum mechanics"><circle class="touche" cx="812.2" cy="217.0" r="11"/><circle class="pt" cx="812.2" cy="217.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Jacques et al. (2007). Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment" data-t="Jacques et al. (2007)" data-s="Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment"><circle class="touche" cx="876.6" cy="229.0" r="11"/><circle class="pt" cx="876.6" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Fuchs et al. (2014). An introduction to QBism with an application to the locality of quantum mechanics" data-t="Fuchs et al. (2014)" data-s="An introduction to QBism with an application to the locality of quantum mechanics"><circle class="touche" cx="917.6" cy="229.0" r="11"/><circle class="pt" cx="917.6" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Ma et al. (2016). Delayed-choice gedanken experiments and their realizations" data-t="Ma et al. (2016)" data-s="Delayed-choice gedanken experiments and their realizations"><circle class="touche" cx="929.3" cy="217.0" r="11"/><circle class="pt" cx="929.3" cy="217.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Vedovato et al. (2017). Extending Wheeler&#x27;s delayed-choice experiment to space" data-t="Vedovato et al. (2017)" data-s="Extending Wheeler&#x27;s delayed-choice experiment to space"><circle class="touche" cx="935.2" cy="229.0" r="11"/><circle class="pt" cx="935.2" cy="229.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chaves et al. (2018). Causal Modeling the Delayed-Choice Experiment" data-t="Chaves et al. (2018)" data-s="Causal Modeling the Delayed-Choice Experiment"><circle class="touche" cx="941.0" cy="205.0" r="11"/><circle class="pt" cx="941.0" cy="205.0" r="5"/></g><line x1="16" y1="300" x2="984" y2="300" class="ln"/><text x="16" y="272" class="tb">Pilier 5</text><text x="16" y="289" class="tq">Cristallisation de l&#x27;information</text><g class="ref" tabindex="0" role="img" aria-label="von Neumann (1932). Mathematische Grundlagen der Quantenmechanik" data-t="von Neumann (1932)" data-s="Mathematische Grundlagen der Quantenmechanik"><circle class="touche" cx="437.4" cy="285.0" r="11"/><circle class="pt" cx="437.4" cy="285.0" r="5"/></g><text x="427.4" y="289.0" text-anchor="end" class="tq">von Neumann, 1932</text><g class="ref" tabindex="0" role="img" aria-label="Shannon (1948). A Mathematical Theory of Communication" data-t="Shannon (1948)" data-s="A Mathematical Theory of Communication"><circle class="touche" cx="531.1" cy="285.0" r="11"/><circle class="pt" cx="531.1" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Landauer (1961). Irreversibility and Heat Generation in the Computing Process" data-t="Landauer (1961)" data-s="Irreversibility and Heat Generation in the Computing Process"><circle class="touche" cx="607.2" cy="285.0" r="11"/><circle class="pt" cx="607.2" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Holevo (1973). Bounds for the quantity of information transmitted by a quantum communication channel" data-t="Holevo (1973)" data-s="Bounds for the quantity of information transmitted by a quantum communication channel"><circle class="touche" cx="677.5" cy="285.0" r="11"/><circle class="pt" cx="677.5" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Scully et Drühl (1982). Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics" data-t="Scully et Drühl (1982)" data-s="Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics"><circle class="touche" cx="730.2" cy="285.0" r="11"/><circle class="pt" cx="730.2" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Joos et Zeh (1985). The emergence of classical properties through interaction with the environment" data-t="Joos et Zeh (1985)" data-s="The emergence of classical properties through interaction with the environment"><circle class="touche" cx="747.8" cy="285.0" r="11"/><circle class="pt" cx="747.8" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brune et al. (1996). Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement" data-t="Brune et al. (1996)" data-s="Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement"><circle class="touche" cx="812.2" cy="285.0" r="11"/><circle class="pt" cx="812.2" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brukner et Zeilinger (1999). Operationally Invariant Information in Quantum Measurements" data-t="Brukner et Zeilinger (1999)" data-s="Operationally Invariant Information in Quantum Measurements"><circle class="touche" cx="829.7" cy="285.0" r="11"/><circle class="pt" cx="829.7" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Kim et al. (2000). Delayed “Choice” Quantum Eraser" data-t="Kim et al. (2000)" data-s="Delayed “Choice” Quantum Eraser"><circle class="touche" cx="835.6" cy="273.0" r="11"/><circle class="pt" cx="835.6" cy="273.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Belloni (2002). The role of silver clusters in photography" data-t="Belloni (2002)" data-s="The role of silver clusters in photography"><circle class="touche" cx="847.3" cy="285.0" r="11"/><circle class="pt" cx="847.3" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Hornberger et al. (2003). Collisional Decoherence Observed in Matter Wave Interferometry" data-t="Hornberger et al. (2003)" data-s="Collisional Decoherence Observed in Matter Wave Interferometry"><circle class="touche" cx="853.2" cy="273.0" r="11"/><circle class="pt" cx="853.2" cy="273.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2003). Decoherence, einselection, and the quantum origins of the classical" data-t="Zurek (2003)" data-s="Decoherence, einselection, and the quantum origins of the classical"><circle class="touche" cx="853.2" cy="261.0" r="11"/><circle class="pt" cx="853.2" cy="261.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Schlosshauer (2004). Decoherence, the measurement problem, and interpretations of quantum mechanics" data-t="Schlosshauer (2004)" data-s="Decoherence, the measurement problem, and interpretations of quantum mechanics"><circle class="touche" cx="859.0" cy="249.0" r="11"/><circle class="pt" cx="859.0" cy="249.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2009). Quantum Darwinism" data-t="Zurek (2009)" data-s="Quantum Darwinism"><circle class="touche" cx="888.3" cy="285.0" r="11"/><circle class="pt" cx="888.3" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bérut et al. (2012). Experimental verification of Landauer&#x27;s principle linking information and thermodynamics" data-t="Bérut et al. (2012)" data-s="Experimental verification of Landauer&#x27;s principle linking information and thermodynamics"><circle class="touche" cx="905.9" cy="285.0" r="11"/><circle class="pt" cx="905.9" cy="285.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Allahverdyan et al. (2013). Understanding quantum measurement from the solution of dynamical models" data-t="Allahverdyan et al. (2013)" data-s="Understanding quantum measurement from the solution of dynamical models"><circle class="touche" cx="911.7" cy="273.0" r="11"/><circle class="pt" cx="911.7" cy="273.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Unden et al. (2019). Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers" data-t="Unden et al. (2019)" data-s="Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers"><circle class="touche" cx="946.9" cy="285.0" r="11"/><circle class="pt" cx="946.9" cy="285.0" r="5"/></g></svg></div><div class="bulle" hidden></div></figure>
+  <p>Le dossier s’appuie sur 45 travaux publiés entre 1909 et 2019. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel.</p>
+  <figure class="fig solo"><div class="stage"><svg class="wide frise bureau" viewBox="0 0 1000 350" role="group" aria-label="Frise de 45 travaux cités, de 1909 à 2019, répartis par pilier"><line x1="250.0" y1="20" x2="250.0" y2="320" class="gr"/><text x="250.0" y="339" text-anchor="middle" class="tm">1900</text><line x1="367.1" y1="20" x2="367.1" y2="320" class="gr"/><text x="367.1" y="339" text-anchor="middle" class="tm">1920</text><line x1="484.2" y1="20" x2="484.2" y2="320" class="gr"/><text x="484.2" y="339" text-anchor="middle" class="tm">1940</text><line x1="601.4" y1="20" x2="601.4" y2="320" class="gr"/><text x="601.4" y="339" text-anchor="middle" class="tm">1960</text><line x1="718.5" y1="20" x2="718.5" y2="320" class="gr"/><text x="718.5" y="339" text-anchor="middle" class="tm">1980</text><line x1="835.6" y1="20" x2="835.6" y2="320" class="gr"/><text x="835.6" y="339" text-anchor="middle" class="tm">2000</text><line x1="952.7" y1="20" x2="952.7" y2="320" class="gr"/><text x="952.7" y="339" text-anchor="middle" class="tm">2020</text><line x1="16" y1="76" x2="984" y2="76" class="ln"/><text x="16" y="48" class="tb">Pilier 1</text><text x="16" y="65" class="tq">Géométrie de l’observateur</text><g class="ref" tabindex="0" role="img" aria-label="Couderc (1939). Les auréoles lumineuses des novae" data-t="Couderc (1939)" data-s="Les auréoles lumineuses des novae"><circle class="touche" cx="478.4" cy="61.0" r="14"/><circle class="pt" cx="478.4" cy="61.0" r="5"/></g><text x="468.4" y="65.0" text-anchor="end" class="tq">Couderc, 1939</text><g class="ref" tabindex="0" role="img" aria-label="Rees (1966). Appearance of Relativistically Expanding Radio Sources" data-t="Rees (1966)" data-s="Appearance of Relativistically Expanding Radio Sources"><circle class="touche" cx="636.5" cy="61.0" r="14"/><circle class="pt" cx="636.5" cy="61.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Nemiroff (2015). Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams" data-t="Nemiroff (2015)" data-s="Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams"><circle class="touche" cx="923.4" cy="61.0" r="14"/><circle class="pt" cx="923.4" cy="61.0" r="5"/></g><line x1="16" y1="132" x2="984" y2="132" class="ln"/><text x="16" y="104" class="tb">Pilier 2</text><text x="16" y="121" class="tq">Lumière actuelle, émergente, locale</text><g class="ref" tabindex="0" role="img" aria-label="Minkowski (1909). Raum und Zeit" data-t="Minkowski (1909)" data-s="Raum und Zeit"><circle class="touche" cx="302.7" cy="117.0" r="14"/><circle class="pt" cx="302.7" cy="117.0" r="5"/></g><text x="298.7" y="104.0" class="tq">Minkowski, 1909</text><g class="ref" tabindex="0" role="img" aria-label="Newton et Wigner (1949). Localized States for Elementary Systems" data-t="Newton et Wigner (1949)" data-s="Localized States for Elementary Systems"><circle class="touche" cx="536.9" cy="117.0" r="14"/><circle class="pt" cx="536.9" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Heisenberg (1958). Physics and Philosophy: The Revolution in Modern Science" data-t="Heisenberg (1958)" data-s="Physics and Philosophy: The Revolution in Modern Science"><circle class="touche" cx="589.6" cy="117.0" r="14"/><circle class="pt" cx="589.6" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Glauber (1963). The Quantum Theory of Optical Coherence" data-t="Glauber (1963)" data-s="The Quantum Theory of Optical Coherence"><circle class="touche" cx="618.9" cy="117.0" r="14"/><circle class="pt" cx="618.9" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Grangier et al. (1986). Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter" data-t="Grangier et al. (1986)" data-s="Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter"><circle class="touche" cx="753.6" cy="117.0" r="14"/><circle class="pt" cx="753.6" cy="117.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="ATLAS Collaboration (2017). Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC" data-t="ATLAS Collaboration (2017)" data-s="Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC"><circle class="touche" cx="935.2" cy="117.0" r="14"/><circle class="pt" cx="935.2" cy="117.0" r="5"/></g><line x1="16" y1="188" x2="984" y2="188" class="ln"/><text x="16" y="160" class="tb">Pilier 3</text><text x="16" y="177" class="tq">Cadence c et masse comme frein</text><g class="ref" tabindex="0" role="img" aria-label="Einstein (1911). Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes" data-t="Einstein (1911)" data-s="Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes"><circle class="touche" cx="314.4" cy="173.0" r="14"/><circle class="pt" cx="314.4" cy="173.0" r="5"/></g><text x="310.4" y="160.0" class="tq">Einstein, 1911</text><g class="ref" tabindex="0" role="img" aria-label="Einstein (1916). Die Grundlage der allgemeinen Relativitätstheorie" data-t="Einstein (1916)" data-s="Die Grundlage der allgemeinen Relativitätstheorie"><circle class="touche" cx="343.7" cy="173.0" r="14"/><circle class="pt" cx="343.7" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dyson et al. (1920). A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field" data-t="Dyson et al. (1920)" data-s="A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field"><circle class="touche" cx="367.1" cy="173.0" r="14"/><circle class="pt" cx="367.1" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dicke (1957). Gravitation without a Principle of Equivalence" data-t="Dicke (1957)" data-s="Gravitation without a Principle of Equivalence"><circle class="touche" cx="583.8" cy="173.0" r="14"/><circle class="pt" cx="583.8" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Shapiro (1964). Fourth Test of General Relativity" data-t="Shapiro (1964)" data-s="Fourth Test of General Relativity"><circle class="touche" cx="624.8" cy="173.0" r="14"/><circle class="pt" cx="624.8" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Evans et al. (1996). The optical-mechanical analogy in general relativity" data-t="Evans et al. (1996)" data-s="The optical-mechanical analogy in general relativity"><circle class="touche" cx="812.2" cy="173.0" r="14"/><circle class="pt" cx="812.2" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bertotti et al. (2003). A test of general relativity using radio links with the Cassini spacecraft" data-t="Bertotti et al. (2003)" data-s="A test of general relativity using radio links with the Cassini spacecraft"><circle class="touche" cx="853.2" cy="173.0" r="14"/><circle class="pt" cx="853.2" cy="173.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chou et al. (2010). Optical Clocks and Relativity" data-t="Chou et al. (2010)" data-s="Optical Clocks and Relativity"><circle class="touche" cx="894.2" cy="173.0" r="14"/><circle class="pt" cx="894.2" cy="173.0" r="5"/></g><line x1="16" y1="248" x2="984" y2="248" class="ln"/><text x="16" y="220" class="tb">Pilier 4</text><text x="16" y="237" class="tq">Choix retardé de Wheeler</text><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1978). The “Past” and the “Delayed-Choice” Double-Slit Experiment" data-t="Wheeler (1978)" data-s="The “Past” and the “Delayed-Choice” Double-Slit Experiment"><circle class="touche" cx="706.8" cy="233.0" r="14"/><circle class="pt" cx="706.8" cy="233.0" r="5"/></g><text x="696.8" y="237.0" text-anchor="end" class="tq">Wheeler, 1978</text><g class="ref" tabindex="0" role="img" aria-label="Ghirardi et al. (1980). A general argument against superluminal transmission through the quantum mechanical measurement process" data-t="Ghirardi et al. (1980)" data-s="A general argument against superluminal transmission through the quantum mechanical measurement process"><circle class="touche" cx="718.5" cy="221.0" r="14"/><circle class="pt" cx="718.5" cy="221.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1983). Law without Law" data-t="Wheeler (1983)" data-s="Law without Law"><circle class="touche" cx="736.0" cy="233.0" r="14"/><circle class="pt" cx="736.0" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1990). Information, Physics, Quantum: The Search for Links" data-t="Wheeler (1990)" data-s="Information, Physics, Quantum: The Search for Links"><circle class="touche" cx="777.0" cy="233.0" r="14"/><circle class="pt" cx="777.0" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Englert (1996). Fringe Visibility and Which-Way Information: An Inequality" data-t="Englert (1996)" data-s="Fringe Visibility and Which-Way Information: An Inequality"><circle class="touche" cx="812.2" cy="233.0" r="14"/><circle class="pt" cx="812.2" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Rovelli (1996). Relational quantum mechanics" data-t="Rovelli (1996)" data-s="Relational quantum mechanics"><circle class="touche" cx="812.2" cy="221.0" r="14"/><circle class="pt" cx="812.2" cy="221.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Jacques et al. (2007). Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment" data-t="Jacques et al. (2007)" data-s="Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment"><circle class="touche" cx="876.6" cy="233.0" r="14"/><circle class="pt" cx="876.6" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Fuchs et al. (2014). An introduction to QBism with an application to the locality of quantum mechanics" data-t="Fuchs et al. (2014)" data-s="An introduction to QBism with an application to the locality of quantum mechanics"><circle class="touche" cx="917.6" cy="233.0" r="14"/><circle class="pt" cx="917.6" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Ma et al. (2016). Delayed-choice gedanken experiments and their realizations" data-t="Ma et al. (2016)" data-s="Delayed-choice gedanken experiments and their realizations"><circle class="touche" cx="929.3" cy="221.0" r="14"/><circle class="pt" cx="929.3" cy="221.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Vedovato et al. (2017). Extending Wheeler&#x27;s delayed-choice experiment to space" data-t="Vedovato et al. (2017)" data-s="Extending Wheeler&#x27;s delayed-choice experiment to space"><circle class="touche" cx="935.2" cy="233.0" r="14"/><circle class="pt" cx="935.2" cy="233.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chaves et al. (2018). Causal Modeling the Delayed-Choice Experiment" data-t="Chaves et al. (2018)" data-s="Causal Modeling the Delayed-Choice Experiment"><circle class="touche" cx="941.0" cy="209.0" r="14"/><circle class="pt" cx="941.0" cy="209.0" r="5"/></g><line x1="16" y1="320" x2="984" y2="320" class="ln"/><text x="16" y="292" class="tb">Pilier 5</text><text x="16" y="309" class="tq">Cristallisation de l’information</text><g class="ref" tabindex="0" role="img" aria-label="von Neumann (1932). Mathematische Grundlagen der Quantenmechanik" data-t="von Neumann (1932)" data-s="Mathematische Grundlagen der Quantenmechanik"><circle class="touche" cx="437.4" cy="305.0" r="14"/><circle class="pt" cx="437.4" cy="305.0" r="5"/></g><text x="427.4" y="309.0" text-anchor="end" class="tq">von Neumann, 1932</text><g class="ref" tabindex="0" role="img" aria-label="Shannon (1948). A Mathematical Theory of Communication" data-t="Shannon (1948)" data-s="A Mathematical Theory of Communication"><circle class="touche" cx="531.1" cy="305.0" r="14"/><circle class="pt" cx="531.1" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Landauer (1961). Irreversibility and Heat Generation in the Computing Process" data-t="Landauer (1961)" data-s="Irreversibility and Heat Generation in the Computing Process"><circle class="touche" cx="607.2" cy="305.0" r="14"/><circle class="pt" cx="607.2" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Holevo (1973). Bounds for the quantity of information transmitted by a quantum communication channel" data-t="Holevo (1973)" data-s="Bounds for the quantity of information transmitted by a quantum communication channel"><circle class="touche" cx="677.5" cy="305.0" r="14"/><circle class="pt" cx="677.5" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Scully et Drühl (1982). Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics" data-t="Scully et Drühl (1982)" data-s="Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics"><circle class="touche" cx="730.2" cy="305.0" r="14"/><circle class="pt" cx="730.2" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Joos et Zeh (1985). The emergence of classical properties through interaction with the environment" data-t="Joos et Zeh (1985)" data-s="The emergence of classical properties through interaction with the environment"><circle class="touche" cx="747.8" cy="305.0" r="14"/><circle class="pt" cx="747.8" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brune et al. (1996). Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement" data-t="Brune et al. (1996)" data-s="Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement"><circle class="touche" cx="812.2" cy="305.0" r="14"/><circle class="pt" cx="812.2" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brukner et Zeilinger (1999). Operationally Invariant Information in Quantum Measurements" data-t="Brukner et Zeilinger (1999)" data-s="Operationally Invariant Information in Quantum Measurements"><circle class="touche" cx="829.7" cy="305.0" r="14"/><circle class="pt" cx="829.7" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Kim et al. (2000). Delayed “Choice” Quantum Eraser" data-t="Kim et al. (2000)" data-s="Delayed “Choice” Quantum Eraser"><circle class="touche" cx="835.6" cy="293.0" r="14"/><circle class="pt" cx="835.6" cy="293.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Belloni (2002). The role of silver clusters in photography" data-t="Belloni (2002)" data-s="The role of silver clusters in photography"><circle class="touche" cx="847.3" cy="305.0" r="14"/><circle class="pt" cx="847.3" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Hornberger et al. (2003). Collisional Decoherence Observed in Matter Wave Interferometry" data-t="Hornberger et al. (2003)" data-s="Collisional Decoherence Observed in Matter Wave Interferometry"><circle class="touche" cx="853.2" cy="293.0" r="14"/><circle class="pt" cx="853.2" cy="293.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2003). Decoherence, einselection, and the quantum origins of the classical" data-t="Zurek (2003)" data-s="Decoherence, einselection, and the quantum origins of the classical"><circle class="touche" cx="853.2" cy="281.0" r="14"/><circle class="pt" cx="853.2" cy="281.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Schlosshauer (2004). Decoherence, the measurement problem, and interpretations of quantum mechanics" data-t="Schlosshauer (2004)" data-s="Decoherence, the measurement problem, and interpretations of quantum mechanics"><circle class="touche" cx="859.0" cy="269.0" r="14"/><circle class="pt" cx="859.0" cy="269.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2009). Quantum Darwinism" data-t="Zurek (2009)" data-s="Quantum Darwinism"><circle class="touche" cx="888.3" cy="305.0" r="14"/><circle class="pt" cx="888.3" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bérut et al. (2012). Experimental verification of Landauer&#x27;s principle linking information and thermodynamics" data-t="Bérut et al. (2012)" data-s="Experimental verification of Landauer&#x27;s principle linking information and thermodynamics"><circle class="touche" cx="905.9" cy="305.0" r="14"/><circle class="pt" cx="905.9" cy="305.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Allahverdyan et al. (2013). Understanding quantum measurement from the solution of dynamical models" data-t="Allahverdyan et al. (2013)" data-s="Understanding quantum measurement from the solution of dynamical models"><circle class="touche" cx="911.7" cy="293.0" r="14"/><circle class="pt" cx="911.7" cy="293.0" r="5"/></g><g class="ref" tabindex="0" role="img" aria-label="Unden et al. (2019). Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers" data-t="Unden et al. (2019)" data-s="Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers"><circle class="touche" cx="946.9" cy="305.0" r="14"/><circle class="pt" cx="946.9" cy="305.0" r="5"/></g></svg><svg class="frise mobile" viewBox="0 0 360 415" role="group" aria-label="Frise de 45 travaux cités, de 1909 à 2019, répartis par pilier"><line x1="16.0" y1="20" x2="16.0" y2="385" class="gr"/><text x="16.0" y="404" text-anchor="middle" class="tm">1900</text><line x1="121.0" y1="20" x2="121.0" y2="385" class="gr"/><text x="121.0" y="404" text-anchor="middle" class="tm">1940</text><line x1="225.9" y1="20" x2="225.9" y2="385" class="gr"/><text x="225.9" y="404" text-anchor="middle" class="tm">1980</text><line x1="330.9" y1="20" x2="330.9" y2="385" class="gr"/><text x="330.9" y="404" text-anchor="middle" class="tm">2020</text><line x1="16" y1="80" x2="344" y2="80" class="ln"/><text x="16" y="35"><tspan class="tb">Pilier 1</tspan><tspan class="tq" dx="8">Géométrie de l’observateur</tspan></text><g class="ref" tabindex="0" role="img" aria-label="Couderc (1939). Les auréoles lumineuses des novae" data-t="Couderc (1939)" data-s="Les auréoles lumineuses des novae"><circle class="touche" cx="118.3" cy="65.0" r="14"/><circle class="pt" cx="118.3" cy="65.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Rees (1966). Appearance of Relativistically Expanding Radio Sources" data-t="Rees (1966)" data-s="Appearance of Relativistically Expanding Radio Sources"><circle class="touche" cx="189.2" cy="65.0" r="14"/><circle class="pt" cx="189.2" cy="65.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Nemiroff (2015). Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams" data-t="Nemiroff (2015)" data-s="Superluminal Spot Pair Events in Astronomical Settings: Sweeping Beams"><circle class="touche" cx="317.8" cy="65.0" r="14"/><circle class="pt" cx="317.8" cy="65.0" r="5.5"/></g><line x1="16" y1="140" x2="344" y2="140" class="ln"/><text x="16" y="95"><tspan class="tb">Pilier 2</tspan><tspan class="tq" dx="8">Lumière actuelle, émergente, locale</tspan></text><g class="ref" tabindex="0" role="img" aria-label="Minkowski (1909). Raum und Zeit" data-t="Minkowski (1909)" data-s="Raum und Zeit"><circle class="touche" cx="39.6" cy="125.0" r="14"/><circle class="pt" cx="39.6" cy="125.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Newton et Wigner (1949). Localized States for Elementary Systems" data-t="Newton et Wigner (1949)" data-s="Localized States for Elementary Systems"><circle class="touche" cx="144.6" cy="125.0" r="14"/><circle class="pt" cx="144.6" cy="125.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Heisenberg (1958). Physics and Philosophy: The Revolution in Modern Science" data-t="Heisenberg (1958)" data-s="Physics and Philosophy: The Revolution in Modern Science"><circle class="touche" cx="168.2" cy="125.0" r="14"/><circle class="pt" cx="168.2" cy="125.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Glauber (1963). The Quantum Theory of Optical Coherence" data-t="Glauber (1963)" data-s="The Quantum Theory of Optical Coherence"><circle class="touche" cx="181.3" cy="125.0" r="14"/><circle class="pt" cx="181.3" cy="125.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Grangier et al. (1986). Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter" data-t="Grangier et al. (1986)" data-s="Experimental Evidence for a Photon Anticorrelation Effect on a Beam Splitter"><circle class="touche" cx="241.7" cy="125.0" r="14"/><circle class="pt" cx="241.7" cy="125.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="ATLAS Collaboration (2017). Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC" data-t="ATLAS Collaboration (2017)" data-s="Evidence for light-by-light scattering in heavy-ion collisions with the ATLAS detector at the LHC"><circle class="touche" cx="323.0" cy="125.0" r="14"/><circle class="pt" cx="323.0" cy="125.0" r="5.5"/></g><line x1="16" y1="200" x2="344" y2="200" class="ln"/><text x="16" y="155"><tspan class="tb">Pilier 3</tspan><tspan class="tq" dx="8">Cadence c et masse comme frein</tspan></text><g class="ref" tabindex="0" role="img" aria-label="Einstein (1911). Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes" data-t="Einstein (1911)" data-s="Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes"><circle class="touche" cx="44.9" cy="185.0" r="14"/><circle class="pt" cx="44.9" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Einstein (1916). Die Grundlage der allgemeinen Relativitätstheorie" data-t="Einstein (1916)" data-s="Die Grundlage der allgemeinen Relativitätstheorie"><circle class="touche" cx="58.0" cy="185.0" r="14"/><circle class="pt" cx="58.0" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dyson et al. (1920). A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field" data-t="Dyson et al. (1920)" data-s="A Determination of the Deflection of Light by the Sun&#x27;s Gravitational Field"><circle class="touche" cx="68.5" cy="172.0" r="14"/><circle class="pt" cx="68.5" cy="172.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Dicke (1957). Gravitation without a Principle of Equivalence" data-t="Dicke (1957)" data-s="Gravitation without a Principle of Equivalence"><circle class="touche" cx="165.6" cy="185.0" r="14"/><circle class="pt" cx="165.6" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Shapiro (1964). Fourth Test of General Relativity" data-t="Shapiro (1964)" data-s="Fourth Test of General Relativity"><circle class="touche" cx="183.9" cy="185.0" r="14"/><circle class="pt" cx="183.9" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Evans et al. (1996). The optical-mechanical analogy in general relativity" data-t="Evans et al. (1996)" data-s="The optical-mechanical analogy in general relativity"><circle class="touche" cx="267.9" cy="185.0" r="14"/><circle class="pt" cx="267.9" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bertotti et al. (2003). A test of general relativity using radio links with the Cassini spacecraft" data-t="Bertotti et al. (2003)" data-s="A test of general relativity using radio links with the Cassini spacecraft"><circle class="touche" cx="286.3" cy="185.0" r="14"/><circle class="pt" cx="286.3" cy="185.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chou et al. (2010). Optical Clocks and Relativity" data-t="Chou et al. (2010)" data-s="Optical Clocks and Relativity"><circle class="touche" cx="304.6" cy="185.0" r="14"/><circle class="pt" cx="304.6" cy="185.0" r="5.5"/></g><line x1="16" y1="286" x2="344" y2="286" class="ln"/><text x="16" y="215"><tspan class="tb">Pilier 4</tspan><tspan class="tq" dx="8">Choix retardé de Wheeler</tspan></text><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1978). The “Past” and the “Delayed-Choice” Double-Slit Experiment" data-t="Wheeler (1978)" data-s="The “Past” and the “Delayed-Choice” Double-Slit Experiment"><circle class="touche" cx="220.7" cy="271.0" r="14"/><circle class="pt" cx="220.7" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Ghirardi et al. (1980). A general argument against superluminal transmission through the quantum mechanical measurement process" data-t="Ghirardi et al. (1980)" data-s="A general argument against superluminal transmission through the quantum mechanical measurement process"><circle class="touche" cx="225.9" cy="258.0" r="14"/><circle class="pt" cx="225.9" cy="258.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1983). Law without Law" data-t="Wheeler (1983)" data-s="Law without Law"><circle class="touche" cx="233.8" cy="271.0" r="14"/><circle class="pt" cx="233.8" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Wheeler (1990). Information, Physics, Quantum: The Search for Links" data-t="Wheeler (1990)" data-s="Information, Physics, Quantum: The Search for Links"><circle class="touche" cx="252.2" cy="271.0" r="14"/><circle class="pt" cx="252.2" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Englert (1996). Fringe Visibility and Which-Way Information: An Inequality" data-t="Englert (1996)" data-s="Fringe Visibility and Which-Way Information: An Inequality"><circle class="touche" cx="267.9" cy="271.0" r="14"/><circle class="pt" cx="267.9" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Rovelli (1996). Relational quantum mechanics" data-t="Rovelli (1996)" data-s="Relational quantum mechanics"><circle class="touche" cx="267.9" cy="258.0" r="14"/><circle class="pt" cx="267.9" cy="258.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Jacques et al. (2007). Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment" data-t="Jacques et al. (2007)" data-s="Experimental Realization of Wheeler&#x27;s Delayed-Choice Gedanken Experiment"><circle class="touche" cx="296.8" cy="271.0" r="14"/><circle class="pt" cx="296.8" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Fuchs et al. (2014). An introduction to QBism with an application to the locality of quantum mechanics" data-t="Fuchs et al. (2014)" data-s="An introduction to QBism with an application to the locality of quantum mechanics"><circle class="touche" cx="315.1" cy="271.0" r="14"/><circle class="pt" cx="315.1" cy="271.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Ma et al. (2016). Delayed-choice gedanken experiments and their realizations" data-t="Ma et al. (2016)" data-s="Delayed-choice gedanken experiments and their realizations"><circle class="touche" cx="320.4" cy="258.0" r="14"/><circle class="pt" cx="320.4" cy="258.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Vedovato et al. (2017). Extending Wheeler&#x27;s delayed-choice experiment to space" data-t="Vedovato et al. (2017)" data-s="Extending Wheeler&#x27;s delayed-choice experiment to space"><circle class="touche" cx="323.0" cy="245.0" r="14"/><circle class="pt" cx="323.0" cy="245.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Chaves et al. (2018). Causal Modeling the Delayed-Choice Experiment" data-t="Chaves et al. (2018)" data-s="Causal Modeling the Delayed-Choice Experiment"><circle class="touche" cx="325.6" cy="232.0" r="14"/><circle class="pt" cx="325.6" cy="232.0" r="5.5"/></g><line x1="16" y1="385" x2="344" y2="385" class="ln"/><text x="16" y="301"><tspan class="tb">Pilier 5</tspan><tspan class="tq" dx="8">Cristallisation de l’information</tspan></text><g class="ref" tabindex="0" role="img" aria-label="von Neumann (1932). Mathematische Grundlagen der Quantenmechanik" data-t="von Neumann (1932)" data-s="Mathematische Grundlagen der Quantenmechanik"><circle class="touche" cx="100.0" cy="370.0" r="14"/><circle class="pt" cx="100.0" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Shannon (1948). A Mathematical Theory of Communication" data-t="Shannon (1948)" data-s="A Mathematical Theory of Communication"><circle class="touche" cx="142.0" cy="370.0" r="14"/><circle class="pt" cx="142.0" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Landauer (1961). Irreversibility and Heat Generation in the Computing Process" data-t="Landauer (1961)" data-s="Irreversibility and Heat Generation in the Computing Process"><circle class="touche" cx="176.1" cy="370.0" r="14"/><circle class="pt" cx="176.1" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Holevo (1973). Bounds for the quantity of information transmitted by a quantum communication channel" data-t="Holevo (1973)" data-s="Bounds for the quantity of information transmitted by a quantum communication channel"><circle class="touche" cx="207.6" cy="370.0" r="14"/><circle class="pt" cx="207.6" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Scully et Drühl (1982). Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics" data-t="Scully et Drühl (1982)" data-s="Quantum eraser: A proposed photon correlation experiment concerning observation and “delayed choice” in quantum mechanics"><circle class="touche" cx="231.2" cy="370.0" r="14"/><circle class="pt" cx="231.2" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Joos et Zeh (1985). The emergence of classical properties through interaction with the environment" data-t="Joos et Zeh (1985)" data-s="The emergence of classical properties through interaction with the environment"><circle class="touche" cx="239.0" cy="357.0" r="14"/><circle class="pt" cx="239.0" cy="357.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brune et al. (1996). Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement" data-t="Brune et al. (1996)" data-s="Observing the Progressive Decoherence of the “Meter” in a Quantum Measurement"><circle class="touche" cx="267.9" cy="370.0" r="14"/><circle class="pt" cx="267.9" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Brukner et Zeilinger (1999). Operationally Invariant Information in Quantum Measurements" data-t="Brukner et Zeilinger (1999)" data-s="Operationally Invariant Information in Quantum Measurements"><circle class="touche" cx="275.8" cy="357.0" r="14"/><circle class="pt" cx="275.8" cy="357.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Kim et al. (2000). Delayed “Choice” Quantum Eraser" data-t="Kim et al. (2000)" data-s="Delayed “Choice” Quantum Eraser"><circle class="touche" cx="278.4" cy="344.0" r="14"/><circle class="pt" cx="278.4" cy="344.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Belloni (2002). The role of silver clusters in photography" data-t="Belloni (2002)" data-s="The role of silver clusters in photography"><circle class="touche" cx="283.6" cy="370.0" r="14"/><circle class="pt" cx="283.6" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Hornberger et al. (2003). Collisional Decoherence Observed in Matter Wave Interferometry" data-t="Hornberger et al. (2003)" data-s="Collisional Decoherence Observed in Matter Wave Interferometry"><circle class="touche" cx="286.3" cy="331.0" r="14"/><circle class="pt" cx="286.3" cy="331.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2003). Decoherence, einselection, and the quantum origins of the classical" data-t="Zurek (2003)" data-s="Decoherence, einselection, and the quantum origins of the classical"><circle class="touche" cx="286.3" cy="318.0" r="14"/><circle class="pt" cx="286.3" cy="318.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Schlosshauer (2004). Decoherence, the measurement problem, and interpretations of quantum mechanics" data-t="Schlosshauer (2004)" data-s="Decoherence, the measurement problem, and interpretations of quantum mechanics"><circle class="touche" cx="288.9" cy="357.0" r="14"/><circle class="pt" cx="288.9" cy="357.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Zurek (2009). Quantum Darwinism" data-t="Zurek (2009)" data-s="Quantum Darwinism"><circle class="touche" cx="302.0" cy="370.0" r="14"/><circle class="pt" cx="302.0" cy="370.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Bérut et al. (2012). Experimental verification of Landauer&#x27;s principle linking information and thermodynamics" data-t="Bérut et al. (2012)" data-s="Experimental verification of Landauer&#x27;s principle linking information and thermodynamics"><circle class="touche" cx="309.9" cy="357.0" r="14"/><circle class="pt" cx="309.9" cy="357.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Allahverdyan et al. (2013). Understanding quantum measurement from the solution of dynamical models" data-t="Allahverdyan et al. (2013)" data-s="Understanding quantum measurement from the solution of dynamical models"><circle class="touche" cx="312.5" cy="344.0" r="14"/><circle class="pt" cx="312.5" cy="344.0" r="5.5"/></g><g class="ref" tabindex="0" role="img" aria-label="Unden et al. (2019). Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers" data-t="Unden et al. (2019)" data-s="Revealing the Emergence of Classicality Using Nitrogen-Vacancy Centers"><circle class="touche" cx="328.3" cy="370.0" r="14"/><circle class="pt" cx="328.3" cy="370.0" r="5.5"/></g></svg></div><div class="bulle" hidden></div></figure>
   <p class="fnote">La liste complète, avec un lien vers chaque source, se trouve dans les <a href="dossier.html#references">références du dossier</a>.</p>
 </section>
 
@@ -551,34 +693,34 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </thead>
 <tbody>
 <tr>
-<td data-th="Intuition, en langage mécanique">1. Géométrie de l'observateur : sur un tableau plat, la diagonale s'allonge et le photon doit revenir à la source</td>
-<td data-th="Équations démontrées">Sur le tableau : 1/v = 1/ẋ + sin θ / c, limite c. Vitesse perçue : 1/v = 1/ẋ + 2 sin θ / c, limite c/2. Jets : v sin θ / (1 − (v/c) cos θ)</td>
+<td data-th="Intuition, en langage mécanique">1. Géométrie de l’observateur : sur un tableau plat, la diagonale s’allonge et le photon doit revenir à la source</td>
+<td data-th="Équations démontrées">Sur le tableau : 1/v = 1/ẋ + sin θ / c, limite c. Vitesse perçue : 1/v = 1/ẋ + 2 sin θ / c, limite c/2. Jets : v sin θ / (1 − (v/c) cos θ)</td>
 <td data-th="Théorèmes et travaux établis">Échos de lumière (Couderc, 1939). Vitesses apparentes supraluminiques (Rees, 1966)</td>
-<td data-th="Correction ou limite">c/2 est une limite. C'est un plancher pour un balayage rapide, comme dans le cas chiffré, et un plafond seulement si Dω ≤ c/2</td>
+<td data-th="Correction ou limite">c/2 est une limite. C’est un plancher pour un balayage rapide, comme dans le cas chiffré, et un plafond seulement si Dω ≤ c/2</td>
 </tr>
 <tr>
-<td data-th="Intuition, en langage mécanique">2. Lumière actuelle, émergente, locale : rien ne voyage de A à B, et l'éclat naît à l'impact</td>
-<td data-th="Équations démontrées">Intervalle Δs² = c²Δt² − Δx² négatif et invariant. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l'instant du détecteur</td>
+<td data-th="Intuition, en langage mécanique">2. Lumière actuelle, émergente, locale : rien ne voyage de A à B, et l’éclat naît à l’impact</td>
+<td data-th="Équations démontrées">Intervalle Δs<sup>2</sup> = c<sup>2</sup>Δt<sup>2</sup> − Δx<sup>2</sup> négatif et invariant. Taux de détection w = η ⟨E(−)E(+)⟩, pris au point et à l’instant du détecteur</td>
 <td data-th="Théorèmes et travaux établis">Causalité relativiste (Einstein, Minkowski). Théorie de la photodétection (Glauber, 1963). « Potentia » (Heisenberg, 1958)</td>
 <td data-th="Correction ou limite">La formule de Glauber est une valeur moyenne. En transit, le champ porte énergie et impulsion : « potentiel » ne veut pas dire « rien »</td>
 </tr>
 <tr>
-<td data-th="Intuition, en langage mécanique">3. Cadence c et masse comme frein : la gravité est une déviation vers la zone lente</td>
-<td data-th="Équations démontrées">Norme de la quadri-vitesse égale à c. Budget : (c dτ/dt)² + v² = c². Horloges : dτ = dt √(1 − 2GM/(rc²)). Indice : n ≈ 1 + 2GM/(rc²). Matière lente : a = −c²∇N. Lumière : déviation 4GM/(bc²)</td>
+<td data-th="Intuition, en langage mécanique">3. Cadence c et masse comme frein : la gravité est une déviation vers la zone lente</td>
+<td data-th="Équations démontrées">Norme de la quadri-vitesse égale à c. Budget : (c dτ/dt)<sup>2</sup> + v<sup>2</sup> = c<sup>2</sup>. Horloges : dτ = dt √(1 − 2GM/(rc<sup>2</sup>)). Indice : n ≈ 1 + 2GM/(rc<sup>2</sup>). Matière lente : a = −c<sup>2</sup>∇N. Lumière : déviation 4GM/(bc<sup>2</sup>)</td>
 <td data-th="Théorèmes et travaux établis">Espace-temps de Minkowski. Solution de Schwarzschild. Principe de Fermat. Effet Shapiro. Analogie optique (Einstein, 1911 ; Dicke, 1957)</td>
-<td data-th="Correction ou limite">La déviation suit +∇n. Un facteur 2 sépare la lumière de la matière lente. Sur place, la lumière va toujours à c</td>
+<td data-th="Correction ou limite">La déviation suit +∇n. Un facteur 2 sépare la lumière de la matière lente. Sur place, la lumière va toujours à c</td>
 </tr>
 <tr>
 <td data-th="Intuition, en langage mécanique">4. Choix retardé : le choix est local et actuel, et le réel est graduellement donné</td>
-<td data-th="Équations démontrées">Superposition des deux routes avec une phase φ. Probabilités (1 ± cos φ)/2. État de tout autre système inchangé par le choix. Visibilité² + distinguabilité² ≤ 1. Précision Δφ ≥ 1/√N</td>
+<td data-th="Équations démontrées">Superposition des deux routes avec une phase φ. Probabilités (1 ± cos φ)/2. État de tout autre système inchangé par le choix. Visibilité<sup>2</sup> + distinguabilité<sup>2</sup> ≤ 1. Précision Δφ ≥ 1/√N</td>
 <td data-th="Théorèmes et travaux établis">Règle de Born. Théorème de non-communication (Ghirardi, Rimini, Weber, 1980). Complémentarité (Bohr ; Englert, 1996). Wheeler, Rovelli, QBisme</td>
-<td data-th="Correction ou limite">Le choix n'exige pas d'intention consciente. Les lectures participatives sont des interprétations, que l'expérience ne départage pas</td>
+<td data-th="Correction ou limite">Le choix n’exige pas d’intention consciente. Les lectures participatives sont des interprétations, que l’expérience ne départage pas</td>
 </tr>
 <tr>
-<td data-th="Intuition, en langage mécanique">5. Cristallisation de l'information : la question est un potentiel, et l'actualisation fige la réponse</td>
-<td data-th="Équations démontrées">Potentiel H = −Σ p log₂ p, borné à 1 bit pour deux routes. Inscription : 2 bits de corrélation quantique, réversibles. Cristallisation : cohérence multipliée par ε à la puissance N, soit exp(−t/τ) ; il reste 1 bit classique, recopié dans l'environnement</td>
+<td data-th="Intuition, en langage mécanique">5. Cristallisation de l’information : la question est un potentiel, et l’actualisation fige la réponse</td>
+<td data-th="Équations démontrées">Potentiel H = −Σ p log₂ p, borné à 1 bit pour deux routes. Inscription : 2 bits de corrélation quantique, réversibles. Cristallisation : cohérence multipliée par ε à la puissance N, soit exp(−t/τ) ; il reste 1 bit classique, recopié dans l’environnement</td>
 <td data-th="Théorèmes et travaux établis">Entropie de Shannon. Borne de Holevo. Schéma de mesure de von Neumann. Décohérence (Zeh, Zurek). Darwinisme quantique (Zurek, 2009). Principe de Landauer (1961)</td>
-<td data-th="Correction ou limite">Inscrire et cristalliser sont deux temps distincts. La décohérence fige la réponse mais ne la choisit pas. L'irréversibilité est pratique, pas de principe</td>
+<td data-th="Correction ou limite">Inscrire et cristalliser sont deux temps distincts. La décohérence fige la réponse mais ne la choisit pas. L’irréversibilité est pratique, pas de principe</td>
 </tr>
 </tbody>
 </table></div>
@@ -590,17 +732,14 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   <span class="eyebrow">Documents</span>
   <h2 id="h-docs">Tout lire, tout télécharger</h2>
   <p>Le <a href="dossier.html">dossier complet</a> réunit sur une seule page les cinq démonstrations, la synthèse et les références.</p>
-  <div class="tablewrap"><table class="data">
-    <thead><tr><th>Document</th><th>En ligne</th><th colspan="3">À télécharger</th></tr></thead>
-    <tbody><tr><td>Dossier mathématique complet</td><td><a href="dossier.html">Lire</a></td><td><a href="dossier-complet.pdf">PDF</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.docx">Word</a></td><td><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.md">Markdown</a></td></tr><tr><td>Article du pilier 1 — L&#x27;ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</td><td><a href="pilier-1/article.html">Lire</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">PDF</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.docx">Word</a></td><td><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.md">Markdown</a></td></tr><tr><td>Article du pilier 2 — On ne voit jamais la lumière passer</td><td><a href="pilier-2/article.html">Lire</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">PDF</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.docx">Word</a></td><td><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.md">Markdown</a></td></tr><tr><td>Article du pilier 3 — Tomber, c&#x27;est suivre la pente du temps</td><td><a href="pilier-3/article.html">Lire</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">PDF</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.docx">Word</a></td><td><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.md">Markdown</a></td></tr><tr><td>Article du pilier 4 — Le choix d&#x27;aujourd&#x27;hui ne réécrit pas le passé</td><td><a href="pilier-4/article.html">Lire</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">PDF</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.docx">Word</a></td><td><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.md">Markdown</a></td></tr><tr><td>Article du pilier 5 — Comment une réponse devient un fait</td><td><a href="pilier-5/article.html">Lire</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">PDF</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.docx">Word</a></td><td><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.md">Markdown</a></td></tr></tbody>
-  </table></div>
+  <ul class="docs"><li><span>Dossier mathématique complet</span><span class="liens"><a href="dossier.html">Lire en ligne</a><a href="dossier-complet.pdf">PDF</a><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.docx">Word</a><a href="documents/Formalisation%20du%20mod%C3%A8le%20%C2%AB%20Actuel%2C%20%C3%89mergent%2C%20Local%20%C2%BB.md">Markdown</a></span></li><li><span>Article du pilier 1 — L’ombre plus rapide que la lumière, vue par celui qui tient les ciseaux</span><span class="liens"><a href="pilier-1/article.html">Lire en ligne</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.pdf">PDF</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.docx">Word</a><a href="documents/L%27ombre%20plus%20rapide%20que%20la%20lumi%C3%A8re%2C%20vue%20par%20celui%20qui%20tient%20les%20ciseaux.md">Markdown</a></span></li><li><span>Article du pilier 2 — On ne voit jamais la lumière passer</span><span class="liens"><a href="pilier-2/article.html">Lire en ligne</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.pdf">PDF</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.docx">Word</a><a href="documents/On%20ne%20voit%20jamais%20la%20lumi%C3%A8re%20passer.md">Markdown</a></span></li><li><span>Article du pilier 3 — Tomber, c’est suivre la pente du temps</span><span class="liens"><a href="pilier-3/article.html">Lire en ligne</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">PDF</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.docx">Word</a><a href="documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.md">Markdown</a></span></li><li><span>Article du pilier 4 — Le choix d’aujourd’hui ne réécrit pas le passé</span><span class="liens"><a href="pilier-4/article.html">Lire en ligne</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">PDF</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.docx">Word</a><a href="documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.md">Markdown</a></span></li><li><span>Article du pilier 5 — Comment une réponse devient un fait</span><span class="liens"><a href="pilier-5/article.html">Lire en ligne</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.pdf">PDF</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.docx">Word</a><a href="documents/Comment%20une%20r%C3%A9ponse%20devient%20un%20fait.md">Markdown</a></span></li></ul>
   <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>
 
 <section aria-labelledby="h-apropos">
   <span class="eyebrow">À propos</span>
   <h2 id="h-apropos">Comment ce site a été fait</h2>
-  <p>Les intuitions sont celles de Sylvain Leduc, qui fait du suivi de projet et s'intéresse à la cosmologie. Leur mise en équations, les articles et ce site ont été réalisés à sa demande avec l'aide d'une intelligence artificielle, Claude, d'Anthropic. Les calculs ont été vérifiés numériquement et les références contrôlées une à une ; les exceptions sont signalées dans le dossier.</p>
+  <p>Les intuitions sont celles de Sylvain Leduc, qui fait du suivi de projet et s’intéresse à la cosmologie. Leur mise en équations, les articles et ce site ont été réalisés à sa demande avec l’aide d’une intelligence artificielle, Claude, d’Anthropic. Les calculs ont été vérifiés numériquement et les références contrôlées une à une ; les exceptions sont signalées dans le dossier.</p>
 </section>
 </main>
 </div></div>
@@ -610,12 +749,15 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </div></footer>
 <script>
 'use strict';
-window.addEventListener('error', function (e) {
-  var b = document.createElement('div');
-  b.className = 'err';
-  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
-  document.body.appendChild(b);
-});
+// en développement seulement : une erreur de script s'affiche à l'écran au lieu de passer inaperçue
+if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+  window.addEventListener('error', function (e) {
+    var b = document.createElement('div');
+    b.className = 'err';
+    b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+    document.body.appendChild(b);
+  });
+}
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const NS = 'http://www.w3.org/2000/svg';
@@ -630,6 +772,7 @@ const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d
 const sig = (x, n = 3) => {
   if (!isFinite(x)) return '—';
   if (x === 0) return '0';
+  x = Number(x.toPrecision(n));                           // on arrondit d'abord : 99,96 s'écrit 100, pas 100,0
   const e = Math.floor(Math.log10(Math.abs(x)));
   const d = clamp(n - 1 - e, 0, 12);
   return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -643,6 +786,10 @@ const sci = (x, n = 2) => {
   if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
   return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
 };
+// grand nombre en toutes lettres : 236 000, 720 millions, 250 milliards
+const grand = x => x < 1e6 ? frNum(Number(x.toPrecision(3)))
+  : x < 1e9 ? sig(x / 1e6) + (x < 1.995e6 ? ' million' : ' millions')
+    : sig(x / 1e9) + (x < 1.995e9 ? ' milliard' : ' milliards');
 // durée en secondes -> texte lisible
 const duree = s => {
   if (s < 1e-12) return sig(s * 1e15) + ' fs';
@@ -650,11 +797,11 @@ const duree = s => {
   if (s < 1e-6) return sig(s * 1e9) + ' ns';
   if (s < 1e-3) return sig(s * 1e6) + ' µs';
   if (s < 1) return sig(s * 1e3) + ' ms';
-  if (s < 60) return sig(s) + ' s';
-  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
-  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
-  if (s < 31557600) return sig(s / 86400) + ' jours';
-  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  if (s < 59.95) return sig(s) + ' s';
+  if (s < 3599.5) { const t = Math.round(s), m = Math.floor(t / 60); return m + ' min ' + (t - 60 * m) + ' s'; }
+  if (s < 86370) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) { const j = s / 86400; return sig(j) + (j < 1.995 ? ' jour' : ' jours'); }
+  if (s < 31557600e6) { const a = s / 31557600; return sig(a) + (a < 1.995 ? ' an' : ' ans'); }
   return sig(s / 31557600e6) + ' millions d’années';
 };
 // générateur pseudo-aléatoire reproductible
@@ -665,15 +812,19 @@ const mulberry = seed => () => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 // espaces insécables dans les textes écrits par le script
-const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+const typo = s => s.replace(/ ([:;?!»%])/g, ' $1').replace(/« /g, '« ').replace(/(\d) (?=[a-zA-Zµé])/g, '$1 ');
 new MutationObserver(ms => ms.forEach(m => {
   const t = m.target;
   if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-// une figure plus large que l'écran défile : on le signale au lecteur
-const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+// une figure plus large que l'écran défile : on le signale au lecteur, et le clavier peut y entrer
+const marquerDefilement = () => $$('.stage').forEach(s => {
+  const oui = s.scrollWidth > s.clientWidth + 4;
+  s.classList.toggle('defile', oui);
+  if (oui) s.setAttribute('tabindex', '0'); else s.removeAttribute('tabindex');
+});
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
 // rail de lecture : la section en cours est marquée pendant le défilement
@@ -690,6 +841,17 @@ window.addEventListener('resize', marquerDefilement);
   let attente = 0;
   window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
   marquer();
+})();
+// pages longues sur petit écran : un bouton ramène au sommaire, qui se replie quand on y choisit une section
+(() => {
+  const bouton = $('.remonter'), plie = $('details.sommaire');
+  if (!bouton) return;
+  const voir = () => { bouton.hidden = window.scrollY < 1200; };
+  window.addEventListener('scroll', voir, { passive: true });
+  voir();
+  if (!plie) return;
+  bouton.addEventListener('click', () => { plie.open = true; });
+  $$('a', plie).forEach(a => a.addEventListener('click', () => { plie.open = false; }));
 })();
 
 // Épures : un dessin animé par pilier, tracé au trait sur le plan bleu.
@@ -817,7 +979,7 @@ window.addEventListener('resize', marquerDefilement);
     disque(g, ex, ey, 3.2 * u, ENCRE);
     if (!petit) {
       mot(g, 'LE MOT, PLUS ANCIEN QUE LES DÉCOUVERTES', lx - 42 * u, y1 - 38 * u, u);
-      mot(g, 'CE QU’ON A DÉCOUVERT : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
+      mot(g, 'CE QU’ON OBSERVE : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
     }
   };
 
@@ -943,7 +1105,7 @@ window.addEventListener('resize', marquerDefilement);
       mot(g, 'POTENTIEL', (0.5 - S.A - 0.04) * W, 0.2 * W, u, 'right');
       trait(g, 0.515 * W, S.YN * W, 0.555 * W, S.YN * W, TRAIT, u);
       mot(g, 'ICI, MAINTENANT', 0.565 * W, S.YN * W, u);
-      mot(g, 'CONSTATS : ' + poses, (0.5 + S.A + 0.04) * W, 0.59 * W, u, 'left', PHOTON);
+      mot(g, 'CONSTATS : ' + poses, 0.965 * W, 0.59 * W, u, 'right', PHOTON);
       mot(g, 'AUCUN GRAIN NE REMONTE', 0.5 * W, 0.712 * W, u, 'center');
     }
     g.restore();
@@ -952,7 +1114,7 @@ window.addEventListener('resize', marquerDefilement);
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
   // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.305, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
       if (len < 0.011) return;
@@ -1055,8 +1217,8 @@ window.addEventListener('resize', marquerDefilement);
 })();
 
 // Accueil : un écran de détection s'expose photon par photon.
-// Chaque point arrive en un lieu et à un instant ; les bandes n'apparaissent qu'avec le nombre.
-// Si l'on apprend par où passe chaque photon, les bandes disparaissent.
+// Chaque point arrive en un lieu et à un instant ; les franges n'apparaissent qu'avec le nombre.
+// Si l'on apprend par où passe chaque photon, les franges disparaissent.
 (function () {
   const plaque = $('.plaque.expo-ecran');
   if (!plaque) return;
@@ -1065,10 +1227,10 @@ window.addEventListener('resize', marquerDefilement);
   const a = A.getContext('2d'), b = B.getContext('2d');
   const MAX = 16000, FIXE = reduceMotion || /^#fi[xg]e/.test(location.hash);
   const pts = new Float32Array(2 * MAX);
-  let n = 0, W = 1, H = 1, dpr = 1, raf = 0, visible = true, queue = 0, route = false, hasard = mulberry(20261117);
+  let n = 0, W = 1, H = 1, dpr = 1, raf = 0, visible = true, queue = 0, route = false, dernier = 0, hasard = mulberry(20261117);
   const TEXTES = [
-    'Chaque point est l’arrivée d’un photon : un lieu, un instant. Aucun ne dessine les bandes. Elles n’apparaissent qu’avec le nombre.',
-    'Un détecteur signale maintenant par où passe chaque photon. Les arrivées restent des points, mais les bandes ont disparu : il ne reste qu’une tache.'
+    'Chaque point est l’arrivée d’un photon : un lieu, un instant. Aucun ne dessine les franges, ces bandes qui n’apparaissent qu’avec le nombre.',
+    'Un détecteur signale maintenant par où passe chaque photon. Les arrivées restent des points, mais les franges ont disparu : il ne reste qu’une tache.'
   ];
 
   // deux chemins qui interfèrent : neuf franges sous une enveloppe. Route connue : l'enveloppe seule.
@@ -1097,20 +1259,23 @@ window.addEventListener('resize', marquerDefilement);
     a.globalCompositeOperation = 'lighter';
     for (let i = 0; i < n; i++) point(a, i, 0.85 * dpr, 0.5);
   };
-  const pas = () => {
+  const pas = ts => {
     raf = 0;
-    if (!visible) return;
+    if (!visible) { dernier = 0; return; }
+    // la cadence suit le temps écoulé, pas le nombre d'images : même durée sur un écran à 60 ou à 120 images par seconde
+    const rythme = dernier ? clamp((ts - dernier) / 16.7, 0.4, 3) : 1;
+    dernier = ts;
     // les éclats des dernières arrivées s'éteignent
     b.globalCompositeOperation = 'destination-out'; b.globalAlpha = 0.16; b.fillRect(0, 0, W, H);
     b.globalCompositeOperation = 'source-over';
     if (n < MAX) {
       // d'abord un par un, puis de plus en plus vite
-      const k = Math.min(MAX - n, Math.max(1, Math.round(n / 90)), 44);
+      const k = Math.min(MAX - n, Math.max(1, Math.round(rythme * Math.min(44, n / 90))));
       for (let j = 0; j < k; j++) { tirer(); point(a, n - 1, 0.85 * dpr, 0.5); point(b, n - 1, 2.6 * dpr, 0.9); }
       compter();
       queue = 40;
     } else queue--;
-    if (n < MAX || queue > 0) raf = requestAnimationFrame(pas);
+    if (n < MAX || queue > 0) raf = requestAnimationFrame(pas); else dernier = 0;
   };
   const lancer = () => { if (!raf && !FIXE && (n < MAX || queue > 0)) raf = requestAnimationFrame(pas); };
   const remplir = () => { while (n < MAX) tirer(); };
@@ -1134,7 +1299,7 @@ window.addEventListener('resize', marquerDefilement);
     new ResizeObserver(() => { cancelAnimationFrame(attente); attente = requestAnimationFrame(tailler); }).observe(plaque);
   }
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) lancer(); }).observe(plaque);
+    new IntersectionObserver(es => { visible = es[es.length - 1].isIntersecting; if (visible) lancer(); }).observe(plaque);
   }
   if (bouton) bouton.addEventListener('click', recommencer);
   if (libre) libre.addEventListener('click', () => choisir(false));
@@ -1143,14 +1308,14 @@ window.addEventListener('resize', marquerDefilement);
 })();
 
 // Frise des travaux : une bulle nomme la référence survolée, touchée ou atteinte au clavier.
-(function () {
-  const frise = $('.frise');
-  if (!frise) return;
-  const fig = frise.closest('.fig'), bulle = $('.bulle', fig);
+// La frise existe en deux mises en page (large et étroite) ; une seule est affichée à la fois.
+$$('.frise').forEach(frise => {
+  const fig = frise.closest('.fig'), bulle = $('.bulle', fig), refs = $$('.ref', frise);
   const montrer = g => {
     bulle.textContent = '';
     const titre = document.createElement('b'); titre.textContent = g.dataset.t;
     bulle.appendChild(titre); bulle.appendChild(document.createTextNode(g.dataset.s));
+    bulle.style.left = bulle.style.top = '0';              // remise à zéro avant la mesure : sa largeur ne dépend plus de l'ancienne position
     bulle.hidden = false;
     const r = $('.pt', g).getBoundingClientRect(), f = fig.getBoundingClientRect();
     const x = clamp(r.left + r.width / 2 - f.left - bulle.offsetWidth / 2, 6, Math.max(6, f.width - bulle.offsetWidth - 6));
@@ -1159,14 +1324,24 @@ window.addEventListener('resize', marquerDefilement);
     bulle.style.left = x + 'px'; bulle.style.top = y + 'px';
   };
   const cacher = () => { bulle.hidden = true; };
-  $$('.ref', frise).forEach(g => {
+  refs.forEach((g, i) => {
+    // au clavier : un seul arrêt de tabulation, puis les flèches passent d'un point au suivant
+    g.setAttribute('tabindex', i ? '-1' : '0');
+    g.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+      if (d && refs[i + d]) { e.preventDefault(); refs[i + d].focus(); }
+      if (e.key === 'Escape') cacher();
+    });
     g.addEventListener('pointerenter', () => montrer(g));
-    g.addEventListener('pointerleave', cacher);
+    g.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') cacher(); });
     g.addEventListener('focus', () => montrer(g));
     g.addEventListener('blur', cacher);
     g.addEventListener('click', () => montrer(g));
   });
-})();
+  const scene = $('.stage', fig);
+  if (scene) scene.addEventListener('scroll', cacher, { passive: true });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest || !e.target.closest('.frise .ref')) cacher(); });
+});
 
 </script>
 </body>

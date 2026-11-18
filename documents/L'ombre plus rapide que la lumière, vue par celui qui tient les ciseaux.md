@@ -2,7 +2,7 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-L'ombre d'une paire de ciseaux peut bel et bien courir plus vite que la lumière. Mais sur un écran plat, elle retombe toujours vers la vitesse de la lumière, et celui qui tient les ciseaux la voit ralentir jusqu'à la moitié de cette vitesse. Tout tient à deux détails que le récit habituel oublie : la forme de l'écran et le trajet retour de la lumière.
+L'ombre d'une paire de ciseaux peut bel et bien courir plus vite que la lumière. Mais sur un écran plat, le « tableau » de l'intuition, elle retombe toujours vers la vitesse de la lumière, et celui qui tient les ciseaux la voit ralentir vers la moitié de cette vitesse. Tout tient à deux détails que le récit habituel oublie : la forme de l'écran et le trajet retour de la lumière.
 
 ## L'histoire qu'on raconte
 
@@ -28,16 +28,16 @@ Sa vitesse retombe donc de 524 fois la vitesse de la lumière vers une fois, san
 
 ## Second oubli : la lumière doit revenir
 
-Celui qui ferme les ciseaux ne voit rien tant que la lumière n'est pas revenue de l'écran jusqu'à son œil. Le délai de trajet est doublé : loin du centre, chaque kilomètre d'écran coûte presque deux kilomètres de parcours. L'intuition y voit le décalage de deux miroirs face à face, où chaque reflet plus lointain est plus ancien. L'image est juste : ici, chaque point plus éloigné du centre répond plus tard.
+Celui qui ferme les ciseaux, l'opérateur, ne voit rien tant que la lumière n'est pas revenue de l'écran jusqu'à son œil. Le délai de trajet est doublé : loin du centre, chaque kilomètre d'écran coûte presque deux kilomètres de parcours. L'intuition y voit le décalage de deux miroirs face à face, où chaque reflet plus lointain est plus ancien. L'image est juste : ici, chaque point plus éloigné du centre répond plus tard.
 
-L'ombre qu'il voit ne tend donc pas vers la vitesse de la lumière, mais vers sa moitié : 150 000 kilomètres par seconde. Elle n'y arrive pas par le bas. Elle démarre à 524 fois la vitesse de la lumière, passe sous cette vitesse à 58 millions de kilomètres du centre, puis ralentit vers la moitié sans jamais l'atteindre.
+L'ombre qu'il voit ne tend donc pas vers la vitesse de la lumière, mais vers sa moitié : 150 000 kilomètres par seconde. Elle n'y arrive pas par le bas. Elle démarre à 524 fois la vitesse de la lumière, passe sous cette vitesse vers 57,6 millions de kilomètres du centre, puis ralentit vers la moitié sans jamais l'atteindre.
 
 | Distance au centre de l'écran | Vitesse réelle de l'ombre (en c) | Vitesse vue par l'opérateur (en c) | L'opérateur la voit après |
 | --- | --- | --- | --- |
 | Au centre | 524 | 524 | 11 min 7 s |
-| 10 millions de km | 9,9 | 5,0 | 11 min 11 s |
-| 100 millions de km | 1,41 | 0,71 | 15 min 44 s |
-| 1 milliard de km | 1,005 | 0,5025 | 1 h 52 min |
+| 10 millions de km | 9,86 | 4,98 | 11 min 11 s |
+| 100 millions de km | 1,412 | 0,707 | 15 min 44 s |
+| 1 milliard de km | 1,0050 | 0,5025 | 1 h 52 min |
 | 1 million d'années-lumière | 1 | 0,5 | 2 millions d'années |
 
 La lettre c désigne la vitesse de la lumière, soit 299 792 kilomètres par seconde.
@@ -52,7 +52,7 @@ Toute la lumière a quitté la source en une seconde. Le spectacle, lui, dure de
 
 ## Le même jeu de délais, dans le ciel
 
-Les astronomes connaissent bien ce jeu de délais. En 1901, des auréoles ont semblé s'étendre plus vite que la lumière autour d'une étoile qui venait d'exploser, la Nova Persei. Paul Couderc en a donné l'explication en 1939 : ce sont des échos, car l'éclair de l'explosion éclaire des poussières de plus en plus éloignées.
+Les astronomes connaissent bien ce jeu de délais. En 1901, des auréoles ont semblé s'étendre plus vite que la lumière autour d'une étoile qui venait d'exploser, la Nova Persei. Paul Couderc en a donné l'explication en 1939 : ce sont des échos, car la lueur de l'explosion atteint des poussières de plus en plus éloignées.
 
 Les jets de matière des quasars font l'inverse des ciseaux. Un jet lancé presque vers nous court derrière sa propre lumière, et le trajet raccourcit au lieu de s'allonger. La vitesse apparente est alors amplifiée : un jet à 99 % de la vitesse de la lumière, vu sous un angle de 8 degrés, semble avancer à 7 fois cette vitesse.
 

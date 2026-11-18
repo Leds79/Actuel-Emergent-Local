@@ -1,5 +1,5 @@
 <div class="head">
-  <h1>Le choix qui ne réécrit pas le passé</h1>
+  <h1>Le choix d'aujourd'hui ne réécrit pas le passé</h1>
   <p class="lead">Dans l'expérience du choix retardé, on décide au dernier moment comment mesurer un photon parti il y a des milliards d'années. Ce choix ne change rien au passé : il fixe seulement la question posée. Et entre « une route » et « deux routes », tous les intermédiaires existent.</p>
 </div>
 
@@ -14,6 +14,7 @@
       <div class="ctl">
         <label for="p4-d">Information gardée sur la route <output id="p4-do" for="p4-d"></output></label>
         <input type="range" id="p4-d" min="0" max="100" step="1" value="0">
+        <div class="bouts" aria-hidden="true"><span>route inconnue</span><span>route connue</span></div>
       </div>
       <div class="chips" id="p4-add" role="group" aria-label="Envoyer des photons">
         <button class="chip" type="button" data-add="10">+ 10 photons</button>
@@ -25,15 +26,15 @@
         <dt>Photons détectés</dt><dd id="p4-n"></dd>
         <dt>Contraste des franges</dt><dd id="p4-v"></dd>
       </dl>
-      <svg viewBox="0 0 240 206" role="img" aria-label="Plus l'information de route est grande, plus le contraste des franges est faible" style="width:100%;max-width:230px;height:auto">
+      <svg viewBox="0 0 240 206" role="img" aria-label="Plus l'information sur la route est grande, plus le contraste des franges est faible" style="width:100%;max-width:230px;height:auto">
         <line x1="46" y1="170" x2="212" y2="170" class="ln"/>
         <line x1="46" y1="170" x2="46" y2="6" class="ln"/>
         <path d="M46 10A160 160 0 0 1 206 170" class="geo"/>
         <circle id="p4-pt" cx="46" cy="10" r="6.5" class="f-ray ring"/>
-        <text x="126" y="194" text-anchor="middle" class="tm">information de route</text>
+        <text x="126" y="194" text-anchor="middle" class="tm">information sur la route</text>
         <text x="18" y="94" text-anchor="middle" class="tm" transform="rotate(-90 18 94)">contraste</text>
       </svg>
-      <p class="state" id="p4-state"></p>
+      <p class="state" id="p4-state" role="status"></p>
     </div>
   </div>
   <p class="figcap">En haut, chaque point est un photon détecté ; en bas, le décompte par position. Un photon seul ne montre rien : la figure n'apparaît qu'en accumulant les clics.</p>
@@ -43,7 +44,9 @@
   <span class="eyebrow">Figure interactive</span>
   <h2 id="p4-h-choice">Le choix de la mesure décide de la question, pas du passé</h2>
   <div class="fig">
-    <div class="stage plain" style="padding:1.6rem 1.3rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem">
+    <div class="stage plain question">
+      <span class="eyebrow">Question posée au photon</span>
+      <p class="demande" id="p4-q"></p>
       <span class="eyebrow">Probabilité de chaque réponse</span>
       <div class="bars">
         <div class="bar"><span id="p4-l1">Gauche</span><div class="track"><i id="p4-b1"></i></div><span class="v" id="p4-v1"></span></div>
@@ -59,7 +62,7 @@
         <label for="p4-phi">Décalage entre les deux routes <output id="p4-phio" for="p4-phi"></output></label>
         <input type="range" id="p4-phi" min="0" max="360" step="1" value="60">
       </div>
-      <p class="state" id="p4-cstate"></p>
+      <p class="state" id="p4-cstate" role="status"></p>
     </div>
   </div>
   <p class="figcap">Les deux mesures sont incompatibles : aucun appareil ne répond aux deux questions à la fois. Avant la mesure, l'état du photon est le même quel que soit le choix à venir.</p>
@@ -70,20 +73,20 @@
     <span class="eyebrow">Formules</span>
     <h2 id="p4-h-f">Trois relations suffisent</h2>
     <div class="formulas">
-      <div class="formula">P<span class="up">(±) =</span> <span class="frac"><span><span class="up">1 ± cos</span> φ</span><span class="up">2</span></span></div>
-      <div class="formula">V² <span class="up">+</span> D² <span class="up">≤ 1</span></div>
-      <div class="formula">Δφ <span class="up">≥</span> <span class="frac"><span class="up">1</span><span><span class="up">√</span>N</span></span></div>
+      <div class="tex">P(\pm) = \frac{1 \pm \cos\varphi}{2}</div>
+      <div class="tex">V^2 + D^2 \le 1</div>
+      <div class="tex">\Delta\varphi \ge \frac{1}{\sqrt{N}}</div>
     </div>
-    <p class="fnote">φ est le décalage entre les deux routes. V est le contraste des franges et D la qualité de l'information de route (Englert, 1996). N est le nombre de photons détectés : pour être dix fois plus précis, il en faut cent fois plus.</p>
+    <p class="fnote">φ est le décalage entre les deux routes. V est le contraste des franges et D la part d'information disponible sur la route (Englert, 1996). N est le nombre de photons détectés : pour être dix fois plus précis, il en faut cent fois plus.</p>
   </section>
-  <section aria-label="Lecture et correction">
+  <section aria-label="Lecture et nuances">
     <div class="lecture">
       <span class="eyebrow">Lecture mécanique</span>
       <p>L'information arrive par constats successifs, locaux et datés, comme dans un suivi de chantier. Aucun constat ne réécrit les précédents.</p>
     </div>
     <div class="correction">
-      <span class="eyebrow">Corrections apportées</span>
-      <p>Le choix n'exige pas d'intention consciente : en 2007, une machine l'a tiré au hasard, et les résultats sont les mêmes.</p>
+      <span class="eyebrow">Nuances apportées</span>
+      <p>Le choix n'exige pas d'intention consciente : en 2007, une machine l'a tiré au hasard, et les résultats sont ceux que prévoit le calcul.</p>
       <p>Dire que le réel « participe » est une interprétation. D'autres lectures donnent les mêmes prédictions, et l'expérience ne les départage pas.</p>
     </div>
   </section>
@@ -93,7 +96,7 @@
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
     <div class="stat"><b>48 m</b><span>longueur de l'interféromètre de l'expérience de 2007</span></div>
-    <div class="stat"><b>3 500 km</b><span>distance atteinte par la version satellite de 2017</span></div>
+    <div class="stat"><b>3 500 km</b><span>trajet aller-retour des photons dans la version satellite de 2017</span></div>
     <div class="stat"><b>1 bit</b><span>au plus par photon détecté</span></div>
     <div class="stat"><b>× 100</b><span>photons nécessaires pour une précision dix fois meilleure</span></div>
   </div>
@@ -101,35 +104,49 @@
 </section>
 <!--SCRIPT-->
 (function () {
-  // --- franges photon par photon
+  // --- franges photon par photon ; la toile suit la taille affichée, pour rester nette sur tous les écrans
   const cv = $('#p4-cv'), ctx = cv.getContext('2d'), dS = $('#p4-d'), pt = $('#p4-pt');
-  let N = 300;
+  let N = 300, W = 0, H = 0, dpr = 1;
   function draw() {
-    const W = cv.width, H = cv.height, Dk = Number(dS.value) / 100, V = Math.sqrt(1 - Dk * Dk);
-    const top = Math.round(H * 0.66), base = H - 30, M = 24, BINS = 66, K = 6;
+    const large = cv.clientWidth || 660, d = Math.min(2, window.devicePixelRatio || 1);
+    if (large !== W || d !== dpr) {
+      W = large; H = Math.round(W * 0.727); dpr = d;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    const rnd = mulberry(11), bins = new Array(BINS).fill(0);
+    const Dk = Number(dS.value) / 100, V = Math.sqrt(1 - Dk * Dk);
+    const haut = 24, top = Math.round(H * 0.63), base = H - 10, M = 10, BINS = 66, K = 6;
+    const rnd = mulberry(11), bins = new Array(BINS).fill(0), r = N <= 30 ? 4.2 : N <= 300 ? 2.6 : N <= 2000 ? 2 : 1.6;
     ctx.fillStyle = css('--ray');
     for (let i = 0; i < N; i++) {
       let xx = 0;
       for (let g = 0; g < 400; g++) { xx = rnd(); if (rnd() < (1 + V * Math.cos(2 * Math.PI * K * xx)) / 2) break; }
       const yy = rnd();
       bins[Math.min(BINS - 1, Math.floor(xx * BINS))]++;
-      ctx.beginPath(); ctx.arc(M + xx * (W - 2 * M), 16 + yy * (top - 32), 3.4, 0, 6.2832); ctx.fill();
+      ctx.beginPath(); ctx.arc(M + xx * (W - 2 * M), haut + 6 + yy * (top - haut - 16), r, 0, 6.2832); ctx.fill();
     }
     const mx = Math.max(1, Math.max.apply(null, bins)), bw = (W - 2 * M) / BINS;
     ctx.fillStyle = css('--geo');
-    for (let b = 0; b < BINS; b++) { const hh = bins[b] / mx * (base - top - 22); ctx.fillRect(M + b * bw + 1.5, base - hh, bw - 3, hh); }
-    ctx.strokeStyle = css('--axis'); ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(M, base + 1); ctx.lineTo(W - M, base + 1); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(M, top); ctx.lineTo(W - M, top); ctx.stroke();
+    for (let b = 0; b < BINS; b++) { const hh = bins[b] / mx * (base - top - 30); ctx.fillRect(M + b * bw + 0.75, base - hh, bw - 1.5, hh); }
+    ctx.strokeStyle = css('--axis'); ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(M, base + 0.5); ctx.lineTo(W - M, base + 0.5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(M, top + 0.5); ctx.lineTo(W - M, top + 0.5); ctx.stroke();
+    ctx.fillStyle = css('--ink-3'); ctx.font = '500 10px ' + css('--mono'); ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    ctx.fillText('IMPACTS SUR L’ÉCRAN', M, 11);
+    ctx.fillText('DÉCOMPTE PAR POSITION', M, top + 14);
+    if (N === 0) {
+      ctx.fillStyle = css('--ink-2'); ctx.font = '400 ' + (W < 420 ? 13 : 15) + 'px ' + css('--sans'); ctx.textAlign = 'center';
+      ctx.fillText('Envoyez des photons avec les boutons « + »', W / 2, (haut + top) / 2);
+    }
     $('#p4-do').textContent = Math.round(Dk * 100) + ' %';
+    dS.setAttribute('aria-valuetext', Math.round(Dk * 100) + ' %');
     $('#p4-n').textContent = frNum(N);
     $('#p4-v').textContent = Math.round(V * 100) + ' %';
     set(pt, { cx: (46 + 160 * Dk).toFixed(1), cy: (170 - 160 * V).toFixed(1) });
     $('#p4-state').textContent = N === 0 ? 'Aucun photon détecté : rien n’est encore connu.'
-      : V > 0.9 ? 'La route est inconnue : les franges apparaissent, clic après clic.'
-        : V > 0.2 ? 'Une partie de l’information de route existe : les franges sont atténuées.'
+      : Dk === 0 ? 'La route est inconnue : les franges apparaissent, clic après clic.'
+        : Dk < 1 ? 'Une partie de l’information sur la route est gardée : le contraste des franges tombe à ' + Math.round(V * 100) + ' %.'
           : 'La route est connue : les franges ont disparu.';
   }
   dS.addEventListener('input', draw);
@@ -140,6 +157,8 @@
     const mq = window.matchMedia('(prefers-color-scheme: dark)');
     if (mq.addEventListener) mq.addEventListener('change', draw);
   }
+  if ('ResizeObserver' in window) new ResizeObserver(draw).observe(cv.parentNode); else window.addEventListener('resize', draw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
   draw();
 
   // --- choix de la mesure
@@ -148,6 +167,7 @@
   function choice() {
     const f = Number(phi.value) * Math.PI / 180;
     const p1 = mode === 'route' ? 0.5 : (1 + Math.cos(f)) / 2, p2 = 1 - p1;
+    $('#p4-q').textContent = mode === 'route' ? 'Par quelle route est-il passé ?' : 'Par quelle sortie de l’interféromètre ressort-il ?';
     $('#p4-l1').textContent = mode === 'route' ? 'Gauche' : 'Sortie +';
     $('#p4-l2').textContent = mode === 'route' ? 'Droite' : 'Sortie −';
     $('#p4-b1').style.width = (p1 * 100).toFixed(1) + '%';
@@ -155,6 +175,7 @@
     $('#p4-v1').textContent = Math.round(p1 * 100) + ' %';
     $('#p4-v2').textContent = Math.round(p2 * 100) + ' %';
     $('#p4-phio').textContent = phi.value + '°';
+    phi.setAttribute('aria-valuetext', phi.value + ' degrés');
     $('#p4-cstate').textContent = mode === 'route'
       ? 'Le décalage n’a aucun effet sur le résultat : cette mesure n’apprend rien sur lui.'
       : 'Tout dépend du décalage : cette mesure n’apprend rien sur la route.';

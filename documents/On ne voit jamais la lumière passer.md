@@ -8,7 +8,7 @@ Un faisceau de lumière qui traverse le vide est invisible de côté : on ne voi
 
 Dans une salle de spectacle, les faisceaux des projecteurs se dessinent dans l'air. Ce qu'on voit n'est pas la lumière en route. Ce sont des gouttelettes de fumée, éclairées au passage, qui renvoient un peu de lumière vers chaque spectateur.
 
-Sans fumée ni poussière, le faisceau disparaît. Un pointeur laser ordinaire, dans un air propre, ne montre guère qu'un point sur le mur. Dans le vide de l'espace, il ne montrerait rien du tout, quoi qu'en disent les films.
+Sans fumée ni poussière, le faisceau disparaît. Un pointeur laser ordinaire, dans un air propre, ne montre guère qu'un point sur le mur. Dans le vide de l'espace, son faisceau ne se verrait pas du tout, quoi qu'en disent les films.
 
 Le ciel nocturne en donne la preuve chaque soir. Peu après le coucher du Soleil, on voit passer des satellites, encore en plein soleil à quelques centaines de kilomètres d'altitude. La lumière qui les éclaire traverse le ciel au-dessus de nos têtes, et ce ciel est pourtant noir.
 
@@ -16,7 +16,7 @@ Le ciel nocturne en donne la preuve chaque soir. Peu après le coucher du Soleil
 
 L'œil est un détecteur. Il ne signale que la lumière qui entre par la pupille et que la rétine absorbe. Une lumière qui passe à côté ne laisse aucune trace en lui.
 
-Quand on dit « voir un objet », on reçoit en fait de la lumière que cet objet a renvoyée. On ne voit donc pas la lumière : on voit avec elle. Et ce qu'on voit, c'est toujours de la matière éclairée. En chemin, la lumière elle-même est transparente comme l'eau.
+Quand on dit « voir un objet », on reçoit en fait de la lumière que cet objet a renvoyée. On ne voit donc pas la lumière : on voit avec elle. Et ce qu'on voit, c'est toujours de la matière, éclairée ou lumineuse. En chemin, la lumière elle-même est transparente comme l'eau.
 
 ## Rien ne court le long de l'écran
 
@@ -24,11 +24,11 @@ Balayez un mur avec un pointeur laser : une tache semble glisser d'un bout à l'
 
 &#91;embedded content: éventail depuis la source · chaîne illusoire le long de l'écran\]
 
-À gauche, ce qui se passe : trois envois séparés, partis de la source. À droite, ce qu'on croit voir : une tache qui passerait d'un point au suivant.
+Le premier schéma montre ce qui se passe : trois envois séparés, partis de la source. Le second montre ce qu'on croit voir : une tache qui passerait d'un point au suivant.
 
 Le test est simple. Posez la main sur le mur, au milieu du trajet : la tache réapparaît de l'autre côté, car la lumière qui arrive en B n'est jamais passée par A. En langage de chantier, A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne.
 
-Sur un écran assez lointain, la tache peut même aller plus vite que la lumière. La relativité ajoute alors un fait étonnant : deux observateurs en mouvement l'un par rapport à l'autre ne s'accordent plus sur l'ordre des impacts. Pour l'un, A précède B ; pour l'autre, B précède A.
+Sur un écran assez lointain, la tache peut même aller plus vite que la lumière. La relativité ajoute alors un fait étonnant : l'ordre des impacts dépend de l'observateur. Pour l'un, A précède B ; pour un autre, qui file assez vite le long de l'écran, B précède A.
 
 Or une cause précède son effet pour tout le monde. Aucun des deux impacts ne peut donc être la cause de l'autre.
 

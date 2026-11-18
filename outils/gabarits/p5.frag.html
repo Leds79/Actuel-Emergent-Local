@@ -7,46 +7,32 @@
   <span class="eyebrow">Figure interactive</span>
   <h2 id="p5-h-st">Tant qu'elle n'est pas cristallisée, la réponse reste effaçable</h2>
   <div class="fig">
-    <div class="stage">
-      <svg viewBox="0 0 660 232" role="img" aria-label="Trois temps : la question, l'inscription de la réponse, puis sa cristallisation. Une flèche de retour relie l'inscription à la question">
-        <defs>
-          <marker id="ar-fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ink3"/></marker>
-        </defs>
-        <g class="ln" style="stroke:var(--ink-3)">
-          <path d="M205 102H233" marker-end="url(#ar-fl)"/>
-          <path d="M425 102H453" marker-end="url(#ar-fl)"/>
-          <path id="s-loop" d="M330 140V186H110V142" marker-end="url(#ar-fl)"/>
-        </g>
-        <rect id="s-q" x="15" y="64" width="190" height="76" class="box"/>
-        <text x="110" y="90" text-anchor="middle" class="tb">Question</text>
-        <text x="110" y="110" text-anchor="middle" class="tq">des réponses possibles</text>
-        <text x="110" y="126" text-anchor="middle" class="tq">valeur : 1 bit au plus</text>
-        <rect id="s-i" x="235" y="64" width="190" height="76" class="box"/>
-        <text x="330" y="90" text-anchor="middle" class="tb">Inscription</text>
-        <text x="330" y="110" text-anchor="middle" class="tq">au crayon</text>
-        <text x="330" y="126" text-anchor="middle" class="tq">encore effaçable</text>
-        <rect id="s-c" x="455" y="64" width="190" height="76" class="box"/>
-        <text x="550" y="90" text-anchor="middle" class="tb">Cristallisation</text>
-        <text x="550" y="110" text-anchor="middle" class="tq">gravée en copies multiples</text>
-        <text x="550" y="126" text-anchor="middle" class="tq">définitive en pratique</text>
-        <text x="220" y="54" text-anchor="middle" class="tm">détecteur</text>
-        <text x="440" y="54" text-anchor="middle" class="tm">environnement</text>
-        <text x="220" y="206" text-anchor="middle" class="tq">gomme quantique : la réponse s'efface</text>
-        <text x="550" y="166" text-anchor="middle" class="tq">retour impossible en pratique</text>
-      </svg>
+    <div class="stage plain temps">
+      <ol class="etapes" aria-label="Les trois temps de la mesure">
+        <li class="etape" id="s-q"><b>Question</b><span>des réponses possibles</span><span>valeur : 1 bit au plus</span></li>
+        <li class="passage" aria-hidden="true"><i>détecteur</i><svg viewBox="0 0 60 10"><path d="M0 5H52" class="ln" style="stroke:var(--ink-3)"/><path d="M50 1L59 5L50 9z" class="f-ink3"/></svg></li>
+        <li class="etape" id="s-i"><b>Inscription</b><span>au crayon</span><span>encore effaçable</span></li>
+        <li class="passage" aria-hidden="true"><i>environnement</i><svg viewBox="0 0 60 10"><path d="M0 5H52" class="ln" style="stroke:var(--ink-3)"/><path d="M50 1L59 5L50 9z" class="f-ink3"/></svg></li>
+        <li class="etape" id="s-c"><b>Cristallisation</b><span>gravée en copies multiples</span><span>définitive en pratique</span></li>
+      </ol>
+      <div class="retours">
+        <p class="gomme" id="s-loop"><span class="court">gomme quantique : la réponse s'efface</span><span class="long">↺ Tant que la réponse est au crayon, une gomme quantique peut l'effacer : on revient à la question.</span></p>
+        <p class="jamais"><span class="court">retour impossible en pratique</span><span class="long">✕ Après la cristallisation, le retour est impossible en pratique.</span></p>
+      </div>
     </div>
     <div class="panel">
       <div class="ctl">
         <label for="p5-t">Temps écoulé <output id="p5-to" for="p5-t"></output></label>
         <input type="range" id="p5-t" min="0" max="120" step="1" value="25">
+        <div class="bouts" aria-hidden="true"><span>avant la détection</span><span>une seconde</span></div>
       </div>
       <div class="meter"><div class="lab"><span>Possibilité d'interférer encore</span><b id="p5-coh"></b></div><div class="track"><i id="p5-cohb"></i></div></div>
       <div class="meter"><div class="lab"><span>Copies dans l'environnement</span><b id="p5-cop"></b></div><div class="track"><i id="p5-copb" class="ray"></i></div></div>
       <div class="chips"><button class="chip" type="button" id="p5-erase">Effacer la réponse</button></div>
-      <p class="state" id="p5-state"></p>
+      <p class="state" id="p5-state" role="status"></p>
     </div>
   </div>
-  <p class="figcap">Exemple chiffré : une mémoire d'un centimètre carré en plein jour, que chaque photon distingue très mal. La barre des copies est en échelle logarithmique. Une picoseconde (ps) vaut un millième de milliardième de seconde.</p>
+  <p class="figcap">Exemple chiffré : une mémoire d'un centimètre carré en plein jour, dont chaque photon distingue très mal les deux réponses. La barre des copies est en échelle logarithmique. Les unités de temps vont de mille en mille : femtoseconde (fs), picoseconde (ps), nanoseconde (ns), microseconde (µs), milliseconde (ms). Une picoseconde vaut un millième de milliardième de seconde.</p>
 </section>
 
 <section aria-labelledby="p5-h-h">
@@ -54,7 +40,7 @@
   <h2 id="p5-h-h">Une question vaut d'autant plus que sa réponse est incertaine</h2>
   <div class="fig">
     <div class="stage">
-      <svg class="fit" viewBox="0 0 480 300" role="img" aria-label="Valeur d'une question en bits selon les chances de sa première réponse : maximale, un bit, quand les deux réponses sont également probables" style="max-width:600px;margin:0 auto">
+      <svg class="adapte" viewBox="0 0 480 300" role="img" aria-label="Valeur d'une question en bits selon les chances de sa première réponse : maximale, un bit, quand les deux réponses sont également probables">
         <line x1="64" y1="250" x2="452" y2="250" class="ln"/>
         <line x1="64" y1="250" x2="64" y2="30" class="ln"/>
         <line x1="64" y1="40" x2="444" y2="40" class="gr"/>
@@ -67,8 +53,8 @@
         <text x="64" y="268" text-anchor="middle" class="tm">0</text>
         <text x="254" y="268" text-anchor="middle" class="tm">1 sur 2</text>
         <text x="444" y="268" text-anchor="middle" class="tm">1</text>
-        <text x="254" y="290" text-anchor="middle" class="tq">chances de la première réponse</text>
-        <text x="72" y="22" class="tq">valeur de la question</text>
+        <text x="254" y="292" text-anchor="middle" class="tq">chances de la première réponse</text>
+        <text x="72" y="20" class="tq">valeur de la question</text>
       </svg>
     </div>
     <div class="panel">
@@ -82,10 +68,10 @@
         <button class="chip" type="button" data-p="1" aria-pressed="false">Réponse certaine</button>
       </div>
       <dl class="ro"><dt>Valeur de la question</dt><dd id="p5-hval"></dd></dl>
-      <p class="state" id="p5-hstate"></p>
+      <p class="state" id="p5-hstate" role="status"></p>
     </div>
   </div>
-  <p class="figcap">Le stock est limité : un photon qui a le choix entre deux routes ne livre jamais plus d'un bit. Poser une autre question ne l'augmente pas, elle le redistribue.</p>
+  <p class="figcap">Le stock est limité : un photon qui dispose de deux routes ne livre jamais plus d'un bit. Poser une autre question ne l'augmente pas : cela le redistribue.</p>
 </section>
 
 <div class="cols">
@@ -93,8 +79,8 @@
     <span class="eyebrow">Formules</span>
     <h2 id="p5-h-f">Un potentiel en bits, une extinction exponentielle</h2>
     <div class="formulas">
-      <div class="formula">H <span class="up">= −</span> <span class="up">Σ</span> p <span class="up">log₂</span> p</div>
-      <div class="formula"><span class="up">cohérence =</span><span>e<sup>−t/τ</sup></span></div>
+      <div class="tex">H = -\sum p \,\log_2 p</div>
+      <div class="tex">\text{cohérence} = e^{-t/\tau}</div>
     </div>
     <p class="fnote">H est la valeur d'une question et p la chance de chaque réponse. τ est le temps que met l'environnement à emporter une copie de la réponse : quelques millièmes de milliardième de seconde dans l'exemple de la figure.</p>
   </section>
@@ -118,7 +104,7 @@
     <table class="data">
       <thead><tr><th>Situation</th><th>Résultat</th><th>Source</th></tr></thead>
       <tbody>
-        <tr><td>Grain de poussière de 10 micromètres, au soleil</td><td>toute interférence éteinte en un cent-milliardième de seconde</td><td>Joos et Zeh, 1985</td></tr>
+        <tr><td>Grain de poussière de 10 micromètres au soleil, entre deux positions distantes de 0,1 micromètre</td><td>interférences éteintes en un cent-milliardième de seconde environ</td><td>Joos et Zeh, 1985</td></tr>
         <tr><td>Le même grain, dans le vide interstellaire</td><td>moins de trois heures</td><td>Joos et Zeh, 1985</td></tr>
         <tr><td>Grain d'une pellicule photographique</td><td>3 à 5 atomes d'argent suffisent, effet multiplié par cent millions</td><td>Belloni, 2002</td></tr>
         <tr><td>Bit conservé dix ans à température ambiante</td><td>barrière d'environ 40 fois l'agitation thermique</td><td>calcul du dossier</td></tr>
@@ -138,23 +124,27 @@
   function render() {
     const i = Number(tS.value), t = tOf(i), coh = i === 0 ? 1 : Math.exp(-t / TAU), copies = t / TAU;
     const stage = i === 0 ? 'q' : coh >= 0.01 ? 'i' : 'c';
-    for (const k in boxes) boxes[k].setAttribute('class', 'box' + (k === stage ? ' on' : ''));
-    loop.setAttribute('opacity', stage === 'c' ? 0.3 : 1);
-    er.disabled = stage !== 'i';
-    const nb = copies < 1 ? (i === 0 ? '0' : 'moins d’une') : copies < 1e6 ? frNum(Math.round(copies)) : sci(copies);
-    $('#p5-to').textContent = i === 0 ? 'avant la détection' : duree(t);
+    for (const k in boxes) boxes[k].className = 'etape' + (k === stage ? ' on' : '');
+    loop.classList.toggle('pale', stage === 'c');
+    // tant qu'aucune copie n'est partie dans l'environnement, la gomme peut tout effacer
+    er.disabled = stage !== 'i' || copies >= 1;
+    const nb = copies < 1 ? (i === 0 ? '0' : 'moins d’une') : copies < 1e6 ? frNum(Math.round(copies)) : grand(copies);
+    const quand = i === 0 ? 'avant la détection' : duree(t);
+    $('#p5-to').textContent = quand;
+    tS.setAttribute('aria-valuetext', quand);
     $('#p5-coh').textContent = coh >= 0.001 ? sig(coh * 100, 3) + ' %' : 'pratiquement nulle';
     $('#p5-cohb').style.width = (coh * 100).toFixed(1) + '%';
     $('#p5-cop').textContent = nb;
     $('#p5-copb').style.width = (copies < 1 ? 0 : Math.min(100, Math.log10(copies) / 11.4 * 100)).toFixed(1) + '%';
     $('#p5-state').textContent = stage === 'q'
       ? (erased ? 'Réponse effacée : la mémoire est revenue à l’état « prêt », et l’interférence est de nouveau possible.'
-        : 'Avant la détection, la question est ouverte : aucune réponse n’existe encore.')
-      : stage === 'i' ? 'La réponse est inscrite au crayon. Elle peut encore être effacée.'
-        : 'La réponse est cristallisée : pour l’effacer, il faudrait rattraper ' + nb + ' copies.';
+        : 'Avant la détection, la question est ouverte : aucune réponse n’est encore inscrite.')
+      : stage === 'i' ? (copies < 1 ? 'La réponse est inscrite au crayon. Elle peut encore être effacée.'
+        : 'Des copies sont déjà parties dans l’environnement : l’effacement ne serait plus complet.')
+        : 'La réponse est cristallisée : pour l’effacer, il faudrait rattraper ' + nb + (copies < 1e6 ? ' copies.' : ' de copies.');
   }
   tS.addEventListener('input', () => { erased = false; render(); });
-  er.addEventListener('click', () => { tS.value = 0; erased = true; render(); });
+  er.addEventListener('click', () => { tS.value = 0; erased = true; render(); tS.focus(); });
   render();
 
   // --- valeur d'une question, en bits
@@ -165,12 +155,13 @@
   $('#hc-c').setAttribute('d', d);
   const pS = $('#p5-p'), hm = $('#hc-m'), hv = $('#hc-v'), hh = $('#hc-h');
   function hRender() {
-    const p = Number(pS.value), v = h(p);
+    const p = Number(pS.value), v = h(p), parts = Math.round(p * 100) + ' % et ' + Math.round((1 - p) * 100) + ' %';
     set(hm, { cx: X(p).toFixed(1), cy: Y(v).toFixed(1) });
     set(hv, { x1: X(p).toFixed(1), x2: X(p).toFixed(1), y1: Y(v).toFixed(1) });
     set(hh, { x2: X(p).toFixed(1), y1: Y(v).toFixed(1), y2: Y(v).toFixed(1) });
-    $('#p5-po').textContent = Math.round(p * 100) + ' % et ' + Math.round((1 - p) * 100) + ' %';
-    $('#p5-hval').textContent = v === 0 ? '0 bit' : sig(v, 2) + ' bit';
+    $('#p5-po').textContent = parts;
+    pS.setAttribute('aria-valuetext', parts);
+    $('#p5-hval').textContent = v === 0 ? '0 bit' : v > 0.995 ? '1 bit' : sig(v, 2) + ' bit';
     $('#p5-hstate').textContent = v === 0 ? 'La réponse est connue d’avance : la question n’apprend rien.'
       : Math.abs(p - 0.5) < 0.005 ? 'Les deux réponses sont également probables : la question vaut un bit entier.'
         : 'Plus une réponse est probable d’avance, moins la question apprend.';

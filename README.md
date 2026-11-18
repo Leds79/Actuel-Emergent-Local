@@ -13,7 +13,7 @@ Par Sylvain Leduc.
 | 1 | L'ombre plus rapide que la lumière | Géométrie de l'observateur : écran plat, aller-retour du photon, limites c et c/2 |
 | 2 | On ne voit jamais la lumière passer | Lumière actuelle, émergente, locale : causalité et détection |
 | 3 | La pente du temps | Cadence c, masse comme frein, gravité comme réfraction |
-| 4 | Le choix qui ne réécrit pas le passé | Choix retardé de Wheeler, réel « graduellement donné » |
+| 4 | Le choix d'aujourd'hui ne réécrit pas le passé | Choix retardé de Wheeler, réel « graduellement donné » |
 | 5 | Comment une réponse devient un fait | Cristallisation de l'information : inscription, puis décohérence |
 
 Chaque pilier se lit de trois façons : une **planche interactive** (figure à manipuler, formules, chiffres clés), un **article** sans équation, et une **démonstration** mathématique complète avec ses références.
@@ -24,10 +24,10 @@ Chaque pilier se lit de trois façons : une **planche interactive** (figure à m
 - `pilier-1/` à `pilier-5/` : pour chaque pilier, `index.html` (planche interactive), `article.html` et `demonstration.html`.
 - `dossier.html` : le dossier complet sur une seule page (cinq démonstrations, synthèse, références).
 - `dossier-complet.pdf` : le même dossier en PDF, avec les formules composées.
-- `apercu.png`, `favicon.svg`, `404.html`, `sitemap.xml` : l'image affichée quand le lien est partagé, l'icône de l'onglet, la page d'erreur et le plan du site.
+- `apercu.png`, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `404.html`, `sitemap.xml` : l'image affichée quand le lien est partagé, les icônes, la page d'erreur et le plan du site.
 - `documents/` : les exports d'origine du dossier et des cinq articles, en PDF, Word et Markdown. Dans les exports du dossier, les formules sont écrites en code LaTeX ; pour le lire, préférer `dossier-complet.pdf`.
 - `CLAUDE.md`, `SUIVI.md` : le guide de reprise et le suivi du projet, pour continuer le travail d'une séance à l'autre.
-- `outils/` : le générateur du site (`construire_site.py`, `figures.py`) et ses gabarits : la feuille de style, les scripts communs, l'animation de l'accueil (`accueil.js`), les cinq dessins animés des en-têtes (`epures.js`) et les cinq planches interactives (`p1` à `p5`).
+- `outils/` : le générateur du site (`construire_site.py`, `figures.py`, `icones.py`) et ses gabarits : la feuille de style, les scripts communs, l'animation de l'accueil (`accueil.js`), les cinq dessins animés des en-têtes (`epures.js`) et les cinq planches interactives (`p1` à `p5`).
 
 ## Reconstruire le site
 

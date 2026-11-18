@@ -2,7 +2,7 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-L'intuition de départ renverse le point de vue habituel. Au lieu d'un espace immobile où la matière se déplace, tout l'Univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent localement cette cadence. La gravité devient alors le virage d'une trajectoire qui passe d'une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.
+L'intuition de départ renverse le point de vue habituel. Au lieu d'un espace immobile où la matière se déplace, tout l'univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent leur environnement. La gravité devient alors le virage d'une trajectoire qui passe d'une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.
 
 ## Tout tourne à la vitesse de la lumière, même immobile
 
@@ -18,10 +18,10 @@ Dans l'intuition, les corps lourds agissent comme des goulots d'étranglement : 
 | --- | --- |
 | Surface de la Terre | 22 millièmes de seconde par an |
 | Surface du Soleil | 67 secondes par an |
-| Surface d'une étoile à neutrons | 19 %, soit 69 jours par an |
+| Surface d'une étoile à neutrons | 19 %, soit près de 70 jours par an |
 | Horizon d'un trou noir | arrêt complet, vu de loin |
 
-Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait de 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.
+Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait d'environ 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.
 
 Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.
 
@@ -35,13 +35,13 @@ Reste la troisième idée, celle d'une trajectoire qui vire en passant d'une zon
 
 Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s'incurve vers la masse.
 
-Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.
+Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un peu plus d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.
 
 Votre tête vieillit donc un peu plus vite que vos pieds. Sur une vie de 80 ans, l'écart atteint à peine un demi-millionième de seconde. C'est pourtant lui qui vous tient au sol.
 
 ## La lumière tombe deux fois plus
 
-La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc.
+La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc, ou 1,75 avec les valeurs d'aujourd'hui.
 
 La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.
 

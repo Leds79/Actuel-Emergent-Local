@@ -24,7 +24,7 @@ Il ne prédit rien que la relativité et la mécanique quantique standard ne pr�
 ## Règles de travail
 
 1. **Langue.** Français, tutoiement, phrases courtes. Les commandes destinées à l'auteur sont en PowerShell.
-2. **Son idée d'abord.** Tout texte sur un pilier commence par l'intuition de l'auteur, avec ses mots, puis dit ce que la physique en confirme ou en corrige. Ses formulations sont dans `INTUITIONS` (`outils/construire_site.py`) et, en entier, dans `prive/conversation-d-origine.md`. Garder ses images : goulot d'étranglement, délais en série, boucle de retour vers l'observateur, zone rapide et zone ralentie, « tout tourne à la vitesse de la lumière ».
+2. **Son idée d'abord.** Tout texte sur un pilier commence par l'intuition de l'auteur, avec ses mots, puis dit ce que la physique en confirme ou en corrige. Ses formulations sont dans `INTUITIONS` (`outils/construire_site.py`) et, en entier, dans `prive/conversation-d-origine.md` (piliers 1 à 4) et `prive/pilier-5-message-d-origine.md` (pilier 5). Garder ses réserves (« je pense que », « je risque de me tromper, mais ») : elles font partie de sa voix. Garder ses images : goulot d'étranglement, délais en série, boucle de retour vers l'observateur, zone rapide et zone ralentie, « tout tourne à la vitesse de la lumière ».
 3. **Exactitude.** Citer l'idée, puis poser la nuance. Ne pas affirmer plus que le dossier. Toute référence est contrôlée sur sa source avant d'être citée. Présentation humble.
 4. **Présentation.** Le site doit être frappant, attrayant et professionnel, sans perdre son identité : plan bleu de chantier, feuille de dessin, cartouche. Les images des dessins animés viennent de l'auteur (voir plus bas) : les conserver.
 5. **Vérifier comme un visiteur.** Avant de dire qu'un travail est fini : largeur de téléphone (390 px), bas de chaque type de page, mode sombre, fichiers proposés au téléchargement réellement ouverts. Dire ce qui a été vérifié et ce qui ne l'a pas été.
@@ -56,10 +56,17 @@ Les exports PDF et Word du **dossier** affichent les formules en code LaTeX brut
 
 - `index.html`, `dossier.html`, `404.html`, `pilier-N/{index,article,demonstration}.html` : pages **générées**, à ne jamais modifier à la main.
 - `documents/` : exports des six documents (Markdown, PDF, Word).
-- `outils/construire_site.py` : le générateur. `outils/figures.py` : figures statiques des articles, marque du site.
+- `outils/construire_site.py` : le générateur. `outils/figures.py` : figures statiques des articles, chacune en deux mises en page (large et étroite), et marque du site. `outils/icones.py` : icônes PNG (`favicon-32.png`, `apple-touch-icon.png`), à relancer seulement si la marque change.
 - `outils/gabarits/base.css`, `base.js` : style et script communs. `accueil.js` : écran de détection et frise de l'accueil. `epures.js` : les cinq dessins animés. `pN.frag.html` : les cinq planches interactives.
 - `dossier-complet.pdf`, `apercu.png` : produits avec l'option `--pdf`.
 - `prive/` : hors dépôt. Contient la conversation d'origine de l'auteur.
+
+Choix de mise en page à conserver :
+
+- **En-tête d'un pilier.** Il est le même sur ses trois vues : titre du pilier, citation de l'auteur (« L'intuition de départ »), dessin animé, onglets. Les onglets ne bougent donc pas d'une vue à l'autre. La feuille s'ouvre ensuite sur le nom de la vue, le titre du document s'il diffère, et son chapeau.
+- **Téléphone.** Aucune figure ne défile. Un dessin de classe `adapte` (viewBox de 480 de large au plus) grossit ses textes sous 640 px ; un dessin plus large existe en deux versions, `bureau` et `mobile`, et la feuille de style n'en affiche qu'une. Les formules trop larges sont réduites par le script (`--zoom`), puis défilent avec une ombre si elles débordent encore.
+- **Typographie.** `typo()` pose les apostrophes courbes, les espaces insécables (nombres, unités, symboles d'une lettre, courtes relations), les exposants et les indices. Un texte SVG ne reçoit pas de balise : `typo(…, exposants=False)`. Dans un libellé en capitales, `symboles()` garde la casse des symboles (c, x, τ) et des unités.
+- **Formules des planches.** Elles sont en LaTeX dans des `<div class="tex">`, composées par KaTeX comme celles des démonstrations.
 
 Les cinq dessins animés (`epures.js`), dont les images ont été choisies par l'auteur :
 
@@ -93,3 +100,5 @@ Le dépôt appartient au compte GitHub `Leds79`. Avant de pousser, vérifier le 
 - Le navigateur sans interface ne descend pas sous 500 px de large : pour 390 px, charger la page dans un cadre de cette largeur.
 - En temps virtuel, `requestAnimationFrame` ne tourne presque pas : pour tester une animation, le remplacer par une minuterie dans une copie de la page.
 - Juste après une publication, le site peut répondre de façon incomplète pendant quelques secondes : relancer le contrôle avant de conclure.
+- Un élément `<figure>` garde 40 px de marge par défaut de chaque côté : `.fig{margin:0}` y veille, ne pas le retirer.
+- Une valeur qui s'allonge dans un panneau de réglages fait passer les libellés à la ligne et déplace toute la page : couper la valeur en deux lignes (`<small>`) ou figer la colonne (`.ro.fixe`), et laisser à `.state` sa hauteur réservée.

@@ -1,6 +1,6 @@
 <div class="head">
   <h1>On ne voit jamais la lumière passer</h1>
-  <p class="lead">Un faisceau qui traverse le vide est invisible de côté : l'œil ne voit que la lumière qui entre en lui. Ajoutez de la poussière et le faisceau apparaît, parce que la matière renvoie un peu de lumière. Ce qu'on voit est toujours de la matière éclairée.</p>
+  <p class="lead">Un faisceau qui traverse le vide est invisible de côté : l'œil ne voit que la lumière qui entre en lui. Ajoutez de la poussière et le faisceau apparaît, parce que la matière renvoie un peu de lumière. Ce qu'on voit est toujours de la matière, éclairée ou lumineuse.</p>
 </div>
 
 <section aria-labelledby="p2-h-dust">
@@ -8,28 +8,29 @@
   <h2 id="p2-h-dust">Sans matière sur son trajet, le faisceau ne se voit pas</h2>
   <div class="fig">
     <div class="stage">
-      <svg viewBox="0 0 660 410" role="img" aria-label="Un laser éclaire un mur. Un œil placé de côté ne voit le faisceau que si de la poussière se trouve sur son trajet">
-        <rect x="34" y="136" width="46" height="28" class="box"/>
-        <text x="57" y="126" text-anchor="middle" class="tb">laser</text>
-        <line x1="604" y1="50" x2="604" y2="250" class="lnk"/>
-        <text x="604" y="40" text-anchor="middle" class="tb">mur</text>
+      <svg class="adapte" viewBox="0 0 480 410" role="img" aria-label="Un laser éclaire un mur. Un œil placé de côté ne voit le faisceau que si de la poussière se trouve sur son trajet">
+        <rect x="16" y="136" width="44" height="28" class="box" style="stroke:var(--ink-2)"/>
+        <text x="38" y="126" text-anchor="middle" class="tb">laser</text>
+        <line x1="456" y1="50" x2="456" y2="250" class="lnk"/>
+        <text x="456" y="40" text-anchor="middle" class="tb">mur</text>
         <g id="b-path" visibility="hidden">
-          <line x1="80" y1="150" x2="596" y2="150" class="geo dash" style="stroke-width:1.5"/>
-          <text x="330" y="136" text-anchor="middle" class="tq">trajet calculé, invisible pour l'œil</text>
+          <line x1="60" y1="150" x2="448" y2="150" class="geo dash" style="stroke-width:1.5"/>
+          <text x="254" y="132" text-anchor="middle" class="tq halo">trajet calculé, invisible pour l'œil</text>
         </g>
-        <line id="b-wall-eye" x1="598" y1="154" x2="344" y2="340" class="ray" style="stroke-width:1.25;opacity:.55"/>
+        <line id="b-wall-eye" x1="450" y1="154" x2="252" y2="341" class="ray" style="stroke-width:1.25;opacity:.55"/>
         <g id="b-dust"></g>
-        <circle id="b-spot" cx="604" cy="150" r="9" class="f-ray"/>
-        <path d="M296 352Q330 326 364 352Q330 378 296 352Z" class="box"/>
-        <circle cx="330" cy="352" r="9" class="f-ink"/>
-        <text x="330" y="398" text-anchor="middle" class="tb">œil, placé de côté</text>
-        <text x="492" y="268" class="tq">la tache sur le mur, elle, se voit</text>
+        <circle id="b-spot" cx="456" cy="150" r="9" class="f-ray"/>
+        <path d="M206 352Q240 326 274 352Q240 378 206 352Z" class="box" style="stroke:var(--ink-2)"/>
+        <circle cx="240" cy="352" r="9" class="f-ink"/>
+        <text x="240" y="398" text-anchor="middle" class="tb">œil, placé de côté</text>
+        <text transform="translate(351 247.5) rotate(-43.4)" x="0" y="14" text-anchor="middle" class="tq halo">la tache sur le mur se voit</text>
       </svg>
     </div>
     <div class="panel">
       <div class="ctl">
         <label for="p2-d">Poussière dans la pièce <output id="p2-do" for="p2-d"></output></label>
         <input type="range" id="p2-d" min="0" max="100" step="1" value="0">
+        <div class="bouts" aria-hidden="true"><span>vide</span><span>très poussiéreux</span></div>
       </div>
       <label class="check"><input type="checkbox" id="p2-path"><span>Montrer le trajet calculé du faisceau</span></label>
       <dl class="ro">
@@ -37,7 +38,7 @@
         <dt>Grains éclairés, visibles de côté</dt><dd id="p2-lit"></dd>
         <dt>Lumière qui atteint encore le mur</dt><dd id="p2-wall"></dd>
       </dl>
-      <p class="state" id="p2-state"></p>
+      <p class="state" id="p2-state" role="status"></p>
     </div>
   </div>
   <p class="figcap">Chaque trait orange est de la lumière qui entre réellement dans l'œil. Dans le vide, aucun ne part du faisceau : il n'y a rien à voir de côté.</p>
@@ -48,11 +49,11 @@
   <h2 id="p2-h-fan">Chaque impact vient de la source, aucun ne vient de son voisin</h2>
   <div class="fig">
     <div class="stage">
-      <svg id="p2-fan" viewBox="0 0 660 300" role="img" aria-label="Trois rayons partent de la source vers trois points A, B et C de l'écran. Masquer un point ne change rien aux deux autres">
-        <line x1="60" y1="70" x2="600" y2="70" class="lnk"/>
-        <text x="600" y="56" text-anchor="end" class="tb">écran</text>
-        <circle cx="330" cy="262" r="6" class="f-ink"/>
-        <text x="330" y="288" text-anchor="middle" class="tb">source</text>
+      <svg id="p2-fan" class="adapte" viewBox="0 0 480 290" role="img" aria-label="Trois rayons partent de la source vers trois points A, B et C de l'écran. Masquer un point ne change rien aux deux autres">
+        <line x1="40" y1="70" x2="440" y2="70" class="lnk"/>
+        <text x="440" y="56" text-anchor="end" class="tb">écran</text>
+        <circle cx="240" cy="250" r="6" class="f-ink"/>
+        <text x="240" y="276" text-anchor="middle" class="tb">source</text>
       </svg>
     </div>
     <div class="panel">
@@ -61,7 +62,7 @@
         <button class="chip" type="button" data-i="1" aria-pressed="false">Poser la main devant B</button>
         <button class="chip" type="button" data-i="2" aria-pressed="false">Poser la main devant C</button>
       </div>
-      <p class="state" id="p2-fstate"></p>
+      <p class="state" id="p2-fstate" role="status"></p>
       <p class="fnote">Quand on balaie l'écran, la tache semble glisser de A vers B puis C. Elle n'est pourtant pas un objet : c'est une suite d'arrivées séparées.</p>
     </div>
   </div>
@@ -80,16 +81,16 @@
   <section aria-labelledby="p2-h-f">
     <span class="eyebrow">Formule</span>
     <h2 id="p2-h-f">Quand la tache dépasse c, l'ordre des impacts n'est plus absolu</h2>
-    <div class="formula">Δs² <span class="up">=</span> c² Δt² <span class="up">−</span> Δx² <span class="up">&lt; 0</span></div>
-    <p class="fnote">Entre deux impacts A et B, Δt est la durée et Δx la distance. Quand cet intervalle est négatif, deux observateurs en mouvement ne s'accordent plus sur l'ordre de A et de B. Or une cause précède son effet pour tout le monde : aucun des deux impacts ne peut causer l'autre.</p>
+    <div class="tex">\Delta s^2 = c^2\,\Delta t^2 - \Delta x^2 &lt; 0</div>
+    <p class="fnote">Entre deux impacts A et B, Δt est la durée et Δx la distance. Quand Δs², l'intervalle entre A et B, est négatif, l'ordre des deux impacts dépend de l'observateur : pour l'un, A précède B ; pour un autre, qui file assez vite le long de l'écran, B précède A. Or une cause précède son effet pour tout le monde : aucun des deux impacts ne peut causer l'autre.</p>
   </section>
-  <section aria-label="Lecture et correction">
+  <section aria-label="Lecture et nuance">
     <div class="lecture">
       <span class="eyebrow">Lecture mécanique</span>
       <p>A et B sont deux livraisons du même expéditeur, pas deux étapes d'une même chaîne. Bloquer l'une ne retarde pas l'autre.</p>
     </div>
     <div class="correction">
-      <span class="eyebrow">Correction apportée</span>
+      <span class="eyebrow">Nuance apportée</span>
       <p>« Potentiel » ne veut pas dire « rien ». En chemin, la lumière transporte de l'énergie : si le Soleil s'éteignait, elle continuerait d'arriver pendant 8 minutes 20 secondes.</p>
       <p>Ce qui reste en suspens, c'est seulement l'événement : où et quand elle sera reçue.</p>
     </div>
@@ -100,7 +101,7 @@
   <span class="eyebrow">Chiffres clés</span>
   <div class="stats">
     <div class="stat"><b>0</b><span>lumière reçue de côté quand le faisceau traverse le vide</span></div>
-    <div class="stat"><b>1 clic</b><span>un photon ne déclenche jamais deux détecteurs à la fois (Grangier, Roger et Aspect, 1986)</span></div>
+    <div class="stat"><b>1 clic</b><span>un photon ne déclenche pratiquement jamais deux détecteurs à la fois (Grangier, Roger et Aspect, 1986)</span></div>
     <div class="stat"><b>8 min 20 s</b><span>lumière déjà en route entre le Soleil et la Terre</span></div>
   </div>
   <p class="fnote">Regarder un photon passer voudrait dire interagir avec lui : on ne peut pas observer le voyage sans y prendre part.</p>
@@ -109,39 +110,43 @@
 (function () {
   // --- scène : laser, poussière, œil
   const rnd = mulberry(7), lit = [], dark = [];
-  for (let i = 0; i < 40; i++) lit.push({ x: 104 + rnd() * 470, y: 150 + (rnd() - 0.5) * 10 });
+  for (let i = 0; i < 40; i++) lit.push({ x: 84 + rnd() * 350, y: 150 + (rnd() - 0.5) * 10 });
   for (let i = 0; i < 90; i++) {
     let y; do { y = 58 + rnd() * 226; } while (Math.abs(y - 150) < 16);
-    dark.push({ x: 100 + rnd() * 480, y: y });
+    dark.push({ x: 76 + rnd() * 366, y: y });
   }
-  const gDust = $('#b-dust'), spot = $('#b-spot'), slider = $('#p2-d'), EYE = { x: 330, y: 343 };
+  const gDust = $('#b-dust'), spot = $('#b-spot'), slider = $('#p2-d'), EYE = { x: 240, y: 343 };
   function scene() {
-    const s = Number(slider.value) / 100, nLit = Math.round(40 * s), nDark = Math.round(90 * s);
+    const s = Number(slider.value) / 100, nLit = Math.round(40 * s), nDark = Math.round(90 * s), vide = nLit + nDark === 0;
     while (gDust.firstChild) gDust.removeChild(gDust.firstChild);
     for (let i = 0; i < nLit; i++) gDust.appendChild(el('line', { x1: lit[i].x.toFixed(1), y1: lit[i].y.toFixed(1), x2: EYE.x, y2: EYE.y, class: 'ray', style: 'stroke-width:1;opacity:.3' }));
     for (let i = 0; i < nDark; i++) gDust.appendChild(el('circle', { cx: dark[i].x.toFixed(1), cy: dark[i].y.toFixed(1), r: 2, class: 'f-ink3', opacity: 0.55 }));
     for (let i = 0; i < nLit; i++) gDust.appendChild(el('circle', { cx: lit[i].x.toFixed(1), cy: lit[i].y.toFixed(1), r: 3.2, class: 'f-ray' }));
     const wall = 100 - 1.2 * nLit;
     spot.setAttribute('opacity', (wall / 100).toFixed(2));
-    $('#p2-do').textContent = nLit + nDark === 0 ? 'vide' : slider.value + ' %';
+    $('#p2-do').textContent = vide ? 'vide' : slider.value + ' %';
+    slider.setAttribute('aria-valuetext', vide ? 'vide' : slider.value + ' %');
     $('#p2-n').textContent = String(nLit + nDark);
     $('#p2-lit').textContent = String(nLit);
     $('#p2-wall').textContent = Math.round(wall) + ' %';
-    $('#p2-state').textContent = nLit === 0
+    $('#p2-state').textContent = vide
       ? 'Dans le vide, le faisceau est invisible de côté. L’œil ne voit que la tache sur le mur.'
-      : 'L’œil voit des grains éclairés, pas la lumière en route. Chaque grain vu a pris un peu de lumière au faisceau.';
+      : nLit === 0 ? 'Un grain flotte dans la pièce, mais pas sur le trajet : le faisceau reste invisible de côté.'
+        : 'L’œil voit des grains éclairés, pas la lumière en route. Chaque grain vu a pris un peu de lumière au faisceau.';
   }
   slider.addEventListener('input', scene);
   $('#p2-path').addEventListener('change', e => $('#b-path').setAttribute('visibility', e.target.checked ? 'visible' : 'hidden'));
   scene();
 
   // --- éventail : trois envois séparés
-  const fan = $('#p2-fan'), S = { x: 330, y: 262 }, PTS = [{ n: 'A', x: 150 }, { n: 'B', x: 330 }, { n: 'C', x: 510 }], blocked = [false, false, false];
+  const fan = $('#p2-fan'), S = { x: 240, y: 250 }, PTS = [{ n: 'A', x: 110 }, { n: 'B', x: 240 }, { n: 'C', x: 370 }], blocked = [false, false, false];
   const T_HAND = (S.y - 98) / (S.y - 70);
   const parts = PTS.map(p => {
     const hx = S.x + (p.x - S.x) * T_HAND;
     const ray = fan.insertBefore(el('line', { x1: S.x, y1: S.y, x2: p.x, y2: 70, class: 'ray' }), fan.firstChild);
-    const hand = fan.appendChild(el('rect', { x: (hx - 26).toFixed(1), y: 94, width: 52, height: 8, class: 'f-ink', visibility: 'hidden' }));
+    const hand = fan.appendChild(el('g', { visibility: 'hidden' }));
+    hand.appendChild(el('rect', { x: (hx - 26).toFixed(1), y: 94, width: 52, height: 8, class: 'f-ink' }));
+    hand.appendChild(el('text', { x: (hx + 34).toFixed(1), y: 103, class: 'tm' }, 'main'));
     const dot = fan.appendChild(el('circle', { cx: p.x, cy: 70, r: 7.5, class: 'f-ray ring' }));
     fan.appendChild(el('text', { x: p.x, y: 52, 'text-anchor': 'middle', class: 'tb' }, p.n));
     return { ray: ray, hand: hand, dot: dot, hx: hx };
@@ -159,7 +164,7 @@
     $('#p2-fstate').textContent = off.length === 0 ? 'Les trois impacts viennent chacun directement de la source.'
       : on.length === 0 ? 'Les trois points sont masqués, un par un : aucun n’a dépendu des autres.'
         : liste(off) + (off.length > 1 ? ' sont masqués. ' : ' est masqué. ') + liste(on) + (on.length > 1 ? ' s’allument' : ' s’allume')
-        + ' quand même : sa lumière n’est jamais passée par ' + liste(off) + '.';
+        + ' quand même : ' + (on.length > 1 ? 'leur' : 'sa') + ' lumière n’est jamais passée par ' + liste(off) + '.';
   }
   $$('#p2-chips .chip').forEach(b => b.addEventListener('click', () => {
     const i = Number(b.dataset.i); blocked[i] = !blocked[i];

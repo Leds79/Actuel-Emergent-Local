@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Le choix retardé de Wheeler et le réel « graduellement donné » · Actuel, Émergent, Local</title>
-<meta name="description" content="Choisir aujourd&#x27;hui comment mesurer un photon ne change rien à ce qu&#x27;il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
+<meta name="description" content="Choisir aujourd’hui comment mesurer un photon ne change rien à ce qu’il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-4/demonstration.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Actuel, Émergent, Local">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:title" content="Le choix retardé de Wheeler et le réel « graduellement donné »">
-<meta property="og:description" content="Choisir aujourd&#x27;hui comment mesurer un photon ne change rien à ce qu&#x27;il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
+<meta property="og:description" content="Choisir aujourd’hui comment mesurer un photon ne change rien à ce qu’il a fait. Entre « une route » et « deux routes », tous les intermédiaires existent.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-4/demonstration.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
 <meta property="og:image:width" content="1200">
@@ -18,11 +18,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous"></script>
 <style>
 /* Un plan bleu exposé par la lumière en tête ; en dessous, la feuille de dessin, fermée par son cartouche */
 :root{
@@ -54,7 +56,11 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+sup,sub{font-size:.72em;line-height:0;vertical-align:baseline;position:relative}
+sup{top:-.42em}
+sub{top:.28em}
+.sym{text-transform:none}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
 .barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
@@ -76,8 +82,20 @@ p{margin:0;max-width:65ch}
 .barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 @media (max-width:640px){
   .marque span,.barre .lib{display:none}
+  .marque{min-width:2.75rem;min-height:2.75rem}
   .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.4rem;height:2.4rem}
+  .barre nav a{min-width:2.25rem;height:2.75rem}
+}
+
+@media (max-width:380px){
+  .barre .dedans{gap:.4rem}
+  .barre nav{gap:.2rem}
+  .barre nav a{min-width:2.05rem;padding:0 .1rem}
+  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+}
+@media (max-width:340px){
+  .marque{min-width:2rem}
+  .barre nav a{min-width:1.9rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -88,6 +106,10 @@ p{margin:0;max-width:65ch}
 .plan .dedans.onglets{padding-bottom:0}
 .repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
 .repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+@media (max-width:640px){
+  .repere{flex-direction:column;gap:.25rem}
+  .repere span+span::before{display:none}
+}
 h1{margin:0;font-weight:600}
 .plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
 .chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
@@ -103,25 +125,31 @@ h1{margin:0;font-weight:600}
 .btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
 .plan .btn.plein:hover{background:#fff;border-color:#fff}
 .btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}
 @media (prefers-reduced-motion:reduce){.btn span{transition:none}}
 
 /* accueil : le titre, et l'écran qui s'expose photon par photon */
 .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
-.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1{font-size:clamp(3.5rem,min(10vw,14.5vh),8.2rem);line-height:1;letter-spacing:.004em;text-transform:uppercase;max-width:none}
 .accueil h1 span{display:block}
 .expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
 .plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
-.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plaque canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;display:block}
+@supports not (aspect-ratio:1/1){
+  .plaque::before{content:"";display:block;padding-top:80%}
+  .epure .plaque::before,.plaque.mini::before{padding-top:75%}
+}
 .pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
 .pl-t{top:.8rem}
 .pl-n{bottom:.8rem}
 .pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
 .expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
 .lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
-@media (max-width:900px){
+@media (max-width:760px){
   .hero{grid-template-columns:1fr}
+  .accueil h1{font-size:clamp(3.5rem,17vw,6rem)}
   .plaque{aspect-ratio:16/10}
+  .actions .btn{flex:1 1 100%;justify-content:space-between}
 }
 
 /* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
@@ -131,12 +159,12 @@ h1{margin:0;font-weight:600}
 .vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
 .vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
 @media (max-width:640px){
-  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues a{flex:1 1 0;text-align:center;padding:1.05rem .3rem;letter-spacing:.05em}
   .vues .plus{display:none}
 }
 
 /* la feuille */
-.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pose{flex:1 0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
 main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
 @media (max-width:700px){
@@ -146,10 +174,10 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 }
 
 /* cartouche : au pied de la feuille, comme sur un plan */
-.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cartouche{order:3;display:grid;grid-template-columns:2.2fr 1.5fr 2.2fr 1.1fr 1.2fr;border-top:1px solid var(--axis)}
 .cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
-.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.ck{font:500 .69rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
 @media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
@@ -163,14 +191,16 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
 .pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
 .pagination a:hover{background:var(--geo-wash)}
-.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.12 var(--display);letter-spacing:.01em;text-wrap:balance}
+@media (max-width:640px){.pagination b{font-weight:500;font-size:1.3rem}.pagination a{padding:1.1rem 20px}}
 
 /* pied de page */
 .pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
 .pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
 .sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
 .sig svg{flex:none}
-.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
+.pied nav a{padding:.45rem 0}
 .pied a:hover{color:var(--plan-ink)}
 
 /* texte */
@@ -179,12 +209,12 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .7rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
 /* figure interactive */
-.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig{margin:0;border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -193,6 +223,10 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+/* un dessin « adapte » tient dans la largeur d'un téléphone ; « bureau » et « mobile » sont deux mises en page du même dessin */
+.stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
+.stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
+.halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -200,11 +234,22 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
-@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
+@media (max-width:640px){
+  .prose .stage>svg:not(.fit):not(.mobile){min-width:560px}
+  .stage>svg.bureau{display:none}
+  .stage>svg.mobile{display:block}
+  /* sur téléphone, la figure va d'un bord à l'autre et ses textes sont grossis pour rester lisibles */
+  .p-planche main>section>.fig,.p-planche main>.cols .fig{margin-inline:-20px;border-left:0;border-right:0}
+  .p-planche .stage{padding:.6rem .5rem}
+  .adapte .t,.adapte .tb{font-size:15.5px}
+  .adapte .tq{font-size:14.5px}
+  .adapte .tm{font-size:13px}
+}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
 .ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.bouts{display:flex;justify-content:space-between;gap:1rem;margin-top:-.2rem;font:400 .66rem/1.2 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
 input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
 .check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
@@ -214,16 +259,23 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
 .ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro.fixe{grid-template-columns:minmax(0,1fr) 10.6rem}
 .ro dt{font-size:.88rem;color:var(--ink-2)}
 .ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
-.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash);min-height:calc(4.35em + 1.4rem)}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
 .legend span{display:inline-flex;align-items:center;gap:.5em}
 .legend i{display:inline-block;width:16px;height:3px}
 .k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
 .legend i.dot{width:10px;height:10px;border-radius:50%}
 .legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+@media (max-width:640px),(pointer:coarse){
+  .chip{min-height:2.75rem;padding:.7rem .8rem}
+  input[type=range]{height:2.5rem}
+  .jeton{min-height:2.75rem}
+}
 
 /* jauges */
 .meter{display:flex;flex-direction:column;gap:.3rem}
@@ -233,18 +285,13 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules des planches */
-.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
-.formula .up,.m .up{font-style:normal}
-.m{font-family:var(--math);font-style:italic;white-space:nowrap}
-.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
-.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
-.frac>span:last-child{padding:.12em .3em 0}
+/* formules des planches : composées par KaTeX, comme celles des démonstrations (.tex) */
 .formulas{display:flex;flex-direction:column;gap:.6rem}
 .fnote{font-size:.88rem;color:var(--ink-2)}
 
 /* encadrés */
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.lecture .eyebrow{color:var(--ink-2)}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
 .avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
@@ -252,6 +299,10 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:last-child:nth-child(odd){grid-column:1/-1}
+}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
 .defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
@@ -262,7 +313,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 /* tableaux */
 .tablewrap{overflow-x:auto}
 table.data{border-collapse:collapse;width:100%;font-size:.94rem}
-.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data th{font:500 .7rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
 .data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
@@ -274,7 +325,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
   table.empile tr:first-child{padding-top:0}
   table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
   table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
   table.empile td:first-child::before{display:none}
 }
@@ -306,17 +357,25 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* texte long : articles, démonstrations, dossier */
 .prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
 .prose p{max-width:none}
+.p-article .prose{max-width:42rem}
 .prose>h2{margin-top:1.8rem;font-size:1.5rem}
 .prose>h3{margin-top:.6rem;font-size:1.12rem}
 .prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
-.prose .fig{margin:0}
 .prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
 .figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+/* une formule plus large que l'écran est d'abord réduite, puis défile si elle déborde encore */
+.tex.ok .katex{font-size:calc(1.21em*var(--zoom,1))}
+.tex.defile{background:
+  linear-gradient(90deg,var(--sheet) 35%,transparent) left/2.2rem 100% no-repeat local,
+  linear-gradient(270deg,var(--sheet) 35%,transparent) right/2.2rem 100% no-repeat local,
+  linear-gradient(90deg,var(--axis),transparent) left/.9rem 100% no-repeat scroll,
+  linear-gradient(270deg,var(--axis),transparent) right/.9rem 100% no-repeat scroll}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule);max-width:none}
+@media (max-width:520px){.suite .btn{flex:1 1 100%;justify-content:space-between}}
 .toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .toc a{text-decoration:none}
@@ -325,13 +384,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
-  .tex .katex{font-size:1.05em}
+  .tex.ok .katex{font-size:calc(1.1em*var(--zoom,1))}
 }
 
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(240px,340px);gap:clamp(1rem,3vw,2.4rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -340,25 +399,36 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .plt h3 a{text-decoration:none}
 .plt h3 a:hover{text-decoration:underline}
 .plt>p{color:var(--ink-2)}
-.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
-.acces .btn{padding:.72rem .95rem}
+.acces{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:.55rem;max-width:none}
+.acces .btn{padding:.78rem .95rem}
+.acces .btn.fin{border-color:var(--axis);color:var(--ink)}
+.acces .btn.fin:hover{border-color:var(--ink);background:transparent}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis svg{display:block;width:100%;height:auto}
+.vis>a{display:block}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
-.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
 .clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
 @media (max-width:860px){
   .plk{grid-template-columns:4.3rem minmax(0,1fr)}
-  .vis{grid-column:2;max-width:22rem}
+  .vis{grid-column:2;display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:.8rem 1.2rem;align-items:end}
+  .clef{flex-direction:column;gap:.3rem}
+}
+@media (max-width:640px){
+  .vis{grid-template-columns:1fr}
+  .clef{flex-direction:row;gap:.7rem}
 }
 @media (max-width:520px){
   .plk{grid-template-columns:1fr}
-  .vis{grid-column:1;max-width:17rem}
+  .vis{grid-column:1}
   .no{flex-direction:row;align-items:baseline;gap:.8rem}
+  .acces .btn{flex:1 1 auto;justify-content:space-between}
+  .acces .btn.encre{flex-basis:100%}
 }
 /* accueil : verdict, synthèse */
 .large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.prose.large>p{max-width:72ch}
+.prose.large td:first-child{font-weight:600}
 .verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
 .verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
 @media (max-width:820px){
@@ -371,6 +441,23 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
 .intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .prose .intuition p{max-width:none}
+.plan .intuition{margin-top:1.3rem;padding:.1rem 0 .1rem 1.1rem;border:0;border-left:2px solid var(--photon);max-width:38rem;gap:.55rem}
+.plan .intuition .eyebrow,.plan .intuition footer{color:var(--plan-ink-2)}
+.plan .intuition p{max-width:none;font-size:clamp(1.06rem,1.5vw,1.26rem);line-height:1.46;color:var(--plan-ink)}
+/* ouverture de la feuille : le nom de la vue, le titre du document, son chapeau */
+.amorce{display:flex;flex-direction:column;gap:.75rem}
+.doc-titre{font:600 clamp(1.75rem,3.3vw,2.35rem)/1.08 var(--display);letter-spacing:.004em;max-width:26ch;text-wrap:balance}
+.prose .amorce .lead{max-width:none;font-size:1.16rem;line-height:1.6}
+/* sommaire repliable des pages longues, quand le rail n'a pas la place */
+.sommaire{border:1px solid var(--rule)}
+.sommaire summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:.85rem 1rem;list-style:none;font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.sommaire summary::-webkit-details-marker{display:none}
+.sommaire summary::after{content:"+";font-size:1.05rem;line-height:1}
+.sommaire[open] summary::after{content:"−"}
+.prose .sommaire ol{list-style:none;margin:0;padding:0 1rem .5rem;gap:0}
+.prose .sommaire li{padding:0}
+.sommaire a{display:block;padding:.6rem 0;border-top:1px solid var(--rule);text-decoration:none;font-size:.95rem;line-height:1.35}
+.remonter{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:15;padding:.75rem .9rem;background:var(--ink);color:var(--sheet);font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.28)}
 .plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
 
 /* lien d'évitement pour le clavier */
@@ -380,7 +467,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* avancement de la lecture, sous la barre du haut */
 @supports (animation-timeline:scroll()){
   .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
-    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+    transform-origin:0 50%;transform:scaleX(0);animation:avance 1ms linear both;animation-timeline:scroll(root block)}
   @keyframes avance{to{transform:scaleX(1)}}
 }
 /* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
@@ -392,25 +479,33 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
 .tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
 .epure{margin:0;min-width:0}
+.epure figcaption{margin-top:.55rem;font-size:.8rem;line-height:1.4;color:var(--plan-ink-2)}
 .epure .plaque,.plaque.mini{aspect-ratio:4/3}
-@media (max-width:980px){
-  .tete{grid-template-columns:1fr}
-  .tete .epure{display:none}
+@media (max-width:980px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,21rem)}}
+@media (max-width:760px){
+  .tete{grid-template-columns:1fr;gap:1.4rem}
+  .tete .epure{max-width:23rem}
 }
 /* accueil : choisir ce que l'on sait de chaque photon */
-.expo figcaption p{max-width:54ch}
-.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
-.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+.expo figcaption p{max-width:54ch;min-height:4.5em}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.1rem;margin-top:.75rem}
+.duo{display:flex}
+.choix .lib{flex:1 1 100%;font:500 .66rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.jeton{min-height:2.5rem;padding:.6rem .85rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
   font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton+.jeton{margin-left:-1px}
 .jeton:hover{background:rgba(205,225,255,.14)}
-.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.choix .lien{margin-left:.5rem;font-size:.86rem}
+.jeton[aria-pressed="true"]{background:var(--plan-ink);border-color:var(--plan-ink);color:var(--plan-2)}
+.choix .lien{font-size:.86rem;min-height:2.5rem}
 
 /* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
 .rail{display:none}
 @media (min-width:1200px){
   .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .p-article .avec-rail{grid-template-columns:13rem minmax(0,42rem)}
+  .sommaire,.remonter{display:none}
   .avec-rail>.prose{margin:0}
+  .avec-rail>.prose:only-child{grid-column:1/-1;margin-inline:auto}
   .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
   .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
   .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
@@ -424,9 +519,50 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .frise .ref{cursor:pointer;outline:none}
 .frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
 .frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .ref:focus-visible .touche{stroke:var(--ink);stroke-width:1.5}
 .frise .touche{fill:transparent}
 .bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
 .bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* planche 4 : la question que pose la mesure choisie */
+.stage.question{padding:1.5rem 1.3rem;gap:.6rem}
+.demande{font:600 clamp(1.35rem,2.4vw,1.7rem)/1.12 var(--display);letter-spacing:.004em;margin-bottom:.9rem;max-width:none;min-height:2.3em}
+/* planche 5 : les trois temps de la mesure, en cases que le texte remplit à sa taille réelle */
+.stage.temps{padding:1.4rem .8rem 1.2rem}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);align-items:stretch}
+.etape{border:1.25px solid var(--axis);background:var(--sheet);padding:.8rem .45rem;display:flex;flex-direction:column;justify-content:center;gap:.2rem;text-align:center;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.etape b{font-size:.96rem;color:var(--ink)}
+.etape.on{background:var(--geo-wash);border-color:var(--geo);box-shadow:inset 0 0 0 1px var(--geo)}
+.passage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:0 .6rem;font:400 .66rem/1.2 var(--mono);color:var(--ink-3)}
+.passage i{font-style:normal}
+.passage svg{display:block;width:100%;height:10px;min-width:0;flex:none}
+.retours{display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);padding-bottom:1.7rem;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.retours p{max-width:none}
+.gomme{grid-column:1/4;position:relative;height:1.5rem;margin:0 calc((100% - 6.4rem)/4);border:1.25px solid var(--ink-3);border-top:0}
+.gomme::before{content:"";position:absolute;left:-5.6px;top:-1px;border:5px solid transparent;border-top:0;border-bottom:8px solid var(--ink-3)}
+.gomme .court{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:.4rem;white-space:nowrap}
+.retours .long{display:none}
+.gomme.pale{opacity:.3}
+.jamais{grid-column:5;padding-top:.5rem;text-align:center}
+@media (max-width:640px){
+  .stage.temps{padding:1rem .9rem}
+  .etapes{grid-template-columns:1fr}
+  .passage{flex-direction:row;gap:.6rem;padding:.4rem 0}
+  .passage svg{width:2.2rem;transform:rotate(90deg)}
+  .retours{display:flex;flex-direction:column;gap:.35rem;padding:.9rem 0 0}
+  .gomme{height:auto;margin:0;border:0}
+  .gomme::before{display:none}
+  .retours .court{display:none}
+  .retours .long{display:inline}
+  .jamais{text-align:left;padding:0}
+}
+/* liste de documents et de pages : un nom, puis ses liens */
+.docs{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.docs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem 1.5rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.docs .liens{display:flex;flex-wrap:wrap;gap:.4rem}
+.docs .liens a{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .75rem;border:1px solid var(--axis);font:500 .74rem/1 var(--mono);letter-spacing:.04em;text-decoration:none}
+.docs .liens a:hover{border-color:var(--ink)}
+@media (max-width:640px){.docs li{grid-template-columns:1fr}.docs li>span:first-child{font-weight:600}}
 
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
@@ -441,7 +577,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  body{display:block;min-height:0}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err,.sommaire,.remonter{display:none!important}
   .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
@@ -450,6 +587,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
   .chapeau{font-size:11.5pt;max-width:none}
   .sheet{max-width:none;margin:0;border:0}
+  .plan .intuition{border-left:2px solid var(--axis)}
+  .plan .intuition p,.plan .intuition .eyebrow,.plan .intuition footer{color:inherit}
   .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
   .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
@@ -462,10 +601,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
-  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.ok .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.defile{background:none}
   .stage{overflow:visible}
   .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .stage>svg.mobile{display:none}
+  .stage>svg.bureau{display:block}
   .tablewrap{overflow:visible}
   a{text-decoration:none}
 }
@@ -476,65 +618,66 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/demonstration.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps">3</a><a href="../pilier-4/demonstration.html" aria-current="page" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/demonstration.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/demonstration.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/demonstration.html" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/demonstration.html" aria-current="page" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/demonstration.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
-<p class="repere"><span>Pilier 4 / 5</span><span>Choix retardé de Wheeler</span></p>
-<h1>Le choix retardé de Wheeler et le réel « graduellement donné »</h1>
-<p class="chapeau">Le formalisme donne raison au refus du cadre binaire : avant la mesure, l'état n'est ni « une route » ni « deux routes », et le choix fait sur Terre ne modifie aucun fait passé. Deux nuances s'imposent. Le choix n'exige pas d'intention consciente, et la lecture participative est une interprétation, pas un théorème.</p>
+<p class="repere"><span>Pilier 4 / 5</span><span>Choix retardé de Wheeler</span></p>
+<h1>Le choix d’aujourd’hui ne réécrit pas le passé</h1>
+<blockquote class="intuition"><span class="eyebrow">L’intuition de départ</span><p>« C’est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire qu’il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné. »</p><footer>Sylvain Leduc</footer></blockquote>
 </div>
 <figure class="epure"><div class="plaque"><canvas data-epure="4" data-fige="24.0" role="img" aria-label="Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"></canvas></div></figure></div>
 <nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche<span class="plus"> interactive</span></a><a href="article.html">Article</a><a href="demonstration.html" aria-current="page">Démonstration</a></nav>
 </div></header>
 <div class="pose"><div class="sheet">
-<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Démonstration mathématique</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main id="contenu">
-<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">4.1 L'état en transit, le choix de la mesure, les probabilités</a></li><li><a href="#s2">4.2 Aucune action ne remonte le temps</a></li><li><a href="#s3">4.3 Le réel « graduellement donné »</a></li><li><a href="#s4">4.4 Conditions de validité et nuances</a></li><li><a href="#s5">Références</a></li></ol></nav>
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Choix retardé de Wheeler</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Démonstration mathématique</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
+<main id="contenu" tabindex="-1">
+<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">4.1 L’état en transit, le choix de la mesure, les probabilités</a></li><li><a href="#s2">4.2 Aucune action ne remonte le temps</a></li><li><a href="#s3">4.3 Le réel « graduellement donné »</a></li><li><a href="#s4">4.4 Conditions de validité et nuances</a></li><li><a href="#s5">Références</a></li></ol></nav>
 <article class="prose">
-<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« C&#x27;est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire qu&#x27;il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné. »</p><footer>Sylvain Leduc</footer></blockquote>
-<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules que l'auteur proposait à partir de ses intuitions. Quand le texte dit « la formule demandée », il s'agit de l'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p></aside>
-<h2 id="s1">4.1 L'état en transit, le choix de la mesure, les probabilités</h2>
-<p><strong>L'état.</strong> Le photon peut contourner la galaxie par la gauche ou par la droite. On note |G⟩ et |D⟩ les deux états correspondants. L'état en transit est leur superposition :</p>
+<div class="amorce"><span class="eyebrow">Démonstration mathématique</span><h2 class="doc-titre">Le choix retardé de Wheeler et le réel « graduellement donné »</h2><p class="lead">Le formalisme donne raison au refus du cadre binaire : avant la mesure, l’état n’est ni « une route » ni « deux routes », et le choix fait sur Terre ne modifie aucun fait passé. Deux nuances s’imposent. Le choix n’exige pas d’intention consciente, et la lecture participative est une interprétation, pas un théorème.</p></div>
+<aside class="avis"><span class="eyebrow">À savoir avant de lire</span><p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l’auteur, dans la demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s’agit de l’une d’elles : elle est démontrée telle quelle, ou corrigée.</p></aside>
+<details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol><li><a href="#s1">4.1 L’état en transit, le choix de la mesure, les probabilités</a></li><li><a href="#s2">4.2 Aucune action ne remonte le temps</a></li><li><a href="#s3">4.3 Le réel « graduellement donné »</a></li><li><a href="#s4">4.4 Conditions de validité et nuances</a></li><li><a href="#s5">Références</a></li></ol></details>
+<h2 id="s1">4.1 L’état en transit, le choix de la mesure, les probabilités</h2>
+<p><strong>L’état.</strong> Le photon peut contourner la galaxie par la gauche ou par la droite. On note |G⟩ et |D⟩ les deux états correspondants. L’état en transit est leur superposition :</p>
 <div class="tex">\begin{aligned}
 |\Psi\rangle &amp;= \frac{1}{\sqrt{2}}\left(|G\rangle + e^{i\varphi}|D\rangle\right) \\
 \langle G|G\rangle &amp;= \langle D|D\rangle = 1, \qquad \langle G|D\rangle = 0
 \end{aligned}</div>
-<p>La phase φ est le décalage accumulé entre les deux routes. Elle dépend de la différence de longueur des trajets et de la masse de la galaxie.</p>
-<p>Cet état n'est pas un tirage « 50 % gauche, 50 % droite ». La phase φ relie les deux termes, et elle est mesurable : c'est ce qui distingue une superposition d'une simple ignorance.</p>
+<p>La phase φ est le décalage accumulé entre les deux routes. Elle dépend de la différence de longueur des trajets et de la masse de la galaxie.</p>
+<p>Cet état n’est pas un tirage « 50 % gauche, 50 % droite ». La phase φ relie les deux termes, et elle est mesurable : c’est ce qui distingue une superposition d’une simple ignorance.</p>
 <p><strong>Premier choix : mesurer la route.</strong> Sur Terre, on pointe un télescope sur chaque image du quasar. Cette mesure est décrite par deux projecteurs :</p>
 <div class="tex">\hat{P}_G = |G\rangle\langle G|, \qquad \hat{P}_D = |D\rangle\langle D|, \qquad \hat{P}_G + \hat{P}_D = \hat{1}</div>
-<p>Chacun est hermitien et vérifie P² = P. La règle de Born donne les probabilités :</p>
+<p>Chacun est hermitien et vérifie P<sup>2</sup> = P. La règle de Born donne les probabilités :</p>
 <div class="tex">\begin{aligned}
 P(G) &amp;= \langle\Psi|\hat{P}_G|\Psi\rangle = \big|\langle G|\Psi\rangle\big|^2 = \left|\frac{1}{\sqrt{2}}\right|^2 = \frac{1}{2} \\
 P(D) &amp;= \langle\Psi|\hat{P}_D|\Psi\rangle = \big|\langle D|\Psi\rangle\big|^2 = \left|\frac{e^{i\varphi}}{\sqrt{2}}\right|^2 = \frac{1}{2}
 \end{aligned}</div>
-<p>La phase φ a disparu du résultat : cette mesure n'en apprend rien.</p>
-<p><strong>Second choix : mesurer l'interférence.</strong> On superpose cette fois les deux images sur une lame semi-réfléchissante. La mesure se fait dans une autre base :</p>
+<p>La phase φ a disparu du résultat : cette mesure n’en apprend rien.</p>
+<p><strong>Second choix : mesurer l’interférence.</strong> On superpose cette fois les deux images sur une lame semi-réfléchissante. La mesure se fait dans une autre base :</p>
 <div class="tex">\begin{aligned}
 |\pm\rangle &amp;= \frac{1}{\sqrt{2}}\left(|G\rangle \pm |D\rangle\right) \\
 \hat{P}_{\pm} &amp;= |\pm\rangle\langle\pm|, \qquad \hat{P}_{+} + \hat{P}_{-} = \hat{1}
 \end{aligned}</div>
-<p>On calcule l'amplitude, puis la probabilité, en utilisant l'orthogonalité de |G⟩ et |D⟩ :</p>
+<p>On calcule l’amplitude, puis la probabilité, en utilisant l’orthogonalité de |G⟩ et |D⟩ :</p>
 <div class="tex">\begin{aligned}
 \langle\pm|\Psi\rangle &amp;= \frac{1}{2}\big(\langle G| \pm \langle D|\big)\big(|G\rangle + e^{i\varphi}|D\rangle\big) = \frac{1 \pm e^{i\varphi}}{2} \\
 P(\pm) &amp;= \frac{(1 \pm e^{i\varphi})(1 \pm e^{-i\varphi})}{4} = \frac{1 \pm \cos\varphi}{2}
 \end{aligned}</div>
-<p>Autrement dit P(+) = cos²(φ/2) et P(−) = sin²(φ/2). Cette fois, la phase φ commande tout le résultat.</p>
+<p>Autrement dit P(+) = cos<sup>2</sup>(φ/2) et P(−) = sin<sup>2</sup>(φ/2). Cette fois, la phase φ commande tout le résultat.</p>
 <p><strong>Les deux questions sont incompatibles.</strong> Les projecteurs des deux mesures ne commutent pas :</p>
 <div class="tex">\hat{P}_G\,\hat{P}_{+} - \hat{P}_{+}\,\hat{P}_G = \frac{1}{2}\big(|G\rangle\langle D| - |D\rangle\langle G|\big) \neq 0</div>
-<p>Aucun appareil ne peut donc répondre aux deux questions à la fois. C'est la complémentarité de Bohr, dont les relations de Heisenberg sont la forme chiffrée.</p>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>L'état en transit est un potentiel de réponses, pas une trajectoire. Chaque appareil pose une question différente au même état. Dans le formalisme, rien n'indique que la réponse « gauche » ou « droite » existait avant l'interaction avec le détecteur.</p></div>
-<h2 id="s2">4.2 Aucune action ne remonte le temps</h2>
-<p>Le choix de la mesure ne change ni l'état passé du photon, ni l'état de quoi que ce soit d'autre. Deux résultats l'établissent, et le second est le théorème de non-communication.</p>
-<p><strong>La matrice densité.</strong> Elle rassemble tout ce que l'état permet de prédire. Dans la base gauche-droite :</p>
+<p>Aucun appareil ne peut donc répondre aux deux questions à la fois. C’est la complémentarité de Bohr, dont les relations de Heisenberg sont la forme chiffrée.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>L’état en transit est un potentiel de réponses, pas une trajectoire. Chaque appareil pose une question différente au même état. Dans le formalisme, rien n’indique que la réponse « gauche » ou « droite » existait avant l’interaction avec le détecteur.</p></div>
+<h2 id="s2">4.2 Aucune action ne remonte le temps</h2>
+<p>Le choix de la mesure ne change ni l’état passé du photon, ni l’état de quoi que ce soit d’autre. Deux résultats l’établissent, et le second est le théorème de non-communication.</p>
+<p><strong>La matrice densité.</strong> Elle rassemble tout ce que l’état permet de prédire. Dans la base gauche-droite :</p>
 <div class="tex">\hat{\rho} = |\Psi\rangle\langle\Psi| = \frac{1}{2}\begin{pmatrix} 1 &amp; e^{-i\varphi} \\ e^{i\varphi} &amp; 1 \end{pmatrix}, \qquad P_k = \mathrm{Tr}\big(\hat{\rho}\,\hat{P}_k\big)</div>
-<p>La diagonale contient les probabilités de route, 1/2 et 1/2. Les termes hors diagonale, appelés cohérences, portent la capacité d'interférer. On vérifie par exemple :</p>
+<p>La diagonale contient les probabilités de route, 1/2 et 1/2. Les termes hors diagonale, appelés cohérences, portent la capacité d’interférer. On vérifie par exemple :</p>
 <div class="tex">\mathrm{Tr}\big(\hat{\rho}\,\hat{P}_{+}\big) = \langle +|\hat{\rho}|+\rangle = \frac{1}{4}\big(1 + e^{-i\varphi} + e^{i\varphi} + 1\big) = \frac{1 + \cos\varphi}{2}</div>
-<p><strong>Résultat 1 : l'état passé ne dépend pas du choix futur.</strong> Jusqu'à l'instant de la mesure, noté t indice m, l'état suit l'évolution unitaire du pilier 2 :</p>
+<p><strong>Résultat 1 : l’état passé ne dépend pas du choix futur.</strong> Jusqu’à l’instant de la mesure, noté t<sub>m</sub>, l’état suit l’évolution unitaire du pilier 2 :</p>
 <div class="tex">\hat{\rho}(t) = \hat{U}(t)\,\hat{\rho}(0)\,\hat{U}^{\dagger}(t) \qquad \text{pour tout } t &lt; t_m</div>
-<p>Aucun réglage de l'appareil terrestre ne figure dans cette expression. Une mesure faite en chemin aurait donné les mêmes probabilités, quel que soit le choix final.</p>
-<p><strong>Résultat 2 : le choix n'agit sur aucun autre système.</strong> Soit E n'importe quel autre système : un témoin près de la galaxie, un enregistrement, la galaxie elle-même. Le photon P et E ont un état conjoint. On mesure le photon dans une base quelconque, sans communiquer le résultat. L'état de E devient :</p>
+<p>Aucun réglage de l’appareil terrestre ne figure dans cette expression. Une mesure faite en chemin aurait donné les mêmes probabilités, quel que soit le choix final.</p>
+<p><strong>Résultat 2 : le choix n’agit sur aucun autre système.</strong> Soit E n’importe quel autre système : un témoin près de la galaxie, un enregistrement, la galaxie elle-même. Le photon P et E ont un état conjoint. On mesure le photon dans une base quelconque, sans communiquer le résultat. L’état de E devient :</p>
 <div class="tex">\begin{aligned}
 \hat{\rho}_E&#x27; &amp;= \mathrm{Tr}_P\Big[\sum_k \big(\hat{P}_k \otimes \hat{1}\big)\,\hat{\rho}_{PE}\,\big(\hat{P}_k \otimes \hat{1}\big)\Big] \\
 &amp;= \mathrm{Tr}_P\Big[\Big(\sum_k \hat{P}_k^{\,2} \otimes \hat{1}\Big)\,\hat{\rho}_{PE}\Big] \\
@@ -542,72 +685,72 @@ P(\pm) &amp;= \frac{(1 \pm e^{i\varphi})(1 \pm e^{-i\varphi})}{4} = \frac{1 \pm 
 \end{aligned}</div>
 <p>La trace partielle sur P signifie : « on ignore le photon ». Deux règles justifient les étapes.</p>
 <ul>
-<li>De la première à la deuxième ligne : sous la trace sur P, un opérateur qui n'agit que sur P peut passer d'un bout à l'autre du produit.</li>
-<li>De la deuxième à la troisième : P² = P pour un projecteur, et la somme des projecteurs d'une base vaut l'identité.</li>
+<li>De la première à la deuxième ligne : sous la trace sur P, un opérateur qui n’agit que sur P peut passer d’un bout à l’autre du produit.</li>
+<li>De la deuxième à la troisième : P<sup>2</sup> = P pour un projecteur, et la somme des projecteurs d’une base vaut l’identité.</li>
 </ul>
-<p>La base choisie n'apparaît plus dans le résultat. L'état de E est le même avant et après, que l'on mesure la route ou l'interférence. C'est le théorème de non-communication (Ghirardi, Rimini et Weber, 1980).</p>
-<p><strong>Exemple explicite : un témoin près de la galaxie.</strong> Supposons qu'un système M ait gardé une trace, même partielle, de la route. L'état conjoint est intriqué :</p>
+<p>La base choisie n’apparaît plus dans le résultat. L’état de E est le même avant et après, que l’on mesure la route ou l’interférence. C’est le théorème de non-communication (Ghirardi, Rimini et Weber, 1980).</p>
+<p><strong>Exemple explicite : un témoin près de la galaxie.</strong> Supposons qu’un système M ait gardé une trace, même partielle, de la route. L’état conjoint est intriqué :</p>
 <div class="tex">|\Phi\rangle = \frac{1}{\sqrt{2}}\Big(|G\rangle|m_G\rangle + e^{i\varphi}|D\rangle|m_D\rangle\Big)</div>
-<p>Si la Terre mesure la route, le témoin se retrouve dans l'état m indice G une fois sur deux, et m indice D une fois sur deux :</p>
+<p>Si la Terre mesure la route, le témoin se retrouve dans l’état m<sub>G</sub> une fois sur deux, et m<sub>D</sub> une fois sur deux :</p>
 <div class="tex">\hat{\rho}_M&#x27; = \frac{1}{2}\,|m_G\rangle\langle m_G| + \frac{1}{2}\,|m_D\rangle\langle m_D|</div>
-<p>Si la Terre mesure l'interférence, on additionne les deux résultats possibles, + et −. Les termes croisés s'annulent entre eux :</p>
+<p>Si la Terre mesure l’interférence, on additionne les deux résultats possibles, + et −. Les termes croisés s’annulent entre eux :</p>
 <div class="tex">\begin{aligned}
 \hat{\rho}_M&#x27; &amp;= \sum_{\pm}\frac{1}{4}\Big(|m_G\rangle \pm e^{i\varphi}|m_D\rangle\Big)\Big(\langle m_G| \pm e^{-i\varphi}\langle m_D|\Big) \\
 &amp;= \frac{1}{2}\,|m_G\rangle\langle m_G| + \frac{1}{2}\,|m_D\rangle\langle m_D|
 \end{aligned}</div>
-<p>Les deux matrices sont identiques. Le témoin ne peut déceler, ni aujourd'hui ni dans ses archives, ce que l'observateur terrestre a choisi.</p>
-<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de portée.</strong> Le théorème de non-communication porte sur deux systèmes. Pour le photon seul, il n'y a personne à qui « communiquer » : c'est le résultat 1 qui s'applique. Les deux ensemble donnent l'énoncé exact : aucun fait enregistré, passé ou lointain, ne change avec le choix.</p></div>
-<p><strong>Rétrodiction n'est pas rétro-action.</strong> Quand le télescope de gauche détecte le photon, on conclut qu'il « est passé par la gauche ». C'est une déduction faite aujourd'hui sur le passé, comme dans une enquête. Aucune grandeur physique du passé n'a été modifiée.</p>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le piège vient d'une hypothèse ajoutée au formalisme : que le photon ait dû « décider », près de la galaxie, d'être onde ou particule. Les équations ne contiennent aucune décision de ce genre. Elles ne disent pas non plus ce qui s'est « réellement » passé en chemin : sur ce point, les interprétations divergent.</p></div>
-<h2 id="s3">4.3 Le réel « graduellement donné »</h2>
-<p>Le mot « graduellement » a deux traductions rigoureuses. Le caractère onde ou particule varie de façon continue, et la connaissance s'accumule clic par clic, à raison d'un bit au plus par photon.</p>
-<p><strong>Ni binaire, ni figé.</strong> Reprenons le témoin de la section 4.2. En ignorant le témoin, l'état du photon seul devient :</p>
+<p>Les deux matrices sont identiques. Le témoin ne peut déceler, ni aujourd’hui ni dans ses archives, ce que l’observateur terrestre a choisi.</p>
+<div class="correction"><span class="eyebrow">Correction</span><p><strong>Correction de portée.</strong> Le théorème de non-communication porte sur deux systèmes. Pour le photon seul, il n’y a personne à qui « communiquer » : c’est le résultat 1 qui s’applique. Les deux ensemble donnent l’énoncé exact : aucun fait enregistré, passé ou lointain, ne change avec le choix.</p></div>
+<p><strong>Rétrodiction n’est pas rétro-action.</strong> Quand le télescope de gauche détecte le photon, on conclut qu’il « est passé par la gauche ». C’est une déduction faite aujourd’hui sur le passé, comme dans une enquête. Aucune grandeur physique du passé n’a été modifiée.</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Le piège vient d’une hypothèse ajoutée au formalisme : que le photon ait dû « décider », près de la galaxie, d’être onde ou particule. Les équations ne contiennent aucune décision de ce genre. Elles ne disent pas non plus ce qui s’est « réellement » passé en chemin : sur ce point, les interprétations divergent.</p></div>
+<h2 id="s3">4.3 Le réel « graduellement donné »</h2>
+<p>Le mot « graduellement » a deux traductions rigoureuses. Le caractère onde ou particule varie de façon continue, et la connaissance s’accumule clic par clic, à raison d’un bit au plus par photon.</p>
+<p><strong>Ni binaire, ni figé.</strong> Reprenons le témoin de la section 4.2. En ignorant le témoin, l’état du photon seul devient :</p>
 <div class="tex">\hat{\rho}_P = \mathrm{Tr}_M\,|\Phi\rangle\langle\Phi| = \frac{1}{2}\begin{pmatrix} 1 &amp; e^{-i\varphi}\langle m_D|m_G\rangle \\ e^{i\varphi}\langle m_G|m_D\rangle &amp; 1 \end{pmatrix}</div>
-<p>Les cohérences sont multipliées par le recouvrement des deux états du témoin. On note V son module, compris entre 0 et 1, et α sa phase. La probabilité d'interférence devient :</p>
+<p>Les cohérences sont multipliées par le recouvrement des deux états du témoin. On note V son module, compris entre 0 et 1, et α sa phase. La probabilité d’interférence devient :</p>
 <div class="tex">\begin{aligned}
 P(\pm) &amp;= \langle\pm|\hat{\rho}_P|\pm\rangle = \frac{1}{2}\Big[1 \pm V\cos(\varphi + \alpha)\Big] \\
 \langle m_G|m_D\rangle &amp;= V\,e^{i\alpha}
 \end{aligned}</div>
-<p>V est la visibilité des franges : le contraste de l'interférence. La distinguabilité mesure, elle, la qualité de l'information de route gardée par le témoin. Les deux sont liées :</p>
+<p>V est la visibilité des franges : le contraste de l’interférence. La distinguabilité mesure, elle, la qualité de l’information de route gardée par le témoin. Les deux sont liées :</p>
 <div class="tex">\begin{aligned}
 V &amp;= \big|\langle m_G|m_D\rangle\big|, \qquad \mathcal{D} = \sqrt{1 - \big|\langle m_G|m_D\rangle\big|^2} \\
 V^2 + \mathcal{D}^2 &amp;= 1
 \end{aligned}</div>
-<p>Dans le cas général, l'égalité devient une inégalité : la somme ne dépasse jamais 1 (Englert, 1996). Entre « tout onde » (V = 1) et « tout particule » (distinguabilité égale à 1), tous les intermédiaires existent.</p>
-<p>Le cadre binaire dénoncé par l'intuition est donc bien un piège : la théorie contient un curseur continu, pas un interrupteur.</p>
-<p><strong>Un bit au plus par photon.</strong> Chaque détection donne une réponse parmi deux. L'information qu'un photon apporte sur la phase φ se chiffre par l'information de Fisher, calculée avec p = P(+) = cos²(φ/2) :</p>
+<p>Dans le cas général, l’égalité devient une inégalité : la somme ne dépasse jamais 1 (Englert, 1996). Entre « tout onde » (V = 1) et « tout particule » (distinguabilité égale à 1), tous les intermédiaires existent.</p>
+<p>Le cadre binaire dénoncé par l’intuition est donc bien un piège : la théorie contient un curseur continu, pas un interrupteur.</p>
+<p><strong>Un bit au plus par photon.</strong> Chaque détection donne une réponse parmi deux. L’information qu’un photon apporte sur la phase φ se chiffre par l’information de Fisher, calculée avec p = P(+) = cos<sup>2</sup>(φ/2) :</p>
 <div class="tex">F(\varphi) = \frac{1}{p\,(1 - p)}\left(\frac{dp}{d\varphi}\right)^{2} = \frac{\tfrac{1}{4}\sin^2\varphi}{\cos^2\tfrac{\varphi}{2}\,\sin^2\tfrac{\varphi}{2}} = 1</div>
-<p>La simplification utilise sin φ = 2 sin(φ/2) cos(φ/2). Après N photons indépendants, la borne de Cramér-Rao limite la précision :</p>
+<p>La simplification utilise sin φ = 2 sin(φ/2) cos(φ/2). Après N photons indépendants, la borne de Cramér-Rao limite la précision :</p>
 <div class="tex">\Delta\varphi \;\ge\; \frac{1}{\sqrt{N\,F}} = \frac{1}{\sqrt{N}}</div>
-<p>Pour connaître φ à 0,01 radian près, il faut donc au moins 10 000 photons. Chaque clic met à jour l'état, par la règle de Lüders, et la connaissance, par la règle de Bayes :</p>
+<p>Pour connaître φ à 0,01 radian près, il faut donc au moins 10 000 photons. Chaque clic met à jour l’état, par la règle de Lüders, et la connaissance, par la règle de Bayes :</p>
 <div class="tex">\begin{aligned}
 \hat{\rho} \;&amp;\longrightarrow\; \frac{\hat{P}_k\,\hat{\rho}\,\hat{P}_k}{\mathrm{Tr}\big(\hat{\rho}\,\hat{P}_k\big)} \\
 p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|\,\varphi)
 \end{aligned}</div>
-<p>Ces mises à jour ont lieu à l'instant et à l'endroit de chaque interaction. Le réel connu se construit clic par clic : c'est le sens rigoureux de « graduellement donné », et l'idée que Wheeler a résumée par « it from bit ».</p>
-<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Comme dans un suivi de projet, l'information arrive par constats successifs, locaux et datés. Chaque constat met à jour l'état du dossier. Aucun constat ne réécrit les constats précédents.</p></div>
-<h2 id="s4">4.4 Conditions de validité et nuances</h2>
+<p>Ces mises à jour ont lieu à l’instant et à l’endroit de chaque interaction. Le réel connu se construit clic par clic : c’est le sens rigoureux de « graduellement donné », et l’idée que Wheeler a résumée par « it from bit ».</p>
+<div class="lecture"><span class="eyebrow">Lecture mécanique</span><p>Comme dans un suivi de projet, l’information arrive par constats successifs, locaux et datés. Chaque constat met à jour l’état du dossier. Aucun constat ne réécrit les constats précédents.</p></div>
+<h2 id="s4">4.4 Conditions de validité et nuances</h2>
 <ul>
-<li>« Choix » n'exige pas « intention ». Dans l'expérience de Jacques et ses collègues (2007), le choix est tiré par un générateur quantique de nombres aléatoires, sans lien causal possible avec l'entrée du photon dans un interféromètre de 48 m. Les statistiques sont celles de la section 4.1. Ce qui compte physiquement est la configuration de l'appareil au moment de l'interaction.</li>
-<li>Wheeler lui-même écartait la conscience, qui n'a selon lui rien à voir avec le processus quantique. L'essentiel est un acte d'enregistrement irréversible, quel que soit ce qui l'accomplit (« Law without Law », 1983, p. 196).</li>
-<li>Trois lectures s'accordent avec l'intuition : l'univers participatif de Wheeler, la mécanique quantique relationnelle de Rovelli (1996), où les faits sont relatifs aux systèmes qui interagissent, et le QBisme (Fuchs, Mermin et Schack, 2014), où l'état exprime les attentes d'un agent. C'est dans le QBisme que le mot « intention » trouve le mieux sa place.</li>
-<li>D'autres lectures donnent les mêmes prédictions sans élément participatif : l'onde pilote de De Broglie et Bohm, où le photon suit toujours une seule route guidée par une onde qui emprunte les deux, et les mondes multiples d'Everett. L'expérience ne les départage pas.</li>
-<li>Chaves, Lemos et Pienaar (2018) ont montré que les statistiques de l'expérience de Wheeler admettent un modèle causal classique, sans rétro-causalité. L'expérience ne prouve donc pas, à elle seule, que le passé était indéterminé. Une variante proposée par les mêmes auteurs permet en revanche d'exclure ces modèles classiques, à dimension égale.</li>
-<li>La version cosmique reste une expérience de pensée. Les versions réalisées vont du laboratoire (48 m, 2007) aux satellites (jusqu'à 3 500 km, 2017). Pour un vrai quasar, le délai entre les deux images dépasse de très loin le temps de cohérence de la lumière.</li>
-<li>Les formules de la section 4.3 supposent deux routes de même poids, un état conjoint pur et des photons indépendants.</li>
+<li>« Choix » n’exige pas « intention ». Dans l’expérience de Jacques et ses collègues (2007), le choix est tiré par un générateur quantique de nombres aléatoires, sans lien causal possible avec l’entrée du photon dans un interféromètre de 48 m. Les statistiques sont celles de la section 4.1. Ce qui compte physiquement est la configuration de l’appareil au moment de l’interaction.</li>
+<li>Wheeler lui-même écartait la conscience, qui n’a selon lui rien à voir avec le processus quantique. L’essentiel est un acte d’enregistrement irréversible, quel que soit ce qui l’accomplit (« Law without Law », 1983, p. 196).</li>
+<li>Trois lectures s’accordent avec l’intuition : l’univers participatif de Wheeler, la mécanique quantique relationnelle de Rovelli (1996), où les faits sont relatifs aux systèmes qui interagissent, et le QBisme (Fuchs, Mermin et Schack, 2014), où l’état exprime les attentes d’un agent. C’est dans le QBisme que le mot « intention » trouve le mieux sa place.</li>
+<li>D’autres lectures donnent les mêmes prédictions sans élément participatif : l’onde pilote de De Broglie et Bohm, où le photon suit toujours une seule route guidée par une onde qui emprunte les deux, et les mondes multiples d’Everett. L’expérience ne les départage pas.</li>
+<li>Chaves, Lemos et Pienaar (2018) ont montré que les statistiques de l’expérience de Wheeler admettent un modèle causal classique, sans rétro-causalité. L’expérience ne prouve donc pas, à elle seule, que le passé était indéterminé. Une variante proposée par les mêmes auteurs permet en revanche d’exclure ces modèles classiques, à dimension égale.</li>
+<li>La version cosmique reste une expérience de pensée. Les versions réalisées vont du laboratoire (48 m, 2007) aux satellites (jusqu’à 3 500 km, 2017). Pour un vrai quasar, le délai entre les deux images dépasse de très loin le temps de cohérence de la lumière.</li>
+<li>Les formules de la section 4.3 supposent deux routes de même poids, un état conjoint pur et des photons indépendants.</li>
 </ul>
 <h2 id="s5">Références</h2>
 <ul>
-<li>Wheeler, J. A. (1978). <a href="https://doi.org/10.1016/B978-0-12-473250-6.50006-6">The “Past” and the “Delayed-Choice” Double-Slit Experiment</a>. Dans A. R. Marlow (dir.), Mathematical Foundations of Quantum Theory, Academic Press, p. 9–48.</li>
-<li>Wheeler, J. A. (1983). « Law without Law ». Dans J. A. Wheeler et W. H. Zurek (dir.), Quantum Theory and Measurement, Princeton University Press, p. 182–213.</li>
+<li>Wheeler, J. A. (1978). <a href="https://doi.org/10.1016/B978-0-12-473250-6.50006-6">The “Past” and the “Delayed-Choice” Double-Slit Experiment</a>. Dans A. R. Marlow (dir.), Mathematical Foundations of Quantum Theory, Academic Press, p. 9⁠–⁠48.</li>
+<li>Wheeler, J. A. (1983). « Law without Law ». Dans J. A. Wheeler et W. H. Zurek (dir.), Quantum Theory and Measurement, Princeton University Press, p. 182⁠–⁠213.</li>
 <li>Wheeler, J. A. (1990). « Information, Physics, Quantum: The Search for Links ». Dans W. H. Zurek (dir.), Complexity, Entropy, and the Physics of Information, Addison-Wesley.</li>
-<li>Ghirardi, G. C., Rimini, A., Weber, T. (1980). <a href="https://link.springer.com/article/10.1007/BF02817189">A general argument against superluminal transmission through the quantum mechanical measurement process</a>. Lettere al Nuovo Cimento 27, 293–298.</li>
-<li>Englert, B.-G. (1996). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.2154">Fringe Visibility and Which-Way Information: An Inequality</a>. Physical Review Letters 77, 2154–2157.</li>
-<li>Jacques, V., et al. (2007). <a href="https://arxiv.org/abs/quant-ph/0610241">Experimental Realization of Wheeler's Delayed-Choice Gedanken Experiment</a>. Science 315, 966–968.</li>
-<li>Vedovato, F., et al. (2017). <a href="https://arxiv.org/abs/1704.01911">Extending Wheeler's delayed-choice experiment to space</a>. Science Advances 3, e1701180.</li>
+<li>Ghirardi, G. C., Rimini, A., Weber, T. (1980). <a href="https://link.springer.com/article/10.1007/BF02817189">A general argument against superluminal transmission through the quantum mechanical measurement process</a>. Lettere al Nuovo Cimento 27, 293⁠–⁠298.</li>
+<li>Englert, B.-G. (1996). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.77.2154">Fringe Visibility and Which-Way Information: An Inequality</a>. Physical Review Letters 77, 2154⁠–⁠2157.</li>
+<li>Jacques, V., et al. (2007). <a href="https://arxiv.org/abs/quant-ph/0610241">Experimental Realization of Wheeler’s Delayed-Choice Gedanken Experiment</a>. Science 315, 966⁠–⁠968.</li>
+<li>Vedovato, F., et al. (2017). <a href="https://arxiv.org/abs/1704.01911">Extending Wheeler’s delayed-choice experiment to space</a>. Science Advances 3, e1701180.</li>
 <li>Chaves, R., Lemos, G. B., Pienaar, J. (2018). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.120.190401">Causal Modeling the Delayed-Choice Experiment</a>. Physical Review Letters 120, 190401.</li>
-<li>Rovelli, C. (1996). <a href="https://arxiv.org/abs/quant-ph/9609002">Relational quantum mechanics</a>. International Journal of Theoretical Physics 35, 1637–1678.</li>
-<li>Fuchs, C. A., Mermin, N. D., Schack, R. (2014). <a href="https://arxiv.org/abs/1311.5253">An introduction to QBism with an application to the locality of quantum mechanics</a>. American Journal of Physics 82, 749–754.</li>
+<li>Rovelli, C. (1996). <a href="https://arxiv.org/abs/quant-ph/9609002">Relational quantum mechanics</a>. International Journal of Theoretical Physics 35, 1637⁠–⁠1678.</li>
+<li>Fuchs, C. A., Mermin, N. D., Schack, R. (2014). <a href="https://arxiv.org/abs/1311.5253">An introduction to QBism with an application to the locality of quantum mechanics</a>. American Journal of Physics 82, 749⁠–⁠754.</li>
 <li>Ma, X.-S., Kofler, J., Zeilinger, A. (2016). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.88.015005">Delayed-choice gedanken experiments and their realizations</a>. Reviews of Modern Physics 88, 015005. Synthèse des expériences réalisées.</li>
 </ul>
 <p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="article.html">Lire l'article <span aria-hidden="true">→</span></a></p>
@@ -619,14 +762,18 @@ p(\varphi\,|\,k_1 \dots k_N) \;&amp;\propto\; p(\varphi)\prod_{j=1}^{N} P(k_j\,|
 <p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
 <nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/Le%20choix%20d%27aujourd%27hui%20ne%20r%C3%A9%C3%A9crit%20pas%20le%20pass%C3%A9.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
 </div></footer>
+<a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>
 <script>
 'use strict';
-window.addEventListener('error', function (e) {
-  var b = document.createElement('div');
-  b.className = 'err';
-  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
-  document.body.appendChild(b);
-});
+// en développement seulement : une erreur de script s'affiche à l'écran au lieu de passer inaperçue
+if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+  window.addEventListener('error', function (e) {
+    var b = document.createElement('div');
+    b.className = 'err';
+    b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+    document.body.appendChild(b);
+  });
+}
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const NS = 'http://www.w3.org/2000/svg';
@@ -641,6 +788,7 @@ const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d
 const sig = (x, n = 3) => {
   if (!isFinite(x)) return '—';
   if (x === 0) return '0';
+  x = Number(x.toPrecision(n));                           // on arrondit d'abord : 99,96 s'écrit 100, pas 100,0
   const e = Math.floor(Math.log10(Math.abs(x)));
   const d = clamp(n - 1 - e, 0, 12);
   return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -654,6 +802,10 @@ const sci = (x, n = 2) => {
   if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
   return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
 };
+// grand nombre en toutes lettres : 236 000, 720 millions, 250 milliards
+const grand = x => x < 1e6 ? frNum(Number(x.toPrecision(3)))
+  : x < 1e9 ? sig(x / 1e6) + (x < 1.995e6 ? ' million' : ' millions')
+    : sig(x / 1e9) + (x < 1.995e9 ? ' milliard' : ' milliards');
 // durée en secondes -> texte lisible
 const duree = s => {
   if (s < 1e-12) return sig(s * 1e15) + ' fs';
@@ -661,11 +813,11 @@ const duree = s => {
   if (s < 1e-6) return sig(s * 1e9) + ' ns';
   if (s < 1e-3) return sig(s * 1e6) + ' µs';
   if (s < 1) return sig(s * 1e3) + ' ms';
-  if (s < 60) return sig(s) + ' s';
-  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
-  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
-  if (s < 31557600) return sig(s / 86400) + ' jours';
-  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  if (s < 59.95) return sig(s) + ' s';
+  if (s < 3599.5) { const t = Math.round(s), m = Math.floor(t / 60); return m + ' min ' + (t - 60 * m) + ' s'; }
+  if (s < 86370) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) { const j = s / 86400; return sig(j) + (j < 1.995 ? ' jour' : ' jours'); }
+  if (s < 31557600e6) { const a = s / 31557600; return sig(a) + (a < 1.995 ? ' an' : ' ans'); }
   return sig(s / 31557600e6) + ' millions d’années';
 };
 // générateur pseudo-aléatoire reproductible
@@ -676,15 +828,19 @@ const mulberry = seed => () => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 // espaces insécables dans les textes écrits par le script
-const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+const typo = s => s.replace(/ ([:;?!»%])/g, ' $1').replace(/« /g, '« ').replace(/(\d) (?=[a-zA-Zµé])/g, '$1 ');
 new MutationObserver(ms => ms.forEach(m => {
   const t = m.target;
   if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-// une figure plus large que l'écran défile : on le signale au lecteur
-const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+// une figure plus large que l'écran défile : on le signale au lecteur, et le clavier peut y entrer
+const marquerDefilement = () => $$('.stage').forEach(s => {
+  const oui = s.scrollWidth > s.clientWidth + 4;
+  s.classList.toggle('defile', oui);
+  if (oui) s.setAttribute('tabindex', '0'); else s.removeAttribute('tabindex');
+});
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
 // rail de lecture : la section en cours est marquée pendant le défilement
@@ -701,6 +857,17 @@ window.addEventListener('resize', marquerDefilement);
   let attente = 0;
   window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
   marquer();
+})();
+// pages longues sur petit écran : un bouton ramène au sommaire, qui se replie quand on y choisit une section
+(() => {
+  const bouton = $('.remonter'), plie = $('details.sommaire');
+  if (!bouton) return;
+  const voir = () => { bouton.hidden = window.scrollY < 1200; };
+  window.addEventListener('scroll', voir, { passive: true });
+  voir();
+  if (!plie) return;
+  bouton.addEventListener('click', () => { plie.open = true; });
+  $$('a', plie).forEach(a => a.addEventListener('click', () => { plie.open = false; }));
 })();
 
 // Épures : un dessin animé par pilier, tracé au trait sur le plan bleu.
@@ -828,7 +995,7 @@ window.addEventListener('resize', marquerDefilement);
     disque(g, ex, ey, 3.2 * u, ENCRE);
     if (!petit) {
       mot(g, 'LE MOT, PLUS ANCIEN QUE LES DÉCOUVERTES', lx - 42 * u, y1 - 38 * u, u);
-      mot(g, 'CE QU’ON A DÉCOUVERT : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
+      mot(g, 'CE QU’ON OBSERVE : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
     }
   };
 
@@ -954,7 +1121,7 @@ window.addEventListener('resize', marquerDefilement);
       mot(g, 'POTENTIEL', (0.5 - S.A - 0.04) * W, 0.2 * W, u, 'right');
       trait(g, 0.515 * W, S.YN * W, 0.555 * W, S.YN * W, TRAIT, u);
       mot(g, 'ICI, MAINTENANT', 0.565 * W, S.YN * W, u);
-      mot(g, 'CONSTATS : ' + poses, (0.5 + S.A + 0.04) * W, 0.59 * W, u, 'left', PHOTON);
+      mot(g, 'CONSTATS : ' + poses, 0.965 * W, 0.59 * W, u, 'right', PHOTON);
       mot(g, 'AUCUN GRAIN NE REMONTE', 0.5 * W, 0.712 * W, u, 'center');
     }
     g.restore();
@@ -963,7 +1130,7 @@ window.addEventListener('resize', marquerDefilement);
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
   // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.305, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
       if (len < 0.011) return;
@@ -1071,19 +1238,38 @@ window.addEventListener('DOMContentLoaded', function () {
     var t = d.textContent;
     try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
   });
-  // À l'impression (et dans le PDF), une formule plus large que la page est réduite pour tenir sur la ligne.
-  var PAPIER = 650, CORPS = 16.94;
+  // À l'écran, une formule plus large que sa colonne est réduite, jusqu'à 62 % ; au-delà elle défile, et une ombre le signale.
+  // À l'impression (et dans le PDF), elle est réduite pour tenir sur la ligne.
+  var PAPIER = 650, CORPS = 16.94, MINI = 0.62;
   var ajuster = function () {
     $$('.tex.ok').forEach(function (d) {
       var k = d.querySelector('.katex'), h = d.querySelector('.katex-html');
       if (!k || !h) return;
+      d.style.removeProperty('--zoom');
       var r = document.createRange(); r.selectNodeContents(h);
-      var w = r.getBoundingClientRect().width * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
+      var large = r.getBoundingClientRect().width, w = large * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
       d.dataset.w = Math.round(w);
       if (w > PAPIER) d.style.setProperty('--fit', (PAPIER / w).toFixed(3));
+      var c = getComputedStyle(d), place = d.clientWidth - parseFloat(c.paddingLeft) - parseFloat(c.paddingRight) - 2;
+      if (!(place > 0) || !(large > 0)) return;
+      var zoom = large > place ? Math.max(MINI, place / large) : 1;
+      if (zoom < 1) d.style.setProperty('--zoom', zoom.toFixed(3));
+      d.classList.toggle('defile', large * zoom > place + 2);
+      if (large * zoom > place + 2) d.setAttribute('tabindex', '0'); else d.removeAttribute('tabindex');
     });
   };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajuster); else ajuster();
+  var attente = 0, largeur = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === largeur) return;
+    largeur = window.innerWidth; clearTimeout(attente); attente = setTimeout(ajuster, 160);
+  });
+  var pret = function () {
+    ajuster();
+    // le rendu des formules a déplacé le texte : on revient sur l'ancre demandée
+    var cible = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (cible) cible.scrollIntoView();
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pret); else pret();
 });
 
 </script>

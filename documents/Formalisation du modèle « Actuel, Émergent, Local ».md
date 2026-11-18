@@ -4,7 +4,7 @@ Nov 17, 2026 · @Sylvain Leduc
 
 Les cinq piliers se traduisent en équations de la physique établie, et la plupart des formules demandées se démontrent telles quelles. Cinq points sont corrigés ou précisés au passage. Ils concernent le sens de la limite c/2, la formule de Glauber, le facteur 2 de la réfraction gravitationnelle, le théorème de non-communication et les deux temps de la cristallisation.
 
-Le modèle est une relecture cohérente de résultats connus, retrouvés par un chemin indépendant. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.
+Le modèle est une relecture cohérente de résultats connus, abordés par un autre chemin : celui du suivi de projet. Il ne prédit rien que la relativité et la mécanique quantique standard ne prédisent déjà.
 
 ## Pilier 1 — La géométrie de l'observateur et le tableau plat
 
@@ -1060,7 +1060,7 @@ Deux bits, alors qu'un enregistrement ordinaire n'en porterait qu'un. Cet excès
 \hat{U}^{\dagger}\sum_k c_k\,|k\rangle|M_k\rangle = \Big(\sum_k c_k\,|k\rangle\Big)|M_0\rangle
 ```
 
-La mémoire revient à son état « prêt » et l'interférence redevient possible. C'est le principe de la gomme quantique, proposée par Scully et Drühl (1982) et réalisée par Kim et ses collègues (2000).
+La mémoire revient à son état « prêt » et l'interférence redevient possible. C'est le principe de la gomme quantique, proposée par Scully et Drühl (1982) et réalisée sous cette forme par Kim et ses collègues (2000).
 
 **Lecture mécanique.** L'actualisation ressemble à une écriture au crayon. La réponse est notée, mais on peut encore l'effacer sans laisser de trace. Tant que rien d'autre n'a lu la mémoire, la question peut être retirée.
 
@@ -1109,7 +1109,7 @@ Le calcul complet de Joos et Zeh (1985) suit la même loi exponentielle. Pour de
 \tau_D = \frac{1}{\Lambda\,(x - x')^2}
 ```
 
-Pour un grain de poussière de 10 micromètres et deux positions distantes de 0,1 micromètre, les taux de leur tableau donnent 10⁻¹¹ s à la lumière du soleil et 10⁻⁹ s sous le seul rayonnement thermique ambiant. Dans le vide interstellaire, où ne reste que le rayonnement cosmologique, il faut encore moins de trois heures.
+Pour un grain de poussière de 10 micromètres et deux positions distantes de 0,1 micromètre, les taux de leur tableau donnent 10⁻¹¹ s à la lumière du soleil et 10⁻⁹ s sous le seul rayonnement thermique ambiant. Dans le vide interstellaire, où ne reste que le rayonnement cosmologique, il faut tout de même près de trois heures.
 
 **Deuxième effet : la redondance.** Chaque particule emporte une copie partielle de la réponse. Pour deux réponses de même poids, un paquet de m particules en contient :
 

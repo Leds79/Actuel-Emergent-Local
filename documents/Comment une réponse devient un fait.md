@@ -14,13 +14,13 @@ Mesurer, c'est poser une question à la nature. Dans l'intuition, cette question
 | Une réponse trois fois plus probable que l'autre | 3 sur 4 et 1 sur 4 | 0,81 bit |
 | Réponse connue d'avance | 1 et 0 | 0 bit |
 
-Ce stock est limité. Un photon qui a le choix entre deux routes ne livrera jamais plus d'un bit, quelle que soit la façon de l'interroger. Poser une autre question n'ajoute pas un second bit : elle redistribue le même.
+Ce stock est limité. Un photon qui dispose de deux routes ne livrera jamais plus d'un bit, quelle que soit la façon de l'interroger. Poser une autre question n'ajoute pas un second bit : cela redistribue le même.
 
 ## Premier temps : l'inscription au crayon
 
 Quand le photon rencontre un détecteur, un atome enregistre la réponse. Mais à ce stade, l'atome n'indique pas encore « gauche » ou « droite ». Il est lié au photon, et il porte comme lui les deux réponses à la fois.
 
-Cette inscription est réversible. Si l'on défait soigneusement le lien, la trace disparaît et les interférences reviennent. C'est la « gomme quantique », proposée en 1982 et réalisée en 2000.
+Cette inscription est réversible. Si l'on défait soigneusement le lien, la trace disparaît et les interférences reviennent. C'est la « gomme quantique », proposée en 1982 et réalisée sous cette forme en 2000.
 
 &#91;embedded content: trois temps de la mesure · une boucle d'effacement\]
 
@@ -30,7 +30,7 @@ La flèche de retour n'existe qu'entre l'inscription et la question. Une fois la
 
 Un détecteur n'est jamais seul. Des photons et des molécules d'air le heurtent sans arrêt, et chacun repart en emportant une copie partielle de la réponse. Trois effets en découlent.
 
-Les interférences s'éteignent. Selon le calcul de Joos et Zeh (1985), un grain de poussière de dix micromètres, placé « à deux endroits à la fois » distants d'un dix-millième de millimètre, perd toute interférence en un cent-milliardième de seconde au soleil. Dans le vide interstellaire, il lui faudrait encore moins de trois heures.
+Les interférences s'éteignent. Selon le calcul de Joos et Zeh (1985), un grain de poussière de dix micromètres, placé « à deux endroits à la fois » distants d'un dix-millième de millimètre, voit ses interférences s'éteindre en un cent-milliardième de seconde environ au soleil. Dans le vide interstellaire, il lui faudrait tout de même près de trois heures.
 
 Les copies se multiplient. En plein jour, chaque centimètre carré reçoit 250 millions de milliards de photons par seconde : autant de porteurs de copies. Chaque observateur en lit quelques-unes, sans toucher à l'original, et tous lisent la même réponse. Wojciech Zurek a nommé ce mécanisme « darwinisme quantique ».
 

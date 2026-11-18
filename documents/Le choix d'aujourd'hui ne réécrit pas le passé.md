@@ -6,9 +6,9 @@ Choisir aujourd'hui comment mesurer un photon ne change rien à ce qu'il a fait 
 
 ## L'expérience de Wheeler
 
-Un quasar émet de la lumière il y a des milliards d'années. Sur son chemin vers la Terre, une galaxie massive dévie cette lumière, qui peut la contourner par la gauche ou par la droite. Les astronomes voient alors deux images du même quasar.
+Un quasar a émis de la lumière il y a des milliards d'années. Sur son chemin vers la Terre, une galaxie massive dévie cette lumière, qui peut la contourner par la gauche ou par la droite. Les astronomes voient alors deux images du même quasar.
 
-À l'arrivée, l'observateur a le choix. Il peut pointer un télescope sur chaque image, et apprendre de quel côté chaque photon est arrivé. Il peut aussi superposer les deux images, et obtenir des interférences, qui supposent que la lumière a emprunté les deux côtés.
+À l'arrivée, l'observateur a le choix. Il peut pointer un télescope sur chaque image, et apprendre de quel côté chaque photon est arrivé. Il peut aussi superposer les deux images, et obtenir des interférences, qui semblent exiger que la lumière ait emprunté les deux côtés.
 
 John Wheeler a posé la question en 1978, puis l'a portée à l'échelle cosmique. Le choix se fait aujourd'hui, alors que le photon a dépassé la galaxie depuis des milliards d'années. Notre décision fixe-t-elle après coup ce qu'il a fait ?
 

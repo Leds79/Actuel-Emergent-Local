@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tomber, c&#x27;est suivre la pente du temps · Actuel, Émergent, Local</title>
-<meta name="description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tomber, c’est suivre la pente du temps · Actuel, Émergent, Local</title>
+<meta name="description" content="Tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.">
 <link rel="canonical" href="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/article.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Actuel, Émergent, Local">
 <meta property="og:locale" content="fr_CA">
-<meta property="og:title" content="Tomber, c&#x27;est suivre la pente du temps">
-<meta property="og:description" content="La relativité lui donne un sens précis : tout avance dans l&#x27;espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d&#x27;elle. Tomber, c&#x27;est virer vers cette zone ralentie.">
+<meta property="og:title" content="Tomber, c’est suivre la pente du temps">
+<meta property="og:description" content="Tout avance dans l’espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d’elle. Tomber, c’est virer vers cette zone ralentie.">
 <meta property="og:url" content="https://leds79.github.io/Actuel-Emergent-Local/pilier-3/article.html">
 <meta property="og:image" content="https://leds79.github.io/Actuel-Emergent-Local/apercu.png">
 <meta property="og:image:width" content="1200">
@@ -18,6 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@1,400;1,500&display=swap">
@@ -52,7 +54,11 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:4.6rem}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+body{margin:0;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--sans)}
+sup,sub{font-size:.72em;line-height:0;vertical-align:baseline;position:relative}
+sup{top:-.42em}
+sub{top:.28em}
+.sym{text-transform:none}
 a{color:inherit;text-underline-offset:.18em}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--geo);outline-offset:2px}
 .barre a:focus-visible,.plan a:focus-visible,.plan button:focus-visible,.pied a:focus-visible{outline-color:var(--photon)}
@@ -74,8 +80,20 @@ p{margin:0;max-width:65ch}
 .barre nav a.dos{padding:0 .8rem;margin-left:.5rem;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase}
 @media (max-width:640px){
   .marque span,.barre .lib{display:none}
+  .marque{min-width:2.75rem;min-height:2.75rem}
   .barre nav{gap:.25rem}
-  .barre nav a{min-width:2.4rem;height:2.4rem}
+  .barre nav a{min-width:2.25rem;height:2.75rem}
+}
+
+@media (max-width:380px){
+  .barre .dedans{gap:.4rem}
+  .barre nav{gap:.2rem}
+  .barre nav a{min-width:2.05rem;padding:0 .1rem}
+  .barre nav a.dos{padding:0 .45rem;margin-left:.2rem;letter-spacing:.03em}
+}
+@media (max-width:340px){
+  .marque{min-width:2rem}
+  .barre nav a{min-width:1.9rem}
 }
 
 /* en-tête : le plan bleu et son quadrillage */
@@ -86,6 +104,10 @@ p{margin:0;max-width:65ch}
 .plan .dedans.onglets{padding-bottom:0}
 .repere{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;max-width:none;font:500 .72rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--plan-ink-2)}
 .repere span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;background:var(--plan-trait-2);vertical-align:middle;margin-right:1.1rem}
+@media (max-width:640px){
+  .repere{flex-direction:column;gap:.25rem}
+  .repere span+span::before{display:none}
+}
 h1{margin:0;font-weight:600}
 .plan h1{margin-top:.9rem;font:600 clamp(2.5rem,6.2vw,4.7rem)/1 var(--display);letter-spacing:-.004em;max-width:21ch;text-wrap:balance}
 .chapeau{margin-top:1.15rem;font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.55;max-width:60ch}
@@ -101,25 +123,31 @@ h1{margin:0;font-weight:600}
 .btn.plein{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
 .plan .btn.plein:hover{background:#fff;border-color:#fff}
 .btn.encre{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
-.btn.encre:hover{background:var(--geo);border-color:var(--geo);color:#fff}
+.btn.encre:hover{background:#1f63b8;border-color:#1f63b8;color:#fff}
 @media (prefers-reduced-motion:reduce){.btn span{transition:none}}
 
 /* accueil : le titre, et l'écran qui s'expose photon par photon */
 .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
-.accueil h1{font-size:clamp(3.5rem,10vw,8.2rem);line-height:.9;letter-spacing:.004em;text-transform:uppercase;max-width:none}
+.accueil h1{font-size:clamp(3.5rem,min(10vw,14.5vh),8.2rem);line-height:1;letter-spacing:.004em;text-transform:uppercase;max-width:none}
 .accueil h1 span{display:block}
 .expo{margin:0;display:flex;flex-direction:column;gap:.85rem;min-width:0}
 .plaque{position:relative;aspect-ratio:5/4;max-width:100%;background:var(--plan-2);border:1px solid var(--plan-trait-2);overflow:hidden}
-.plaque canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.plaque canvas{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;display:block}
+@supports not (aspect-ratio:1/1){
+  .plaque::before{content:"";display:block;padding-top:80%}
+  .epure .plaque::before,.plaque.mini::before{padding-top:75%}
+}
 .pl-t,.pl-n{position:absolute;left:.85rem;font:500 .66rem/1 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
 .pl-t{top:.8rem}
 .pl-n{bottom:.8rem}
 .pl-n b{font-weight:500;color:var(--photon);font-variant-numeric:tabular-nums;margin-left:.6em}
 .expo figcaption{font-size:.9rem;line-height:1.5;color:var(--plan-ink-2);max-width:54ch}
 .lien{font:inherit;color:var(--plan-ink);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:.18em;cursor:pointer}
-@media (max-width:900px){
+@media (max-width:760px){
   .hero{grid-template-columns:1fr}
+  .accueil h1{font-size:clamp(3.5rem,17vw,6rem)}
   .plaque{aspect-ratio:16/10}
+  .actions .btn{flex:1 1 100%;justify-content:space-between}
 }
 
 /* onglets : les trois vues d'un pilier ; l'onglet actif ouvre sur la feuille */
@@ -129,12 +157,12 @@ h1{margin:0;font-weight:600}
 .vues a:hover{background:var(--plan-2);color:var(--plan-ink)}
 .vues a[aria-current="page"]{background:var(--sheet);border-color:var(--sheet);color:var(--ink)}
 @media (max-width:640px){
-  .vues a{flex:1 1 0;text-align:center;padding:1rem .3rem;letter-spacing:.05em}
+  .vues a{flex:1 1 0;text-align:center;padding:1.05rem .3rem;letter-spacing:.05em}
   .vues .plus{display:none}
 }
 
 /* la feuille */
-.pose{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pose{flex:1 0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .sheet{max-width:var(--large);margin:0 auto clamp(1.6rem,4vw,3.2rem);background:var(--sheet);border:1px solid var(--axis);border-top:0;display:flex;flex-direction:column}
 main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direction:column;gap:clamp(2rem,3.6vw,3.2rem)}
 @media (max-width:700px){
@@ -144,10 +172,10 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 }
 
 /* cartouche : au pied de la feuille, comme sur un plan */
-.cartouche{order:3;display:grid;grid-template-columns:2.3fr 1.7fr 1.6fr 1.1fr 1.3fr;border-top:1px solid var(--axis)}
+.cartouche{order:3;display:grid;grid-template-columns:2.2fr 1.5fr 2.2fr 1.1fr 1.2fr;border-top:1px solid var(--axis)}
 .cc{padding:.7rem 1rem;border-right:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:.2rem}
 .cc:last-child{border-right:0}
-.ck{font:500 .66rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.ck{font:500 .69rem/1.2 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
 .cv{font-weight:500;font-size:.9rem;line-height:1.3}
 @media (max-width:820px){
   .cartouche{grid-template-columns:1fr 1fr}
@@ -161,14 +189,16 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 .pagination a{display:flex;flex-direction:column;gap:.4rem;min-width:0;padding:1.25rem clamp(22px,4.4vw,56px);text-decoration:none}
 .pagination a+a{border-left:1px solid var(--rule);text-align:right;align-items:flex-end}
 .pagination a:hover{background:var(--geo-wash)}
-.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.1 var(--display);letter-spacing:.004em}
+.pagination b{font:600 clamp(1.2rem,2.4vw,1.6rem)/1.12 var(--display);letter-spacing:.01em;text-wrap:balance}
+@media (max-width:640px){.pagination b{font-weight:500;font-size:1.3rem}.pagination a{padding:1.1rem 20px}}
 
 /* pied de page */
 .pied{background:var(--plan-2);color:var(--plan-ink-2);font-size:.86rem}
 .pied .dedans{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem;padding-top:1.4rem;padding-bottom:1.4rem}
 .sig{display:flex;align-items:center;gap:.6rem;max-width:none;color:var(--plan-ink)}
 .sig svg{flex:none}
-.pied nav{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+.pied nav{display:flex;flex-wrap:wrap;gap:0 1.4rem}
+.pied nav a{padding:.45rem 0}
 .pied a:hover{color:var(--plan-ink)}
 
 /* texte */
@@ -177,12 +207,12 @@ main{order:1;min-width:0;padding:clamp(22px,4.4vw,56px);display:flex;flex-direct
 section{display:flex;flex-direction:column;gap:.9rem;min-width:0}
 h2{font-size:1.3rem;line-height:1.25;font-weight:600;margin:0;max-width:40ch;text-wrap:balance}
 h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
-.eyebrow,.num{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow,.num{font:500 .7rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
 @media (max-width:820px){.cols{grid-template-columns:1fr}}
 
 /* figure interactive */
-.fig{border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
+.fig{margin:0;border:1px solid var(--axis);display:grid;grid-template-columns:minmax(0,1.75fr) minmax(250px,1fr)}
 .fig.solo{grid-template-columns:1fr}
 .stage{min-width:0;padding:.75rem;display:flex;flex-direction:column;justify-content:center;background-color:var(--sheet);
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
@@ -191,6 +221,10 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
 .stage svg,.stage canvas{display:block;width:100%;height:auto;flex:none}
 .stage>svg:not(.fit){min-width:460px}
 .stage>svg.wide{min-width:640px}
+/* un dessin « adapte » tient dans la largeur d'un téléphone ; « bureau » et « mobile » sont deux mises en page du même dessin */
+.stage>svg.adapte{min-width:0;max-width:560px;margin-inline:auto}
+.stage>svg.mobile{display:none;min-width:0;max-width:420px;margin-inline:auto}
+.halo{paint-order:stroke;stroke:var(--sheet);stroke-width:5px;stroke-linejoin:round}
 .stage.defile::after{content:"↔ Faites glisser la figure";position:sticky;left:0;align-self:flex-start;margin-top:.55rem;padding:.3rem .5rem;
   border:1px solid var(--rule);background:var(--sheet);color:var(--ink-2);font:500 .68rem/1.2 var(--mono);letter-spacing:.04em}
 .panel{border-left:1px solid var(--axis);padding:1.1rem 1.15rem;display:flex;flex-direction:column;gap:1.1rem;min-width:0;background:var(--sheet)}
@@ -198,11 +232,22 @@ h3{font-size:1rem;line-height:1.3;font-weight:600;margin:0}
   .fig{grid-template-columns:1fr}
   .panel{border-left:0;border-top:1px solid var(--axis)}
 }
-@media (max-width:640px){.prose .stage>svg:not(.fit){min-width:560px}}
+@media (max-width:640px){
+  .prose .stage>svg:not(.fit):not(.mobile){min-width:560px}
+  .stage>svg.bureau{display:none}
+  .stage>svg.mobile{display:block}
+  /* sur téléphone, la figure va d'un bord à l'autre et ses textes sont grossis pour rester lisibles */
+  .p-planche main>section>.fig,.p-planche main>.cols .fig{margin-inline:-20px;border-left:0;border-right:0}
+  .p-planche .stage{padding:.6rem .5rem}
+  .adapte .t,.adapte .tb{font-size:15.5px}
+  .adapte .tq{font-size:14.5px}
+  .adapte .tm{font-size:13px}
+}
 .figcap{font-size:.9rem;color:var(--ink-2);max-width:72ch}
 .ctl{display:flex;flex-direction:column;gap:.4rem}
 .ctl label{font-weight:500;font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.1rem 1rem;align-items:baseline}
 .ctl output{font:500 .86rem var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.bouts{display:flex;justify-content:space-between;gap:1rem;margin-top:-.2rem;font:400 .66rem/1.2 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
 input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .check{display:flex;gap:.55rem;align-items:flex-start;font-size:.92rem}
 .check input{accent-color:var(--geo);margin:.3rem 0 0;width:1rem;height:1rem;flex:none}
@@ -212,16 +257,23 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
 .chip:disabled{opacity:.45;cursor:not-allowed;border-color:var(--axis)}
 .ro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.5rem 1rem;margin:0;align-items:baseline}
+.ro.fixe{grid-template-columns:minmax(0,1fr) 10.6rem}
 .ro dt{font-size:.88rem;color:var(--ink-2)}
 .ro dd{margin:0;font:500 .98rem var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .ro dd small{display:block;font-weight:400;font-size:.76rem;color:var(--ink-3)}
-.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash)}
+.state{font-size:.92rem;line-height:1.45;border:1px solid var(--rule);padding:.65rem .75rem;background:var(--geo-wash);min-height:calc(4.35em + 1.4rem)}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.88rem;color:var(--ink-2)}
 .legend span{display:inline-flex;align-items:center;gap:.5em}
 .legend i{display:inline-block;width:16px;height:3px}
 .k-geo{background:var(--geo)} .k-ray{background:var(--ray)}
 .legend i.dot{width:10px;height:10px;border-radius:50%}
 .legend i.dia{width:9px;height:9px;transform:rotate(45deg)}
+
+@media (max-width:640px),(pointer:coarse){
+  .chip{min-height:2.75rem;padding:.7rem .8rem}
+  input[type=range]{height:2.5rem}
+  .jeton{min-height:2.75rem}
+}
 
 /* jauges */
 .meter{display:flex;flex-direction:column;gap:.3rem}
@@ -231,18 +283,13 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .track i{display:block;height:100%;background:var(--geo);width:0}
 .track i.ray{background:var(--ray)}
 
-/* formules des planches */
-.formula{font-family:var(--math);font-style:italic;font-size:1.26rem;line-height:1.3;padding:1rem 1.2rem;border:1px solid var(--rule);overflow-x:auto;white-space:nowrap;display:flex;align-items:center;gap:.38em}
-.formula .up,.m .up{font-style:normal}
-.m{font-family:var(--math);font-style:italic;white-space:nowrap}
-.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .1em}
-.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 .3em .12em}
-.frac>span:last-child{padding:.12em .3em 0}
+/* formules des planches : composées par KaTeX, comme celles des démonstrations (.tex) */
 .formulas{display:flex;flex-direction:column;gap:.6rem}
 .fnote{font-size:.88rem;color:var(--ink-2)}
 
 /* encadrés */
 .lecture{background:var(--geo-wash);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
+.lecture .eyebrow{color:var(--ink-2)}
 .correction{border:1px solid var(--ink);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.55rem}
 .correction .eyebrow{color:var(--ink)}
 .avis{border-left:3px solid var(--axis);padding:.15rem 0 .15rem 1.1rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem;line-height:1.55;color:var(--ink-2)}
@@ -250,6 +297,10 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 .stat{padding:.85rem 1rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:.25rem;min-width:0}
 .stat b{font-size:1.55rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
 .stat span{font-size:.84rem;line-height:1.35;color:var(--ink-2)}
+@media (max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:last-child:nth-child(odd){grid-column:1/-1}
+}
 .defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--rule);margin:0}
 .defs div{padding:1rem 1.1rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:.3rem}
 .defs div:last-child{border-right:0}
@@ -260,7 +311,7 @@ input[type=range]{width:100%;accent-color:var(--geo);margin:0;height:1.6rem}
 /* tableaux */
 .tablewrap{overflow-x:auto}
 table.data{border-collapse:collapse;width:100%;font-size:.94rem}
-.data th{font:500 .68rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
+.data th{font:500 .7rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:.5rem .9rem .5rem 0;border-bottom:1px solid var(--ink);vertical-align:bottom}
 .data td{padding:.55rem .9rem .55rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .data .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .data td.n{font-family:var(--mono);font-size:.9rem}
@@ -272,7 +323,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   table.empile tr{padding:.9rem 0;border-bottom:1px solid var(--axis)}
   table.empile tr:first-child{padding-top:0}
   table.empile td,table.empile td.n{border:0;padding:.3rem 0;text-align:left;white-space:normal}
-  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .66rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  table.empile td::before{content:attr(data-th);display:block;margin-bottom:.15rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.04em;color:var(--ink-3)}
   table.empile td:first-child{font-family:var(--sans);font-size:1rem;font-weight:600}
   table.empile td:first-child::before{display:none}
 }
@@ -304,17 +355,25 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* texte long : articles, démonstrations, dossier */
 .prose{display:flex;flex-direction:column;gap:1.05rem;min-width:0;width:100%;max-width:47.5rem;margin-inline:auto;font-size:1.04rem;line-height:1.7}
 .prose p{max-width:none}
+.p-article .prose{max-width:42rem}
 .prose>h2{margin-top:1.8rem;font-size:1.5rem}
 .prose>h3{margin-top:.6rem;font-size:1.12rem}
 .prose ul,.prose ol{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.5rem}
 .prose li{padding-left:.15rem}
-.prose .fig{margin:0}
 .prose .lecture,.prose .correction{font-size:1rem;line-height:1.6}
 .figtitle{font-weight:600;font-size:1rem;line-height:1.4;padding:.7rem .9rem;border-bottom:1px solid var(--rule)}
 .tex{overflow-x:auto;padding:.9rem 1rem;border:1px solid var(--rule);font:400 .8rem/1.5 var(--mono);white-space:pre;color:var(--ink-2)}
 .tex.ok{white-space:normal;font:inherit;color:var(--ink);padding:.5rem 1rem}
 .tex .katex-display{margin:.5em 0}
-.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+/* une formule plus large que l'écran est d'abord réduite, puis défile si elle déborde encore */
+.tex.ok .katex{font-size:calc(1.21em*var(--zoom,1))}
+.tex.defile{background:
+  linear-gradient(90deg,var(--sheet) 35%,transparent) left/2.2rem 100% no-repeat local,
+  linear-gradient(270deg,var(--sheet) 35%,transparent) right/2.2rem 100% no-repeat local,
+  linear-gradient(90deg,var(--axis),transparent) left/.9rem 100% no-repeat scroll,
+  linear-gradient(270deg,var(--axis),transparent) right/.9rem 100% no-repeat scroll}
+.suite{display:flex;flex-wrap:wrap;gap:.7rem;padding-top:1.4rem;border-top:1px solid var(--rule);max-width:none}
+@media (max-width:520px){.suite .btn{flex:1 1 100%;justify-content:space-between}}
 .toc{border:1px solid var(--rule);padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.7rem}
 .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem}
 .toc a{text-decoration:none}
@@ -323,13 +382,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .dossier>h3{font-size:1.3rem;margin-top:1.3rem}
 @media (max-width:640px){
   .tex.ok{padding:.4rem .7rem}
-  .tex .katex{font-size:1.05em}
+  .tex.ok .katex{font-size:calc(1.1em*var(--zoom,1))}
 }
 
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(240px,340px);gap:clamp(1rem,3vw,2.4rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -338,25 +397,36 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .plt h3 a{text-decoration:none}
 .plt h3 a:hover{text-decoration:underline}
 .plt>p{color:var(--ink-2)}
-.acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
-.acces .btn{padding:.72rem .95rem}
+.acces{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin-top:.55rem;max-width:none}
+.acces .btn{padding:.78rem .95rem}
+.acces .btn.fin{border-color:var(--axis);color:var(--ink)}
+.acces .btn.fin:hover{border-color:var(--ink);background:transparent}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis svg{display:block;width:100%;height:auto}
+.vis>a{display:block}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
-.clef sup{font-size:.56em;line-height:0;vertical-align:.72em;margin-left:.04em}
+.clef sup{font-size:.56em;top:-.62em;margin-left:.04em}
 .clef span{font-size:.8rem;line-height:1.35;color:var(--ink-2)}
 @media (max-width:860px){
   .plk{grid-template-columns:4.3rem minmax(0,1fr)}
-  .vis{grid-column:2;max-width:22rem}
+  .vis{grid-column:2;display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:.8rem 1.2rem;align-items:end}
+  .clef{flex-direction:column;gap:.3rem}
+}
+@media (max-width:640px){
+  .vis{grid-template-columns:1fr}
+  .clef{flex-direction:row;gap:.7rem}
 }
 @media (max-width:520px){
   .plk{grid-template-columns:1fr}
-  .vis{grid-column:1;max-width:17rem}
+  .vis{grid-column:1}
   .no{flex-direction:row;align-items:baseline;gap:.8rem}
+  .acces .btn{flex:1 1 auto;justify-content:space-between}
+  .acces .btn.encre{flex-basis:100%}
 }
 /* accueil : verdict, synthèse */
 .large{max-width:none;margin:0;font-size:1rem;line-height:1.6}
+.prose.large>p{max-width:72ch}
+.prose.large td:first-child{font-weight:600}
 .verdict{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:1rem clamp(1.6rem,4vw,3.4rem);align-items:start}
 .verdict>p:last-child{grid-column:2;grid-row:1/span 3;font:italic 400 clamp(1.3rem,2.3vw,1.65rem)/1.38 var(--math);max-width:30ch}
 @media (max-width:820px){
@@ -369,6 +439,23 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .intuition p{max-width:44ch;font:italic 400 clamp(1.2rem,2.1vw,1.5rem)/1.4 var(--math)}
 .intuition footer{font:500 .68rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
 .prose .intuition p{max-width:none}
+.plan .intuition{margin-top:1.3rem;padding:.1rem 0 .1rem 1.1rem;border:0;border-left:2px solid var(--photon);max-width:38rem;gap:.55rem}
+.plan .intuition .eyebrow,.plan .intuition footer{color:var(--plan-ink-2)}
+.plan .intuition p{max-width:none;font-size:clamp(1.06rem,1.5vw,1.26rem);line-height:1.46;color:var(--plan-ink)}
+/* ouverture de la feuille : le nom de la vue, le titre du document, son chapeau */
+.amorce{display:flex;flex-direction:column;gap:.75rem}
+.doc-titre{font:600 clamp(1.75rem,3.3vw,2.35rem)/1.08 var(--display);letter-spacing:.004em;max-width:26ch;text-wrap:balance}
+.prose .amorce .lead{max-width:none;font-size:1.16rem;line-height:1.6}
+/* sommaire repliable des pages longues, quand le rail n'a pas la place */
+.sommaire{border:1px solid var(--rule)}
+.sommaire summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:.85rem 1rem;list-style:none;font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.sommaire summary::-webkit-details-marker{display:none}
+.sommaire summary::after{content:"+";font-size:1.05rem;line-height:1}
+.sommaire[open] summary::after{content:"−"}
+.prose .sommaire ol{list-style:none;margin:0;padding:0 1rem .5rem;gap:0}
+.prose .sommaire li{padding:0}
+.sommaire a{display:block;padding:.6rem 0;border-top:1px solid var(--rule);text-decoration:none;font-size:.95rem;line-height:1.35}
+.remonter{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));z-index:15;padding:.75rem .9rem;background:var(--ink);color:var(--sheet);font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.28)}
 .plt>p.mot{color:var(--ink);font:italic 400 1.08rem/1.45 var(--math)}
 
 /* lien d'évitement pour le clavier */
@@ -378,7 +465,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* avancement de la lecture, sous la barre du haut */
 @supports (animation-timeline:scroll()){
   .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
-    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+    transform-origin:0 50%;transform:scaleX(0);animation:avance 1ms linear both;animation-timeline:scroll(root block)}
   @keyframes avance{to{transform:scaleX(1)}}
 }
 /* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
@@ -390,25 +477,33 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
 .tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
 .epure{margin:0;min-width:0}
+.epure figcaption{margin-top:.55rem;font-size:.8rem;line-height:1.4;color:var(--plan-ink-2)}
 .epure .plaque,.plaque.mini{aspect-ratio:4/3}
-@media (max-width:980px){
-  .tete{grid-template-columns:1fr}
-  .tete .epure{display:none}
+@media (max-width:980px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,21rem)}}
+@media (max-width:760px){
+  .tete{grid-template-columns:1fr;gap:1.4rem}
+  .tete .epure{max-width:23rem}
 }
 /* accueil : choisir ce que l'on sait de chaque photon */
-.expo figcaption p{max-width:54ch}
-.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
-.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+.expo figcaption p{max-width:54ch;min-height:4.5em}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.1rem;margin-top:.75rem}
+.duo{display:flex}
+.choix .lib{flex:1 1 100%;font:500 .66rem/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--plan-ink-2)}
+.jeton{min-height:2.5rem;padding:.6rem .85rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
   font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton+.jeton{margin-left:-1px}
 .jeton:hover{background:rgba(205,225,255,.14)}
-.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
-.choix .lien{margin-left:.5rem;font-size:.86rem}
+.jeton[aria-pressed="true"]{background:var(--plan-ink);border-color:var(--plan-ink);color:var(--plan-2)}
+.choix .lien{font-size:.86rem;min-height:2.5rem}
 
 /* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
 .rail{display:none}
 @media (min-width:1200px){
   .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .p-article .avec-rail{grid-template-columns:13rem minmax(0,42rem)}
+  .sommaire,.remonter{display:none}
   .avec-rail>.prose{margin:0}
+  .avec-rail>.prose:only-child{grid-column:1/-1;margin-inline:auto}
   .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
   .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
   .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
@@ -422,9 +517,50 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .frise .ref{cursor:pointer;outline:none}
 .frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
 .frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .ref:focus-visible .touche{stroke:var(--ink);stroke-width:1.5}
 .frise .touche{fill:transparent}
 .bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
 .bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
+/* planche 4 : la question que pose la mesure choisie */
+.stage.question{padding:1.5rem 1.3rem;gap:.6rem}
+.demande{font:600 clamp(1.35rem,2.4vw,1.7rem)/1.12 var(--display);letter-spacing:.004em;margin-bottom:.9rem;max-width:none;min-height:2.3em}
+/* planche 5 : les trois temps de la mesure, en cases que le texte remplit à sa taille réelle */
+.stage.temps{padding:1.4rem .8rem 1.2rem}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);align-items:stretch}
+.etape{border:1.25px solid var(--axis);background:var(--sheet);padding:.8rem .45rem;display:flex;flex-direction:column;justify-content:center;gap:.2rem;text-align:center;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.etape b{font-size:.96rem;color:var(--ink)}
+.etape.on{background:var(--geo-wash);border-color:var(--geo);box-shadow:inset 0 0 0 1px var(--geo)}
+.passage{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:0 .6rem;font:400 .66rem/1.2 var(--mono);color:var(--ink-3)}
+.passage i{font-style:normal}
+.passage svg{display:block;width:100%;height:10px;min-width:0;flex:none}
+.retours{display:grid;grid-template-columns:minmax(0,1fr) 6.4rem minmax(0,1fr) 6.4rem minmax(0,1fr);padding-bottom:1.7rem;font-size:.8rem;line-height:1.3;color:var(--ink-2)}
+.retours p{max-width:none}
+.gomme{grid-column:1/4;position:relative;height:1.5rem;margin:0 calc((100% - 6.4rem)/4);border:1.25px solid var(--ink-3);border-top:0}
+.gomme::before{content:"";position:absolute;left:-5.6px;top:-1px;border:5px solid transparent;border-top:0;border-bottom:8px solid var(--ink-3)}
+.gomme .court{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:.4rem;white-space:nowrap}
+.retours .long{display:none}
+.gomme.pale{opacity:.3}
+.jamais{grid-column:5;padding-top:.5rem;text-align:center}
+@media (max-width:640px){
+  .stage.temps{padding:1rem .9rem}
+  .etapes{grid-template-columns:1fr}
+  .passage{flex-direction:row;gap:.6rem;padding:.4rem 0}
+  .passage svg{width:2.2rem;transform:rotate(90deg)}
+  .retours{display:flex;flex-direction:column;gap:.35rem;padding:.9rem 0 0}
+  .gomme{height:auto;margin:0;border:0}
+  .gomme::before{display:none}
+  .retours .court{display:none}
+  .retours .long{display:inline}
+  .jamais{text-align:left;padding:0}
+}
+/* liste de documents et de pages : un nom, puis ses liens */
+.docs{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.docs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem 1.5rem;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.docs .liens{display:flex;flex-wrap:wrap;gap:.4rem}
+.docs .liens a{display:inline-flex;align-items:center;min-height:2.5rem;padding:0 .75rem;border:1px solid var(--axis);font:500 .74rem/1 var(--mono);letter-spacing:.04em;text-decoration:none}
+.docs .liens a:hover{border-color:var(--ink)}
+@media (max-width:640px){.docs li{grid-template-columns:1fr}.docs li>span:first-child{font-weight:600}}
 
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
@@ -439,7 +575,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  body{display:block;min-height:0}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err,.sommaire,.remonter{display:none!important}
   .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
@@ -448,6 +585,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .plan h1,.accueil h1{font-size:30pt;line-height:1;max-width:none}
   .chapeau{font-size:11.5pt;max-width:none}
   .sheet{max-width:none;margin:0;border:0}
+  .plan .intuition{border-left:2px solid var(--axis)}
+  .plan .intuition p,.plan .intuition .eyebrow,.plan .intuition footer{color:inherit}
   .cartouche{order:0;border:1px solid var(--axis);margin-bottom:7mm;grid-template-columns:2.3fr 1.4fr 2.4fr 1.1fr 1.3fr}
   .cartouche .cc{grid-column:auto;border-bottom:0;border-right:1px solid var(--rule)}
   .cartouche .cc:nth-child(5){border-right:0}
@@ -460,10 +599,13 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .intuition p{font-size:13pt}
   .dossier>h2{break-before:page;margin-top:0;padding-top:0;border-top:0}
   .tex{overflow:visible}
-  .tex .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.ok .katex{font-size:calc(1.21em*var(--fit,1))}
+  .tex.defile{background:none}
   .stage{overflow:visible}
   .stage.defile::after{display:none}
   .stage>svg:not(.fit),.stage>svg.wide{min-width:0}
+  .stage>svg.mobile{display:none}
+  .stage>svg.bureau{display:block}
   .tablewrap{overflow:visible}
   a{text-decoration:none}
 }
@@ -474,97 +616,102 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
-<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/article.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" aria-current="page" title="La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
+<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/article.html" title="L’ombre plus rapide que la lumière" aria-label="Pilier 1 : L’ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" title="On ne voit jamais la lumière passer" aria-label="Pilier 2 : On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" aria-current="page" title="La pente du temps" aria-label="Pilier 3 : La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix d’aujourd’hui ne réécrit pas le passé" aria-label="Pilier 4 : Le choix d’aujourd’hui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait" aria-label="Pilier 5 : Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
 <div class="tete"><div>
-<p class="repere"><span>Pilier 3 / 5</span><span>Cadence c et masse comme frein</span></p>
-<h1>Tomber, c&#x27;est suivre la pente du temps</h1>
-<p class="chapeau">L'intuition de départ renverse le point de vue habituel. Au lieu d'un espace immobile où la matière se déplace, tout l'Univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent localement cette cadence. La gravité devient alors le virage d'une trajectoire qui passe d'une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.</p>
+<p class="repere"><span>Pilier 3 / 5</span><span>Cadence <span class="sym">c</span> et masse comme frein</span></p>
+<h1>La pente du temps</h1>
+<blockquote class="intuition"><span class="eyebrow">L’intuition de départ</span><p>« Je risque de me tromper, mais selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l’espace localement est plus lente que l’ensemble. »</p><footer>Sylvain Leduc</footer></blockquote>
 </div>
-<figure class="epure"><div class="plaque"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div></figure></div>
+<figure class="epure"><div class="plaque"><canvas data-epure="3" data-fige="6.0" role="img" aria-label="La toile de l&#x27;espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s&#x27;étire, et tout ce qui passe près de lui ralentit et s&#x27;entasse"></canvas></div><figcaption>Une image de l’auteur : la cadence est figurée par une toile qui tourne. L’espace, lui, ne tourne pas.</figcaption></figure></div>
 <nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche<span class="plus"> interactive</span></a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
 </div></header>
 <div class="pose"><div class="sheet">
-<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Cadence c et masse comme frein</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main id="contenu">
-<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">Tout tourne à la vitesse de la lumière, même immobile</a></li><li><a href="#s2">Une masse ralentit la cadence autour d'elle</a></li><li><a href="#s3">Tomber, c'est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></nav>
+<div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Cadence c et masse comme frein</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
+<main id="contenu" tabindex="-1">
+<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">Tout tourne à la vitesse de la lumière, même immobile</a></li><li><a href="#s2">Une masse ralentit la cadence autour d’elle</a></li><li><a href="#s3">Tomber, c’est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></nav>
 <article class="prose">
-<blockquote class="intuition"><span class="eyebrow">L'intuition de départ</span><p>« Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur environnement : la masse qui courbe l&#x27;espace localement est plus lente que l&#x27;ensemble. »</p><footer>Sylvain Leduc</footer></blockquote>
+<div class="amorce"><span class="eyebrow">Article de vulgarisation</span><h2 class="doc-titre">Tomber, c’est suivre la pente du temps</h2><p class="lead">L’intuition de départ renverse le point de vue habituel. Au lieu d’un espace immobile où la matière se déplace, tout l’univers tourne en permanence à la vitesse de la lumière, et les corps lourds ralentissent leur environnement. La gravité devient alors le virage d’une trajectoire qui passe d’une zone rapide à une zone ralentie. La relativité donne un sens précis à ces trois idées, à condition de ne pas voir dans ce frein un frottement.</p></div>
+<details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol><li><a href="#s1">Tout tourne à la vitesse de la lumière, même immobile</a></li><li><a href="#s2">Une masse ralentit la cadence autour d’elle</a></li><li><a href="#s3">Tomber, c’est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></details>
 <h2 id="s1">Tout tourne à la vitesse de la lumière, même immobile</h2>
-<p>« Tourner » s'entend ici comme pour un moteur : il est question de cadence, pas de rotation. Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements, et rien n'y est jamais à l'arrêt : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.</p>
-<p>Ce budget se partage. Ce qu'un objet dépense en vitesse dans l'espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu'à 80 % de son rythme.</p>
-<h2 id="s2">Une masse ralentit la cadence autour d'elle</h2>
-<p>Dans l'intuition, les corps lourds agissent comme des goulots d'étranglement : planètes, étoiles et trous noirs ralentissent leur voisinage. La relativité le dit avec des horloges. Le temps ne s'écoule pas partout au même rythme, et près d'une masse une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.</p>
+<p>« Tourner » s’entend ici comme pour un moteur : il est question de cadence, pas de rotation. Assis dans un fauteuil, vous n’allez nulle part dans l’espace. Vous avancez pourtant dans le temps, à raison d’une seconde par seconde. La relativité réunit ces deux déplacements, et rien n’y est jamais à l’arrêt : tout objet avance dans l’espace-temps à une cadence unique, celle de la lumière.</p>
+<p>Ce budget se partage. Ce qu’un objet dépense en vitesse dans l’espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu’à 80 % de son rythme.</p>
+<h2 id="s2">Une masse ralentit la cadence autour d’elle</h2>
+<p>Dans l’intuition, les corps lourds agissent comme des goulots d’étranglement : planètes, étoiles et trous noirs ralentissent leur voisinage. La relativité le dit avec des horloges. Le temps ne s’écoule pas partout au même rythme, et près d’une masse une horloge bat plus lentement qu’une horloge restée très loin. L’écart est infime sur Terre et énorme près d’un astre compact.</p>
 <div class="tablewrap"><table class="data">
 <thead>
 <tr>
 <th>Lieu</th>
-<th>Retard de l'horloge par rapport à une horloge lointaine</th>
+<th>Retard de l’horloge par rapport à une horloge lointaine</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Surface de la Terre</td>
-<td>22 millièmes de seconde par an</td>
+<td>22 millièmes de seconde par an</td>
 </tr>
 <tr>
 <td>Surface du Soleil</td>
-<td>67 secondes par an</td>
+<td>67 secondes par an</td>
 </tr>
 <tr>
-<td>Surface d'une étoile à neutrons</td>
-<td>19 %, soit 69 jours par an</td>
+<td>Surface d’une étoile à neutrons</td>
+<td>19 %, soit près de 70 jours par an</td>
 </tr>
 <tr>
-<td>Horizon d'un trou noir</td>
+<td>Horizon d’un trou noir</td>
 <td>arrêt complet, vu de loin</td>
 </tr>
 </tbody>
 </table></div>
-<p>Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait de 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.</p>
-<p>Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.</p>
-<p>La lumière elle-même prend du retard en passant près d'une masse. Un écho radar renvoyé par Vénus, quand son trajet frôle le Soleil, revient avec environ deux dix-millièmes de seconde de retard.</p>
-<h2 id="s3">Tomber, c'est virer vers le temps lent</h2>
-<p>Reste la troisième idée, celle d'une trajectoire qui vire en passant d'une zone rapide à une zone ralentie. Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle. Rien ne tire à distance : le virage se décide sur place, d'un point au suivant.</p>
-<figure class="fig solo"><figcaption class="figtitle">Le côté lent avance moins : la trajectoire vire vers la masse</figcaption><div class="stage"><svg viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="44" y1="48" x2="44" y2="222" class="ln"/><text x="24" y="38" class="tq">temps plus rapide</text><text x="24" y="240" class="tq">temps plus lent</text><rect x="24" y="254" width="712" height="28" class="box" style="fill:var(--grid)"/><text x="380" y="273" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M200 66Q470 66 680 186" class="ray" marker-end="url(#fp-a)"/><text x="700" y="210" text-anchor="end" class="tq">trajectoire</text><g class="lnk" style="stroke:var(--ink-2)"><line x1="200" y1="31" x2="200" y2="101"/><line x1="387.5" y1="46.2" x2="375.8" y2="115.2"/><line x1="560.7" y1="92" x2="536.5" y2="157.6"/></g><text x="200" y="20" text-anchor="middle" class="tq">front d'onde</text><text x="574" y="86" class="tq">le haut avance plus vite</text><text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text></svg></div></figure>
-<p>Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s'incurve vers la masse.</p>
-<p>Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.</p>
-<p>Votre tête vieillit donc un peu plus vite que vos pieds. Sur une vie de 80 ans, l'écart atteint à peine un demi-millionième de seconde. C'est pourtant lui qui vous tient au sol.</p>
+<p>Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait d’environ 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.</p>
+<p>Il se mesure même à l’échelle d’une table. En 2010, une équipe américaine a détecté l’écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.</p>
+<p>La lumière elle-même prend du retard en passant près d’une masse. Un écho radar renvoyé par Vénus, quand son trajet frôle le Soleil, revient avec environ deux dix-millièmes de seconde de retard.</p>
+<h2 id="s3">Tomber, c’est virer vers le temps lent</h2>
+<p>Reste la troisième idée, celle d’une trajectoire qui vire en passant d’une zone rapide à une zone ralentie. Imaginez un essieu dont une roue tourne un peu moins vite que l’autre : il vire du côté de la roue lente. Tout ce qui avance librement près d’une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle. Rien ne tire à distance : le virage se décide sur place, d’un point au suivant.</p>
+<figure class="fig solo"><figcaption class="figtitle">Le côté lent avance moins : la trajectoire vire vers la masse</figcaption><div class="stage"><svg class="bureau" viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="44" y1="48" x2="44" y2="222" class="ln"/><text x="24" y="38" class="tq">temps plus rapide</text><text x="24" y="240" class="tq">temps plus lent</text><rect x="24" y="254" width="712" height="28" class="box" style="fill:var(--grid)"/><text x="380" y="273" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M200 66Q470 66 680 186" class="ray" marker-end="url(#fp-a)"/><text x="700" y="210" text-anchor="end" class="tq">trajectoire</text><g class="lnk" style="stroke:var(--ink-2)"><line x1="200" y1="31" x2="200" y2="101"/><line x1="387.5" y1="46.2" x2="375.8" y2="115.2"/><line x1="560.7" y1="92" x2="536.5" y2="157.6"/></g><text x="200" y="20" text-anchor="middle" class="tq">front d’onde</text><text x="574" y="86" class="tq">le haut avance plus vite</text><text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text></svg><svg class="mobile" viewBox="0 0 350 292" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="22" y1="34" x2="22" y2="214" class="ln"/><text x="14" y="22" class="tq">temps plus rapide</text><text x="14" y="232" class="tq">temps plus lent</text><rect x="14" y="246" width="322" height="28" class="box" style="fill:var(--grid)"/><text x="175" y="265" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M92 76Q220 76 322 182" class="ray" marker-end="url(#fp-am)"/><g class="lnk" style="stroke:var(--ink-2)"><line x1="92" y1="42" x2="92" y2="110"/><line x1="228.7" y1="72.5" x2="199.3" y2="133.7"/><line x1="314.6" y1="126.2" x2="269.7" y2="177.3"/></g><text x="100" y="56" class="tq">front d’onde</text><text x="340" y="52" text-anchor="end" class="tq">le haut avance plus vite</text><text x="258" y="206" text-anchor="end" class="tq">le bas avance moins vite</text><text x="340" y="222" text-anchor="end" class="tq">trajectoire</text></svg></div></figure>
+<p>Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s’incurve vers la masse.</p>
+<p>Le calcul donne un résultat d’une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d’un peu plus d’un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.</p>
+<p>Votre tête vieillit donc un peu plus vite que vos pieds. Sur une vie de 80 ans, l’écart atteint à peine un demi-millionième de seconde. C’est pourtant lui qui vous tient au sol.</p>
 <h2 id="s4">La lumière tombe deux fois plus</h2>
-<p>La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc.</p>
-<p>La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.</p>
-<p>L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites.</p>
+<p>La lumière aussi est déviée, d’un angle minuscule que l’on compte en secondes d’arc : un degré en contient 3 600. En 1911, Einstein calcule l’effet du seul ralentissement du temps et trouve 0,83 seconde d’arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d’arc, ou 1,75 avec les valeurs d’aujourd’hui.</p>
+<p>La différence vient de l’espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d’espace, sent les deux effets.</p>
+<p>L’éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d’arc mesurées sur deux sites.</p>
 <h2 id="s5">Un frein sans frottement</h2>
-<p>L'image du frein, ou du goulot d'étranglement, a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.</p>
-<p>Ensuite, rien ne s'use. Un frein ordinaire chauffe et dissipe de l'énergie ; ici, aucune énergie n'est perdue.</p>
-<p>Enfin, l'image dit comment les choses tombent, pas pourquoi une masse ralentit le temps. Cette question relève des équations d'Einstein, qui décrivent aussi ce que l'image ne couvre pas : les ondes gravitationnelles et l'expansion de l'univers.</p>
+<p>L’image du frein, ou du goulot d’étranglement, a trois limites. D’abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n’apparaît qu’en comparant deux endroits.</p>
+<p>Ensuite, rien ne s’use. Un frein ordinaire chauffe et dissipe de l’énergie ; ici, aucune énergie n’est perdue.</p>
+<p>Enfin, l’image dit comment les choses tombent, pas pourquoi une masse ralentit le temps. Cette question relève des équations d’Einstein, qui décrivent aussi ce que l’image ne couvre pas : les ondes gravitationnelles et l’expansion de l’univers.</p>
 <h2 id="s6">Sources et précisions</h2>
 <ul>
-<li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 3. Les chiffres du tableau, du GPS et de l'écart entre la tête et les pieds en sont tirés par calcul.</li>
-<li>Déviation de la lumière : Einstein, A. (1911). <a href="https://zenodo.org/records/1424213">Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes</a>. Annalen der Physik 35, 898–908. Einstein, A. (1916). <a href="https://zenodo.org/records/1424302">Die Grundlage der allgemeinen Relativitätstheorie</a>. Annalen der Physik 49, 769–822.</li>
-<li>Éclipse de 1919 : Dyson, F. W., Eddington, A. S., Davidson, C. (1920). <a href="https://zenodo.org/records/1432106">A Determination of the Deflection of Light by the Sun's Gravitational Field</a>. Philosophical Transactions of the Royal Society A 220, 291–333.</li>
-<li>Retard des échos radar : Shapiro, I. I. (1964). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.13.789">Fourth Test of General Relativity</a>. Physical Review Letters 13, 789–791. Confirmé à 0,002 % près par la sonde Cassini : Bertotti, B., Iess, L., Tortora, P. (2003). <a href="https://www.nature.com/articles/nature01997">A test of general relativity using radio links with the Cassini spacecraft</a>. Nature 425, 374–376.</li>
-<li>Horloges séparées de 33 centimètres : Chou, C. W., Hume, D. B., Rosenband, T., Wineland, D. J. (2010). <a href="https://tf.nist.gov/general/pdf/2447.pdf">Optical Clocks and Relativity</a>. Science 329, 1630–1633.</li>
-<li>L'image d'un vide qui ralentit la lumière remonte à Einstein (1911). Elle a été reprise par Dicke, R. H. (1957). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.363">Gravitation without a Principle of Equivalence</a>. Reviews of Modern Physics 29, 363–376.</li>
+<li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 3. Les chiffres du tableau, du GPS et de l’écart entre la tête et les pieds en sont tirés par calcul.</li>
+<li>Déviation de la lumière : Einstein, A. (1911). <a href="https://zenodo.org/records/1424213">Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes</a>. Annalen der Physik 35, 898⁠–⁠908. Einstein, A. (1916). <a href="https://zenodo.org/records/1424302">Die Grundlage der allgemeinen Relativitätstheorie</a>. Annalen der Physik 49, 769⁠–⁠822.</li>
+<li>Éclipse de 1919 : Dyson, F. W., Eddington, A. S., Davidson, C. (1920). <a href="https://zenodo.org/records/1432106">A Determination of the Deflection of Light by the Sun’s Gravitational Field</a>. Philosophical Transactions of the Royal Society A 220, 291⁠–⁠333.</li>
+<li>Retard des échos radar : Shapiro, I. I. (1964). <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.13.789">Fourth Test of General Relativity</a>. Physical Review Letters 13, 789⁠–⁠791. Confirmé à 0,002 % près par la sonde Cassini : Bertotti, B., Iess, L., Tortora, P. (2003). <a href="https://www.nature.com/articles/nature01997">A test of general relativity using radio links with the Cassini spacecraft</a>. Nature 425, 374⁠–⁠376.</li>
+<li>Horloges séparées de 33 centimètres : Chou, C. W., Hume, D. B., Rosenband, T., Wineland, D. J. (2010). <a href="https://tf.nist.gov/general/pdf/2447.pdf">Optical Clocks and Relativity</a>. Science 329, 1630⁠–⁠1633.</li>
+<li>L’image d’un vide qui ralentit la lumière remonte à Einstein (1911). Elle a été reprise par Dicke, R. H. (1957). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.363">Gravitation without a Principle of Equivalence</a>. Reviews of Modern Physics 29, 363⁠–⁠376.</li>
 </ul>
 <p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="demonstration.html">Lire la démonstration <span aria-hidden="true">→</span></a></p>
 </article></div>
 </main>
-<nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-2/article.html"><span class="num">← Pilier 2</span><b>On ne voit jamais la lumière passer</b></a><a href="../pilier-4/article.html"><span class="num">Pilier 4 →</span><b>Le choix qui ne réécrit pas le passé</b></a></nav>
+<nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-2/article.html"><span class="num">← Pilier 2</span><b>On ne voit jamais la lumière passer</b></a><a href="../pilier-4/article.html"><span class="num">Pilier 4 →</span><b>Le choix d’aujourd’hui ne réécrit pas le passé</b></a></nav>
 </div></div>
 <footer class="pied"><div class="dedans">
 <p class="sig"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local · un modèle de Sylvain Leduc</span></p>
 <nav aria-label="Liens de bas de page"><a href="../index.html">Accueil</a><a href="../dossier.html">Dossier complet</a><a href="../dossier-complet.pdf">Dossier en PDF</a><a href="../documents/Tomber%2C%20c%27est%20suivre%20la%20pente%20du%20temps.pdf">Article en PDF</a><a href="https://github.com/Leds79/Actuel-Emergent-Local">Code source</a></nav>
 </div></footer>
+<a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>
 <script>
 'use strict';
-window.addEventListener('error', function (e) {
-  var b = document.createElement('div');
-  b.className = 'err';
-  b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
-  document.body.appendChild(b);
-});
+// en développement seulement : une erreur de script s'affiche à l'écran au lieu de passer inaperçue
+if (location.protocol === 'file:' || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+  window.addEventListener('error', function (e) {
+    var b = document.createElement('div');
+    b.className = 'err';
+    b.textContent = 'Erreur de script : ' + (e.message || e) + (e.lineno ? ' (ligne ' + e.lineno + ')' : '');
+    document.body.appendChild(b);
+  });
+}
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const NS = 'http://www.w3.org/2000/svg';
@@ -579,6 +726,7 @@ const frNum = (x, d = 0) => x.toLocaleString('fr-FR', { minimumFractionDigits: d
 const sig = (x, n = 3) => {
   if (!isFinite(x)) return '—';
   if (x === 0) return '0';
+  x = Number(x.toPrecision(n));                           // on arrondit d'abord : 99,96 s'écrit 100, pas 100,0
   const e = Math.floor(Math.log10(Math.abs(x)));
   const d = clamp(n - 1 - e, 0, 12);
   return x.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d });
@@ -592,6 +740,10 @@ const sci = (x, n = 2) => {
   if (Number(m.toFixed(n - 1)) >= 10) { m /= 10; e += 1; }
   return m.toLocaleString('fr-FR', { minimumFractionDigits: n - 1, maximumFractionDigits: n - 1 }) + ' × 10' + sup(e);
 };
+// grand nombre en toutes lettres : 236 000, 720 millions, 250 milliards
+const grand = x => x < 1e6 ? frNum(Number(x.toPrecision(3)))
+  : x < 1e9 ? sig(x / 1e6) + (x < 1.995e6 ? ' million' : ' millions')
+    : sig(x / 1e9) + (x < 1.995e9 ? ' milliard' : ' milliards');
 // durée en secondes -> texte lisible
 const duree = s => {
   if (s < 1e-12) return sig(s * 1e15) + ' fs';
@@ -599,11 +751,11 @@ const duree = s => {
   if (s < 1e-6) return sig(s * 1e9) + ' ns';
   if (s < 1e-3) return sig(s * 1e6) + ' µs';
   if (s < 1) return sig(s * 1e3) + ' ms';
-  if (s < 60) return sig(s) + ' s';
-  if (s < 3600) { const m = Math.floor(s / 60); return m + ' min ' + Math.round(s - 60 * m) + ' s'; }
-  if (s < 86400) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
-  if (s < 31557600) return sig(s / 86400) + ' jours';
-  if (s < 31557600e6) return sig(s / 31557600) + ' ans';
+  if (s < 59.95) return sig(s) + ' s';
+  if (s < 3599.5) { const t = Math.round(s), m = Math.floor(t / 60); return m + ' min ' + (t - 60 * m) + ' s'; }
+  if (s < 86370) { const tm = Math.round(s / 60), h = Math.floor(tm / 60); return h + ' h ' + (tm - 60 * h) + ' min'; }
+  if (s < 31557600) { const j = s / 86400; return sig(j) + (j < 1.995 ? ' jour' : ' jours'); }
+  if (s < 31557600e6) { const a = s / 31557600; return sig(a) + (a < 1.995 ? ' an' : ' ans'); }
   return sig(s / 31557600e6) + ' millions d’années';
 };
 // générateur pseudo-aléatoire reproductible
@@ -614,15 +766,19 @@ const mulberry = seed => () => {
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 // espaces insécables dans les textes écrits par le script
-const typo = s => s.replace(/ ([:;?!»])/g, ' $1').replace(/« /g, '« ');
+const typo = s => s.replace(/ ([:;?!»%])/g, ' $1').replace(/« /g, '« ').replace(/(\d) (?=[a-zA-Zµé])/g, '$1 ');
 new MutationObserver(ms => ms.forEach(m => {
   const t = m.target;
   if (t.nodeType === 1 && t.classList.contains('state')) { const f = typo(t.textContent); if (f !== t.textContent) t.textContent = f; }
 })).observe(document.documentElement, { childList: true, subtree: true });
 // boutons à bascule exclusive
 const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-// une figure plus large que l'écran défile : on le signale au lecteur
-const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
+// une figure plus large que l'écran défile : on le signale au lecteur, et le clavier peut y entrer
+const marquerDefilement = () => $$('.stage').forEach(s => {
+  const oui = s.scrollWidth > s.clientWidth + 4;
+  s.classList.toggle('defile', oui);
+  if (oui) s.setAttribute('tabindex', '0'); else s.removeAttribute('tabindex');
+});
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
 // rail de lecture : la section en cours est marquée pendant le défilement
@@ -639,6 +795,17 @@ window.addEventListener('resize', marquerDefilement);
   let attente = 0;
   window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
   marquer();
+})();
+// pages longues sur petit écran : un bouton ramène au sommaire, qui se replie quand on y choisit une section
+(() => {
+  const bouton = $('.remonter'), plie = $('details.sommaire');
+  if (!bouton) return;
+  const voir = () => { bouton.hidden = window.scrollY < 1200; };
+  window.addEventListener('scroll', voir, { passive: true });
+  voir();
+  if (!plie) return;
+  bouton.addEventListener('click', () => { plie.open = true; });
+  $$('a', plie).forEach(a => a.addEventListener('click', () => { plie.open = false; }));
 })();
 
 // Épures : un dessin animé par pilier, tracé au trait sur le plan bleu.
@@ -766,7 +933,7 @@ window.addEventListener('resize', marquerDefilement);
     disque(g, ex, ey, 3.2 * u, ENCRE);
     if (!petit) {
       mot(g, 'LE MOT, PLUS ANCIEN QUE LES DÉCOUVERTES', lx - 42 * u, y1 - 38 * u, u);
-      mot(g, 'CE QU’ON A DÉCOUVERT : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
+      mot(g, 'CE QU’ON OBSERVE : ACTUEL, ÉMERGENT, LOCAL', lx - 42 * u, y2 - 0.21 * H, u, 'left', PHOTON);
     }
   };
 
@@ -892,7 +1059,7 @@ window.addEventListener('resize', marquerDefilement);
       mot(g, 'POTENTIEL', (0.5 - S.A - 0.04) * W, 0.2 * W, u, 'right');
       trait(g, 0.515 * W, S.YN * W, 0.555 * W, S.YN * W, TRAIT, u);
       mot(g, 'ICI, MAINTENANT', 0.565 * W, S.YN * W, u);
-      mot(g, 'CONSTATS : ' + poses, (0.5 + S.A + 0.04) * W, 0.59 * W, u, 'left', PHOTON);
+      mot(g, 'CONSTATS : ' + poses, 0.965 * W, 0.59 * W, u, 'right', PHOTON);
       mot(g, 'AUCUN GRAIN NE REMONTE', 0.5 * W, 0.712 * W, u, 'center');
     }
     g.restore();
@@ -901,7 +1068,7 @@ window.addEventListener('resize', marquerDefilement);
   // Pilier 5. La réponse est d'abord un germe, tracé au crayon. Puis elle cristallise en flocon de neige :
   // six bras identiques, chaque rameau en porte de plus petits, de proche en proche, et rien ne revient en arrière.
   const GIVRE = (() => {
-    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.33, PAS = [9, 5, 3, 2];
+    const niveaux = [[], [], [], []], V = 0.105, LONG = 0.305, PAS = [9, 5, 3, 2];
     let total = 0, fin = 0;
     const branche = (x, y, ang, len, t0, prof) => {
       if (len < 0.011) return;

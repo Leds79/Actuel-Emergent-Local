@@ -43,9 +43,9 @@ POLICES = ("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;6
 
 # clef : un chiffre tiré des documents, affiché sous la vignette de la page d'accueil
 PILIERS = [
-    dict(n=1, titre="L'ombre plus rapide que la lumière", objet="Géométrie de l'observateur", echelle="1 px = 400 000 km",
+    dict(n=1, titre="L'ombre plus rapide que la lumière", objet="Géométrie de l'observateur", echelle="Variable : le dessin se resserre",
          article="L'ombre plus rapide que la lumière, vue par celui qui tient les ciseaux",
-         resume="Sur un écran plat, l'ombre des ciseaux part de 524 fois la vitesse de la lumière et retombe vers c. "
+         resume="Sur un écran plat, l'ombre des ciseaux part de 524 fois la vitesse de la lumière, notée c, puis retombe vers c. "
                 "Celui qui tient les ciseaux la voit tendre vers c/2.",
          clef=("524 c", "vitesse de l'ombre au centre de l'écran, dans l'exemple chiffré")),
     dict(n=2, titre="On ne voit jamais la lumière passer", objet="Lumière actuelle, émergente, locale", echelle="Schémas de principe",
@@ -55,48 +55,58 @@ PILIERS = [
          clef=("1 clic", "par photon : deux détecteurs ne se déclenchent pratiquement jamais ensemble (1986)")),
     dict(n=3, titre="La pente du temps", objet="Cadence c et masse comme frein", echelle="Schémas de principe",
          article="Tomber, c'est suivre la pente du temps",
-         resume="La relativité lui donne un sens précis : tout avance dans l'espace-temps à la cadence de la lumière, et une "
-                "masse ralentit les horloges autour d'elle. Tomber, c'est virer vers cette zone ralentie.",
+         resume="La relativité donne un sens précis à cette intuition : tout avance dans l'espace-temps à la cadence de la "
+                "lumière, et une masse ralentit les horloges autour d'elle. Tomber, c'est virer vers cette zone ralentie.",
+         meta="Tout avance dans l'espace-temps à la cadence de la lumière, et une masse ralentit les horloges autour d'elle. "
+              "Tomber, c'est virer vers cette zone ralentie.",
          clef=("9,81 m/s<sup>2</sup>", "la pesanteur, retrouvée en multipliant la pente du temps par c²")),
-    dict(n=4, titre="Le choix qui ne réécrit pas le passé", objet="Choix retardé de Wheeler", echelle="Schémas de principe",
+    dict(n=4, titre="Le choix d'aujourd'hui ne réécrit pas le passé", objet="Choix retardé de Wheeler", echelle="Schémas de principe",
          article="Le choix d'aujourd'hui ne réécrit pas le passé",
          resume="Choisir aujourd'hui comment mesurer un photon ne change rien à ce qu'il a fait. Entre « une route » "
                 "et « deux routes », tous les intermédiaires existent.",
-         clef=("3 500 km", "parcourus par les photons quand l'expérience de Wheeler a été refaite avec un satellite, en 2017")),
+         clef=("3 500 km", "parcourus par les photons quand l'expérience a été refaite avec un satellite, en 2017")),
     dict(n=5, titre="Comment une réponse devient un fait", objet="Cristallisation de l'information", echelle="Schémas de principe",
          article="Comment une réponse devient un fait",
          resume="La réponse est d'abord inscrite au crayon, encore effaçable. L'environnement la recopie ensuite "
                 "des milliards de fois et la grave.",
-         clef=("10 ps", "dix picosecondes pour éteindre l'interférence d'un grain de poussière au soleil (calcul de 1985)")),
+         clef=("10 ps", "dix picosecondes : le temps que met le soleil à brouiller l'interférence d'un grain de poussière")),
 ]
-# l'intuition de départ de chaque pilier, dans les mots de l'auteur (orthographe corrigée, phrases rapprochées)
+# l'intuition de départ de chaque pilier, dans les mots de l'auteur (orthographe corrigée, phrases rapprochées).
+# Piliers 1 à 4 : sa conversation d'origine. Pilier 5 : sa demande d'ajout d'un cinquième point. Les deux sont dans prive/.
 INTUITIONS = {
     1: "L'observateur est celui qui ferme les ciseaux : il faut que le photon revienne du tableau. Sur un tableau parfaitement plat, "
-       "je vois cela un peu comme un miroir face à un miroir : il y a un décalage.",
-    2: "La lumière est comme l'eau : transparente. C'est sa définition par le langage qui est obsolète. Elle n'est pas absolue "
-       "mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local.",
-    3: "Selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, ralentissent leur "
-       "environnement : la masse qui courbe l'espace localement est plus lente que l'ensemble.",
+       "je vois cela un peu comme dans un miroir face à un miroir : il y a un décalage.",
+    2: "La lumière est comme l'eau : transparente. Je pense que c'est sa définition par le langage qui est obsolète. Elle n'est pas "
+       "absolue mais émergente ; les vrais mots seraient, selon moi : actuel, émergent, local.",
+    3: "Je risque de me tromper, mais selon moi, tout tourne à la vitesse de la lumière. Des corps trop lourds, comme les trous noirs, "
+       "ralentissent leur environnement : la masse qui courbe l'espace localement est plus lente que l'ensemble.",
     4: "C'est bizarre de devoir rester dans le cadre fermé de ces deux options. On parle de choix retardé : pour moi, cela veut dire "
        "qu'il y a intention, et que ce que nous concevons et connaissons nous est graduellement donné.",
-    5: "La question est un potentiel. Actualiser, c'est cristalliser l'information.",
+    5: "La cristallisation de l'information fait suite à la quatrième hypothèse : la question est un potentiel ; actualiser, "
+       "c'est cristalliser l'information.",
 }
 
 # épures : pour chaque pilier, l'instant montré quand l'animation est désactivée, et la description du dessin
 EPURES = {
-    1: ("3.6", "L'ombre d'une paire de ciseaux sur un tableau plat, vue de face. Elle se referme de proche en proche, du centre vers la pointe ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"),
+    1: ("3.6", "L'ombre d'une paire de ciseaux sur un tableau plat, vue de face. Elle se referme peu à peu, du centre vers la pointe, chaque point avec son propre retard ; en pointillé, ce que voit celui qui tient les ciseaux, encore plus en retard"),
     2: ("4.0", "En haut, le mot « rayon », barré : une tige rigide enfermée dans les limites de sa définition. En bas, le fait : un trajet invisible, et des éclats là où la lumière rencontre la matière"),
     3: ("6.0", "La toile de l'espace-temps tourne tout entière, avec ses galaxies. Un trou noir y creuse un puits : la toile s'étire, et tout ce qui passe près de lui ralentit et s'entasse"),
     4: ("24.0", "Un sablier : les grains tombent un à un du potentiel vers les constats, et aucun ne remonte"),
     5: ("7.0", "Un germe apparaît au centre, puis un flocon de neige en part : six bras identiques, chacun portant des rameaux de plus en plus fins. La réponse cristallise"),
+}
+# une phrase sous le dessin, quand l'image demande une précision pour ne pas être prise au pied de la lettre
+NOTES_EPURES = {
+    3: "Une image de l'auteur : la cadence est figurée par une toile qui tourne. L'espace, lui, ne tourne pas.",
 }
 VUES = [("index.html", 'Planche<span class="plus"> interactive</span>'), ("article.html", "Article"),
         ("demonstration.html", "Démonstration")]
 MOIS = dict(Jan="janvier", Feb="février", Mar="mars", Apr="avril", May="mai", Jun="juin", Jul="juillet", Aug="août",
             Sep="septembre", Oct="octobre", Nov="novembre", Dec="décembre")
 
-KATEX = ('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">\n'
-         '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>\n')
+KATEX = ('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" '
+         'integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous">\n'
+         '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js" '
+         'integrity="sha512-LQNxIMR5rXv7o+b1l8+N1EZMfhG7iFZ9HhnbJkTp4zjNr5Wvst75AqUeFDxeRUa7l5vEDyUiAip//r+EFLLCyA==" crossorigin="anonymous"></script>\n')
 KATEX_JS = """
 window.addEventListener('DOMContentLoaded', function () {
   if (!window.katex) return;
@@ -104,33 +114,59 @@ window.addEventListener('DOMContentLoaded', function () {
     var t = d.textContent;
     try { katex.render(t, d, { displayMode: true, throwOnError: false, strict: 'ignore' }); d.classList.add('ok'); } catch (e) { }
   });
-  // À l'impression (et dans le PDF), une formule plus large que la page est réduite pour tenir sur la ligne.
-  var PAPIER = 650, CORPS = 16.94;
+  // À l'écran, une formule plus large que sa colonne est réduite, jusqu'à 62 % ; au-delà elle défile, et une ombre le signale.
+  // À l'impression (et dans le PDF), elle est réduite pour tenir sur la ligne.
+  var PAPIER = 650, CORPS = 16.94, MINI = 0.62;
   var ajuster = function () {
     $$('.tex.ok').forEach(function (d) {
       var k = d.querySelector('.katex'), h = d.querySelector('.katex-html');
       if (!k || !h) return;
+      d.style.removeProperty('--zoom');
       var r = document.createRange(); r.selectNodeContents(h);
-      var w = r.getBoundingClientRect().width * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
+      var large = r.getBoundingClientRect().width, w = large * CORPS / (parseFloat(getComputedStyle(k).fontSize) || 19.36);
       d.dataset.w = Math.round(w);
       if (w > PAPIER) d.style.setProperty('--fit', (PAPIER / w).toFixed(3));
+      var c = getComputedStyle(d), place = d.clientWidth - parseFloat(c.paddingLeft) - parseFloat(c.paddingRight) - 2;
+      if (!(place > 0) || !(large > 0)) return;
+      var zoom = large > place ? Math.max(MINI, place / large) : 1;
+      if (zoom < 1) d.style.setProperty('--zoom', zoom.toFixed(3));
+      d.classList.toggle('defile', large * zoom > place + 2);
+      if (large * zoom > place + 2) d.setAttribute('tabindex', '0'); else d.removeAttribute('tabindex');
     });
   };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajuster); else ajuster();
+  var attente = 0, largeur = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === largeur) return;
+    largeur = window.innerWidth; clearTimeout(attente); attente = setTimeout(ajuster, 160);
+  });
+  var pret = function () {
+    ajuster();
+    // le rendu des formules a déplacé le texte : on revient sur l'ancre demandée
+    var cible = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (cible) cible.scrollIntoView();
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pret); else pret();
 });
 """
 
 AVIS = ('<aside class="avis"><span class="eyebrow">À savoir avant de lire</span>'
-        '<p>Ce dossier examine une à une les formules que l\'auteur proposait à partir de ses intuitions. Quand le texte dit '
-        '« la formule demandée », il s\'agit de l\'une de ces formules de départ : elle est démontrée telle quelle, ou corrigée.</p>'
-        '%s</aside>')
-AVIS_MOT = '<p>Le dossier dit « tableau » là où les articles et les planches disent « écran ». C\'est le même objet.</p>'
+        '<p>Ce dossier examine une à une les formules de départ. Elles ont été écrites à partir des intuitions de l\'auteur, dans la '
+        'demande qui a lancé ce travail. Quand le texte dit « la formule demandée », il s\'agit de l\'une d\'elles : elle est '
+        'démontrée telle quelle, ou corrigée.</p>%s</aside>')
+# le dossier et les autres vues ne nomment pas tout à fait les choses de la même façon
+AVIS_MOTS = {
+    1: '<p>Le dossier dit « tableau », « tache », « observateur » et « vitesse perçue » là où l\'article et la planche disent '
+       '« écran », « ombre », « opérateur » et « vitesse vue ». Ce sont les mêmes choses.</p>',
+    2: '<p>Le dossier dit « tableau » là où l\'article et la planche disent « écran » ou « mur ». C\'est le même objet.</p>',
+}
+AVIS_DOSSIER = ('<p>Dans les deux premiers piliers, le dossier dit « tableau », « tache », « observateur » et « vitesse perçue » là où '
+                'les articles et les planches disent « écran », « ombre », « opérateur » et « vitesse vue ». Ce sont les mêmes choses.</p>')
 
 GABARIT = """<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>%%TITREPAGE%%</title>
 <meta name="description" content="%%DESCRIPTION%%">
 <link rel="canonical" href="%%ADRESSE%%">
@@ -146,6 +182,8 @@ GABARIT = """<!doctype html>
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a2046">
 <link rel="icon" href="%%RACINE%%favicon.svg" type="image/svg+xml">
+<link rel="icon" href="%%RACINE%%favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="%%RACINE%%apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="%%POLICES%%">
@@ -159,12 +197,12 @@ GABARIT = """<!doctype html>
 %%ENTETE%%
 <div class="pose"><div class="sheet">
 <div class="cartouche">%%CARTOUCHE%%</div>
-<main id="contenu">
+<main id="contenu" tabindex="-1">
 %%CORPS%%
 </main>
 %%PAGINATION%%</div></div>
 %%PIED%%
-<script>
+%%REMONTER%%<script>
 %%JS%%
 </script>
 </body>
@@ -195,16 +233,62 @@ def e(texte):
 
 
 INSECABLES = (("« ", "«\u00a0"), (" »", "\u00a0»"), (" :", "\u00a0:"), (" ;", "\u00a0;"), (" ?", "\u00a0?"), (" !", "\u00a0!"), (" %", "\u00a0%"))
+EXPOSANTS = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺", "0123456789−+")
 
 
-def typo(fragment):
-    """Espaces insécables de la typographie française, dans les textes seulement (pas dans les balises)."""
+def nombres(t):
+    """Un nombre ne se sépare ni de ses milliers, ni de son unité ; une courte égalité tient sur une ligne."""
+    t = re.sub(r"(?<=\d) (?=\d{3}(?!\d))", "\u00a0", t)
+    t = re.sub(r"(?<=\d) (?=[^\W\d_])", "\u00a0", t)
+    t = t.replace(" × ", "\u00a0×\u00a0")
+    # un symbole d'une lettre ne commence pas une ligne : « à la cadence c », « vers c/2 »
+    t = re.sub(r"(?<=[^\W\d_]) (?=(?:c/2|[cxvtθτφ])(?![\w’'/-]))", "\u00a0", t)
+    t = re.sub(r"(?<=\d)–(?=\d)", "\u2060–\u2060", t)
+    morceaux = re.split(r" (=|≥|≤|≈|&lt;|&gt;|/|±) ", t)
+    t = morceaux[0]
+    for i in range(1, len(morceaux), 2):
+        avant, signe, apres = morceaux[i - 1], morceaux[i], morceaux[i + 1]
+        courts = len(avant.rsplit(" ", 1)[-1]) <= 12 and len(apres.split(" ", 1)[0]) <= 12
+        t += ("\u00a0%s\u00a0" if courts else " %s ") % signe + apres
+    return t
+
+
+def typo(fragment, exposants=True):
+    """Typographie des textes, pas des balises : apostrophes courbes, espaces insécables, nombres, exposants."""
     def f(m):
-        t = m.group(1)
+        t = m.group(1).replace("&#x27;", "’").replace("'", "’")
         for a, b in INSECABLES:
             t = t.replace(a, b)
+        t = nombres(t)
+        if exposants:
+            t = re.sub("[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+", lambda x: "<sup>%s</sup>" % x.group(0).translate(EXPOSANTS), t)
+            # le dossier écrit « t indice m » : sur le site, c'est un vrai indice
+            t = re.sub(r"(?<![\w’'])([A-Za-z]) indice ([A-Za-z])(?![\w’'])", r"\1<sub>\2</sub>", t)
         return ">" + t + "<"
     return re.sub(r">([^<]+)<", f, fragment)
+
+
+def typo_planche(corps):
+    """Typographie d'une planche : les dessins gardent leurs exposants (pas de balise dans un texte SVG), les formules ne sont pas touchées."""
+    morceaux = re.split(r'(<svg\b.*?</svg>|<div class="tex">.*?</div>)', corps, flags=re.S)
+    return "".join(x if x.startswith('<div class="tex">') else typo(x, exposants=not x.startswith("<svg")) for x in morceaux)
+
+
+def simple(texte):
+    """Texte pour un attribut ou un titre de page : échappé, avec l'apostrophe courbe."""
+    return e(texte).replace("&#x27;", "’")
+
+
+SYMBOLES = re.compile(r"\([^()<>]{1,10}\)|(?<![\w’'/])(?:c/2|[xrctvτθφωβ])(?![\w’'/])")
+
+
+def symboles(h):
+    """Dans un libellé écrit en capitales, les symboles et les unités gardent leur casse."""
+    return SYMBOLES.sub(lambda m: '<span class="sym">%s</span>' % m.group(0), h)
+
+
+def entetes(corps):
+    return re.sub(r"(<th[^>]*>)(.*?)(</th>)", lambda m: m.group(1) + symboles(m.group(2)) + m.group(3), corps, flags=re.S)
 
 
 def t(texte):
@@ -214,7 +298,10 @@ def t(texte):
 
 def date_fr(md):
     m = re.search(r"^([A-Z][a-z]{2}) (\d{1,2}), (\d{4}) ·", md, flags=re.M)
-    return "%d %s %s" % (int(m.group(2)), MOIS[m.group(1)], m.group(3)) if m else ""
+    if not (m and m.group(1) in MOIS):
+        print("  ATTENTION : ligne de date introuvable ou d'une forme inattendue dans un export (attendu : « Nov 17, 2026 · … »)")
+        return ""
+    return "%d %s %s" % (int(m.group(2)), MOIS[m.group(1)], m.group(3))
 
 
 def sans_titre(md):
@@ -224,10 +311,13 @@ def sans_titre(md):
 
 
 def figure(legende, vue):
-    for debut, v, titre, svg in FIGURES:
+    for debut, v, titre, svg, etroit in FIGURES:
         if legende.startswith(debut) and v in (None, vue):
-            return ('<figure class="fig solo"><figcaption class="figtitle">%s</figcaption><div class="stage">%s</div></figure>'
-                    % (e(titre), svg))
+            if etroit:
+                svg = svg.replace("<svg ", '<svg class="bureau" ', 1) + etroit.replace("<svg ", '<svg class="mobile" ', 1)
+            return (typo('<figure class="fig solo"><figcaption class="figtitle">%s</figcaption>' % e(titre))
+                    + '<div class="stage">%s</div></figure>' % typo(svg, exposants=False))
+    print("  ATTENTION : figure sans dessin, remplacée par un renvoi : « %s »" % legende)
     return '<p class="fnote">Figure : %s. Voir la planche interactive.</p>' % e(legende)
 
 
@@ -235,7 +325,7 @@ def habiller(corps):
     """Classe et contenu d'un tableau. Un tableau large ou bavard devient une suite de fiches sur téléphone."""
     titres = [re.sub(r"<[^>]+>", "", x).strip() for x in re.findall(r"<th[^>]*>(.*?)</th>", corps, flags=re.S)]
     cellules = [re.sub(r"<[^>]+>", "", c) for c in re.findall(r"<td[^>]*>(.*?)</td>", corps, flags=re.S)]
-    if len(titres) < 3 or (len(titres) == 3 and all(len(c) <= 40 for c in cellules)):
+    if len(titres) < 3 or (len(titres) == 3 and all(len(c) <= 22 for c in cellules)):
         return "data", corps
     rang = [0]
 
@@ -248,12 +338,12 @@ def habiller(corps):
 
 def tableau(m):
     classe, corps = habiller(m.group(1))
-    return '<div class="tablewrap"><table class="%s">%s</table></div>' % (classe, corps)
+    return '<div class="tablewrap"><table class="%s">%s</table></div>' % (classe, entetes(corps))
 
 
 def tableau_planche(m):
     classe, corps = habiller(m.group(1))
-    return '<table class="%s">%s</table>' % (classe, corps)
+    return '<table class="%s">%s</table>' % (classe, entetes(corps))
 
 
 def encadres(h):
@@ -263,8 +353,8 @@ def encadres(h):
 
     def corr(m):
         nom = "Précision" if m.group(2).startswith("Précision") else "Correction"
-        return '<div class="correction"><span class="eyebrow">%s</span><p>%s</p></div>' % (nom, m.group(1))
-    return re.sub(r"<p>(<strong>((?:Corrections?|Précision)\b[^<]*)</strong>.*?)</p>", corr, h, flags=re.S)
+        return '<div class="correction"><span class="eyebrow">%s</span><p>%s</p>%s</div>' % (nom, m.group(1), m.group(3) or "")
+    return re.sub(r"<p>(<strong>((?:Corrections?|Précision)\b[^<]*)</strong>.*?)</p>(\s*<(ol|ul)>.*?</\4>)?", corr, h, flags=re.S)
 
 
 def md_html(md, vue):
@@ -315,30 +405,43 @@ def plaque(n, classe="plaque"):
 def entete(repere, titre, texte="", suite="", onglets="", dessin=""):
     """En-tête de page : le plan bleu, avec repères, titre, chapeau, puis boutons ou onglets."""
     bloc = '<p class="repere">%s</p>\n<h1>%s</h1>\n%s%s' % (
-        "".join("<span>%s</span>" % t(r) for r in repere), titre, ('<p class="chapeau">%s</p>\n' % texte) if texte else "", suite)
+        "".join("<span>%s</span>" % symboles(t(r)) for r in repere), titre, ('<p class="chapeau">%s</p>\n' % texte) if texte else "", suite)
     if dessin:
         bloc = '<div class="tete"><div>\n%s</div>\n<figure class="epure">%s</figure></div>\n' % (bloc, dessin)
     return '<header class="plan"><div class="dedans%s">\n%s%s</div></header>' % (" onglets" if onglets else "", bloc, onglets)
 
 
-def entete_pilier(p, vue, titre, texte):
+def entete_pilier(p, vue):
+    """En-tête d'un pilier, le même sur ses trois vues : son titre, puis l'intuition de l'auteur, dans ses mots."""
     onglets = '<nav class="vues" aria-label="Trois façons de lire ce pilier">%s</nav>\n' % "".join(
         '<a href="%s"%s>%s</a>' % (f, ' aria-current="page"' if f == vue else "", nom) for f, nom in VUES)
-    return entete(["Pilier %d / 5" % p["n"], p["objet"]], titre, texte, onglets=onglets, dessin=plaque(p["n"]))
+    note = NOTES_EPURES.get(p["n"])
+    dessin = plaque(p["n"]) + ("<figcaption>%s</figcaption>" % t(note) if note else "")
+    return entete(["Pilier %d / 5" % p["n"], p["objet"]], t(p["titre"]), suite=intuition(p["n"]) + "\n", onglets=onglets, dessin=dessin)
+
+
+def amorce(etiquette, texte, titre="", pilier=""):
+    """Ouvre la feuille : le nom de la vue, le titre du document s'il diffère de celui du pilier, puis son chapeau."""
+    h = '<span class="eyebrow">%s</span>' % etiquette
+    if titre and titre != pilier:
+        h += '<h2 class="doc-titre">%s</h2>' % t(titre)
+    return '<div class="amorce">%s<p class="lead">%s</p></div>' % (h, texte)
 
 
 def rail(h):
-    """Pose une ancre sur chaque intertitre et renvoie le sommaire latéral de la page."""
+    """Pose une ancre sur chaque intertitre ; renvoie le sommaire latéral (grand écran), le sommaire repliable (petit écran) et le texte."""
     liens = []
 
     def ancre(m):
         ident = re.search(r'id="([^"]+)"', m.group(1)).group(1) if m.group(1) else "s%d" % (len(liens) + 1)
-        liens.append('<li><a href="#%s">%s</a></li>' % (ident, re.sub(r"<[^>]+>", "", m.group(2))))
+        liens.append('<li><a href="#%s">%s</a></li>' % (ident, re.sub(r"</?a\b[^>]*>", "", m.group(2))))
         return '<h2 id="%s">%s</h2>' % (ident, m.group(2))
     h = re.sub(r'<h2( id="[^"]+")?>(.*?)</h2>', ancre, h, flags=re.S)
-    nav = ('<nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol>%s</ol></nav>\n'
-           % "".join(liens)) if len(liens) > 1 else ""
-    return nav, h
+    if len(liens) < 2:
+        return "", "", h
+    nav = '<nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol>%s</ol></nav>\n' % "".join(liens)
+    plie = '<details class="sommaire" id="sommaire"><summary>Dans cette page</summary><ol>%s</ol></details>\n' % "".join(liens)
+    return nav, plie, h
 
 
 def references(refs):
@@ -349,10 +452,12 @@ def references(refs):
         if m:
             pilier = int(m.group(1))
             continue
-        m = re.match(r"- (.+?) \((\d{4})\)\.\s*(.*)", ligne)
+        m = re.match(r"- (.+?) \((\d{4})[a-z]?\)\.\s*(.*)", ligne)
         if not (m and pilier):
+            if ligne.startswith("- "):
+                print("  note : référence sans année, absente de la frise : %s" % ligne[2:70])
             continue
-        noms = [x for x in m.group(1).split(", ") if not re.match(r"^(?:[A-ZČ]\.[- ]?)+$|^et al\.$", x)]
+        noms = [x for x in m.group(1).split(", ") if not re.match(r"^(?:[^\W\d_]\.[- ]?)+$|^et al\.$", x)]
         auteurs = noms[0] + " et al." if ("et al." in m.group(1) or len(noms) > 2) else " et ".join(noms)
         titre = (re.match(r"\[([^\]]+)\]", m.group(3)) or re.match(r"«\s*(.+?)\s*»", m.group(3))
                  or re.match(r"(.+?)\.(?:\s|$)", m.group(3)))
@@ -361,45 +466,58 @@ def references(refs):
 
 
 def frise(refs):
-    """Frise des travaux cités : un rang par pilier, un point par référence, placé à son année."""
+    """Frise des travaux cités : un rang par pilier, un point par référence, placé à son année.
+    Deux mises en page du même dessin : large pour l'ordinateur, étroite pour le téléphone."""
     donnees = references(refs)
-    a0, a1, gx, dx, haut, pas = 1900, 2025, 250, 732, 20, 56
-    bas = haut + pas * len(PILIERS)
+    if not donnees:
+        sys.exit("Arrêt : aucune référence lue dans la section « Références » du dossier.")
+    an_min, an_max = min(d[1] for d in donnees), max(d[1] for d in donnees)
+    a0, a1 = an_min // 20 * 20, (an_max // 5 + 2) * 5
 
-    def X(an):
-        return gx + dx * (an - a0) / float(a1 - a0)
-    s = ['<svg class="wide frise" viewBox="0 0 1000 %d" role="img" aria-label="Frise de %d travaux cités, de %d à %d, répartis '
-         'par pilier">' % (bas + 30, len(donnees), min(d[1] for d in donnees), max(d[1] for d in donnees))]
-    for an in range(a0, a1, 20):
-        s.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" class="gr"/><text x="%.1f" y="%d" text-anchor="middle" class="tm">%d</text>'
-                 % (X(an), haut, X(an), bas, X(an), bas + 19, an))
-    for p in PILIERS:
-        fond = haut + pas * p["n"]
-        base = fond - 15
-        s.append('<line x1="16" y1="%d" x2="984" y2="%d" class="ln"/>' % (fond, fond))
-        s.append('<text x="16" y="%d" class="tb">Pilier %d</text><text x="16" y="%d" class="tq">%s</text>'
-                 % (base - 13, p["n"], base + 4, e(p["objet"])))
-        niveaux = []
-        for i, (_, an, auteurs, titre) in enumerate(sorted(d for d in donnees if d[0] == p["n"])):
-            x = X(an)
-            niv = next((k for k, dernier in enumerate(niveaux) if x - dernier >= 12), len(niveaux))
-            if niv == len(niveaux):
-                niveaux.append(x)
-            else:
-                niveaux[niv] = x
-            y = base - 12 * niv
-            nom = "%s (%d)" % (auteurs, an)
-            s.append('<g class="ref" tabindex="0" role="img" aria-label="%s. %s" data-t="%s" data-s="%s">'
-                     '<circle class="touche" cx="%.1f" cy="%.1f" r="11"/><circle class="pt" cx="%.1f" cy="%.1f" r="5"/></g>'
-                     % (e(nom), e(titre), e(nom), e(titre), x, y, x, y))
-            if i == 0:
-                # le plus ancien du rang est nommé : à gauche du point s'il y a la place, sinon au-dessus
-                if x - 10 - 6.4 * len("%s, %d" % (auteurs, an)) > gx - 8:
-                    s.append('<text x="%.1f" y="%.1f" text-anchor="end" class="tq">%s, %d</text>' % (x - 10, y + 4, e(auteurs), an))
+    def dessin(etroit):
+        large, gx, dx, ecart = (360, 16, 328, 13) if etroit else (1000, 250, 732, 12)
+
+        def X(an):
+            return gx + dx * (an - a0) / float(a1 - a0)
+        y, corps = 20, []
+        for p in PILIERS:
+            niveaux, points = [], []
+            for (_, an, auteurs, titre) in sorted(d for d in donnees if d[0] == p["n"]):
+                x = X(an)
+                niv = next((k for k, dernier in enumerate(niveaux) if x - dernier >= ecart), len(niveaux))
+                if niv == len(niveaux):
+                    niveaux.append(x)
                 else:
-                    s.append('<text x="%.1f" y="%.1f" class="tq">%s, %d</text>' % (x - 4, y - 13, e(auteurs), an))
-    s.append("</svg>")
-    return "".join(s), len(donnees), min(d[1] for d in donnees), max(d[1] for d in donnees)
+                    niveaux[niv] = x
+                points.append((x, niv, an, auteurs, titre))
+            # la hauteur du rang suit l'empilement : aucun point ne touche le rang du dessus
+            fond = y + (34 + ecart * max(len(niveaux), 2) if etroit else max(56, 24 + ecart * len(niveaux)))
+            base = fond - 15
+            corps.append('<line x1="16" y1="%d" x2="%d" y2="%d" class="ln"/>' % (fond, large - 16, fond))
+            if etroit:
+                corps.append('<text x="16" y="%d"><tspan class="tb">Pilier %d</tspan><tspan class="tq" dx="8">%s</tspan></text>'
+                             % (y + 15, p["n"], e(p["objet"])))
+            else:
+                corps.append('<text x="16" y="%d" class="tb">Pilier %d</text><text x="16" y="%d" class="tq">%s</text>'
+                             % (base - 13, p["n"], base + 4, e(p["objet"])))
+            for i, (x, niv, an, auteurs, titre) in enumerate(points):
+                yy = base - ecart * niv
+                nom = "%s (%d)" % (auteurs, an)
+                corps.append('<g class="ref" tabindex="0" role="img" aria-label="%s. %s" data-t="%s" data-s="%s">'
+                             '<circle class="touche" cx="%.1f" cy="%.1f" r="14"/><circle class="pt" cx="%.1f" cy="%.1f" r="%s"/></g>'
+                             % (e(nom), e(titre), e(nom), e(titre), x, yy, x, yy, "5.5" if etroit else "5"))
+                if i == 0 and not etroit:
+                    # le plus ancien du rang est nommé : à gauche du point s'il y a la place, sinon au-dessus
+                    if x - 10 - 6.4 * len("%s, %d" % (auteurs, an)) > gx - 8:
+                        corps.append('<text x="%.1f" y="%.1f" text-anchor="end" class="tq">%s, %d</text>' % (x - 10, yy + 4, e(auteurs), an))
+                    else:
+                        corps.append('<text x="%.1f" y="%.1f" class="tq">%s, %d</text>' % (x - 4, yy - 13, e(auteurs), an))
+            y = fond
+        grille = "".join('<line x1="%.1f" y1="20" x2="%.1f" y2="%d" class="gr"/><text x="%.1f" y="%d" text-anchor="middle" class="tm">%d</text>'
+                         % (X(an), X(an), y, X(an), y + 19, an) for an in range(a0, a1, 40 if etroit else 20))
+        return ('<svg class="%s" viewBox="0 0 %d %d" role="group" aria-label="Frise de %d travaux cités, de %d à %d, répartis par pilier">%s%s</svg>'
+                % ("frise mobile" if etroit else "wide frise bureau", large, y + 30, len(donnees), an_min, an_max, grille, "".join(corps)))
+    return typo(dessin(False), exposants=False) + typo(dessin(True), exposants=False), len(donnees), an_min, an_max
 
 
 def pagination(p, vue):
@@ -417,13 +535,14 @@ def pagination(p, vue):
     return '<nav class="pagination" aria-label="Pilier précédent et pilier suivant">%s%s</nav>\n' % (avant, apres)
 
 
-def page(relatif, titre, description, haut, corps, js, cart, classe, pilier=None, vue=None, tete="", accueil=False, bas=""):
+def page(relatif, titre, description, haut, corps, js, cart, classe, pilier=None, vue=None, tete="", accueil=False, bas="", racine=None):
     """Assemble une page : barre, en-tête, feuille (cartouche, corps, pagination), pied."""
-    racine = "../" if pilier else ""
+    if racine is None:
+        racine = "../" if pilier else ""
     fichier = vue or "index.html"
-    nav = "".join('<a href="%spilier-%d/%s"%s title="%s">%d</a>' % (
-        racine, p["n"], fichier, ' aria-current="page"' if pilier and p["n"] == pilier["n"] else "", e(p["titre"]), p["n"])
-        for p in PILIERS)
+    nav = "".join('<a href="%spilier-%d/%s"%s title="%s" aria-label="Pilier %d : %s">%d</a>' % (
+        racine, p["n"], fichier, ' aria-current="page"' if pilier and p["n"] == pilier["n"] else "", simple(p["titre"]), p["n"],
+        simple(p["titre"]), p["n"]) for p in PILIERS)
     barre = ('<div class="barre"><div class="dedans">\n<a class="marque" href="%sindex.html" aria-label="Accueil : %s"%s>%s<span>%s</span></a>\n'
              '<nav aria-label="Piliers et dossier"><span class="lib">Piliers</span>%s<a class="dos" href="%sdossier.html"%s>Dossier</a></nav>\n'
              '</div></div>' % (racine, NOM, ' aria-current="page"' if accueil else "", ICONE, NOM, nav, racine,
@@ -433,12 +552,14 @@ def page(relatif, titre, description, haut, corps, js, cart, classe, pilier=None
     if pilier:
         liens.append('<a href="../documents/%s.pdf">Article en PDF</a>' % url(pilier["article"]))
     liens.append('<a href="%s">Code source</a>' % DEPOT)
-    pied = ('<footer class="pied"><div class="dedans">\n<p class="sig">%s<span>%s · un modèle de %s</span></p>\n'
-            '<nav aria-label="Liens de bas de page">%s</nav>\n</div></footer>' % (ICONE, NOM, AUTEUR, "".join(liens)))
+    pied = typo('<footer class="pied"><div class="dedans">\n<p class="sig">%s<span>%s · un modèle de %s</span></p>\n'
+                '<nav aria-label="Liens de bas de page">%s</nav>\n</div></footer>' % ("ICONEICI", NOM, AUTEUR, "".join(liens))).replace("ICONEICI", ICONE)
     cartouche = typo("".join('<div class="cc"><span class="ck">%s</span><span class="cv">%s</span></div>' % (e(k), e(v)) for k, v in cart))
+    remonter = ('<a class="remonter" href="#sommaire" hidden><span aria-hidden="true">↑</span> Sommaire</a>\n'
+                if 'id="sommaire"' in corps else "")
     adresse = SITE + (relatif[:-len("index.html")] if relatif.endswith("index.html") else relatif)
-    doc = (GABARIT.replace("%%TITREPAGE%%", e(titre if accueil else "%s · %s" % (titre, NOM))).replace("%%TITRE%%", e(titre))
-           .replace("%%DESCRIPTION%%", e(description)).replace("%%ADRESSE%%", adresse).replace("%%IMAGE%%", SITE + IMAGE_PARTAGE)
+    doc = (GABARIT.replace("%%TITREPAGE%%", simple(titre if accueil else "%s · %s" % (titre, NOM))).replace("%%TITRE%%", simple(titre))
+           .replace("%%DESCRIPTION%%", simple(description)).replace("%%REMONTER%%", remonter).replace("%%ADRESSE%%", adresse).replace("%%IMAGE%%", SITE + IMAGE_PARTAGE)
            .replace("%%OGTYPE%%", "website" if accueil else "article").replace("%%RACINE%%", racine).replace("%%POLICES%%", POLICES)
            .replace("%%TETE%%", tete).replace("%%CLASSE%%", classe).replace("%%BARRE%%", barre).replace("%%ENTETE%%", haut)
            .replace("%%CARTOUCHE%%", cartouche).replace("%%PAGINATION%%", bas).replace("%%PIED%%", pied)
@@ -488,7 +609,7 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden}
 .plan{width:1200px;height:630px}
 .plan .dedans{max-width:none;padding:56px 62px 0}
 .hero{grid-template-columns:1.08fr .92fr;gap:54px}
-.accueil h1{font-size:136px}
+.accueil h1{font-size:124px;line-height:.98}
 .repere{font-size:16px}
 .chapeau{font-size:25px;line-height:1.42;max-width:none}
 .plaque{aspect-ratio:1/1}
@@ -525,35 +646,41 @@ def main():
     morceaux = re.split(r"^## (.+)$", dossier, flags=re.M)
     intro = sans_titre(morceaux[0])
     sections = {morceaux[i].strip(): morceaux[i + 1] for i in range(1, len(morceaux), 2)}
+    attendues = ["Pilier %d " % p["n"] for p in PILIERS] + ["Synthèse", "Références"]
+    absentes = [a.strip() for a in attendues if not any(k.startswith(a) for k in sections)]
+    if absentes:
+        sys.exit("Arrêt : sections introuvables dans le dossier (titres « ## … ») : " + ", ".join(absentes))
+    if any("—" not in k for k in sections if k.startswith("Pilier ")):
+        sys.exit("Arrêt : un titre de pilier du dossier n'a plus la forme « Pilier N — titre ».")
     refs = sections.get("Références", "")
     print("Site « %s » — sources du %s" % (NOM, date))
     ecrire("favicon.svg", FAVICON)
 
     for p in PILIERS:
         n, dos = p["n"], "pilier-%d/" % p["n"]
-        suite = pagination(p, "index.html")
+        meta = p.get("meta", p["resume"])
 
-        # 1. planche interactive : le titre et le chapeau du gabarit montent dans l'en-tête
+        # 1. planche interactive : son chapeau ouvre la feuille, ses formules sont composées comme celles du dossier
         corps, script = lire(os.path.join(GAB, "p%d.frag.html" % n)).split("<!--SCRIPT-->")
-        for a, b in (("« ", "«&nbsp;"), (" »", "&nbsp;»"), (" :", "&nbsp;:"), (" ;", "&nbsp;;"), (" ?", "&nbsp;?"), (" !", "&nbsp;!")):
-            corps = corps.replace(a, b)
         m = re.match(r'\s*<div class="head">\s*<h1>(.*?)</h1>\s*<p class="lead">(.*?)</p>\s*</div>', corps, flags=re.S)
-        corps = re.sub(r'<table class="data">(.*?)</table>', tableau_planche, corps[m.end():], flags=re.S)
-        corps = intuition(n) + "\n" + corps.strip()
-        page(dos + "index.html", p["titre"], p["resume"], entete_pilier(p, "index.html", m.group(1), m.group(2)), corps,
-             commun_js + "\n" + script.strip(), cart(p["objet"], "Échelle", p["echelle"], date), "p-planche",
-             pilier=p, vue="index.html", bas=suite)
+        chapo = typo(">" + m.group(2) + "<")[1:-1]
+        corps = re.sub(r'<table class="data">(.*?)</table>', tableau_planche, typo_planche(corps[m.end():]), flags=re.S)
+        corps = (amorce("Planche interactive", chapo) + "\n" + corps.strip() + '\n<p class="suite">%s%s</p>'
+                 % (bouton("article.html", "Lire l'article", "btn encre"), bouton("demonstration.html", "Lire la démonstration")))
+        page(dos + "index.html", p["titre"], meta, entete_pilier(p, "index.html"), corps,
+             commun_js + "\n" + script.strip() + KATEX_JS, cart(p["objet"], "Échelle", p["echelle"], date), "p-planche",
+             pilier=p, vue="index.html", tete=KATEX, bas=pagination(p, "index.html"))
 
         # 2. article de vulgarisation
         art = lire(os.path.join(DOCS, p["article"] + ".md"))
         titre_art = re.search(r"^# (.+)$", art, flags=re.M).group(1).strip()
         date_art = date_fr(art) or date
         texte, reste = chapeau(md_html(sans_titre(art).replace(LIEN_DOSSIER_PRIVE, "demonstration.html"), "article"))
-        sommaire, reste = rail(reste)
-        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
-                 % (sommaire, intuition(n), reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
-                    bouton("demonstration.html", "Lire la démonstration")))
-        page(dos + "article.html", titre_art, p["resume"], entete_pilier(p, "article.html", t(titre_art), texte), corps, commun_js,
+        sommaire, plie, reste = rail(reste)
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, amorce("Article de vulgarisation", texte, titre_art, p["titre"]), plie, reste,
+                    bouton("index.html", "Manipuler la planche interactive", "btn encre"), bouton("demonstration.html", "Lire la démonstration")))
+        page(dos + "article.html", titre_art, meta, entete_pilier(p, "article.html"), corps, commun_js,
              cart(p["objet"], "Vue", "Article de vulgarisation", date_art), "p-article",
              pilier=p, vue="article.html", bas=pagination(p, "article.html"))
 
@@ -565,12 +692,12 @@ def main():
         if m:
             demo += "\n\n## Références\n\n" + m.group(1)
         texte, reste = chapeau(md_html(demo.strip(), "demonstration"))
-        avis = typo(AVIS % (AVIS_MOT if "tableau plat" in demo else ""))
-        sommaire, reste = rail(reste)
-        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
-                 % (sommaire, intuition(n), avis, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
-                    bouton("article.html", "Lire l'article")))
-        page(dos + "demonstration.html", titre_demo, p["resume"], entete_pilier(p, "demonstration.html", t(titre_demo), texte),
+        avis = typo(AVIS % AVIS_MOTS.get(n, ""))
+        sommaire, plie, reste = rail(reste)
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n%s%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, amorce("Démonstration mathématique", texte, titre_demo, p["titre"]), avis, plie, reste,
+                    bouton("index.html", "Manipuler la planche interactive", "btn encre"), bouton("article.html", "Lire l'article")))
+        page(dos + "demonstration.html", titre_demo, meta, entete_pilier(p, "demonstration.html"),
              corps, commun_js + KATEX_JS, cart(p["objet"], "Vue", "Démonstration mathématique", date), "p-demo",
              pilier=p, vue="demonstration.html", tete=KATEX, bas=pagination(p, "demonstration.html"))
 
@@ -581,29 +708,30 @@ def main():
             '<article class="plk"><div class="no"><span class="num">Pilier</span><b>%02d</b></div>'
             '<div class="plt"><span class="eyebrow">%s</span><h3><a href="pilier-%d/index.html">%s</a></h3>'
             '<p class="mot">« %s »</p><p>%s</p>'
-            '<p class="acces">%s<a href="pilier-%d/article.html">Article</a><a href="pilier-%d/demonstration.html">Démonstration</a></p></div>'
-            '<div class="vis">%s<p class="clef"><b>%s</b><span>%s</span></p></div></article>'
-            % (p["n"], e(p["objet"]), p["n"], e(p["titre"]), e(INTUITIONS[p["n"]]), e(p["resume"]),
-               bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"],
+            '<p class="acces">%s<a class="btn fin" href="pilier-%d/article.html">Article</a>'
+            '<a class="btn fin" href="pilier-%d/demonstration.html">Démonstration</a></p></div>'
+            '<div class="vis"><a href="pilier-%d/index.html" tabindex="-1" aria-hidden="true">%s</a><p class="clef"><b>%s</b><span>%s</span></p></div></article>'
+            % (p["n"], symboles(e(p["objet"])), p["n"], e(p["titre"]), e(INTUITIONS[p["n"]]), e(p["resume"]),
+               bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"], p["n"],
                plaque(p["n"], "plaque mini"), p["clef"][0], e(p["clef"][1]))))
     dessin_frise, nb_refs, an_debut, an_fin = frise(refs)
     docs = [("Dossier mathématique complet", "dossier.html", PDF_DOSSIER, DOSSIER)] + [
         ("Article du pilier %d — %s" % (p["n"], p["article"]), "pilier-%d/article.html" % p["n"],
          "documents/%s.pdf" % url(p["article"]), p["article"]) for p in PILIERS]
     rangs = "".join(
-        '<tr><td>%s</td><td><a href="%s">Lire</a></td><td><a href="%s">PDF</a></td><td><a href="documents/%s.docx">Word</a></td>'
-        '<td><a href="documents/%s.md">Markdown</a></td></tr>' % (e(nom), web, pdf, url(f), url(f)) for nom, web, pdf, f in docs)
+        '<li><span>%s</span><span class="liens"><a href="%s">Lire en ligne</a><a href="%s">PDF</a><a href="documents/%s.docx">Word</a>'
+        '<a href="documents/%s.md">Markdown</a></span></li>' % (t(nom), web, pdf, url(f), url(f)) for nom, web, pdf, f in docs)
     haut = ('<header class="plan accueil"><div class="dedans hero">\n<div>\n<p class="repere"><span>Modèle de %s</span><span>Cinq piliers</span></p>\n'
             '<h1><span>Actuel,</span> <span>Émergent,</span> <span>Local</span></h1>\n<p class="chapeau">%s</p>\n'
             '<p class="actions">%s%s</p>\n</div>\n'
-            '<figure class="expo">\n<div class="plaque expo-ecran" role="img" aria-label="Des impacts de photons s\'accumulent sur un écran et dessinent peu à peu des bandes">'
+            '<figure class="expo">\n<div class="plaque expo-ecran" role="img" aria-label="Des impacts de photons s\'accumulent sur un écran et dessinent peu à peu des franges">'
             '<canvas id="expo-a"></canvas><canvas id="expo-b"></canvas>'
             '<span class="pl-t">Écran de détection</span><span class="pl-n">Photons détectés<b id="expo-n">0</b></span></div>\n'
-            '<figcaption><p id="expo-txt">Chaque point est l\'arrivée d\'un photon : un lieu, un instant. Aucun ne dessine les bandes. '
-            'Elles n\'apparaissent qu\'avec le nombre.</p>\n'
-            '<div class="choix" role="group" aria-label="Ce que l\'on sait du trajet de chaque photon">'
-            '<button class="jeton" id="expo-libre" type="button" aria-pressed="true">Route inconnue</button>'
-            '<button class="jeton" id="expo-route" type="button" aria-pressed="false">Route connue</button>'
+            '<figcaption><p id="expo-txt">Chaque point est l\'arrivée d\'un photon : un lieu, un instant. Aucun ne dessine les franges, '
+            'ces bandes qui n\'apparaissent qu\'avec le nombre.</p>\n'
+            '<div class="choix" role="group" aria-labelledby="expo-lib"><span class="lib" id="expo-lib">Ce que l\'on sait du trajet de chaque photon</span>'
+            '<span class="duo"><button class="jeton" id="expo-libre" type="button" aria-pressed="true">Route inconnue</button>'
+            '<button class="jeton" id="expo-route" type="button" aria-pressed="false">Route connue</button></span>'
             '<button class="lien" id="expo-re" type="button">Recommencer</button></div></figcaption>\n'
             '</figure>\n</div></header>'
             % (AUTEUR, t(ACCROCHE), bouton("pilier-1/index.html", "Commencer par le pilier 1", "btn plein"),
@@ -634,7 +762,7 @@ def main():
   <span class="eyebrow">Verdict</span>
   <h2 id="h-verdict">Ce que les équations confirment, et ce qu'elles corrigent</h2>
   <div class="verdict">
-    <p>Le dossier part des formules que l'auteur proposait à partir de ses intuitions. Il les démontre ou les corrige une à une.</p>
+    <p>Le dossier part des formules de départ, écrites à partir des intuitions de l'auteur. Il les démontre ou les corrige une à une.</p>
 %s
   </div>
 </section>
@@ -642,7 +770,7 @@ def main():
 <section aria-labelledby="h-frise">
   <span class="eyebrow">Sources</span>
   <h2 id="h-frise">Un siècle de travaux derrière les cinq piliers</h2>
-  <p>Le dossier s'appuie sur NBREFS travaux publiés entre ANDEBUT et ANFIN. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel. Le nom écrit sur chaque rang est celui du plus ancien.</p>
+  <p>Le dossier s'appuie sur NBREFS travaux publiés entre ANDEBUT et ANFIN. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel.</p>
   <figure class="fig solo"><div class="stage">DESSINFRISE</div><div class="bulle" hidden></div></figure>
   <p class="fnote">La liste complète, avec un lien vers chaque source, se trouve dans les <a href="dossier.html#references">références du dossier</a>.</p>
 </section>
@@ -659,10 +787,7 @@ def main():
   <span class="eyebrow">Documents</span>
   <h2 id="h-docs">Tout lire, tout télécharger</h2>
   <p>Le <a href="dossier.html">dossier complet</a> réunit sur une seule page les cinq démonstrations, la synthèse et les références.</p>
-  <div class="tablewrap"><table class="data">
-    <thead><tr><th>Document</th><th>En ligne</th><th colspan="3">À télécharger</th></tr></thead>
-    <tbody>%s</tbody>
-  </table></div>
+  <ul class="docs">%s</ul>
   <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>
 
@@ -690,25 +815,28 @@ def main():
         sommaire.append('<li><a href="#%s">%s</a></li>' % (ident, m.group(1)))
         return '<h2 id="%s">%s</h2>' % (ident, m.group(1))
     h = re.sub(r"<h2>(.*?)</h2>", ancre, h, flags=re.S)
-    table = '<nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol>%s</ol></nav>' % "".join(sommaire)
+    table = '<nav class="toc" id="sommaire" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol>%s</ol></nav>' % "".join(sommaire)
     h = h.replace('<h2 id="pilier-1">', table + '\n<h2 id="pilier-1">', 1)
-    lateral, h = rail(h)
+    lateral, _, h = rail(h)
     h = re.sub(r'(<h2 id="pilier-(\d)">.*?</h2>)', lambda m: m.group(1) + "\n" + intuition(int(m.group(2))), h, flags=re.S)
-    corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_MOT), h)
+    corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_DOSSIER), h)
     haut = entete(["Dossier complet", "Cinq démonstrations, synthèse, références"], t(DOSSIER), texte,
                   suite='<p class="actions">%s</p>\n' % bouton(PDF_DOSSIER, "Télécharger le PDF", "btn plein"))
     page("dossier.html", DOSSIER, "Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.",
          haut, corps, base_js + KATEX_JS, cart("Les cinq piliers", "Vue", "Dossier complet", date), "p-dossier", tete=KATEX)
 
-    # 6. page d'erreur : les liens partent de la racine du site, où que se trouve l'adresse fautive
-    liste = "".join('<li><a href="pilier-%d/index.html">Pilier %d — %s</a></li>' % (p["n"], p["n"], t(p["titre"])) for p in PILIERS)
-    corps = ('<section><span class="eyebrow">Par où continuer</span><h2>Les cinq piliers</h2>\n<div class="prose large"><ul>%s'
-             '<li><a href="dossier.html">Le dossier complet</a></li></ul></div></section>' % liste)
-    haut = entete(["Erreur 404"], "Cette page n'existe pas", "L'adresse a peut-être changé. Les cinq piliers, eux, n'ont pas bougé.",
-                  suite='<p class="actions">%s</p>\n' % bouton("index.html", "Revenir à l'accueil", "btn plein"))
+    # 6. page d'erreur : ses liens partent de la racine du site, où que se trouve l'adresse fautive
+    rs = urllib.parse.urlparse(SITE).path
+    liste = "".join(
+        '<li><span>Pilier %d — %s</span><span class="liens"><a href="%spilier-%d/index.html">Planche</a><a href="%spilier-%d/article.html">Article</a>'
+        '<a href="%spilier-%d/demonstration.html">Démonstration</a></span></li>'
+        % (p["n"], e(p["titre"]), rs, p["n"], rs, p["n"], rs, p["n"]) for p in PILIERS)
+    liste += '<li><span>Le dossier complet</span><span class="liens"><a href="%sdossier.html">Lire en ligne</a><a href="%s%s">PDF</a></span></li>' % (rs, rs, PDF_DOSSIER)
+    corps = typo('<section><span class="eyebrow">Par où continuer</span><h2>Les cinq piliers et le dossier</h2>\n<ul class="docs">%s</ul></section>' % liste)
+    haut = entete(["Erreur 404"], t("Cette page n'existe pas"), t("L'adresse a peut-être changé. Les cinq piliers, eux, n'ont pas bougé."),
+                  suite='<p class="actions">%s</p>\n' % bouton(rs + "index.html", "Revenir à l'accueil", "btn plein"))
     page("404.html", "Page introuvable", "Cette page n'existe pas.", haut, corps, base_js,
-         cart("Page introuvable", "Vue", "Erreur 404", date), "p-404",
-         tete='<base href="%s">\n<meta name="robots" content="noindex">\n' % urllib.parse.urlparse(SITE).path)
+         cart("Page introuvable", "Vue", "Erreur 404", date), "p-404", tete='<meta name="robots" content="noindex">\n', racine=rs)
 
     # 7. plan du site, pour les moteurs de recherche
     adresses = ["", "dossier.html"] + ["pilier-%d/%s" % (p["n"], v) for p in PILIERS for v in ("", "article.html", "demonstration.html")]
@@ -726,22 +854,32 @@ def main():
 
 
 def verifier_liens():
-    """Chaque lien interne doit pointer vers un fichier présent."""
-    manquants = 0
+    """Chaque lien interne doit pointer vers un fichier présent, et chaque ancre vers un identifiant de la page visée."""
+    manquants, pages = 0, {}
+
+    def idents(chemin):
+        if chemin not in pages:
+            pages[chemin] = set(re.findall(r'\bid="([^"]+)"', lire(chemin)))
+        return pages[chemin]
     for dossier, _, fichiers in os.walk(RACINE):
-        if any(x in dossier for x in (".git", "outils")):
+        relatif = os.path.relpath(dossier, RACINE).replace(os.sep, "/")
+        if relatif.split("/")[0] in (".git", "outils", "prive", "documents"):
             continue
         for f in fichiers:
             if not f.endswith(".html"):
                 continue
-            src = lire(os.path.join(dossier, f))
-            for cible in re.findall(r'href="([^"#]+)"', src):
+            ici = os.path.join(dossier, f)
+            for cible in re.findall(r'href="([^"]+)"', lire(ici)):
                 if re.match(r"^(https?:|mailto:|/)", cible):
                     continue
-                chemin = os.path.normpath(os.path.join(dossier, urllib.parse.unquote(cible)))
+                fichier, _, ancre = html.unescape(cible).partition("#")
+                chemin = os.path.normpath(os.path.join(dossier, urllib.parse.unquote(fichier))) if fichier else ici
                 if not os.path.exists(chemin):
                     manquants += 1
-                    print("  LIEN CASSÉ dans %s : %s" % (os.path.relpath(os.path.join(dossier, f), RACINE), cible))
+                    print("  LIEN CASSÉ dans %s : %s" % (os.path.relpath(ici, RACINE), cible))
+                elif ancre and ancre != "top" and chemin.endswith(".html") and ancre not in idents(chemin):
+                    manquants += 1
+                    print("  ANCRE INCONNUE dans %s : %s" % (os.path.relpath(ici, RACINE), cible))
     print("Liens internes :", "tous valides" if not manquants else "%d cassés" % manquants)
 
 
