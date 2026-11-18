@@ -65,3 +65,18 @@ const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pr
 const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// rail de lecture : la section en cours est marquée pendant le défilement
+(() => {
+  const liens = $$('.rail a');
+  if (!liens.length) return;
+  const cibles = liens.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  if (!cibles.length) return;
+  const marquer = () => {
+    let courant = cibles[0];
+    cibles.forEach(c => { if (c.getBoundingClientRect().top < 130) courant = c; });
+    liens.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + courant.id ? 'true' : 'false'));
+  };
+  let attente = 0;
+  window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
+  marquer();
+})();

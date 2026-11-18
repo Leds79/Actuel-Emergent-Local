@@ -329,7 +329,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(220px,300px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -341,8 +341,6 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
 .acces .btn{padding:.72rem .95rem}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis .cadre{border:1px solid var(--axis);padding:.7rem 1rem;background-color:var(--sheet);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px}
 .vis svg{display:block;width:100%;height:auto}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
@@ -366,6 +364,61 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* lien d'évitement pour le clavier */
+.saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
+.saut:focus{left:8px;top:8px}
+
+/* avancement de la lecture, sous la barre du haut */
+@supports (animation-timeline:scroll()){
+  .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
+    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+  @keyframes avance{to{transform:scaleX(1)}}
+}
+/* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  .barre{view-transition-name:barre}
+}
+
+/* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
+.tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.epure{margin:0;min-width:0}
+.epure .plaque,.plaque.mini{aspect-ratio:4/3}
+@media (max-width:980px){
+  .tete{grid-template-columns:1fr}
+  .tete .epure{display:none}
+}
+/* accueil : choisir ce que l'on sait de chaque photon */
+.expo figcaption p{max-width:54ch}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
+.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+  font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton:hover{background:rgba(205,225,255,.14)}
+.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.choix .lien{margin-left:.5rem;font-size:.86rem}
+
+/* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
+.rail{display:none}
+@media (min-width:1200px){
+  .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .avec-rail>.prose{margin:0}
+  .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
+  .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
+  .rail a:hover{color:var(--ink)}
+  .rail a[aria-current="true"]{border-left-color:var(--ink);color:var(--ink);font-weight:500}
+  .avec-rail .toc{display:none}
+}
+
+/* frise des travaux cités */
+.fig{position:relative}
+.frise .ref{cursor:pointer;outline:none}
+.frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
+.frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .touche{fill:transparent}
+.bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
+.bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
   @page{size:letter;margin:16mm 16mm 19mm;
@@ -379,7 +432,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.suite,.err{display:none!important}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
   .plan .dedans,.plan .dedans.onglets{padding-top:0;padding-bottom:5mm}
@@ -409,24 +463,29 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </style>
 </head>
 <body class="p-article">
+<a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="../index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
 <nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="../pilier-1/article.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="../pilier-2/article.html" title="On ne voit jamais la lumière passer">2</a><a href="../pilier-3/article.html" aria-current="page" title="La pente du temps">3</a><a href="../pilier-4/article.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="../pilier-5/article.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="../dossier.html">Dossier</a></nav>
 </div></div>
 <header class="plan"><div class="dedans onglets">
+<div class="tete"><div>
 <p class="repere"><span>Pilier 3 / 5</span><span>Cadence c et masse comme frein</span></p>
 <h1>Tomber, c&#x27;est suivre la pente du temps</h1>
 <p class="chapeau">Près d'une masse, le temps s'écoule plus lentement, et cette différence suffit à faire tomber les corps. La pesanteur que nous ressentons est exactement la pente de ce ralentissement, multipliée par le carré de la vitesse de la lumière. L'image d'une masse qui « freine » son voisinage est donc juste, à condition de ne pas y voir un frottement.</p>
+</div>
+<figure class="epure"><div class="plaque"><canvas data-epure="3" data-fige="2.0" role="img" aria-label="Deux horloges battent à des rythmes différents. Des fronts d&#x27;onde pivotent et la trajectoire vire vers la masse"></canvas></div></figure></div>
 <nav class="vues" aria-label="Trois façons de lire ce pilier"><a href="index.html">Planche<span class="plus"> interactive</span></a><a href="article.html" aria-current="page">Article</a><a href="demonstration.html">Démonstration</a></nav>
 </div></header>
 <div class="pose"><div class="sheet">
 <div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Cadence c et masse comme frein</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Article de vulgarisation</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main>
+<main id="contenu">
+<div class="avec-rail"><nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol><li><a href="#s1">Tout avance, même immobile</a></li><li><a href="#s2">Une masse ralentit les horloges voisines</a></li><li><a href="#s3">Tomber, c'est virer vers le temps lent</a></li><li><a href="#s4">La lumière tombe deux fois plus</a></li><li><a href="#s5">Un frein sans frottement</a></li><li><a href="#s6">Sources et précisions</a></li></ol></nav>
 <article class="prose">
-<h2>Tout avance, même immobile</h2>
+<h2 id="s1">Tout avance, même immobile</h2>
 <p>Assis dans un fauteuil, vous n'allez nulle part dans l'espace. Vous avancez pourtant dans le temps, à raison d'une seconde par seconde. La relativité réunit ces deux déplacements : tout objet avance dans l'espace-temps à une cadence unique, celle de la lumière.</p>
 <p>Ce budget se partage. Ce qu'un objet dépense en vitesse dans l'espace, il le retire à son horloge. À 60 % de la vitesse de la lumière, une horloge embarquée ne bat plus qu'à 80 % de son rythme.</p>
-<h2>Une masse ralentit les horloges voisines</h2>
+<h2 id="s2">Une masse ralentit les horloges voisines</h2>
 <p>Le temps ne s'écoule pas partout au même rythme. Près d'une masse, une horloge bat plus lentement qu'une horloge restée très loin. L'écart est infime sur Terre et énorme près d'un astre compact.</p>
 <div class="tablewrap"><table class="data">
 <thead>
@@ -456,21 +515,21 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </table></div>
 <p>Cet effet se mesure tous les jours. Les horloges des satellites GPS, plus haut que nous, avancent tout compte fait de 38 millionièmes de seconde par jour. Sans correction, la position affichée dériverait de plus de 11 kilomètres par jour.</p>
 <p>Il se mesure même à l'échelle d'une table. En 2010, une équipe américaine a détecté l'écart entre deux horloges atomiques séparées de 33 centimètres en hauteur.</p>
-<h2>Tomber, c'est virer vers le temps lent</h2>
+<h2 id="s3">Tomber, c'est virer vers le temps lent</h2>
 <p>Imaginez un essieu dont une roue tourne un peu moins vite que l'autre : il vire du côté de la roue lente. Tout ce qui avance librement près d'une masse fait de même. Le côté le plus proche de la masse, où le temps est plus lent, avance moins, et la trajectoire se courbe vers elle.</p>
 <figure class="fig solo"><figcaption class="figtitle">Le côté lent avance moins : la trajectoire vire vers la masse</figcaption><div class="stage"><svg viewBox="0 0 760 300" role="img" aria-label="Le côté lent avance moins : la trajectoire vire vers la masse"><defs><marker id="fp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="f-ray"/></marker></defs><line x1="44" y1="48" x2="44" y2="222" class="ln"/><text x="24" y="38" class="tq">temps plus rapide</text><text x="24" y="240" class="tq">temps plus lent</text><rect x="24" y="254" width="712" height="28" class="box" style="fill:var(--grid)"/><text x="380" y="273" text-anchor="middle" class="tb">masse : planète ou étoile</text><path d="M200 66Q470 66 680 186" class="ray" marker-end="url(#fp-a)"/><text x="700" y="210" text-anchor="end" class="tq">trajectoire</text><g class="lnk" style="stroke:var(--ink-2)"><line x1="200" y1="31" x2="200" y2="101"/><line x1="387.5" y1="46.2" x2="375.8" y2="115.2"/><line x1="560.7" y1="92" x2="536.5" y2="157.6"/></g><text x="200" y="20" text-anchor="middle" class="tq">front d'onde</text><text x="574" y="86" class="tq">le haut avance plus vite</text><text x="524" y="178" text-anchor="end" class="tq">le bas avance moins vite</text></svg></div></figure>
 <p>Le haut du front, où le temps est plus rapide, avance davantage que le bas. Le front pivote, et la trajectoire s'incurve vers la masse.</p>
 <p>Le calcul donne un résultat d'une grande simplicité. À la surface de la Terre, une horloge placée un mètre plus haut bat plus vite, d'un dix-millionième de milliardième seulement. Multipliez cette pente par le carré de la vitesse de la lumière : vous obtenez 9,81 mètres par seconde carrée, la pesanteur.</p>
 <p>Votre tête vieillit donc un peu plus vite que vos pieds. Sur une vie de 80 ans, l'écart atteint à peine un demi-millionième de seconde. C'est pourtant lui qui vous tient au sol.</p>
-<h2>La lumière tombe deux fois plus</h2>
+<h2 id="s4">La lumière tombe deux fois plus</h2>
 <p>La lumière aussi est déviée, d'un angle minuscule que l'on compte en secondes d'arc : un degré en contient 3 600. En 1911, Einstein calcule l'effet du seul ralentissement du temps et trouve 0,83 seconde d'arc pour un rayon frôlant le Soleil. Sa théorie complète, publiée en 1916, double la mise : 1,7 seconde d'arc.</p>
 <p>La différence vient de l'espace. Une masse ne ralentit pas seulement les horloges, elle modifie aussi les longueurs. Un corps lent ne sent que la pente du temps ; la lumière, qui parcourt beaucoup d'espace, sent les deux effets.</p>
 <p>L'éclipse de 1919 a tranché en faveur du double, avec 1,98 et 1,61 seconde d'arc mesurées sur deux sites. La lumière met aussi plus de temps à passer près du Soleil : un écho radar renvoyé par Vénus revient avec environ deux dix-millièmes de seconde de retard.</p>
-<h2>Un frein sans frottement</h2>
+<h2 id="s5">Un frein sans frottement</h2>
 <p>L'image du frein a trois limites. D'abord, rien ne ralentit sur place : un observateur mesure toujours la même vitesse de la lumière avec sa propre règle et sa propre horloge. Le ralentissement n'apparaît qu'en comparant deux endroits.</p>
 <p>Ensuite, rien ne s'use. Un frein ordinaire chauffe et dissipe de l'énergie ; ici, aucune énergie n'est perdue.</p>
 <p>Enfin, l'image dit comment les choses tombent, pas pourquoi une masse ralentit le temps. Cette question relève des équations d'Einstein, qui décrivent aussi ce que l'image ne couvre pas : les ondes gravitationnelles et l'expansion de l'univers.</p>
-<h2>Sources et précisions</h2>
+<h2 id="s6">Sources et précisions</h2>
 <ul>
 <li>Les calculs complets figurent dans le dossier <a href="demonstration.html">Formalisation du modèle « Actuel, Émergent, Local »</a>, pilier 3. Les chiffres du tableau, du GPS et de l'écart entre la tête et les pieds en sont tirés par calcul.</li>
 <li>Déviation de la lumière : Einstein, A. (1911). <a href="https://zenodo.org/records/1424213">Über den Einfluß der Schwerkraft auf die Ausbreitung des Lichtes</a>. Annalen der Physik 35, 898–908. Einstein, A. (1916). <a href="https://zenodo.org/records/1424302">Die Grundlage der allgemeinen Relativitätstheorie</a>. Annalen der Physik 49, 769–822.</li>
@@ -480,7 +539,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 <li>L'image d'un vide qui ralentit la lumière remonte à Einstein (1911). Elle a été reprise par Dicke, R. H. (1957). <a href="https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.29.363">Gravitation without a Principle of Equivalence</a>. Reviews of Modern Physics 29, 363–376.</li>
 </ul>
 <p class="suite"><a class="btn encre" href="index.html">Manipuler la planche interactive <span aria-hidden="true">→</span></a><a class="btn" href="demonstration.html">Lire la démonstration <span aria-hidden="true">→</span></a></p>
-</article>
+</article></div>
 </main>
 <nav class="pagination" aria-label="Pilier précédent et pilier suivant"><a href="../pilier-2/article.html"><span class="num">← Pilier 2</span><b>On ne voit jamais la lumière passer</b></a><a href="../pilier-4/article.html"><span class="num">Pilier 4 →</span><b>Le choix qui ne réécrit pas le passé</b></a></nav>
 </div></div>
@@ -556,6 +615,240 @@ const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pr
 const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// rail de lecture : la section en cours est marquée pendant le défilement
+(() => {
+  const liens = $$('.rail a');
+  if (!liens.length) return;
+  const cibles = liens.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  if (!cibles.length) return;
+  const marquer = () => {
+    let courant = cibles[0];
+    cibles.forEach(c => { if (c.getBoundingClientRect().top < 130) courant = c; });
+    liens.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + courant.id ? 'true' : 'false'));
+  };
+  let attente = 0;
+  window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
+  marquer();
+})();
+
+// Épures : un dessin animé par pilier, tracé au trait sur le plan bleu.
+// Chaque dessin ne dépend que du temps : on peut l'arrêter sur n'importe quelle image.
+(function () {
+  const toiles = $$('canvas[data-epure]');
+  if (!toiles.length) return;
+  const ENCRE = '#f3f6fb', PALE = 'rgba(205,225,255,.62)', TRAIT = 'rgba(205,225,255,.3)', PHOTON = '#ffefc4', TOUR = 6.2832;
+
+  const trait = (g, x1, y1, x2, y2, couleur, ep, tirets) => {
+    g.save(); g.strokeStyle = couleur; g.lineWidth = ep; if (tirets) g.setLineDash(tirets);
+    g.beginPath(); g.moveTo(x1, y1); g.lineTo(x2, y2); g.stroke(); g.restore();
+  };
+  const disque = (g, x, y, r, couleur, alpha) => {
+    g.save(); g.globalAlpha *= alpha == null ? 1 : alpha; g.fillStyle = couleur; g.beginPath(); g.arc(x, y, r, 0, TOUR); g.fill(); g.restore();
+  };
+  const anneau = (g, x, y, r, couleur, ep) => {
+    g.save(); g.strokeStyle = couleur; g.lineWidth = ep; g.beginPath(); g.arc(x, y, r, 0, TOUR); g.stroke(); g.restore();
+  };
+  const mot = (g, texte, x, y, u, cote, couleur) => {
+    g.save(); g.font = '500 ' + (10 * u) + 'px "IBM Plex Mono", ui-monospace, Consolas, monospace';
+    if ('letterSpacing' in g) g.letterSpacing = (1.1 * u) + 'px';
+    g.textAlign = cote || 'left'; g.textBaseline = 'middle'; g.fillStyle = couleur || PALE; g.fillText(texte, x, y); g.restore();
+  };
+
+  // Pilier 1. Une source balaie un écran plat. Chaque photon file droit à la vitesse c :
+  // ensemble ils dessinent une spirale, et la tache n'est que l'endroit où elle touche l'écran.
+  const balayage = (g, W, H, t, u, petit) => {
+    const T = 5.6, tt = t % T, ox = 0.14 * W, oy = 0.84 * H, sy = 0.22 * H, D = oy - sy;
+    const om = 1.2, c = D * om / 2, thMax = 1.03, tau1 = thMax / om;   // Dω/c = 2 : la visée court deux fois plus vite que la lumière
+    trait(g, 0.05 * W, sy, 0.96 * W, sy, ENCRE, 1.8 * u);
+    trait(g, ox, oy, ox, sy, TRAIT, u);
+    g.save(); g.strokeStyle = TRAIT; g.lineWidth = u; g.setLineDash([4 * u, 5 * u]);
+    g.beginPath(); g.arc(ox, oy, D, -TOUR / 4, -TOUR / 4 + 1.15); g.stroke(); g.restore();
+    if (tt < tau1) {
+      const xa = ox + D * Math.tan(om * tt);
+      trait(g, ox, oy, xa, sy, TRAIT, u, [3 * u, 5 * u]); anneau(g, xa, sy, 4.5 * u, PALE, 1.3 * u);
+      if (!petit) mot(g, 'VISÉE', xa, sy - 13 * u, u, 'center');
+    }
+    let tache = null, k = 0;
+    for (let tau = 0; tau <= tau1 && tau <= tt; tau += 0.016, k++) {
+      const th = om * tau, R = D / Math.cos(th), r = c * (tt - tau), sx = Math.sin(th), cy = -Math.cos(th);
+      if (r < R) {
+        if (k % 9 === 0) trait(g, ox, oy, ox + r * sx, oy + r * cy, 'rgba(255,239,196,.13)', u);
+        disque(g, ox + r * sx, oy + r * cy, 1.6 * u, PHOTON, 0.95);
+      } else {
+        const xi = ox + D * Math.tan(th), age = (r - R) / c;
+        disque(g, xi, sy, 1.3 * u, PHOTON, 0.4);
+        if (age < 0.45) { disque(g, xi, sy, (2.5 + 6 * age / 0.45) * u, PHOTON, 0.55 * (1 - age / 0.45)); tache = xi; }
+      }
+    }
+    disque(g, ox, oy, 4.5 * u, ENCRE);
+    if (!petit) {
+      mot(g, 'SOURCE', ox + 11 * u, oy + 2 * u, u);
+      if (tt >= tau1) mot(g, 'ÉCRAN PLAT', 0.96 * W, sy - 13 * u, u, 'right');
+      if (tache != null) mot(g, 'TACHE', tache, sy + 15 * u, u, 'center', PHOTON);
+    }
+  };
+
+  // Pilier 2. Le faisceau traverse la pièce sans se montrer. Seul un grain de poussière qui le croise
+  // s'allume, et c'est lui que l'œil voit.
+  const poussiere = (g, W, H, t, u, petit) => {
+    const by = 0.4 * H, lx = 0.13 * W, mx = 0.9 * W, ex = 0.52 * W, ey = 0.85 * H, hasard = mulberry(7);
+    g.save(); g.strokeStyle = ENCRE; g.lineWidth = 1.5 * u; g.strokeRect(lx - 30 * u, by - 9 * u, 30 * u, 18 * u); g.restore();
+    trait(g, mx, 0.14 * H, mx, 0.66 * H, ENCRE, 1.8 * u);
+    trait(g, lx, by, mx, by, 'rgba(205,225,255,.16)', u, [2 * u, 7 * u]);
+    trait(g, mx, by, ex, ey, 'rgba(255,239,196,.4)', u);
+    disque(g, mx, by, 8 * u, PHOTON, 0.25); disque(g, mx, by, 3.6 * u, PHOTON);
+    for (let k = 0; k < 34; k++) {
+      const x0 = lx + (mx - lx) * (0.05 + 0.9 * hasard()), y0 = (0.14 + 0.52 * hasard()) * H, A = (0.05 + 0.1 * hasard()) * H;
+      const Tk = 5 + 6 * hasard(), ph = TOUR * hasard();
+      const y = y0 + A * Math.sin(TOUR * t / Tk + ph), x = x0 + 6 * u * Math.sin(TOUR * t / (1.7 * Tk) + ph), d = Math.abs(y - by);
+      if (d < 5 * u) {
+        const f = 1 - d / (5 * u);
+        trait(g, x, y, ex, ey, 'rgba(255,239,196,' + (0.55 * f).toFixed(3) + ')', u);
+        disque(g, x, y, 7 * u, PHOTON, 0.25 * f); disque(g, x, y, 2.3 * u, PHOTON);
+      } else disque(g, x, y, 1.3 * u, PALE, 0.55);
+    }
+    g.save(); g.strokeStyle = ENCRE; g.lineWidth = 1.5 * u; g.beginPath(); g.ellipse(ex, ey, 14 * u, 7 * u, 0, 0, TOUR); g.stroke(); g.restore();
+    disque(g, ex, ey, 3.4 * u, ENCRE);
+    if (!petit) {
+      mot(g, 'LASER', lx - 30 * u, by - 20 * u, u);
+      mot(g, 'MUR', mx, 0.1 * H, u, 'center');
+      mot(g, 'ŒIL, PLACÉ DE CÔTÉ', ex, ey + 19 * u, u, 'center');
+    }
+  };
+
+  // Pilier 3. Près de la masse, l'horloge bat moins vite. Le bas de chaque front d'onde avance moins :
+  // le front pivote et la trajectoire vire vers le temps lent.
+  const horloge = (g, x, y, r, tours, u) => {
+    anneau(g, x, y, r, ENCRE, 1.5 * u);
+    for (let i = 0; i < 12; i++) {
+      const a = i * TOUR / 12, c = Math.cos(a), s = Math.sin(a);
+      trait(g, x + (r - 4 * u) * c, y + (r - 4 * u) * s, x + (r - 1.2 * u) * c, y + (r - 1.2 * u) * s, TRAIT, u);
+    }
+    const a = tours * TOUR - TOUR / 4;
+    trait(g, x, y, x + 0.72 * r * Math.cos(a), y + 0.72 * r * Math.sin(a), PHOTON, 2 * u); disque(g, x, y, 2.3 * u, ENCRE);
+  };
+  const pente = (g, W, H, t, u, petit) => {
+    g.save(); g.beginPath(); g.arc(0.5 * W, 0.9 * H + 2.2 * W, 2.2 * W, 0, TOUR);
+    g.fillStyle = 'rgba(205,225,255,.1)'; g.fill(); g.strokeStyle = ENCRE; g.lineWidth = 1.8 * u; g.stroke(); g.restore();
+    horloge(g, 0.13 * W, 0.24 * H, 24 * u, t / 3.2, u);
+    horloge(g, 0.13 * W, 0.66 * H, 24 * u, 0.55 * t / 3.2, u);
+    const x0 = 0.31 * W, L = 0.6 * W, y0 = 0.27 * H, A = 0.47 * H, Y = s => y0 + A * s * s, incl = s => Math.atan(2 * A * s / L);
+    g.save(); g.strokeStyle = TRAIT; g.lineWidth = u; g.setLineDash([4 * u, 5 * u]); g.beginPath();
+    for (let i = 0; i <= 40; i++) { const s = i / 40; if (i) g.lineTo(x0 + L * s, Y(s)); else g.moveTo(x0, Y(0)); }
+    g.stroke(); g.restore();
+    for (let j = 0; j < 6; j++) {
+      const s = (t * 0.17 + j / 6) % 1, a = incl(s), nx = -Math.sin(a), ny = Math.cos(a), x = x0 + L * s, y = Y(s), d = 17 * u;
+      g.save(); g.globalAlpha = Math.sin(Math.PI * s); trait(g, x - nx * d, y - ny * d, x + nx * d, y + ny * d, PHOTON, 2 * u); g.restore();
+    }
+    const a1 = incl(1), fx = x0 + L, fy = Y(1), fl = 10 * u;
+    g.save(); g.fillStyle = PALE; g.beginPath(); g.moveTo(fx + fl * Math.cos(a1), fy + fl * Math.sin(a1));
+    g.lineTo(fx - fl * 0.5 * Math.cos(a1 - 0.9), fy - fl * 0.5 * Math.sin(a1 - 0.9));
+    g.lineTo(fx - fl * 0.5 * Math.cos(a1 + 0.9), fy - fl * 0.5 * Math.sin(a1 + 0.9)); g.closePath(); g.fill(); g.restore();
+    if (!petit) {
+      mot(g, 'LOIN : TEMPS RAPIDE', 0.045 * W, 0.24 * H - 38 * u, u);
+      mot(g, 'PRÈS : TEMPS LENT', 0.045 * W, 0.66 * H + 38 * u, u);
+      mot(g, 'MASSE', 0.5 * W, 0.955 * H, u, 'center');
+    }
+  };
+
+  // Pilier 4. Le photon contourne la galaxie par deux routes à la fois. Au dernier moment, on place ou non
+  // une lame : sans elle on apprend la route, avec elle on lit le décalage entre les deux routes.
+  const choix = (g, W, H, t, u, petit) => {
+    const T = 5.2, k = Math.floor(t / T), tt = t - k * T, lame = k % 2 === 1;
+    const S = [0.09 * W, 0.5 * H], M = [0.68 * W, 0.5 * H], P1 = [0.38 * W, 0.02 * H], P2 = [0.38 * W, 0.98 * H];
+    const D1 = [0.89 * W, 0.164 * H], D2 = [0.89 * W, 0.836 * H];
+    const sur = (P, s) => [(1 - s) * (1 - s) * S[0] + 2 * (1 - s) * s * P[0] + s * s * M[0], (1 - s) * (1 - s) * S[1] + 2 * (1 - s) * s * P[1] + s * s * M[1]];
+    [P1, P2].forEach(P => {
+      g.save(); g.strokeStyle = TRAIT; g.lineWidth = u; g.setLineDash([4 * u, 5 * u]);
+      g.beginPath(); g.moveTo(S[0], S[1]); g.quadraticCurveTo(P[0], P[1], M[0], M[1]); g.stroke(); g.restore();
+    });
+    trait(g, M[0], M[1], D1[0], D1[1], TRAIT, u, [4 * u, 5 * u]); trait(g, M[0], M[1], D2[0], D2[1], TRAIT, u, [4 * u, 5 * u]);
+    g.save(); g.translate(0.38 * W, 0.5 * H); g.rotate(-0.35); g.beginPath(); g.ellipse(0, 0, 30 * u, 13 * u, 0, 0, TOUR);
+    g.fillStyle = 'rgba(205,225,255,.12)'; g.fill(); g.strokeStyle = PALE; g.lineWidth = 1.3 * u; g.stroke(); g.restore();
+    disque(g, S[0], S[1], 4.5 * u, ENCRE);
+    [D1, D2].forEach(D => { g.save(); g.strokeStyle = ENCRE; g.lineWidth = 1.5 * u; g.strokeRect(D[0] - 6 * u, D[1] - 6 * u, 12 * u, 12 * u); g.restore(); });
+    const decide = tt > 2.0;
+    if (decide && lame) trait(g, M[0] - 19 * u, M[1], M[0] + 19 * u, M[1], ENCRE, 2.6 * u);
+    else trait(g, M[0] - 19 * u, M[1], M[0] + 19 * u, M[1], TRAIT, 1.2 * u, [3 * u, 4 * u]);
+    const but = lame ? D1 : (mulberry(7 * k + 3)() < 0.5 ? D1 : D2);
+    if (tt < 3) {
+      [P1, P2].forEach(P => { for (let i = 0; i < 8; i++) { const s = tt / 3 - i * 0.017; if (s > 0) { const q = sur(P, s); disque(g, q[0], q[1], (2.7 - i * 0.26) * u, PHOTON, 0.8 - i * 0.09); } } });
+    } else if (tt < 3.5) {
+      const s = (tt - 3) / 0.5; disque(g, M[0] + (but[0] - M[0]) * s, M[1] + (but[1] - M[1]) * s, 2.7 * u, PHOTON, 0.9);
+    } else {
+      const a = Math.max(0, 1 - (tt - 3.5) / 1.5);
+      disque(g, but[0], but[1], (7 + 12 * (1 - a)) * u, PHOTON, 0.5 * a); disque(g, but[0], but[1], 4.2 * u, PHOTON);
+    }
+    if (!petit) {
+      mot(g, 'SOURCE', S[0] - 8 * u, S[1] + 17 * u, u);
+      mot(g, 'GALAXIE', 0.38 * W, 0.5 * H + 30 * u, u, 'center');
+      mot(g, decide ? (lame ? 'LAME EN PLACE' : 'SANS LAME') : 'CHOIX À VENIR', M[0], M[1] - 16 * u, u, 'center', decide ? PHOTON : PALE);
+      if (tt >= 3.5) mot(g, lame ? 'LES DEUX ROUTES INTERFÈRENT' : 'UNE ROUTE, AU HASARD', 0.5 * W, 0.95 * H, u, 'center', PHOTON);
+    }
+  };
+
+  // Pilier 5. La réponse est d'abord inscrite au crayon. Puis l'environnement l'emporte en copies,
+  // de plus en plus nombreuses : elle devient un fait.
+  const cristal = (g, W, H, t, u, petit) => {
+    const T = 7.5, tt = t % T, cx = 0.5 * W, cy = 0.5 * H, a = 26 * u, hasard = mulberry(11);
+    const n = tt < 2.8 ? 0 : Math.min(420, Math.floor(Math.pow(2, (tt - 2.8) * 2.6)));
+    g.save(); g.fillStyle = PHOTON;
+    for (let j = 0; j < n; j++) {
+      const dir = TOUR * hasard(), v = (0.14 + 0.2 * hasard()) * W, tj = 2.8 + Math.log2(j + 1) / 2.6, d = a + v * (tt - tj);
+      const al = clamp(1 - d / (0.6 * W), 0, 1);
+      if (al > 0) { g.globalAlpha = 0.85 * al; g.fillRect(cx + d * Math.cos(dir) - 1.6 * u, cy + d * Math.sin(dir) - 1.6 * u, 3.2 * u, 3.2 * u); }
+    }
+    g.restore();
+    const fait = clamp((tt - 2.8) / 2.2, 0, 1);
+    g.save(); g.lineWidth = 1.8 * u; g.strokeStyle = ENCRE;
+    g.globalAlpha = 1 - fait; g.setLineDash([5 * u, 5 * u]); g.strokeRect(cx - a, cy - a, 2 * a, 2 * a);
+    g.globalAlpha = fait; g.setLineDash([]); g.lineWidth = 2.4 * u; g.strokeRect(cx - a, cy - a, 2 * a, 2 * a); g.restore();
+    if (tt < 1.4) {
+      g.save(); g.font = '500 ' + (30 * u) + 'px "IBM Plex Mono", Consolas, monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillStyle = PALE; g.fillText('?', cx, cy + 1.5 * u); g.restore();
+    } else {
+      g.save(); g.globalAlpha = tt < 2.8 ? 0.45 : 0.45 + 0.55 * fait; g.strokeStyle = PHOTON; g.lineWidth = 3.4 * u; g.lineJoin = 'round';
+      g.beginPath(); g.moveTo(cx - 11 * u, cy + 1 * u); g.lineTo(cx - 3 * u, cy + 9 * u); g.lineTo(cx + 12 * u, cy - 9 * u); g.stroke(); g.restore();
+    }
+    if (!petit) {
+      mot(g, tt < 1.4 ? 'QUESTION' : tt < 2.8 ? 'INSCRIPTION : ENCORE EFFAÇABLE' : 'CRISTALLISATION', cx, cy - a - 17 * u, u, 'center', tt < 2.8 ? PALE : PHOTON);
+      if (tt >= 2.8) mot(g, 'COPIES DANS L’ENVIRONNEMENT : ' + frNum(n), cx, 0.94 * H, u, 'center');
+    }
+  };
+
+  const DESSINS = { 1: balayage, 2: poussiere, 3: pente, 4: choix, 5: cristal };
+  const fiches = toiles.map(c => ({ c: c, g: c.getContext('2d'), dessin: DESSINS[c.dataset.epure], t: 0, vu: false, W: 1, H: 1, u: 1, petit: false }))
+    .filter(f => f.dessin);
+  const tailler = f => {
+    const r = f.c.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    f.W = Math.max(1, Math.round(r.width * dpr)); f.H = Math.max(1, Math.round(r.height * dpr));
+    f.c.width = f.W; f.c.height = f.H; f.u = f.W / 400; f.petit = r.width < 330;
+  };
+  const peindre = f => {
+    if (f.W < 8) return;
+    f.g.setTransform(1, 0, 0, 1, 0, 0); f.g.clearRect(0, 0, f.W, f.H); f.g.globalAlpha = 1; f.g.lineCap = 'round';
+    f.dessin(f.g, f.W, f.H, f.t, f.u, f.petit);
+  };
+  const fige = /^#fige=([0-9.]+)/.exec(location.hash), ARRET = reduceMotion || !!fige;
+  let raf = 0, avant = 0;
+  const boucle = maintenant => {
+    const dt = Math.min(0.05, Math.max(0, (maintenant - avant) / 1000)); avant = maintenant;
+    let encore = false;
+    fiches.forEach(f => { if (f.vu) { f.t += dt; peindre(f); encore = true; } });
+    raf = encore ? requestAnimationFrame(boucle) : 0;
+  };
+  const lancer = () => { if (!raf && !ARRET) { avant = performance.now(); raf = requestAnimationFrame(boucle); } };
+  fiches.forEach(f => { f.t = fige ? parseFloat(fige[1]) || 0 : (ARRET ? parseFloat(f.c.dataset.fige) || 3 : 0); tailler(f); peindre(f); });
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver(es => es.forEach(e => { const f = fiches.find(x => x.c === e.target); if (f) { tailler(f); peindre(f); } }));
+    fiches.forEach(f => ro.observe(f.c));
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { es.forEach(e => { const f = fiches.find(x => x.c === e.target); if (f) f.vu = e.isIntersecting; }); lancer(); });
+    fiches.forEach(f => io.observe(f.c));
+  } else { fiches.forEach(f => { f.vu = true; }); lancer(); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (ARRET) fiches.forEach(peindre); });
+})();
 
 </script>
 </body>

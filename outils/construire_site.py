@@ -23,7 +23,7 @@ import urllib.parse
 import markdown
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from figures import FAVICON, FIGURES, ICONE, VIGNETTES  # noqa: E402
+from figures import FAVICON, FIGURES, ICONE  # noqa: E402
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAB = os.path.join(RACINE, "outils", "gabarits")
@@ -69,6 +69,14 @@ PILIERS = [
                 "des milliards de fois et la grave.",
          clef=("10 ps", "dix picosecondes pour éteindre l'interférence d'un grain de poussière au soleil (calcul de 1985)")),
 ]
+# épures : pour chaque pilier, l'instant montré quand l'animation est désactivée, et la description du dessin
+EPURES = {
+    1: ("3.0", "Une source balaie un écran plat. Les photons filent en ligne droite et dessinent une spirale ; la tache avance là où elle touche l'écran"),
+    2: ("2.0", "Un faisceau traverse une pièce sans se montrer. Seuls les grains de poussière qui le croisent s'allument, et l'œil les voit"),
+    3: ("2.0", "Deux horloges battent à des rythmes différents. Des fronts d'onde pivotent et la trajectoire vire vers la masse"),
+    4: ("2.6", "Un photon contourne une galaxie par deux routes à la fois. Au dernier moment, on place ou non une lame avant les détecteurs"),
+    5: ("4.6", "Une réponse est inscrite, puis recopiée en un nombre croissant d'exemplaires dans l'environnement"),
+}
 VUES = [("index.html", 'Planche<span class="plus"> interactive</span>'), ("article.html", "Article"),
         ("demonstration.html", "Démonstration")]
 MOIS = dict(Jan="janvier", Feb="février", Mar="mars", Apr="avril", May="mai", Jun="juin", Jul="juillet", Aug="août",
@@ -133,11 +141,12 @@ GABARIT = """<!doctype html>
 </style>
 </head>
 <body class="%%CLASSE%%">
+<a class="saut" href="#contenu">Aller au contenu</a>
 %%BARRE%%
 %%ENTETE%%
 <div class="pose"><div class="sheet">
 <div class="cartouche">%%CARTOUCHE%%</div>
-<main>
+<main id="contenu">
 %%CORPS%%
 </main>
 %%PAGINATION%%</div></div>
@@ -277,17 +286,101 @@ def bouton(href, texte, classe="btn"):
     return '<a class="%s" href="%s">%s <span aria-hidden="true">→</span></a>' % (classe, href, texte)
 
 
-def entete(repere, titre, texte="", suite="", onglets=""):
+def plaque(n, classe="plaque"):
+    """La plaque d'un pilier : une toile où epures.js trace son dessin animé."""
+    fige, description = EPURES[n]
+    return '<div class="%s"><canvas data-epure="%d" data-fige="%s" role="img" aria-label="%s"></canvas></div>' % (
+        classe, n, fige, e(description))
+
+
+def entete(repere, titre, texte="", suite="", onglets="", dessin=""):
     """En-tête de page : le plan bleu, avec repères, titre, chapeau, puis boutons ou onglets."""
-    return ('<header class="plan"><div class="dedans%s">\n<p class="repere">%s</p>\n<h1>%s</h1>\n%s%s%s</div></header>' % (
-        " onglets" if onglets else "", "".join("<span>%s</span>" % t(r) for r in repere), titre,
-        ('<p class="chapeau">%s</p>\n' % texte) if texte else "", suite, onglets))
+    bloc = '<p class="repere">%s</p>\n<h1>%s</h1>\n%s%s' % (
+        "".join("<span>%s</span>" % t(r) for r in repere), titre, ('<p class="chapeau">%s</p>\n' % texte) if texte else "", suite)
+    if dessin:
+        bloc = '<div class="tete"><div>\n%s</div>\n<figure class="epure">%s</figure></div>\n' % (bloc, dessin)
+    return '<header class="plan"><div class="dedans%s">\n%s%s</div></header>' % (" onglets" if onglets else "", bloc, onglets)
 
 
 def entete_pilier(p, vue, titre, texte):
     onglets = '<nav class="vues" aria-label="Trois façons de lire ce pilier">%s</nav>\n' % "".join(
         '<a href="%s"%s>%s</a>' % (f, ' aria-current="page"' if f == vue else "", nom) for f, nom in VUES)
-    return entete(["Pilier %d / 5" % p["n"], p["objet"]], titre, texte, onglets=onglets)
+    return entete(["Pilier %d / 5" % p["n"], p["objet"]], titre, texte, onglets=onglets, dessin=plaque(p["n"]))
+
+
+def rail(h):
+    """Pose une ancre sur chaque intertitre et renvoie le sommaire latéral de la page."""
+    liens = []
+
+    def ancre(m):
+        ident = re.search(r'id="([^"]+)"', m.group(1)).group(1) if m.group(1) else "s%d" % (len(liens) + 1)
+        liens.append('<li><a href="#%s">%s</a></li>' % (ident, re.sub(r"<[^>]+>", "", m.group(2))))
+        return '<h2 id="%s">%s</h2>' % (ident, m.group(2))
+    h = re.sub(r'<h2( id="[^"]+")?>(.*?)</h2>', ancre, h, flags=re.S)
+    nav = ('<nav class="rail" aria-label="Dans cette page"><span class="eyebrow">Dans cette page</span><ol>%s</ol></nav>\n'
+           % "".join(liens)) if len(liens) > 1 else ""
+    return nav, h
+
+
+def references(refs):
+    """Lit la liste des références du dossier : (pilier, année, auteurs, titre)."""
+    sortie, pilier = [], 0
+    for ligne in refs.split("\n"):
+        m = re.match(r"\*\*Pilier (\d)\*\*", ligne)
+        if m:
+            pilier = int(m.group(1))
+            continue
+        m = re.match(r"- (.+?) \((\d{4})\)\.\s*(.*)", ligne)
+        if not (m and pilier):
+            continue
+        noms = [x for x in m.group(1).split(", ") if not re.match(r"^(?:[A-ZČ]\.[- ]?)+$|^et al\.$", x)]
+        auteurs = noms[0] + " et al." if ("et al." in m.group(1) or len(noms) > 2) else " et ".join(noms)
+        titre = (re.match(r"\[([^\]]+)\]", m.group(3)) or re.match(r"«\s*(.+?)\s*»", m.group(3))
+                 or re.match(r"(.+?)\.(?:\s|$)", m.group(3)))
+        sortie.append((pilier, int(m.group(2)), auteurs, titre.group(1).strip() if titre else ""))
+    return sortie
+
+
+def frise(refs):
+    """Frise des travaux cités : un rang par pilier, un point par référence, placé à son année."""
+    donnees = references(refs)
+    a0, a1, gx, dx, haut, pas = 1900, 2025, 250, 732, 20, 56
+    bas = haut + pas * len(PILIERS)
+
+    def X(an):
+        return gx + dx * (an - a0) / float(a1 - a0)
+    s = ['<svg class="wide frise" viewBox="0 0 1000 %d" role="img" aria-label="Frise de %d travaux cités, de %d à %d, répartis '
+         'par pilier">' % (bas + 30, len(donnees), min(d[1] for d in donnees), max(d[1] for d in donnees))]
+    for an in range(a0, a1, 20):
+        s.append('<line x1="%.1f" y1="%d" x2="%.1f" y2="%d" class="gr"/><text x="%.1f" y="%d" text-anchor="middle" class="tm">%d</text>'
+                 % (X(an), haut, X(an), bas, X(an), bas + 19, an))
+    for p in PILIERS:
+        fond = haut + pas * p["n"]
+        base = fond - 15
+        s.append('<line x1="16" y1="%d" x2="984" y2="%d" class="ln"/>' % (fond, fond))
+        s.append('<text x="16" y="%d" class="tb">Pilier %d</text><text x="16" y="%d" class="tq">%s</text>'
+                 % (base - 13, p["n"], base + 4, e(p["objet"])))
+        niveaux = []
+        for i, (_, an, auteurs, titre) in enumerate(sorted(d for d in donnees if d[0] == p["n"])):
+            x = X(an)
+            niv = next((k for k, dernier in enumerate(niveaux) if x - dernier >= 12), len(niveaux))
+            if niv == len(niveaux):
+                niveaux.append(x)
+            else:
+                niveaux[niv] = x
+            y = base - 12 * niv
+            nom = "%s (%d)" % (auteurs, an)
+            s.append('<g class="ref" tabindex="0" role="img" aria-label="%s. %s" data-t="%s" data-s="%s">'
+                     '<circle class="touche" cx="%.1f" cy="%.1f" r="11"/><circle class="pt" cx="%.1f" cy="%.1f" r="5"/></g>'
+                     % (e(nom), e(titre), e(nom), e(titre), x, y, x, y))
+            if i == 0:
+                # le plus ancien du rang est nommé : à gauche du point s'il y a la place, sinon au-dessus
+                if x - 10 - 6.4 * len("%s, %d" % (auteurs, an)) > gx - 8:
+                    s.append('<text x="%.1f" y="%.1f" text-anchor="end" class="tq">%s, %d</text>' % (x - 10, y + 4, e(auteurs), an))
+                else:
+                    s.append('<text x="%.1f" y="%.1f" class="tq">%s, %d</text>' % (x - 4, y - 13, e(auteurs), an))
+    s.append("</svg>")
+    return "".join(s), len(donnees), min(d[1] for d in donnees), max(d[1] for d in donnees)
 
 
 def pagination(p, vue):
@@ -386,7 +479,7 @@ html,body{margin:0;width:1200px;height:630px;overflow:hidden}
 <div><p class="repere"><span>Modèle de %s</span><span>Cinq piliers</span></p>
 <h1><span>Actuel,</span><span>Émergent,</span><span>Local</span></h1>
 <p class="chapeau">Cinq intuitions sur la lumière, la gravité et la mesure, mises en équations et confrontées à la physique établie.</p></div>
-<figure class="expo"><div class="plaque"><canvas id="expo-a"></canvas><canvas id="expo-b"></canvas>
+<figure class="expo"><div class="plaque expo-ecran"><canvas id="expo-a"></canvas><canvas id="expo-b"></canvas>
 <span class="pl-t">Écran de détection</span><span class="pl-n">Photons détectés<b id="expo-n">0</b></span></div>
 <button id="expo-re" hidden></button></figure>
 </div></header>
@@ -407,6 +500,7 @@ def main():
     css = lire(os.path.join(GAB, "base.css"))
     base_js = lire(os.path.join(GAB, "base.js"))
     accueil_js = lire(os.path.join(GAB, "accueil.js"))
+    commun_js = base_js + "\n" + lire(os.path.join(GAB, "epures.js"))
     dossier = lire(os.path.join(DOCS, DOSSIER + ".md"))
     date = date_fr(dossier)
     morceaux = re.split(r"^## (.+)$", dossier, flags=re.M)
@@ -427,7 +521,7 @@ def main():
         m = re.match(r'\s*<div class="head">\s*<h1>(.*?)</h1>\s*<p class="lead">(.*?)</p>\s*</div>', corps, flags=re.S)
         corps = re.sub(r'<table class="data">(.*?)</table>', tableau_planche, corps[m.end():], flags=re.S)
         page(dos + "index.html", p["titre"], p["resume"], entete_pilier(p, "index.html", m.group(1), m.group(2)), corps.strip(),
-             base_js + "\n" + script.strip(), cart(p["objet"], "Échelle", p["echelle"], date), "p-planche",
+             commun_js + "\n" + script.strip(), cart(p["objet"], "Échelle", p["echelle"], date), "p-planche",
              pilier=p, vue="index.html", bas=suite)
 
         # 2. article de vulgarisation
@@ -435,10 +529,11 @@ def main():
         titre_art = re.search(r"^# (.+)$", art, flags=re.M).group(1).strip()
         date_art = date_fr(art) or date
         texte, reste = chapeau(md_html(sans_titre(art).replace(LIEN_DOSSIER_PRIVE, "demonstration.html"), "article"))
-        corps = ('<article class="prose">\n%s\n<p class="suite">%s%s</p>\n</article>'
-                 % (reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
+        sommaire, reste = rail(reste)
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
                     bouton("demonstration.html", "Lire la démonstration")))
-        page(dos + "article.html", titre_art, p["resume"], entete_pilier(p, "article.html", t(titre_art), texte), corps, base_js,
+        page(dos + "article.html", titre_art, p["resume"], entete_pilier(p, "article.html", t(titre_art), texte), corps, commun_js,
              cart(p["objet"], "Vue", "Article de vulgarisation", date_art), "p-article",
              pilier=p, vue="article.html", bas=pagination(p, "article.html"))
 
@@ -451,11 +546,12 @@ def main():
             demo += "\n\n## Références\n\n" + m.group(1)
         texte, reste = chapeau(md_html(demo.strip(), "demonstration"))
         avis = typo(AVIS % (AVIS_MOT if "tableau plat" in demo else ""))
-        corps = ('<article class="prose">\n%s\n%s\n<p class="suite">%s%s</p>\n</article>'
-                 % (avis, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
+        sommaire, reste = rail(reste)
+        corps = ('<div class="avec-rail">%s<article class="prose">\n%s\n%s\n<p class="suite">%s%s</p>\n</article></div>'
+                 % (sommaire, avis, reste, bouton("index.html", "Manipuler la planche interactive", "btn encre"),
                     bouton("article.html", "Lire l'article")))
         page(dos + "demonstration.html", titre_demo, p["resume"], entete_pilier(p, "demonstration.html", t(titre_demo), texte),
-             corps, base_js + KATEX_JS, cart(p["objet"], "Vue", "Démonstration mathématique", date), "p-demo",
+             corps, commun_js + KATEX_JS, cart(p["objet"], "Vue", "Démonstration mathématique", date), "p-demo",
              pilier=p, vue="demonstration.html", tete=KATEX, bas=pagination(p, "demonstration.html"))
 
     # 4. page d'accueil
@@ -465,10 +561,11 @@ def main():
             '<article class="plk"><div class="no"><span class="num">Pilier</span><b>%02d</b></div>'
             '<div class="plt"><span class="eyebrow">%s</span><h3><a href="pilier-%d/index.html">%s</a></h3><p>%s</p>'
             '<p class="acces">%s<a href="pilier-%d/article.html">Article</a><a href="pilier-%d/demonstration.html">Démonstration</a></p></div>'
-            '<div class="vis"><div class="cadre">%s</div><p class="clef"><b>%s</b><span>%s</span></p></div></article>'
+            '<div class="vis">%s<p class="clef"><b>%s</b><span>%s</span></p></div></article>'
             % (p["n"], e(p["objet"]), p["n"], e(p["titre"]), e(p["resume"]),
                bouton("pilier-%d/index.html" % p["n"], "Planche interactive", "btn encre"), p["n"], p["n"],
-               VIGNETTES[p["n"]], p["clef"][0], e(p["clef"][1]))))
+               plaque(p["n"], "plaque mini"), p["clef"][0], e(p["clef"][1]))))
+    dessin_frise, nb_refs, an_debut, an_fin = frise(refs)
     docs = [("Dossier mathématique complet", "dossier.html", PDF_DOSSIER, DOSSIER)] + [
         ("Article du pilier %d — %s" % (p["n"], p["article"]), "pilier-%d/article.html" % p["n"],
          "documents/%s.pdf" % url(p["article"]), p["article"]) for p in PILIERS]
@@ -478,11 +575,15 @@ def main():
     haut = ('<header class="plan accueil"><div class="dedans hero">\n<div>\n<p class="repere"><span>Modèle de %s</span><span>Cinq piliers</span></p>\n'
             '<h1><span>Actuel,</span> <span>Émergent,</span> <span>Local</span></h1>\n<p class="chapeau">%s</p>\n'
             '<p class="actions">%s%s</p>\n</div>\n'
-            '<figure class="expo">\n<div class="plaque" role="img" aria-label="Des impacts de photons s\'accumulent sur un écran et dessinent peu à peu des bandes">'
+            '<figure class="expo">\n<div class="plaque expo-ecran" role="img" aria-label="Des impacts de photons s\'accumulent sur un écran et dessinent peu à peu des bandes">'
             '<canvas id="expo-a"></canvas><canvas id="expo-b"></canvas>'
             '<span class="pl-t">Écran de détection</span><span class="pl-n">Photons détectés<b id="expo-n">0</b></span></div>\n'
-            '<figcaption>Chaque point est l\'arrivée d\'un photon : un lieu, un instant. Aucun ne dessine les bandes. '
-            'Elles n\'apparaissent qu\'avec le nombre. <button class="lien" id="expo-re" type="button">Recommencer</button></figcaption>\n'
+            '<figcaption><p id="expo-txt">Chaque point est l\'arrivée d\'un photon : un lieu, un instant. Aucun ne dessine les bandes. '
+            'Elles n\'apparaissent qu\'avec le nombre.</p>\n'
+            '<div class="choix" role="group" aria-label="Ce que l\'on sait du trajet de chaque photon">'
+            '<button class="jeton" id="expo-libre" type="button" aria-pressed="true">Route inconnue</button>'
+            '<button class="jeton" id="expo-route" type="button" aria-pressed="false">Route connue</button>'
+            '<button class="lien" id="expo-re" type="button">Recommencer</button></div></figcaption>\n'
             '</figure>\n</div></header>'
             % (AUTEUR, t(ACCROCHE), bouton("pilier-1/index.html", "Commencer par le pilier 1", "btn plein"),
                bouton("dossier.html", "Lire le dossier complet")))
@@ -505,6 +606,14 @@ def main():
   </div>
 </section>
 
+<section aria-labelledby="h-frise">
+  <span class="eyebrow">Sources</span>
+  <h2 id="h-frise">Un siècle de travaux derrière les cinq piliers</h2>
+  <p>Le dossier s'appuie sur NBREFS travaux publiés entre ANDEBUT et ANFIN. Chaque point en est un : survolez-le ou touchez-le pour savoir lequel. Le nom écrit sur chaque rang est celui du plus ancien.</p>
+  <figure class="fig solo"><div class="stage">DESSINFRISE</div><div class="bulle" hidden></div></figure>
+  <p class="fnote">La liste complète, avec un lien vers chaque source, se trouve dans les <a href="dossier.html#references">références du dossier</a>.</p>
+</section>
+
 <section aria-labelledby="h-synth">
   <span class="eyebrow">Synthèse</span>
   <h2 id="h-synth">Intuitions, équations, théorèmes et corrections</h2>
@@ -523,9 +632,11 @@ def main():
   </table></div>
   <p class="fnote">Le PDF du dossier est produit à partir de ce site : les formules y sont composées. Dans ses versions Word et Markdown, elles restent écrites en code LaTeX.</p>
 </section>""") % ("\n".join(planches), md_html(intro, "accueil"), md_html(sections.get("Synthèse", "").strip(), "accueil"), rangs)
+    corps = (corps.replace("NBREFS", str(nb_refs)).replace("ANDEBUT", str(an_debut)).replace("ANFIN", str(an_fin))
+             .replace("DESSINFRISE", dessin_frise))
     page("index.html", NOM,
          "Cinq intuitions sur la lumière, la gravité et la mesure, traduites en équations et confrontées à la physique établie.",
-         haut, corps, base_js + "\n" + accueil_js, cart("Page de garde", "Contenu", "5 planches · 5 articles · 5 démonstrations", date),
+         haut, corps, commun_js + "\n" + accueil_js, cart("Page de garde", "Contenu", "5 planches · 5 articles · 5 démonstrations", date),
          "p-accueil", accueil=True)
 
     # 5. dossier complet sur une seule page ; il sert aussi à produire le PDF aux formules composées
@@ -542,7 +653,8 @@ def main():
     h = re.sub(r"<h2>(.*?)</h2>", ancre, h, flags=re.S)
     table = '<nav class="toc" aria-label="Sommaire du dossier"><span class="eyebrow">Sommaire</span><ol>%s</ol></nav>' % "".join(sommaire)
     h = h.replace('<h2 id="pilier-1">', table + '\n<h2 id="pilier-1">', 1)
-    corps = '<article class="prose dossier">\n%s\n%s\n</article>' % (typo(AVIS % AVIS_MOT), h)
+    lateral, h = rail(h)
+    corps = '<div class="avec-rail">%s<article class="prose dossier">\n%s\n%s\n</article></div>' % (lateral, typo(AVIS % AVIS_MOT), h)
     haut = entete(["Dossier complet", "Cinq démonstrations, synthèse, références"], t(DOSSIER), texte,
                   suite='<p class="actions">%s</p>\n' % bouton(PDF_DOSSIER, "Télécharger le PDF", "btn plein"))
     page("dossier.html", DOSSIER, "Les cinq démonstrations du modèle, la synthèse et les références, sur une seule page.",
@@ -557,6 +669,11 @@ def main():
     page("404.html", "Page introuvable", "Cette page n'existe pas.", haut, corps, base_js,
          cart("Page introuvable", "Vue", "Erreur 404", date), "p-404",
          tete='<base href="%s">\n<meta name="robots" content="noindex">\n' % urllib.parse.urlparse(SITE).path)
+
+    # 7. plan du site, pour les moteurs de recherche
+    adresses = ["", "dossier.html"] + ["pilier-%d/%s" % (p["n"], v) for p in PILIERS for v in ("", "article.html", "demonstration.html")]
+    ecrire("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n'
+           % "".join("  <url><loc>%s%s</loc></url>\n" % (SITE, a) for a in adresses))
 
     if "--pdf" in sys.argv:
         nav = navigateur()

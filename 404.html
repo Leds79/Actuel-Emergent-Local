@@ -331,7 +331,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 /* accueil : les cinq planches */
 .p-accueil main>section>h2{font:600 clamp(1.9rem,3.8vw,2.7rem)/1.05 var(--display);letter-spacing:.004em;max-width:28ch}
 .planches{display:flex;flex-direction:column;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
-.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(220px,300px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
+.plk{display:grid;grid-template-columns:5.6rem minmax(0,1fr) minmax(200px,264px);gap:clamp(1rem,3vw,2.6rem);align-items:start;padding:clamp(1.5rem,3vw,2.3rem) 0}
 .plk+.plk{border-top:1px solid var(--rule)}
 .no{display:flex;flex-direction:column;gap:.4rem}
 .no b{font:600 clamp(3.4rem,6vw,4.8rem)/.82 var(--display)}
@@ -343,8 +343,6 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 .acces{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.3rem;margin-top:.55rem;max-width:none;font:500 .8rem/1 var(--mono)}
 .acces .btn{padding:.72rem .95rem}
 .vis{display:flex;flex-direction:column;gap:.65rem;min-width:0}
-.vis .cadre{border:1px solid var(--axis);padding:.7rem 1rem;background-color:var(--sheet);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px}
 .vis svg{display:block;width:100%;height:auto}
 .clef{display:flex;align-items:baseline;gap:.7rem;max-width:none}
 .clef b{font:600 1.75rem/1 var(--display);white-space:nowrap}
@@ -368,6 +366,61 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   .verdict>p:last-child{grid-column:1;grid-row:auto;max-width:none}
 }
 
+/* lien d'évitement pour le clavier */
+.saut{position:absolute;left:-999px;top:0;z-index:30;padding:.7rem 1rem;background:var(--photon);color:var(--plan-2);font:500 .8rem var(--mono)}
+.saut:focus{left:8px;top:8px}
+
+/* avancement de la lecture, sous la barre du haut */
+@supports (animation-timeline:scroll()){
+  .barre::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--photon);
+    transform-origin:0 50%;transform:scaleX(0);animation:avance linear both;animation-timeline:scroll(root block)}
+  @keyframes avance{to{transform:scaleX(1)}}
+}
+/* passage d'une page à l'autre en fondu ; la barre du haut reste en place */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+  .barre{view-transition-name:barre}
+}
+
+/* épures : le dessin animé de chaque pilier, dans l'en-tête et sur l'accueil */
+.tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.epure{margin:0;min-width:0}
+.epure .plaque,.plaque.mini{aspect-ratio:4/3}
+@media (max-width:980px){
+  .tete{grid-template-columns:1fr}
+  .tete .epure{display:none}
+}
+/* accueil : choisir ce que l'on sait de chaque photon */
+.expo figcaption p{max-width:54ch}
+.choix{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin-top:.75rem}
+.jeton{padding:.58rem .7rem;border:1px solid var(--plan-trait-2);background:transparent;color:var(--plan-ink);cursor:pointer;
+  font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.jeton:hover{background:rgba(205,225,255,.14)}
+.jeton[aria-pressed="true"]{background:var(--photon);border-color:var(--photon);color:var(--plan-2)}
+.choix .lien{margin-left:.5rem;font-size:.86rem}
+
+/* rail de lecture : le sommaire de la page, dans la marge des grands écrans */
+.rail{display:none}
+@media (min-width:1200px){
+  .avec-rail{display:grid;grid-template-columns:13rem minmax(0,47.5rem);gap:2.5rem;justify-content:center;align-items:start}
+  .avec-rail>.prose{margin:0}
+  .rail{display:flex;flex-direction:column;gap:.7rem;position:sticky;top:4.8rem;max-height:calc(100vh - 6.2rem);overflow:auto}
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:1px solid var(--rule)}
+  .rail a{display:block;margin-left:-1px;padding:.36rem 0 .36rem .9rem;border-left:2px solid transparent;text-decoration:none;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
+  .rail a:hover{color:var(--ink)}
+  .rail a[aria-current="true"]{border-left-color:var(--ink);color:var(--ink);font-weight:500}
+  .avec-rail .toc{display:none}
+}
+
+/* frise des travaux cités */
+.fig{position:relative}
+.frise .ref{cursor:pointer;outline:none}
+.frise .pt{fill:var(--geo);stroke:var(--sheet);stroke-width:2}
+.frise .ref:hover .pt,.frise .ref:focus .pt{fill:var(--ink)}
+.frise .touche{fill:transparent}
+.bulle{position:absolute;z-index:5;max-width:19rem;padding:.6rem .75rem;background:var(--ink);color:var(--sheet);font-size:.84rem;line-height:1.4;pointer-events:none}
+.bulle b{display:block;margin-bottom:.2rem;font:500 .7rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+
 /* impression et PDF : feuille blanche, cartouche en tête, formules ajustées à la page */
 @media print{
   @page{size:letter;margin:16mm 16mm 19mm;
@@ -381,7 +434,8 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
   }
   *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
   body{background:#fff;padding:0 .4mm;font-size:10.5pt;line-height:1.5}
-  .barre,.vues,.pagination,.pied,.actions,.expo,.suite,.err{display:none!important}
+  .barre,.vues,.pagination,.pied,.actions,.expo,.epure,.rail,.saut,.bulle,.suite,.err{display:none!important}
+  .tete,.avec-rail{display:block}
   .dedans,.pose{max-width:none;padding-left:0;padding-right:0}
   .plan{background:none;color:var(--ink)}
   .plan .dedans,.plan .dedans.onglets{padding-top:0;padding-bottom:5mm}
@@ -411,6 +465,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </style>
 </head>
 <body class="p-404">
+<a class="saut" href="#contenu">Aller au contenu</a>
 <div class="barre"><div class="dedans">
 <a class="marque" href="index.html" aria-label="Accueil : Actuel, Émergent, Local"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M2.5 5h19" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 20L5 5M12 20V5M12 20L19 5" fill="none" stroke="#ffefc4" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="20" r="2.2" fill="currentColor"/></svg><span>Actuel, Émergent, Local</span></a>
 <nav aria-label="Piliers et dossier"><span class="lib">Piliers</span><a href="pilier-1/index.html" title="L&#x27;ombre plus rapide que la lumière">1</a><a href="pilier-2/index.html" title="On ne voit jamais la lumière passer">2</a><a href="pilier-3/index.html" title="La pente du temps">3</a><a href="pilier-4/index.html" title="Le choix qui ne réécrit pas le passé">4</a><a href="pilier-5/index.html" title="Comment une réponse devient un fait">5</a><a class="dos" href="dossier.html">Dossier</a></nav>
@@ -423,7 +478,7 @@ table.data{border-collapse:collapse;width:100%;font-size:.94rem}
 </div></header>
 <div class="pose"><div class="sheet">
 <div class="cartouche"><div class="cc"><span class="ck">Projet</span><span class="cv">Modèle « Actuel, Émergent, Local »</span></div><div class="cc"><span class="ck">Objet</span><span class="cv">Page introuvable</span></div><div class="cc"><span class="ck">Vue</span><span class="cv">Erreur 404</span></div><div class="cc"><span class="ck">Auteur</span><span class="cv">Sylvain Leduc</span></div><div class="cc"><span class="ck">Date</span><span class="cv">17 novembre 2026</span></div></div>
-<main>
+<main id="contenu">
 <section><span class="eyebrow">Par où continuer</span><h2>Les cinq piliers</h2>
 <div class="prose large"><ul><li><a href="pilier-1/index.html">Pilier 1 — L&#x27;ombre plus rapide que la lumière</a></li><li><a href="pilier-2/index.html">Pilier 2 — On ne voit jamais la lumière passer</a></li><li><a href="pilier-3/index.html">Pilier 3 — La pente du temps</a></li><li><a href="pilier-4/index.html">Pilier 4 — Le choix qui ne réécrit pas le passé</a></li><li><a href="pilier-5/index.html">Pilier 5 — Comment une réponse devient un fait</a></li><li><a href="dossier.html">Le dossier complet</a></li></ul></div></section>
 </main>
@@ -500,6 +555,21 @@ const pressOnly = (group, btn) => $$(group).forEach(b => b.setAttribute('aria-pr
 const marquerDefilement = () => $$('.stage').forEach(s => s.classList.toggle('defile', s.scrollWidth > s.clientWidth + 4));
 window.addEventListener('load', marquerDefilement);
 window.addEventListener('resize', marquerDefilement);
+// rail de lecture : la section en cours est marquée pendant le défilement
+(() => {
+  const liens = $$('.rail a');
+  if (!liens.length) return;
+  const cibles = liens.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  if (!cibles.length) return;
+  const marquer = () => {
+    let courant = cibles[0];
+    cibles.forEach(c => { if (c.getBoundingClientRect().top < 130) courant = c; });
+    liens.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + courant.id ? 'true' : 'false'));
+  };
+  let attente = 0;
+  window.addEventListener('scroll', () => { if (!attente) attente = requestAnimationFrame(() => { attente = 0; marquer(); }); }, { passive: true });
+  marquer();
+})();
 
 </script>
 </body>
