@@ -16,7 +16,7 @@ Le ciel nocturne en donne la preuve chaque soir. Peu après le coucher du Soleil
 
 L'œil est un détecteur. Il ne signale que la lumière qui entre par la pupille et que la rétine absorbe. Une lumière qui passe à côté ne laisse aucune trace en lui.
 
-Quand on dit « voir un objet », on reçoit en fait de la lumière que cet objet a renvoyée. On ne voit donc pas la lumière : on voit avec elle. Et ce qu'on voit, c'est toujours de la matière éclairée.
+Quand on dit « voir un objet », on reçoit en fait de la lumière que cet objet a renvoyée. On ne voit donc pas la lumière : on voit avec elle. Et ce qu'on voit, c'est toujours de la matière éclairée. En chemin, la lumière elle-même est transparente comme l'eau.
 
 ## Rien ne court le long de l'écran
 
@@ -50,7 +50,7 @@ Les physiciens ne s'accordent pas sur la meilleure façon de décrire cet entre-
 
 ## Trois mots pour le dire
 
-Le mot « rayon » fait penser à une tige tendue entre la lampe et le mur. Il désigne seulement la direction dans laquelle la lumière avance. Un « rayon de soleil » visible dans une pièce, c'est de la poussière éclairée.
+Le vocabulaire courant est plus ancien que ces connaissances, et il trompe. Le mot « rayon » fait penser à une tige tendue entre la lampe et le mur. Il désigne seulement la direction dans laquelle la lumière avance. Un « rayon de soleil » visible dans une pièce, c'est de la poussière éclairée.
 
 Trois mots décrivent mieux ce qu'on observe réellement d'un événement lumineux :
 

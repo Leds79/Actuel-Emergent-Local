@@ -618,6 +618,18 @@ def main():
   </div>
 </section>
 
+<section aria-labelledby="h-fil">
+  <span class="eyebrow">Le fil commun</span>
+  <h2 id="h-fil">Une même grille de lecture, venue du suivi de projet</h2>
+  <p>Tout est parti d'une objection à une phrase qu'on répète souvent : « l'ombre va plus vite que la lumière ». Pour la mettre à l'épreuve, l'auteur a appliqué ses réflexes de suivi de projet. Les cinq piliers posent les trois mêmes questions.</p>
+  <dl class="defs">
+    <div><dt>Où est l'observateur ?</dt><dd>Celui qui déclenche l'action doit attendre que l'information lui revienne. La boucle de retour fait partie du phénomène.</dd></div>
+    <div><dt>Quel chemin, réellement ?</dt><dd>Chaque signal parcourt une vraie distance, à une cadence limitée. Les délais s'additionnent, et le plus long fixe le rythme.</dd></div>
+    <div><dt>En transit, ou arrivé ?</dt><dd>Tant qu'un signal voyage, rien n'est encore constaté. Un fait naît à l'endroit et à l'instant où il rencontre la matière.</dd></div>
+  </dl>
+  <p>De là viennent les trois mots du modèle : actuel, émergent, local. Rien n'y agit à distance ; chaque événement se produit quelque part, à un moment donné.</p>
+</section>
+
 <section aria-labelledby="h-verdict">
   <span class="eyebrow">Verdict</span>
   <h2 id="h-verdict">Ce que les équations confirment, et ce qu'elles corrigent</h2>

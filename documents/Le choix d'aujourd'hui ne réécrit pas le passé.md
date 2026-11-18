@@ -40,7 +40,7 @@ Berthold-Georg Englert a donné à ce compromis une forme exacte en 1996. Le cad
 
 ## Qui choisit ?
 
-Le mot « choix » suggère une intention. L'expérience n'en a pas besoin. En 2007, une équipe française a réalisé l'expérience de Wheeler dans un interféromètre de 48 mètres : le choix était tiré au hasard par une machine, sans lien causal possible avec l'entrée du photon.
+L'intuition lit dans le mot « choix » une intention. Elle voit juste sur un point : l'appareil matérialise une question, posée ici et maintenant. Mais l'expérience n'a pas besoin d'une intention consciente. En 2007, une équipe française a réalisé l'expérience de Wheeler dans un interféromètre de 48 mètres : le choix était tiré au hasard par une machine, sans lien causal possible avec l'entrée du photon.
 
 Wheeler lui-même écartait la conscience. Pour lui, l'essentiel est un acte d'enregistrement irréversible, quel que soit ce qui l'accomplit.
 

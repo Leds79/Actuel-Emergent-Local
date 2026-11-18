@@ -2,11 +2,11 @@
 
 Nov 17, 2026 · @Sylvain Leduc
 
-Une mesure se joue en deux temps : la réponse est d'abord inscrite au crayon, encore effaçable, puis gravée par l'environnement en d'innombrables copies. C'est ce second temps, la cristallisation, qui transforme une possibilité en fait partagé. La physique sait le calculer ; elle ne sait toujours pas dire pourquoi c'est telle réponse qui sort plutôt que l'autre.
+L'intuition dit qu'actualiser une réponse, c'est cristalliser l'information. La physique la suit en distinguant deux temps : la réponse est d'abord inscrite au crayon, encore effaçable, puis gravée par l'environnement en d'innombrables copies. C'est ce second temps, la cristallisation, qui transforme une possibilité en fait partagé. La physique sait le calculer ; elle ne sait toujours pas dire pourquoi c'est telle réponse qui sort plutôt que l'autre.
 
 ## Une question vaut un nombre de bits
 
-Mesurer, c'est poser une question à la nature. Avant même la réponse, cette question a une valeur : ce que la réponse apprendra. Les ingénieurs la comptent en bits depuis les travaux de Claude Shannon, en 1948.
+Mesurer, c'est poser une question à la nature. Dans l'intuition, cette question est un potentiel. Avant même la réponse, elle a déjà une valeur : ce que la réponse apprendra. Les ingénieurs la comptent en bits depuis les travaux de Claude Shannon, en 1948.
 
 | Question posée à un photon | Chances des deux réponses | Valeur de la question |
 | --- | --- | --- |

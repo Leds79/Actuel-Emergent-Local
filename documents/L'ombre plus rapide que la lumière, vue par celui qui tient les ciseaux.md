@@ -28,7 +28,7 @@ Sa vitesse retombe donc de 524 fois la vitesse de la lumière vers une fois, san
 
 ## Second oubli : la lumière doit revenir
 
-Celui qui ferme les ciseaux ne voit rien tant que la lumière n'est pas revenue de l'écran jusqu'à son œil. Le délai de trajet est doublé : loin du centre, chaque kilomètre d'écran coûte presque deux kilomètres de parcours.
+Celui qui ferme les ciseaux ne voit rien tant que la lumière n'est pas revenue de l'écran jusqu'à son œil. Le délai de trajet est doublé : loin du centre, chaque kilomètre d'écran coûte presque deux kilomètres de parcours. L'intuition y voit le décalage de deux miroirs face à face, où chaque reflet plus lointain est plus ancien. L'image est juste : ici, chaque point plus éloigné du centre répond plus tard.
 
 L'ombre qu'il voit ne tend donc pas vers la vitesse de la lumière, mais vers sa moitié : 150 000 kilomètres par seconde. Elle n'y arrive pas par le bas. Elle démarre à 524 fois la vitesse de la lumière, passe sous cette vitesse à 58 millions de kilomètres du centre, puis ralentit vers la moitié sans jamais l'atteindre.
 
