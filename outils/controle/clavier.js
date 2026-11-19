@@ -13,6 +13,11 @@ resume.click(); await new Promise(r => setTimeout(r, 50));
 document.querySelector('main').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })); etats.push('toucher ailleurs : ' + menu.open);
 resume.click(); await new Promise(r => setTimeout(r, 50));
 menu.querySelector('li a').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })); etats.push('toucher un lien de la liste : ' + menu.open);
+// sortie au clavier : la liste reste ouverte tant que le foyer y circule, et se ferme quand il passe à un élément placé après elle
+menu.open = true; await new Promise(r => setTimeout(r, 50));
+const dernier = Array.from(menu.querySelectorAll('li a')).pop();
+dernier.dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: menu.querySelector('li a') })); etats.push('foyer qui reste dans la liste : ' + menu.open);
+dernier.dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: document.querySelector('.barre nav>a.dos') })); etats.push('foyer qui sort de la liste : ' + menu.open);
 menu.open = false;
 window.__mesures = {
   ordre: tabulables.slice(0, 16).map(e => e.tagName.toLowerCase() + ':' + nom(e)),
